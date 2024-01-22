@@ -62,11 +62,36 @@ Mandatory
 The Project
 </h2>
 
-### ⚙️ Process
+### 🤓 Before starting
 
-**1. Lexer**
+What is Bash? How does it work?
+
+A shell is a program that allows users to interact with the services of an operating system. Bash, the GNU shell, is presently the most widely used shell program. We approached the task of recreating bash quite literally, and our initial step involved understanding the inner workings of bash.
+
+To do so, these are the recommended readings.
+
+- ![Bash Manual](https://github.com/spnzed/minishell/blob/main/bash.pdf)
+- ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Chapter5-WritingYourOwnShell.pdf)
+
+Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
+
+### ⚙️ The Engine
+
+`lexer → parser → expander → executor`
+![193665518-0c0c7fec-38a9-4f6c-91ca-fef606abfb0d](https://github.com/spnzed/minishell/assets/95354392/8e1fea33-b933-45a8-a0d3-bf056b85df44)
+@maiadegraaf credits for the image!
+
+**1. Lexer aka tokenizer**
+
+Reads the line word by word, utilizing white space as delimiters. Initially, it verifies whether the word is a token, such as `|, <, <<, >, or >>`. Otherwise, it assumes the string is a regular word.
 
 **2. Parser**
+
+Then parser recieves the parameters, and distributes the different nodes together based on the tokens. Each group becomes a command.
+
+![194295673-3c9e17c3-d5ab-40dc-82ef-72b909f4acb3](https://github.com/spnzed/minishell/assets/95354392/2c525e6e-8222-42d3-ad0d-633915c3d608)
+
+With a loop we will go through the previous arguments given by the Lexer until it finds a pipe (`|`). It then takes all the nodes before the pipe as one command, and creates a node in the struct. If it doesn't find a pipe it takes all the (remaining) nodes as one command.
 
 1. Separations
 2. Pipes
@@ -77,6 +102,7 @@ The Project
 
 **3. Expander**
 
+Before a node from t_simple_cmds is handled it is expanded. The expander takes variables, identified by $, and replaces them with their value from the environment variables. Such that $USER becomes mgraaf, and $? is replaced with the exit code.
 
 **4. Executor**
 1. Redirections
