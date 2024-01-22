@@ -14,8 +14,8 @@ In this project, we are going to develop our own C-based shell capable of handli
 Mandatory
 </h3>
 <p align="center">
-  <a href="https://github.com/spnzed/minishell/blob/main/en.subject.pdf">
-    <img alt="Subject" src="https://github.com/spnzed/minishell/blob/main/en.subject.pdf"
+  <a href="https://github.com/spnzed/minishell/blob/main/Subject/en.subject.pdf">
+    <img alt="Subject" src="https://github.com/spnzed/minishell/blob/main/Subject/en.subject.pdf"
   </a>
 </p>
 
