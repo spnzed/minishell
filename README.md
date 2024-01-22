@@ -95,17 +95,19 @@ The Project
 </h2>
 
 ### 🤓 Before starting
+![dennisritchie](https://github.com/spnzed/minishell/assets/95354392/2f99e18f-ade7-4ea0-ac1b-1f9271e0c9b7)
+@m4nnb3ll credits for the image!
 
-What is Bash? How does it work?
+**What is Bash? How does it work?**
 
 A shell is a program that allows users to interact with the services of an operating system. Bash, the GNU shell, is presently the most widely used shell program. We approached the task of recreating bash quite literally, and our initial step involved understanding the inner workings of bash.
 
-To do so, these are the recommended readings.
+**To do so, these are recommended readings.**
 
 - ![Bash Manual](https://github.com/spnzed/minishell/blob/main/Docs/bash.pdf)
 - ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 
-Great videos to check.
+**Great videos to check.**
 
 - ![Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
 - ![What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
