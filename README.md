@@ -107,6 +107,7 @@ To do so, these are the recommended readings.
 
 Great videos to check.
 
+- ![Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
 - ![What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
 - ![“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
 - ![Where GREP Came From](https://www.youtube.com/watch?v=NTfOnGZUZDk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=7)
