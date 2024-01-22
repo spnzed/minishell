@@ -91,8 +91,8 @@ A shell is a program that allows users to interact with the services of an opera
 
 To do so, these are the recommended readings.
 
-- ![Bash Manual](https://github.com/spnzed/minishell/blob/main/bash.pdf)
-- ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Chapter5-WritingYourOwnShell.pdf)
+- ![Bash Manual](https://github.com/spnzed/minishell/blob/main/Docs/bash.pdf)
+- ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 
 Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
 
