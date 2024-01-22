@@ -76,6 +76,17 @@ Mandatory
 - env with no options or arguments
 - exit with no options
 
+| Builtin | Description | Options | Parameters | Helpful Functions |
+| :-----: | :---------: | :-----: | :--------: | :---------------: |
+| ``echo`` | Prints arguments separated with a space followed by a new line | ``-n`` | :heavy_check_mark: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
+| ``cd`` | Changes current working directory, updating ``PWD`` and ``OLDPWD`` | :x: | :heavy_check_mark: | [chdir](https://man7.org/linux/man-pages/man2/chdir.2.html) |
+|  ``pwd``| Prints current working directory | :x: | :x: | [getcwd](https://www.man7.org/linux/man-pages/man3/getcwd.3.html) |
+| ``export`` | Adds/replaces variable in environment | :x: | :heavy_check_mark: | :x: |
+| ``unset`` | Removes variable from environment | :x: | :heavy_check_mark: | :x: |
+| ``env`` | Prints environment | :x: | :x: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
+
+@madebypixel02 credits for the table info!
+
 <h3 align=center>
 
 
@@ -138,21 +149,6 @@ Before a node from t_simple_cmds is handled it is expanded. The expander takes v
 2. Env, export, unset
 3. Exit and `$?`
 4. Pipe/signal/process links
-
-## Builtins
-
-We were asked to implement some basic builtins with the help of some functions, here is a brief overview of them:
-
-| Builtin | Description | Options | Parameters | Helpful Functions |
-| :-----: | :---------: | :-----: | :--------: | :---------------: |
-| ``echo`` | Prints arguments separated with a space followed by a new line | ``-n`` | :heavy_check_mark: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
-| ``cd`` | Changes current working directory, updating ``PWD`` and ``OLDPWD`` | :x: | :heavy_check_mark: | [chdir](https://man7.org/linux/man-pages/man2/chdir.2.html) |
-|  ``pwd``| Prints current working directory | :x: | :x: | [getcwd](https://www.man7.org/linux/man-pages/man3/getcwd.3.html) |
-| ``export`` | Adds/replaces variable in environment | :x: | :heavy_check_mark: | :x: |
-| ``unset`` | Removes variable from environment | :x: | :heavy_check_mark: | :x: |
-| ``env`` | Prints environment | :x: | :x: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
-
-@madebypixel02 credits for the table info!
 
 ### 📁 Structure
 
