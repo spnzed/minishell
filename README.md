@@ -94,6 +94,14 @@ To do so, these are the recommended readings.
 - ![Bash Manual](https://github.com/spnzed/minishell/blob/main/Docs/bash.pdf)
 - ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 
+Great videos to check.
+
+- ![What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
+- ![“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
+- ![Where GREP Came From](https://www.youtube.com/watch?v=NTfOnGZUZDk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=7)
+- ![Parsing](https://www.youtube.com/watch?v=r6vNthpQtSI&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=15)
+- ![UNIX Pipeline](https://www.youtube.com/watch?v=bKzonnwoR2I&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=24)
+
 Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
 
 ### ⚙️ The Engine `lexer → parser → expander → executor`
