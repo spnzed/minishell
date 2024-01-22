@@ -44,21 +44,21 @@ Mandatory
 - Exercise caution; the global variable should only convey the received signal number, providing no other information or data access. Thus, incorporating "norm" type structures in the global scope is forbidden.
 - Refrain from interpreting unclosed quotes or unnecessary special characters like \ (backslash) or ; (semicolon).
 - Manage ' (single quote) to prevent the shell from interpreting meta-characters within the quoted sequence.
-- Manage " (double quote) to prevent the shell from interpreting meta-characters within the quoted sequence, with the exception of $ (dollar sign)."
+- Manage " (double quote) to prevent the shell from interpreting meta-characters within the quoted sequence, with the exception of $ (dollar sign).
 
 <b>Implement redirections:</b>
-- "<" should redirect input.
-- ">" should redirect output.
-- "<<" should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
-- ">>" should redirect output in append mode.
+- `<` should redirect input.
+- `>` should redirect output.
+- `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+- `>>` should redirect output in append mode.
 
-<b>Implement pipes "|":</b>
+<b>Implement pipes `|`:</b>
 - The output of each command in the pipeline is connected to the input of the next command via a pipe
 
-<b>Environment variables "$":</b>
+<b>Environment variables `$`:</b>
 - ($ followed by a sequence of characters) which should expand to their values.
 
-<b>Handle "$?":</b>
+<b>Handle `$?`:</b>
 - Should expand to the exit status of the most recently executed foreground pipeline.
 
 <b>Handle ctrl-C, ctrl-D and ctrl-\:</b>
