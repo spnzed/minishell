@@ -19,6 +19,22 @@ Mandatory
   </a>
 </p>
 
+<b>Allowed functions:</b>
+
+
+| Library | Functions | Use |
+| :-----: | :---------: | :-----: |
+| `libreadline` | readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history | Functions for command line editing and history manipulation, enhancing user interactivity.|
+| `libc` | printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, kill, exit | Core functions for process handling and input/output operations.|
+| `libc` | getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe| Functions for file and directory manipulation, as well as program execution.|
+| `libc` | opendir, readdir, closedir| Functions for directory manipulation.|
+| `libc` | strerror, perror| Functions for error management, translating error codes into readable messages.|
+| `libc` | isatty, ttyname, ttyslot, ioctl| Functions for terminal device manipulation.|
+| `libc` | getenv | Retrieves the value of an environment variable.|
+| `libc` | tcsetattr, tcgetattr | Functions for configuring and obtaining terminal attributes.|
+| `libc` | tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs | Functions for advanced terminal manipulation, useful in creating text-based user interfaces.|
+
+
 <b>Shell should:</b>
 
 - Display a prompt for user input while awaiting a new command.
