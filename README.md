@@ -148,9 +148,9 @@ We were asked to implement some basic builtins with the help of some functions, 
 | ``echo`` | Prints arguments separated with a space followed by a new line | ``-n`` | :heavy_check_mark: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
 | ``cd`` | Changes current working directory, updating ``PWD`` and ``OLDPWD`` | :x: | :heavy_check_mark: | [chdir](https://man7.org/linux/man-pages/man2/chdir.2.html) |
 |  ``pwd``| Prints current working directory | :x: | :x: | [getcwd](https://www.man7.org/linux/man-pages/man3/getcwd.3.html) |
-| ``env`` | Prints environment | :x: | :x: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
 | ``export`` | Adds/replaces variable in environment | :x: | :heavy_check_mark: | :x: |
 | ``unset`` | Removes variable from environment | :x: | :heavy_check_mark: | :x: |
+| ``env`` | Prints environment | :x: | :x: | [write](https://man7.org/linux/man-pages/man2/write.2.html) |
 
 @madebypixel02 credits for the table info!
 
