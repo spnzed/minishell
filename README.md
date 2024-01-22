@@ -13,6 +13,11 @@ In this project, we are going to develop our own C-based shell capable of handli
 <h3 align=center>
 Mandatory
 </h3>
+<p align="center">
+  <a href="https://github.com/spnzed/minishell/blob/main/en.subject.pdf">
+    <img alt="Subject" src="https://github.com/spnzed/minishell/blob/main/en.subject.pdf"
+  </a>
+</p>
 
 <b>Shell should:</b>
 
@@ -75,9 +80,8 @@ To do so, these are the recommended readings.
 
 Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
 
-### ⚙️ The Engine
+### ⚙️ The Engine `lexer → parser → expander → executor`
 
-`lexer → parser → expander → executor`
 ![193665518-0c0c7fec-38a9-4f6c-91ca-fef606abfb0d](https://github.com/spnzed/minishell/assets/95354392/8e1fea33-b933-45a8-a0d3-bf056b85df44)
 @maiadegraaf credits for the image!
 
@@ -90,6 +94,7 @@ Reads the line word by word, utilizing white space as delimiters. Initially, it 
 Then parser recieves the parameters, and distributes the different nodes together based on the tokens. Each group becomes a command.
 
 ![194295673-3c9e17c3-d5ab-40dc-82ef-72b909f4acb3](https://github.com/spnzed/minishell/assets/95354392/2c525e6e-8222-42d3-ad0d-633915c3d608)
+@maiadegraaf credits for the image!
 
 With a loop we will go through the previous arguments given by the Lexer until it finds a pipe (`|`). It then takes all the nodes before the pipe as one command, and creates a node in the struct. If it doesn't find a pipe it takes all the (remaining) nodes as one command.
 
@@ -97,17 +102,17 @@ With a loop we will go through the previous arguments given by the Lexer until i
 2. Pipes
 3. Command and arguments
 4. Protections
-5. Redirections <, >, >>
+5. Redirections `<, >, >>`
 6. Environment variables
 
 **3. Expander**
 
-Before a node from t_simple_cmds is handled it is expanded. The expander takes variables, identified by $, and replaces them with their value from the environment variables. Such that $USER becomes mgraaf, and $? is replaced with the exit code.
+Before a node from t_simple_cmds is handled it is expanded. The expander takes variables, identified by $, and replaces them with their value from the environment variables. Such that `$USER becomes mgraaf`, and `$?` is replaced with the exit code.
 
 **4. Executor**
 1. Redirections
 2. Env, export, unset
-3. Exit and $?
+3. Exit and `$?`
 4. Pipe/signal/process links
 
 ### 📁 Structure
