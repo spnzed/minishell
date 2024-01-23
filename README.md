@@ -107,6 +107,15 @@ A shell is a program that allows users to interact with the services of an opera
 - ![Bash Manual](https://github.com/spnzed/minishell/blob/main/Docs/bash.pdf)
 - ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 
+- [fork()](https://www.geeksforgeeks.org/fork-system-call/)
+- [dup()](https://www.geeksforgeeks.org/dup-dup2-linux-system-call/)
+- [pipe()](https://www.geeksforgeeks.org/pipe-system-call/)
+
+- [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
+- [Reading a Directory](https://c-for-dummies.com/blog/?p=3246)
+- [Linux and Unix exit code tutorial with examples](https://shapeshed.com/unix-exit-codes/)
+- [Signals in C language](https://www.geeksforgeeks.org/signals-c-language/)
+
 **Great videos to check.**
 
 - [Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
