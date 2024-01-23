@@ -70,7 +70,7 @@ Mandatory
 <b>Builtins:</b>
 - echo with option -n
 - cd with only a relative or absolute path
-- 
+
 **Absolute** path ->
 $ cat /home/user/documents/file.txt
 
