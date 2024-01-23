@@ -70,11 +70,10 @@ Mandatory
 <b>Builtins:</b>
 - echo with option -n
 - cd with only a relative or absolute path
-
-**Absolute** path
+**Absolute** path ->
 $ cat /home/user/documents/file.txt
 
-**Relative path**
+**Relative path** ->
 $ cd /home/user
 $ cat documents/file.txt
 
