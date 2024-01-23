@@ -109,12 +109,12 @@ A shell is a program that allows users to interact with the services of an opera
 
 **Great videos to check.**
 
-- ![Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
-- ![What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
-- ![“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
-- ![Where GREP Came From](https://www.youtube.com/watch?v=NTfOnGZUZDk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=7)
-- ![Parsing](https://www.youtube.com/watch?v=r6vNthpQtSI&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=15)
-- ![UNIX Pipeline](https://www.youtube.com/watch?v=bKzonnwoR2I&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=24)
+- [Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
+- [What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
+- [“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
+- [Where GREP Came From](https://www.youtube.com/watch?v=NTfOnGZUZDk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=7)
+- [Parsing](https://www.youtube.com/watch?v=r6vNthpQtSI&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=15)
+- [UNIX Pipeline](https://www.youtube.com/watch?v=bKzonnwoR2I&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=24)
 
 Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
 
