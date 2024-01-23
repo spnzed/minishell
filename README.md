@@ -105,22 +105,24 @@ A shell is a program that allows users to interact with the services of an opera
 **To do so, these are recommended readings.**
 
 - ![Bash Manual](https://github.com/spnzed/minishell/blob/main/Docs/bash.pdf)
-- ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 
 - [fork()](https://www.geeksforgeeks.org/fork-system-call/)
 - [dup()](https://www.geeksforgeeks.org/dup-dup2-linux-system-call/)
 - [pipe()](https://www.geeksforgeeks.org/pipe-system-call/)
 
-- [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
 - [Reading a Directory](https://c-for-dummies.com/blog/?p=3246)
 - [Linux and Unix exit code tutorial with examples](https://shapeshed.com/unix-exit-codes/)
 - [Signals in C language](https://www.geeksforgeeks.org/signals-c-language/)
 
-**Great videos to check.**
+**Great examples of shell building.**
+- ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
+- [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
+- [“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
+
+**Awesome videos to check.**
 
 - [Bash in 100 Seconds](https://www.youtube.com/watch?v=I4EWvMFj37g)
 - [What Happens When You Type a Command in Your Terminal](https://www.youtube.com/watch?v=2P7fcVHxA9o)
-- [“OMG building a shell in 10 minutes”](https://www.youtube.com/watch?v=k6TTj4C0LF0)
 - [Where GREP Came From](https://www.youtube.com/watch?v=NTfOnGZUZDk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=7)
 - [Parsing](https://www.youtube.com/watch?v=r6vNthpQtSI&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=15)
 - [UNIX Pipeline](https://www.youtube.com/watch?v=bKzonnwoR2I&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=24)
