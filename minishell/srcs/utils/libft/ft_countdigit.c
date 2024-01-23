@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_countdigit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:53:20 by aaespino          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:29:54 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_countdigit(long num)
+int	ft_countdigit(long num)
 {
-	int count;
-	
+	int	count;
+
 	count = 1;
 	if (num < 0)
 		count++;
@@ -22,5 +22,5 @@ int ft_countdigit(long num)
 		count++;
 		num /= 10;
 	}
-	return(count);
+	return (count);
 }

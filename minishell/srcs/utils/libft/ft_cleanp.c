@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cleanp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:29:38 by aaespino          #+#    #+#             */
-/*   Updated: 2023/10/04 14:30:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:30:04 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void    *ft_cleanp(void *p)
+void	*ft_cleanp(void *p)
 {
 	free(p);
 	p = NULL;

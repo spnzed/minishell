@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:06:43 by aaespino          #+#    #+#             */
-/*   Updated: 2023/10/03 14:59:45 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:27:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-t_list  *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_node;
 
@@ -22,5 +22,5 @@ t_list  *ft_lstnew(void *content)
 		return (0);
 	new_node->content = content;
 	new_node->next = NULL;
-	return(new_node);
+	return (new_node);
 }

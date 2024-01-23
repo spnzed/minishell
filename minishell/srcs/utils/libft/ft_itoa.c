@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:25:57 by aaespino          #+#    #+#             */
-/*   Updated: 2022/02/05 18:44:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:29:28 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*is_negative(int n, char *str)
 	i = countdigit(n);
 	str[0] = '-';
 	while (i > 0)
-	{	
+	{
 		str[i] = (n % 10) + 48;
 		n = (n / 10);
 		i--;
