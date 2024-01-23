@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/19 15:25:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:03:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	no_interactive(char *str)
 	while (++i < size)
 	{
 		new = ft_strndup(str + i, 1);
-		tokenizer(new);				//TO_DO
+		lexer(new);
 		ft_strdel(new);
 	}
 }
@@ -38,8 +38,8 @@ t_list	*start_env(char **env)
 	if (!env || !*env)
 		return (0);
 	begin = 0;
-	i = 0;
-	while(env[i])
+	i = -1;
+	while(env[++i])
 	{
 		str = (readline(env[i]));
 		if (!str)

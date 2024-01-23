@@ -45,6 +45,10 @@ SRC = 	ft_isalnum.c \
 		ft_lstmap.c \
 		ft_lstpos.c \
 		ft_cleanp.c \
+		ft_free_string.c \
+		ft_memdel.c \
+		ft_strndup.c \
+
 
 CC = gcc
 

@@ -6,13 +6,14 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/19 15:26:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:33:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+//	colors
 # define RESET   "\033[0m"
 # define RED     "\033[1;31m"
 # define GREEN   "\033[1;32m"
@@ -22,6 +23,7 @@
 # define CYAN    "\033[1;36m"
 # define WHITE   "\033[1;37m"
 
+//	libs
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdio.h>
@@ -36,12 +38,17 @@
 #include <termios.h>
 #include <term.h>
 
+//	libft
 #include "./srcs/utils/libft/libft.h"
 #include "./include/structs.h"
 
-t_list	*start_env(char **env);
 
+//				THE PROJECT
+t_list			*start_env(char **env);
 //	about tokens
-void	tokenizer(char *input);
+void			tokenizer(char *input);
+//	cleaning
+void			clear_token(void *content);
+int				free_all(t_info *info, int code_return);
 
 #endif
