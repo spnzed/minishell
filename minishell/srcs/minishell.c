@@ -6,25 +6,26 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/23 17:17:29 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:22:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-static void	no_interactive(char *str)
+static void	no_interactive(char *str, t_info *data)
 {
 	int		i;
 	int		size;
 	char	*new;
 
-	i = -1;
+	i = 0;
 	size = ft_strlen(str);
-	while (++i < size)
+	while (i < size)
 	{
 		new = ft_strndup(str + i, 1);
-		lexer(new);
+		lexer(new, &data);
 		ft_strdel(new);
+		i++;
 	}
 }
 
@@ -52,19 +53,20 @@ t_list	*start_env(char **env)
 
 int	main(int argc, char **argv, char **env) 
 {
-	t_info	data;
+	t_info	*data;
 
-	data.list_env = start_env(env);
-	data.list_path = 0;
-	data.list_input = 0;
-	data.ret = 0;
-	data.tab_var_env = 0;
+	data->list_env = start_env(env);
+	data->list_path = 0;
+	data->list_input = 0;
+	data->ret = 0;
+	data->tab_var_env = 0;
 
 	if (argc == 3 && !ft_strcmp(argv[1], "-c"))
 	{
-		no_interactive(argv[2]);
+		no_interactive(argv[2], &data);
+		free_all(&data, 1);
 	}
 	else
 	{}
-	return (data.ret);
+	return (data->ret);
 }
