@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:58:00 by aaespino          #+#    #+#             */
-/*   Updated: 2023/10/03 18:05:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:28:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *aux_lst;
-	int count = 0;
+	t_list	*aux_lst;
+	int		count;
 
+	count = 0;
 	if (!lst)
 		return (0);
 	while (lst)
@@ -30,5 +31,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		aux_lst = f(lst->content);
 		lst = lst->next;
 	}
+	(void)*del;
 	return (aux_lst);
 }

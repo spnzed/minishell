@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:49:00 by aaespino          #+#    #+#             */
-/*   Updated: 2023/10/06 16:21:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:32:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static long	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long	res;
 	int		sign;
@@ -19,12 +19,10 @@ static long	ft_atol(const char *str)
 	res = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'
-			|| str[i] == '\n' || str[i] == '\r'
-			|| str[i] == '\v' || str[i] == '\f'))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
 		i++;
-	while (str[i] && (str[i] == '0' && 
-		(str[i - 1] >= '0' && str[i - 1] >= '9')))
+	while ((str[i] && (str[i] == '0')
+			&& (str[i - 1] >= '0' && str[i - 1] >= '9')))
 		i++;
 	if (str[i] == '+')
 		i++;
