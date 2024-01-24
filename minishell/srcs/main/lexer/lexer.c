@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 16:20:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:30:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	lexer(char *input, t_info	*data)
 
 	value = ft_strdup(input);
 	type = def_type(value[0]);
-	token = create_token(value, type, &data);	//TO_DO
+	token = create_token(value, type, &data);
 	new = ft_lstnew(token);
 	ft_lstadd_back(&data->list_input, new);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 16:17:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:13:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 #include <string.h>
 #include <termios.h>
 #include <term.h>
+#include <stdbool.h>
 
 //	libft
 #include "./srcs/utils/libft/libft.h"
@@ -45,9 +46,13 @@
 
 //				THE PROJECT
 t_list			*start_env(char **env);
+//				Executor
+void			command_tree(t_info	*data);
 //				Lexer
-void			lexer(char *input, t_info	*data);
 t_token_type	def_type(char charset);
+bool			type_is_separator(t_token_type type);
+void			lexer(char *input, t_info	*data);
+
 
 //	cleaning
 void			clear_token(void *content);
