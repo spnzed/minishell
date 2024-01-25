@@ -124,6 +124,8 @@ A shell is a program that allows users to interact with the services of an opera
 - [Linux and Unix exit code tutorial with examples](https://shapeshed.com/unix-exit-codes/)
 - [Signals in C language](https://www.geeksforgeeks.org/signals-c-language/)
 
+- [Basic commands for working with branches](https://gist.github.com/Alinaprotsyuk/3d58f8cd52eb03a11283d64beb0e083e/)
+
 **Great examples of shell building.**
 - ![Writing Your Own Shell](https://github.com/spnzed/minishell/blob/main/Docs/Chapter5-WritingYourOwnShell.pdf)
 - [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
