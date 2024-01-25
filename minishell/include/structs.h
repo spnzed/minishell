@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 13:39:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:07:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_info
 	char			**tab_var_env;
 	void			*ptr;
 	int				ret;
+	char			*cmd_line;
 }					t_info;
 //	Token
 typedef struct		s_token

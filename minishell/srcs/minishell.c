@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 17:38:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:18:13 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
-			signal(SIGINT, &ctrl_c);
-			signal(SIGQUIT, SIGINT);
-			prompter();						//TO_DO
+			signal(SIGINT, signal_handler);
+			signal(SIGQUIT, SIG_IGN);
+			data->cmd_line = display_term_message(); //prompter();		//TO_DO
+			if (!data->cmd_line)
+				//ctrl_d(&data);
 			executor(&data);				//Work_in_progress
 			free_all(&data, 0);
 		}
