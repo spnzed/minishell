@@ -6,6 +6,7 @@ NAME		=	minishell
 RM			=	rm -f
 CC			=	gcc
 FLAGS		=	-g -Wall -Wextra -Werror -I./include/
+LIBFT		=	libft/libft.a
 
 # Flags for Patri READLINE
 #LDFLAGS = /System/Volumes/Data/sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
@@ -26,14 +27,39 @@ CYAN 		= \033[1;36m
 #                             PROGRAM'S DIR + FILES                            #
 ################################################################################
 
-PROGRAM_DIR	=	srcs/
-UTILS_DIR	=	utils/
-INC_DIR		=	include/
+PROGRAM_DIR		=	srcs/main
+UTILS_DIR		=	srcs/utils/
+INC_DIR			=	include/
+EXECUTOR_DIR	=	srcs/main/executor
+LEXER_DIR		=	srcs/main/lexer
+PARSER_DIR		=	srcs/main/parser
 
-SRCS		=	./srcs/minishell.c	\
-				./srcs/utils/handle_token.c
-OBJS		=	$(SRCS:.c=.o)
-DEPS        = 	$(SRCS:.c=.d)
+LIBFT_DIR		= 	libft/
+
+PROGRAM_SRCS	=	minishell.c \
+
+UTILS_SRCS		=	free_all.c \
+					free_double_array.c \
+					free_token.c \
+					free_tree_content.c \
+					free_tree.c \
+
+EXECUTOR_SRCS	=	ctrl_d.c \
+					display.c \
+					executor.c \
+					signal_handler.c \
+
+LEXER_SRCS		=	def_type.c \
+					handle_type.c \
+					lexer.c \
+
+PARSER_SRCS		=	parser.c \
+
+INC_SRCS		=	minishell.h \
+					structs.h \
+
+OBJS			=	$(SRCS:.c=.o)
+DEPS    	    = 	$(SRCS:.c=.d)
 
 .c.o	:
 	${CC} ${FLAGS} -MMD -c $< -o $@

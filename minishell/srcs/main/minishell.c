@@ -6,11 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 18:18:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:44:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "./srcs/include/minishell.h"
 
 static void	no_interactive(char *str, t_info *data)
 {
