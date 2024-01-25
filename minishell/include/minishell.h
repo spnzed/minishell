@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 18:13:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:47:04 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 #include <stdbool.h>
 
 //	libft
-#include "./srcs/utils/libft/libft.h"
+#include "./libft/libft.h"
 #include "./include/structs.h"
 
 

@@ -5,7 +5,7 @@
 NAME		=	minishell
 RM			=	rm -f
 CC			=	gcc
-FLAGS		=	-g -Wall -Wextra -Werror -I./include/
+FLAGS		=	-g -Wall -Wextra -Werror -I./include/ -I$(LIBFT_DIR)
 LIBFT		=	libft/libft.a
 
 # Flags for Patri READLINE
@@ -27,7 +27,9 @@ CYAN 		= \033[1;36m
 #                             PROGRAM'S DIR + FILES                            #
 ################################################################################
 
-PROGRAM_DIR		=	srcs/main
+SRCS_DIR		=	srcs/
+OBJ_DIR			=	obj/
+MAIN_DIR		=	srcs/main
 UTILS_DIR		=	srcs/utils/
 INC_DIR			=	include/
 EXECUTOR_DIR	=	srcs/main/executor
@@ -36,7 +38,7 @@ PARSER_DIR		=	srcs/main/parser
 
 LIBFT_DIR		= 	libft/
 
-PROGRAM_SRCS	=	minishell.c \
+MAIN_SRCS		=	minishell.c \
 
 UTILS_SRCS		=	free_all.c \
 					free_double_array.c \
@@ -58,39 +60,47 @@ PARSER_SRCS		=	parser.c \
 INC_SRCS		=	minishell.h \
 					structs.h \
 
-OBJS			=	$(SRCS:.c=.o)
-DEPS    	    = 	$(SRCS:.c=.d)
+SRCS			:=	$(addprefix $(SRCS), $(addprefix $(MAIN_DIR), $(MAIN_SRCS)))
+SRCS			+=	$(addprefix $(SRCS), $(addprefix $(UTILS_DIR), $(UTILS_SRCS)))
+SRCS			+=	$(addprefix $(SRCS), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_SRCS)))
+SRCS			+=	$(addprefix $(SRCS), $(addprefix $(LEXER_DIR), $(LEXER_SRCS)))
+SRCS			+=	$(addprefix $(SRCS), $(addprefix $(PARSER_DIR), $(PARSER_SRCS)))
 
-.c.o	:
-	${CC} ${FLAGS} -MMD -c $< -o $@
 
 ################################################################################
 #                                  Makefile  objs                              #
 ################################################################################
 
 
+OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))
+
+.c.o:
+	$(CC) $(FLAGS) -MMD -c $< -o $@
+
+all		:	libft_link $(NAME)
 
 $(NAME)	:	$(LIBFT) $(OBJ) Makefile include/minishell.h
-		make -C ./utils/libft
 		@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-		$(CC) -L$(LDFLAGS) -o $(NAME) $(OBJ) -L./utils/libft -lft 
+		@$(CC) -L$(LDFLAGS) $(OBJ) ${LIBFT_DIR} -lft -o $(NAME)
 		@echo "$(GREEN)$(NAME) created ✔️"
 
-all		:	$(NAME)
-
 clean	:
-		make clean -C ./utils/libft
+		@make clean -C ${LIBFT_DIR}
 		rm -f $(NAME) $(OBJ)
 		@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 		@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)deps ✔️"
 
 fclean	:	clean
-		make fclean -C ./utils/libft
-		$(RM) $(NAME)
+		@make fclean -C ${LIBFT_DIR}
+		@$(RM) $(NAME)
 		@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re		:	fclean all
 
+libft_link:	
+			@make -sC $(LIBFT_DIR)
+
 -include ${DEPS}
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re libft_link
