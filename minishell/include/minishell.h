@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 18:13:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:28:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			lexer(char *input, t_info	*data);
 
 
 //	cleaning
-void			clear_token(void *content);
+void			free_token(void *content);
 int				free_all(t_info *info, int code_return);
 
 #endif

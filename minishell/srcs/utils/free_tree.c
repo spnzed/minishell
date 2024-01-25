@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   free_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 16:15:38 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 19:26:52 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/24 19:26:14 by aaespino          #+#    #+#             */
+/*   Updated: 2024/01/24 19:33:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
-int	free_all(t_info *info, int code)
+void	free_tree(t_tree *root, void (*del)(void *))
 {
-	ft_lstclear(&info->list_input, &clear_token);
-	info->list_input = 0;
-	if (code == 1)
+	if (!root)
+		return ;
+	if (root->left || root->right)
 	{
-		ft_lstclear(&info->list_env, &ft_free_string);
-		info->list_env = 0;
+		free_tree(root->left, del);
+		free_tree(root->right, del);
 	}
-	ft_lstclear(&info->list_path, ft_free_string);
-	info->list_path = 0;
-	free(info->tab_var_env);
-	info->tab_var_env = 0;
-	return (info->ret);
+	if (root)
+	{
+		(*del)(root->content);
+		root->left = 0;
+		root->right = 0;
+		free(root);
+		root = 0;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:57:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 18:37:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:30:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	command_tree(t_info	*data)
 		cmd = next_command(cmd_nbr, &data);
 		build_ast(&root, &cmd);
 		data->ptr = root;
-		clear_tree(root, &btree_free_content????????????);
+		clear_tree(root, &free_tree_content);
 		if (handle_separator(&cmd, data->ret))
 			return ;
 		cmd_nbr++;	

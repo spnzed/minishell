@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_token.c                                      :+:      :+:    :+:   */
+/*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:22:06 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/23 16:22:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:30:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void			clear_token(void *content)
+void			free_token(void *content)
 {
 	t_token		*token;
 
