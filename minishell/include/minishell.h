@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 14:19:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:34:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void			lexer(char *input, t_info	*data);
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 //				Executor
 t_list			*next_command(int nbr, t_info *data);
-void			command_tree(t_info	*data);
+void			executor(t_info	*data);
+void			ctrl_c(t_info *data);
+void			ctrl_d(char *buf, int r, t_info *data);
 //				cleaning
 int				free_all(t_info *info, int code_return);
 void			free_double_array(void *ptr);

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:57:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 14:21:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:34:02 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*next_command(int nbr, t_info *data)
 	- build_ast??????????????
 */
 
-void	command_tree(t_info	*data)
+void	executor(t_info	*data)
 {
 	int		cmd_nbr;
 	t_tree	*root;

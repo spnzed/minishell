@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 15:35:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:38:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,18 @@ int	main(int argc, char **argv, char **env)
 	if (argc == 3 && !ft_strcmp(argv[1], "-c"))
 	{
 		no_interactive(argv[2], &data);
-		command_tree(&data);
+		executor(&data);					//Work_in_progress
 		free_all(&data, 1);
 	}
 	else
 	{
 		while (1)
 		{
-			
+			signal(SIGINT, &ctrl_c);
+			signal(SIGQUIT, SIGINT);
+			prompter();						//TO_DO
+			executor(&data);				//Work_in_progress
+			free_all(&data, 0);
 		}
 	}
 	return (data->ret);
