@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:15:38 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 19:26:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:38:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	free_all(t_info *info, int code)
 {
-	ft_lstclear(&info->list_input, &clear_token);
+	ft_lstclear(&info->list_input, &free_token);
 	info->list_input = 0;
 	if (code == 1)
 	{

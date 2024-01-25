@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tree_content.c                                :+:      :+:    :+:   */
+/*   free_double_array.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 19:26:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 14:04:45 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/25 14:05:30 by aaespino          #+#    #+#             */
+/*   Updated: 2024/01/25 14:09:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+# include "minishell.c"
 
-void	free_tree_content(void *content)
+void	free_double_array(void *ptr)
 {
-	t_token	*token;
+	int		i;
+	char	**array;
 
-	if (!content)
-		return ;
-	token = (t_token *) content;
-	free_double_array(token->value);
-	free(token);
-	(void)token;
-	(void)content;
+	i = 0;
+	array = (char **)ptr;
+	while (array[i])
+	{
+		ft_bzero(array[i], ft_strlen(array[i]));
+		free(array[i]);
+		array[i] = 0;
+		i++;
+	}
+	free (array);
+	array = 0;
 }

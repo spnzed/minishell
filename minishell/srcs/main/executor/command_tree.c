@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:57:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 19:30:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:21:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_list	*next_command(int nbr, t_info *data)
 	To build:
 	- parser
 	- build_ast??????????????
-	- clear_tree
 */
 
 void	command_tree(t_info	*data)
@@ -51,13 +50,13 @@ void	command_tree(t_info	*data)
 	while (cmd)
 	{
 		root = 0;
-		if (parser(cmd, cmd_nbr))
+		if (parser(cmd, cmd_nbr, &data))		//TO_DO
 			return ;
 		cmd = next_command(cmd_nbr, &data);
-		build_ast(&root, &cmd);
+		build_ast(&root, &cmd);					//TO_DO
 		data->ptr = root;
-		clear_tree(root, &free_tree_content);
-		if (handle_separator(&cmd, data->ret))
+		free_tree(root, &free_tree_content);
+		if (handle_separator(&cmd, data->ret))	//TO_DO
 			return ;
 		cmd_nbr++;	
 	}

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 18:02:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:35:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ int	main(int argc, char **argv, char **env)
 		free_all(&data, 1);
 	}
 	else
-	{}
+	{
+		while (1)
+		{
+			
+		}
+	}
 	return (data->ret);
 }

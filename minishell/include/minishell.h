@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 19:28:50 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:19:22 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,21 @@
 
 //				THE PROJECT
 t_list			*start_env(char **env);
-//				Executor
-void			command_tree(t_info	*data);
 //				Lexer
 t_token_type	def_type(char charset);
 bool			type_is_separator(t_token_type type);
 void			lexer(char *input, t_info	*data);
-
-
-//	cleaning
-void			free_token(void *content);
+//				Parser
+int				parser(t_list *cmd, int cmd_nbr, t_info *data);
+//				Executor
+t_list			*next_command(int nbr, t_info *data);
+void			command_tree(t_info	*data);
+//				cleaning
 int				free_all(t_info *info, int code_return);
+void			free_double_array(void *ptr);
+void			free_token(void *content);
+void			free_tree_content(void *content);
+void			free_tree(t_tree *root, void (*del)(void *));
+
 
 #endif
