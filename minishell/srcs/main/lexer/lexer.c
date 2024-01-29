@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 17:30:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:18:54 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ t_token	*create_token(void *value, t_token_type type, t_info *data)
 	return (token);
 }
 
-/*
-** Clonamos el contenido de input en el valor para tratarlo
-** Encontramos de que tipo es el token
-** Creamos el token con el valor y el tipo
-** Creamos la lista linkeada con el token
-** Hacemos llst add back con el nuevo token, al list_input
-*/
 void	lexer(char *input, t_info	*data)
 {
 	char 			*value;
