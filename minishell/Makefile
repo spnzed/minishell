@@ -5,6 +5,7 @@
 NAME		=	minishell
 
 CC			=	gcc
+RLFLAGS     =   -lreadline
 CFLAGS		=	-Wall -Wextra -Werror
 CLEAN_CAR	=	\033[2K\r
 
@@ -16,6 +17,9 @@ CP			=	cp -f
 ################################################################################
 #                             PROGRAM'S DIR + FILES                            #
 ################################################################################
+
+RFLAGS = /Users/aaespino/.brew/opt/readline/include
+LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -63,14 +67,12 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	
 ##	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@
-	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
-
-
+	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
 
 all:		libft_link $(NAME) 
 
 $(NAME):	$(LIBFT) $(OBJS) 
-			@$(CC) $(CFLAGS) -L $(LIBFT) $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(RLFLAGS) $(LDFLAGS) -L $(LIBFT) $(OBJS) -o $(NAME)
 			@sleep 0.2
 			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
 			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"
