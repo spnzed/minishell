@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:26:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 13:55:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:41:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "minishell.h"
 
 void	free_tree(t_tree *root, void (*del)(void *))
 {

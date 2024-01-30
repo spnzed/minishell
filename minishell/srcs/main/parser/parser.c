@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:12:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 14:20:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:40:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.c"
+#include "minishell.h"
 
 
 

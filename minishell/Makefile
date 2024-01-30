@@ -5,7 +5,7 @@
 NAME		=	minishell
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Wextra -Werror
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -19,12 +19,12 @@ CP			=	cp -f
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
-MAIN_DIR		=	srcs/main
+MAIN_DIR		=	srcs/main/
 UTILS_DIR		=	srcs/utils/
 INC_DIR			=	include/
-EXECUTOR_DIR	=	srcs/main/executor
-LEXER_DIR		=	srcs/main/lexer
-PARSER_DIR		=	srcs/main/parser
+EXECUTOR_DIR	=	main/executor/
+LEXER_DIR		=	main/lexer/
+PARSER_DIR		=	main/parser/
 
 OBJ_DIR			=	build/
 
@@ -62,7 +62,9 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	
-	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@ 
+##	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@
+	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
+
 
 
 all:		libft_link $(NAME) 

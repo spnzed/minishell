@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:05:30 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 14:09:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:45:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.c"
+#include "minishell.h"
 
 void	free_double_array(void *ptr)
 {

@@ -3,18 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 18:07:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:54:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-//	STRUCTS
+//	ENUMS
 
+typedef enum		e_token_type
+{
+	and,					//	'&&'
+	or,						//	'||'
+	semicolon,				// 	';'
+	simple_redir_left,		//	'<'
+	simple_redir_right,		//	'>'
+	double_redir_left,		//	'<<'
+	double_redir_right,		//	'>>'
+	pipeline,				//	'|'
+	option_command,			//	'-'
+	single_quote,			//	'''
+	double_quote,			//	'"'
+	backslash,				//	'\'
+	variable,				//	'$'
+	space,					//	'\f', '\n', '\r', '\t', '\v', ' '
+	literal,				//	
+}					t_token_type;
+
+//	STRUCTS
 //	Our data
 typedef struct		s_info
 {
@@ -39,27 +59,6 @@ typedef struct		s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
-
-//	ENUMS
-
-typedef enum		e_token_type
-{
-	and,					//	'&&'
-	or,						//	'||'
-	semicolon,				// 	';'
-	simple_redir_left,		//	'<'
-	simple_redir_right,		//	'>'
-	double_redir_left,		//	'<<'
-	double_redir_right,		//	'>>'
-	pipeline,				//	'|'
-	option_command,			//	'-'
-	single_quote,			//	'''
-	double_quote,			//	'"'
-	backslash,				//	'\'
-	variable,				//	'$'
-	space,					//	'\f', '\n', '\r', '\t', '\v', ' '
-	literal,				//	
-}					t_token_type;
 
 
 #endif

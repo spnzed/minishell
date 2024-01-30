@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 18:47:04 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:15:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 #include <stdbool.h>
 
 //	libft
-#include "./libft/libft.h"
-#include "./include/structs.h"
+#include "libft.h"
+#include "structs.h"
 
 
 //				THE PROJECT
@@ -55,7 +55,7 @@ int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 //				Executor
 t_list			*next_command(int nbr, t_info *data);
 void			executor(t_info	*data);
-void			signal_handler(int sig); //void			ctrl_c(t_info *data); and also ctrl'\'
+void			signal_handler(int sig);
 void			ctrl_d(char *buf, int r, t_info *data);
 //				cleaning
 int				free_all(t_info *info, int code_return);

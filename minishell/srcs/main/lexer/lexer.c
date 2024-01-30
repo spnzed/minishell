@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/29 14:18:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:40:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "minishell.h"
 
 t_token	*create_token(void *value, t_token_type type, t_info *data)
 {

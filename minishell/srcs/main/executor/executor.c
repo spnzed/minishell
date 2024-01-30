@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_tree.c                                     :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:57:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 17:34:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:14:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "minishell.h"
 
 t_list	*next_command(int nbr, t_info *data)
 {
@@ -46,18 +46,18 @@ void	executor(t_info	*data)
 	t_list	*cmd;
 
 	cmd_nbr = 0;
-	cmd = next_command(cmd_nbr, &data);
+	cmd = next_command(cmd_nbr, data);
 	while (cmd)
 	{
 		root = 0;
-		if (parser(cmd, cmd_nbr, &data))		//TO_DO
+		if (parser(cmd, cmd_nbr, data))		//TO_DO
 			return ;
-		cmd = next_command(cmd_nbr, &data);
-		build_ast(&root, &cmd);					//TO_DO
+		cmd = next_command(cmd_nbr, data);
+		//build_ast(&root, &cmd);					//TO_DO
 		data->ptr = root;
 		free_tree(root, &free_tree_content);
-		if (handle_separator(&cmd, data->ret))	//TO_DO
-			return ;
+		//if (handle_separator(&cmd, data->ret))	//TO_DO
+		//	return ;
 		cmd_nbr++;	
 	}
 }

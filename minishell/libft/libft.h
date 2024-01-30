@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/23 19:17:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:58:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 char		*ft_strdup(const char *s1);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strrncmp(const char *str, const char *str2, size_t n);
 char		*ft_strnstr(const char *haystack, const char *ndl, size_t len);
 int			ft_atoi(const char *str);
 void		ft_putchar_fd(int c, int fd);

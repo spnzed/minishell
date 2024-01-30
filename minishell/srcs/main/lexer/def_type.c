@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/24 16:10:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:40:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "minishell.h"
 
 static 	t_token_type	get_type(char *str)
 {
