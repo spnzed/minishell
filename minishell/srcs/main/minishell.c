@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/25 18:47:56 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:16:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,35 @@ t_list	*start_env(char **env)
 
 int	main(int argc, char **argv, char **env) 
 {
-	t_info	*data;
+	(void)argc;
+	(void)argv;
+	(void)env;
+	// t_info	*data;
 
-	data->list_env = start_env(env);
-	data->list_path = 0;
-	data->list_input = 0;
-	data->ret = 0;
-	data->tab_var_env = 0;
+	// data->list_env = start_env(env);
+	// data->list_path = 0;
+	// data->list_input = 0;
+	// data->ret = 0;
+	// data->tab_var_env = 0;
 
-	if (argc == 3 && !ft_strcmp(argv[1], "-c"))
-	{
-		no_interactive(argv[2], &data);
-		executor(&data);					//Work_in_progress
-		free_all(&data, 1);
-	}
-	else
-	{
-		while (1)
-		{
-			signal(SIGINT, signal_handler);
-			signal(SIGQUIT, SIG_IGN);
-			data->cmd_line = display_term_message(); //prompter();		//TO_DO
-			if (!data->cmd_line)
-				//ctrl_d(&data);
-			executor(&data);				//Work_in_progress
-			free_all(&data, 0);
-		}
-	}
-	return (data->ret);
+	// if (argc == 3 && !ft_strcmp(argv[1], "-c"))
+	// {
+	// 	no_interactive(argv[2], &data);
+	// 	executor(&data);					//Work_in_progress
+	// 	free_all(&data, 1);
+	// }
+	// else
+	// {
+	// 	while (1)
+	// 	{
+	// 		signal(SIGINT, signal_handler);
+	// 		signal(SIGQUIT, SIG_IGN);
+	// 		data->cmd_line = display_term_message(); //prompter();		//TO_DO
+	// 		if (!data->cmd_line)
+	// 			//ctrl_d(&data);
+	// 		executor(&data);				//Work_in_progress
+	// 		free_all(&data, 0);
+	// 	}
+	// }
+	return (0);
 }
