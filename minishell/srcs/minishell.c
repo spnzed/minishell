@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 15:01:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:27:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_list	*start_env(char **env)
 	i = -1;
 	while(env[++i])
 	{
-		str->content = (readline(env[i]));
+		str->content = ft_strdup(env[i]);
 		if (!str)
 			exit(1);
 		new = ft_lstnew(str);
