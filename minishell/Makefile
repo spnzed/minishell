@@ -24,7 +24,7 @@ LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
 MAIN_DIR		=	srcs/main/
-UTILS_DIR		=	srcs/utils/
+UTILS_DIR		=	utils/
 INC_DIR			=	include/
 EXECUTOR_DIR	=	main/executor/
 LEXER_DIR		=	main/lexer/
@@ -72,7 +72,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 all:		libft_link $(NAME) 
 
 $(NAME):	$(LIBFT) $(OBJS) 
-			@$(CC) $(CFLAGS) $(RLFLAGS) $(LDFLAGS) -L $(LIBFT) $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@sleep 0.2
 			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
 			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"

@@ -18,6 +18,7 @@ SRC		=	ft_isalnum.c \
 			ft_memmove.c \
 			ft_memchr.c \
 			ft_memcmp.c \
+			ft_strdel.c \
 			ft_strdup.c \
 			ft_calloc.c \
 			ft_strncmp.c \
@@ -46,8 +47,8 @@ SRC		=	ft_isalnum.c \
 			ft_lstpos.c \
 			ft_cleanp.c \
 			ft_strndup.c \
-			#ft_free_string.c \
-			ft_memdel.c \#
+			ft_free_string.c \
+			ft_memdel.c \
 
 OBJECTS	= $(SRC:%.c=%.o)
 
@@ -62,11 +63,11 @@ all: $(NAME)
 
 clean:
 	@rm -f $(OBJECTS)
-	@echo "Borrando objects..."
+	@echo "Removing objects..."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Borrando ejecutable..."
+	@echo "Removing executables..."
 
 re: fclean all
-	@echo "Reiniciando ..."
+	@echo "Restarting ..."

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 15:15:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:51:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # define WHITE   "\033[1;37m"
 
 //	libs
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
