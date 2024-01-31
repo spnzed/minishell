@@ -139,9 +139,9 @@ A shell is a program that allows users to interact with the services of an opera
 - [Parsing](https://www.youtube.com/watch?v=r6vNthpQtSI&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=15)
 - [UNIX Pipeline](https://www.youtube.com/watch?v=bKzonnwoR2I&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=24)
 
-Essentially it breaks down the process into 4 steps: lexer → parser → expander → manage_commands, which we replicated in our project.
+Essentially it breaks down the process into 4 steps: lexer → parser → expander → executor, which we replicated in our project.
 
-### ⚙️ The Engine `lexer → parser → expander → manage_commands`
+### ⚙️ The Engine `lexer → parser → expander → executor`
 
 ![193665518-0c0c7fec-38a9-4f6c-91ca-fef606abfb0d](https://github.com/spnzed/minishell/assets/95354392/8e1fea33-b933-45a8-a0d3-bf056b85df44)
 @maiadegraaf credits for the image!
@@ -170,7 +170,7 @@ With a loop we will go through the previous arguments given by the Lexer until i
 
 Before a node from t_simple_cmds is handled it is expanded. The expander takes variables, identified by $, and replaces them with their value from the environment variables. Such that `$USER becomes mgraaf`, and `$?` is replaced with the exit code.
 
-**4. manage_commands**
+**4. executor**
 1. Redirections
 2. Env, export, unset
 3. Exit and `$?`
