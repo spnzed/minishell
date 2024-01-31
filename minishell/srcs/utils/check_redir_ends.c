@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_type.c                                      :+:      :+:    :+:   */
+/*   check_redir_ends.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 18:11:02 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 17:37:07 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/31 18:36:34 by aaespino          #+#    #+#             */
+/*   Updated: 2024/01/31 18:53:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	type_is_separator (t_token_type type)
+int	check_redir_ends(char *str)
 {
-	if (type == and || type == or || type == semicolon)
-		return (1);
+	int	size;
+
+	size = ft_strlen(str) - 1;
+	if (str[size] == ' ')
+	{
+		while (str[size] == ' ')
+			size--;
+		if (str[size] == '<' || str[size] == '>')
+		{
+			return (write(2,
+				"Syntax error: near unexpected token 'newline'\n",
+				58));
+		}
+	}
+	if (str[size] == '<' || str[size] == '>')
+	{
+		return (write(2,
+			"Syntax error: near unexpected token 'newline'\n",
+			58));
+	}
 	return (0);
 }

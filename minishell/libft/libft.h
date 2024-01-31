@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 16:07:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:34:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			ft_isalpha(int i);
 int			ft_isascii(int i);
 int			ft_isdigit(int i);
 int			ft_isprint(int i);
+int			ft_isspace(int c);
 void		*ft_memset(void *b, int c, size_t len);
 size_t		ft_strlcpy(char *dst, char *src, unsigned int size);
 size_t		ft_strlen(const char *str);
