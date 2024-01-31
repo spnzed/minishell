@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_commands.c                                         :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 17:57:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 15:14:30 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
+/*   Updated: 2024/01/31 15:58:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*manage_commands
-
-	1. Cuenta cantidad de comandos
-	2. Comprueba la syntax
-	3. Busca variables, y las parsea
-	4. Comprueba que no sea todo espacio
-	5. 	Inicia->Ejecuta->Libera (Para uno o mas argumentos)
-*/
-
-void	manage_commands(t_info	*data)
+int	init_data(t_info *data, char **env)
 {
-	(void)data;
+	if (init_env(data, env))
+		return (write(2, "Error initializing environment\n", 32));
+	if (init_settings(data))
+		return (write(2, "Error initializing terminal settings\n", 38));
+	if (init_fd(data))
+		return (write(2, "Error initializing terminal file descriptors\n", 46));
+	return (0);
 }

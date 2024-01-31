@@ -170,7 +170,7 @@ With a loop we will go through the previous arguments given by the Lexer until i
 
 Before a node from t_simple_cmds is handled it is expanded. The expander takes variables, identified by $, and replaces them with their value from the environment variables. Such that `$USER becomes mgraaf`, and `$?` is replaced with the exit code.
 
-**4. Executor**
+**4. executor**
 1. Redirections
 2. Env, export, unset
 3. Exit and `$?`

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 14:54:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:42:48 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ typedef struct		s_info
 	t_list			*list_env;
 	t_list			*list_input;
 	t_list			*list_path;
+
+	struct termios	o_settings;
+	struct termios	n_settings;
+
+	int				std_in;
+	int				std_out;
+
+	char			**env;
+
 	char			**tab_var_env;
 	void			*ptr;
 	int				ret;
