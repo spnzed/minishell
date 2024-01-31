@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 14:37:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:29:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@
 //				INIT PROGRAM
 int				init_data(t_info *data, char **env);
 int				init_env(t_info *data, char **env);
-int				init_settings(t_info *data)
+int				init_settings(t_info *data);
+int				init_fd(t_info *data);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-t_list			*start_env(char **env);
 //				Lexer
 t_token_type	def_type(char charset);
 bool			type_is_separator(t_token_type type);

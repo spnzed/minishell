@@ -23,5 +23,5 @@
 
 void	manage_commands(t_info	*data)
 {
-	
+	(void)data;
 }

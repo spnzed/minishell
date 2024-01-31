@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:33 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 14:35:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:58:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@
 		STDIN_FILENO: Descriptor de archivo para la entrada estándar
 		ECHOCTL: Macro para desactivar la impresión de caracteres de control
 		TCSANOW: Constante para aplicar cambios en la configuración del terminal inmediatamente
-
 */
-
 int	init_settings(t_info *data)
 {
 	if (tcgetattr(STDIN_FILENO, &data->n_settings) != 0)

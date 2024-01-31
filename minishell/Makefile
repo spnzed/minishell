@@ -31,9 +31,10 @@ OBJ_DIR			=	obj/
 MAIN_DIR		=	srcs/main/
 UTILS_DIR		=	utils/
 INC_DIR			=	include/
-manage_commands_DIR	=	main/manage_commands/
+EXECUTOR_DIR	=	main/executor/
 LEXER_DIR		=	main/lexer/
 PARSER_DIR		=	main/parser/
+INIT_DIR		=	main/init/
 
 OBJ_DIR			=	build/
 
@@ -48,15 +49,17 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 MAIN			=	minishell.c
 UTILS		 	=	free_all.c free_double_array.c free_token.c free_tree_content.c free_tree.c 
-manage_commands		=	ctrl_d.c display.c manage_commands.c signal_handler.c 
 LEXER			=	def_type.c handle_type.c lexer.c 
 PARSER 			=	parser.c
+EXECUTOR		=	ctrl_d.c display.c executor.c signal_handler.c 
+INIT			=	init_data.c init_env.c init_fd.c init_settings.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MAIN))
-SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(manage_commands_DIR), $(manage_commands)))
+SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(LEXER_DIR), $(LEXER)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(PARSER_DIR), $(PARSER)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(UTILS_DIR), $(UTILS)))
+SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(INIT_DIR), $(INIT)))
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))

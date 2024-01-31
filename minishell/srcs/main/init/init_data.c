@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 14:27:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:58:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,5 @@ int	init_data(t_info *data, char **env)
 		return (write(2, "Error initializing terminal settings\n", 38));
 	if (init_fd(data))
 		return (write(2, "Error initializing terminal file descriptors\n", 46));
-
-	data->list_path = 0;
-	data->list_input = 0;
-	data->ret = 0;
-	data->tab_var_env = 0;
-
 	return (0);
 }
