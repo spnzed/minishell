@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   free_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:42:38 by pquintan         ###   ########.fr       */
+/*   Created: 2024/01/31 17:46:53 by pquintan          #+#    #+#             */
+/*   Updated: 2024/01/31 17:53:04 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*display_term_message(void)
+void	free_env(t_list *env)
 {
-	char	*line;
+	t_list *temp;
 
-	line = readline("42-Minishell ~ % ");
-	if (line == NULL || *line == '\0')
+	temp = env;
+	while(temp != NULL)
 	{
-		free(line);
-		return(NULL);
+		if (temp->content)
+			free(temp->content);
+		temp = env->next;
 	}
-	if (ft_strlen(line) > 0)
-		add_history(line);
-	return (line);
 }

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:42:38 by pquintan         ###   ########.fr       */
+/*   Created: 2024/01/31 17:42:01 by pquintan          #+#    #+#             */
+/*   Updated: 2024/01/31 17:57:51 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell.h" // New add
 
-char	*display_term_message(void)
+char	**free_array(char **Array, int len)
 {
-	char	*line;
+	while (len > 0)
+		free(Array[--len]);
+	free(Array);
+	return (NULL);
+}
 
-	line = readline("42-Minishell ~ % ");
-	if (line == NULL || *line == '\0')
+int		array_size(char **Array)
+{
+	int len;
+	char **temp;
+
+	len = 0;
+	temp = Array;
+	while (temp)
 	{
-		free(line);
-		return(NULL);
+		temp++;
+		len++;
 	}
-	if (ft_strlen(line) > 0)
-		add_history(line);
-	return (line);
+	return(len);
 }

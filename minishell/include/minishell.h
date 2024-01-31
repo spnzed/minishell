@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 15:29:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:32:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,16 @@ int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 t_list			*next_command(int nbr, t_info *data);
 void			manage_commands(t_info	*data);
 void			signal_handler(int sig);
-void			ctrl_d(char *buf, int r, t_info *data);
+int				ctrl_d(t_info *data);
 //				cleaning
 int				free_all(t_info *info, int code_return);
 void			free_double_array(void *ptr);
 void			free_token(void *content);
 void			free_tree_content(void *content);
 void			free_tree(t_tree *root, void (*del)(void *));
+void			free_env(t_list *env);
+char			**free_array(char **Array, int len);
+int				array_size(char **Array);
 
 //				Display
 char			*display_term_message(void);
