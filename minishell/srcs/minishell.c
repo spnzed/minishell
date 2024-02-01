@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:42:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:40:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **env)
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
 	{
 		no_interactive(argv[2], &data);
-		manage_commands(&data);					//Work_in_progress
+		manage_cmd(&data);
 		free_all(&data, 1);
 	}
 	else
@@ -49,7 +49,7 @@ int	main(int argc, char **argv, char **env)
 			data.cmd_line = display_term_message();
 			if (!data.cmd_line)
 				ctrl_d(&data);
-			manage_commands(&data);				//Work_in_progress
+			manage_cmd(&data);				//Work_in_progress
 			free_all(&data, 0);
 		}
 	}

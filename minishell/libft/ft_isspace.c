@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_type.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 18:11:02 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 17:37:07 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/31 18:32:48 by aaespino          #+#    #+#             */
+/*   Updated: 2024/01/31 18:33:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	type_is_separator (t_token_type type)
+int	ft_isspace(int c)
 {
-	if (type == and || type == or || type == semicolon)
-		return (1);
-	return (0);
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\r' || c == '\f' || c == '\v');
 }

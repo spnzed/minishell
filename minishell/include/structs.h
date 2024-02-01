@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:32:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:12:47 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,24 @@ typedef enum		e_token_type
 }					t_token_type;
 
 //	STRUCTS
-//	Our data
+//	Data
 typedef struct		s_info
 {
 	t_list			*list_env;
 	t_list			*list_input;
 	t_list			*list_path;
-
 	struct termios	o_settings;
 	struct termios	n_settings;
-
 	int				std_in;
 	int				std_out;
 	int				status;
 
 	char			**env;
-
 	char			**tab_var_env;
 	void			*ptr;
 	int				ret;
 	char			*cmd_line;
+	int				cmd_nbr;
 }					t_info;
 //	Token
 typedef struct		s_token

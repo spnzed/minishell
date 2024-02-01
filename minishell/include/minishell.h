@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:32:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:51:15 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,27 @@ int				init_data(t_info *data, char **env);
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
+void			signal_handler(int sig);
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
 //				Lexer
 t_token_type	def_type(char charset);
-bool			type_is_separator(t_token_type type);
+int				type_is_separator(t_token_type type);
 void			lexer(char *input, t_info	*data);
+int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
-//				manage_commands
-t_list			*next_command(int nbr, t_info *data);
-void			manage_commands(t_info	*data);
-void			signal_handler(int sig);
+
+//				Executor
 int				ctrl_d(t_info *data);
+//				Expander
+
+
+//				manage_command
+int				manage_cmd(t_info *data);
+int				counter_cmd(char *line);
+//				display
+char			*display_term_message(void);
+
 //				cleaning
 int				free_all(t_info *info, int code_return);
 void			free_double_array(void *ptr);
@@ -75,7 +82,9 @@ void			free_env(t_list *env);
 char			**free_array(char **Array, int len);
 int				array_size(char **Array);
 
-//				Display
-char			*display_term_message(void);
+//				general_utils
+void			get_quotes_type(char c, int *simple, int *complex);
+int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
+int				check_redir_ends(char *str);
 
 #endif
