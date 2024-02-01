@@ -1,29 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_cmd.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 12:58:21 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/01 13:55:37 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*manage_cmd
-
-	1. Cuenta cantidad de comandos
-	2. Comprueba la syntax
-	3. Busca variables, y las parsea
-	4. Comprueba que no sea todo espacio
-	5. 	Inicia->Ejecuta->Libera (Para uno o mas argumentos)
-*/
-int	manage_cmd(t_info *data)
-{
-	data->cmd_nbr = counter_cmd(data->cmd_line);
-	if (syntax_error(data))
-		return (0);
-	return (0);
-}

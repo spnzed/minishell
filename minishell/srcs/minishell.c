@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 17:40:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/01 13:54:43 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 			if (!data.cmd_line)
 				ctrl_d(&data);
 			manage_cmd(&data);				//Work_in_progress
-			free_all(&data, 0);
+			//free_all(&data, 0);			// de momento no libera nada
 		}
 	}
 	return (0);
