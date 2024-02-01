@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 17:22:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:49:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	manage_cmd(t_info *data)
 	if (syntax_error(data))
 		return (0);
 	// cmd
+	data->split_line = ft_split(data->cmd_line, ' ');
+	ft_builtins(data);
 	return (0);
 }

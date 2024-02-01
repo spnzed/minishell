@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 16:00:38 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:02:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ int	main(int argc, char **argv, char **env)
 	t_info	data;
 
 	init_data(&data, env);
-	// t_info temp = data;
-	// while (temp.list_env)
-	// {
-	// 	printf("%s\n", temp.list_env->content);
-	// 	temp.list_env = temp.list_env->next;
-	// }
 	
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
 	{
