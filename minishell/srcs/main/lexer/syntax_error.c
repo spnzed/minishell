@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:57:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:19:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int quotes_syntax(char *line)
 	if ((simple == 0 && complex % 2 == 0)
 		|| (simple % 2 == 0 && complex == 0)
 		|| (simple % 2 == 0 && complex % 2 == 0 ))
-		return (1);
-	else
 		return (0);
+	else
+		return (1);
 }
 
 int pipe_syntax(char *line)
