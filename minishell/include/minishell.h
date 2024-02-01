@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/01/31 18:51:15 by aaespino         ###   ########.fr       */
@@ -60,8 +60,9 @@ void			lexer(char *input, t_info	*data);
 int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
+
 //				Executor
-void			ctrl_d(char *buf, int r, t_info *data);
+int				ctrl_d(t_info *data);
 //				Expander
 
 
@@ -70,12 +71,17 @@ int				manage_cmd(t_info *data);
 int				counter_cmd(char *line);
 //				display
 char			*display_term_message(void);
+
 //				cleaning
 int				free_all(t_info *info, int code_return);
 void			free_double_array(void *ptr);
 void			free_token(void *content);
 void			free_tree_content(void *content);
 void			free_tree(t_tree *root, void (*del)(void *));
+void			free_env(t_list *env);
+char			**free_array(char **Array, int len);
+int				array_size(char **Array);
+
 //				general_utils
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);

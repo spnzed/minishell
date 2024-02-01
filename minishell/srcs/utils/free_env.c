@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   free_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 16:31:17 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/31 17:46:53 by pquintan          #+#    #+#             */
+/*   Updated: 2024/01/31 17:53:04 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_data(t_info *data, char **env)
+void	free_env(t_list *env)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	if (init_settings(data))
-		return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->status = 0;
-	return (0);
+	t_list *temp;
+
+	temp = env;
+	while(temp != NULL)
+	{
+		if (temp->content)
+			free(temp->content);
+		temp = env->next;
+	}
 }

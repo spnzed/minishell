@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 16:31:17 by aaespino         ###   ########.fr       */
+/*   Created: 2024/01/31 17:42:01 by pquintan          #+#    #+#             */
+/*   Updated: 2024/01/31 17:57:51 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell.h" // New add
 
-int	init_data(t_info *data, char **env)
+char	**free_array(char **Array, int len)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	if (init_settings(data))
-		return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->status = 0;
-	return (0);
+	while (len > 0)
+		free(Array[--len]);
+	free(Array);
+	return (NULL);
+}
+
+int		array_size(char **Array)
+{
+	int len;
+	char **temp;
+
+	len = 0;
+	temp = Array;
+	while (temp)
+	{
+		temp++;
+		len++;
+	}
+	return(len);
 }
