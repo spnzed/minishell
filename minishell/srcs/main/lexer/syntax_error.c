@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 14:19:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:01:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int quotes_syntax(char *line)
 	simple = 0;
 	complex = 0;
 	if (!ft_strlen(line))
-		return (1);
+		return (0);
 	while (line[++i])
 	{
 		if ((line[i] == '\'') && (complex == 0 || (complex == 0 && simple != 0)))
