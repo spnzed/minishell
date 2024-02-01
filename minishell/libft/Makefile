@@ -50,6 +50,7 @@ SRC		=	ft_isalnum.c \
 			ft_strndup.c \
 			ft_free_string.c \
 			ft_memdel.c \
+			ft_strpbrk.c \
 
 OBJECTS	= $(SRC:%.c=%.o)
 

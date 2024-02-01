@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 19:04:22 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/01 18:43:52 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/01 18:44:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "libft.h"
 
-char	*display_term_message(void)
+char	*ft_strpbrk(const char *s, const char *charset)
 {
-	char	*line;
-
-	line = readline("42-Minishell ~ % ");
-	if (line == NULL)
-		return(free(line), NULL);
-	if (ft_strlen(line) > 0)
-		add_history(line);
-	return (line);
+	while (s)
+	{
+		if (ft_strchr(charset, *s))
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
 }

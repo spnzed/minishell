@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:51:15 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:49:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,12 @@ int				array_size(char **Array);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 int				check_redir_ends(char *str);
+
+//				search_var
+char			*search_var(char *line);
+int				check_var_syntax(char *var);
+char			*export_id(char *var);
+char			*parse_var(t_info *data);
+
 
 #endif
