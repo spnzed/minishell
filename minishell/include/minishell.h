@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 18:49:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:35:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void			lexer(char *input, t_info	*data);
 int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
+char			*parse_var(t_info *data);
+t_list			*var_is_found(t_list *list_env, char *var);
+char			*put_status(t_info *data, char *var);
+char			*put_variable(char *line, char *var, char *replace);
+
 
 //				Executor
 int				ctrl_d(t_info *data);

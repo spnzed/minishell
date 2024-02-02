@@ -3,35 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 15:52:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:29:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//NULO AL FINAL
 static t_list	*start_env(char **env)
 {
 	int		i;
 	t_list	*begin;
 	t_list	*new;
 
-	begin = malloc(sizeof(t_list));
-	if (!begin)
-		return(NULL);
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return(NULL);
+	begin = NULL; // Inicializa el inicio de la lista como NULL
 	i = -1;
-	while(env[++i])
+	while (env[++i])
 	{
 		new = ft_lstnew(env[i]);
-		ft_lstadd_back(&begin, new);
+		if (!new)
+		{
+			ft_lstclear(&begin, free); // Libera la lista si falla la asignación de memoria
+			return (NULL);
+		}
+		if (!begin) // Si la lista está vacía, asigna el nuevo nodo como el inicio
+			begin = new;
+		else // Si la lista no está vacía, agrega el nuevo nodo al final
+			ft_lstadd_back(&begin, new);
 	}
+
+	// Agrega un nodo nulo al final de la lista enlazada
+	new = ft_lstnew(NULL);
+	if (!new)
+	{
+		ft_lstclear(&begin, free); // Libera la lista si falla la asignación de memoria
+		return (NULL);
+	}
+	ft_lstadd_back(&begin, new);
+
 	return (begin);
 }
+
+//NULO AL PRINCIPIO
+// static t_list	*start_env(char **env)
+// {
+// 	int		i;
+// 	t_list	*begin;
+// 	t_list	*new;
+
+// 	begin = malloc(sizeof(t_list));
+// 	if (!begin)
+// 		return(NULL);
+// 	new = malloc(sizeof(t_list));
+// 	if (!new)
+// 		return(NULL);
+// 	i = -1;
+// 	while(env[++i])
+// 	{
+// 		new = ft_lstnew(env[i]);
+// 		ft_lstadd_back(&begin, new);
+// 	}
+// 	return (begin);
+// }
 
 int	init_env(t_info *data, char **env)
 {

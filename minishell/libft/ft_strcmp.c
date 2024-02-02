@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:28:35 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/02 18:38:05 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/02 19:25:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	init_data(t_info *data, char **env)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	if (init_settings(data))
-		return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->cmd_return = 0;
-	return (0);
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i]) // Mientras haya caracteres en ambas cadenas
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (s1[i] - s2[i]);
+	}
+	// Si una cadena es más larga que la otra, devuelve la diferencia de longitud
+	return (s1[i] - s2[i]);
 }
