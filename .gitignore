@@ -2,4 +2,5 @@
 .DS_Store
 *.o
 *.d
-libft/libft.a
+minishell/libft/libft.a
+minishell/minishell
