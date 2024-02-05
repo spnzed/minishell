@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 18:44:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:39:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,8 @@ char		*ft_strndup(const char *s1, int n);
 void		ft_free_string(void *ptr); // falta
 void		ft_memdel(void **ap); // falta
 char		*ft_strpbrk(const char *s, const char *charset);
+char		*ft_strjoin_free_first(char *s1, char *s2);
+int			ft_strcmp(char *s1, char *s2);
+
 
 #endif

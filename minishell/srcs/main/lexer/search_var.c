@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 18:45:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:37:26 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*search_var(char *line)
 	we_in_quotes = false;
 	while (line[++i])
 	{
-		if (line[i] == '\'')
+		if (line[i] == '\'' || line[i] == '\"')
 		{
 			if (we_in_quotes == true)
 				we_in_quotes = false;

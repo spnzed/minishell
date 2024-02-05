@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 16:12:47 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:05:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,50 @@ typedef enum		e_token_type
 	literal,				//	
 }					t_token_type;
 
+typedef enum		e_cmd_type
+{
+	ECHO_,
+	CD_,
+	PWD_,
+	EXPORT_,
+	UNSET_,
+	ENV_,
+	EXIT_,
+}					t_cmd_type;
+
 //	STRUCTS
+
+//	Token
+typedef struct		s_environment
+{
+	char					*signal;
+	char					*content;
+	struct s_environment	*next;
+}					t_environment;
+
+
 //	Data
 typedef struct		s_info
 {
-	t_list			*list_env;
 	t_list			*list_input;
 	t_list			*list_path;
+	t_list			*list_env;
+	t_environment	*signals_env;
 	struct termios	o_settings;
 	struct termios	n_settings;
 	int				std_in;
 	int				std_out;
-	int				status;
+	int				cmd_return;
 
 	char			**env;
 	char			**tab_var_env;
 	void			*ptr;
 	int				ret;
 	char			*cmd_line;
+	char			**split_line;
 	int				cmd_nbr;
 }					t_info;
-//	Token
+
 typedef struct		s_token
 {
 	void			*value;

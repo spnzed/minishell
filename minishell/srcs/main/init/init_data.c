@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 16:31:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:10:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	init_data(t_info *data, char **env)
 	if (init_fd(data))
 		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
 			2), 1);
-	data->status = 0;
+	data->cmd_return = 0;
 	return (0);
 }

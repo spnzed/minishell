@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/05 13:07:08 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/02 18:38:05 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/02 19:25:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_pwd(t_info *data)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_info *temp;
-	temp = data;
-	char *str = "PWD=";
-	while (temp->list_env)
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i]) // Mientras haya caracteres en ambas cadenas
 	{
-		while (temp->list_env->content)
-		{
-			if (ft_strcmp(str, temp->list_env->content)) // check if found it exits
-			{
-				printf("only after 'PWD='");
-				return(0);
-			}
-			temp->list_env = temp->list_env->next;
-		}
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (s1[i] - s2[i]);
 	}
-	return(1); // PWD not found
+	// Si una cadena es más larga que la otra, devuelve la diferencia de longitud
+	return (s1[i] - s2[i]);
 }
-// Funcion prototipo

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctrl_d.c                                           :+:      :+:    :+:   */
+/*   print_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:22:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 16:23:11 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/05 14:22:20 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/05 14:26:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ctrl_d(t_info *data)
+void	ft_print_struct_tlist(t_list *list)
 {
-	if (isatty(STDIN_FILENO))
-		write(2, "exit\n", 6);
-	//free_env(data->list_env); // New add
-	//free_array(data->env, array_size(data->env)); // New add
-	exit(data->cmd_return); // New add
+	t_list	*temp;
+
+	temp = list;
+	while(list->next)
+	{
+		printf("%s\n",temp->content);
+		temp = temp->next;
+	}
 }
