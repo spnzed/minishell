@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/01 14:59:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:07:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 	}
 	return(1);
 */
-
+// Funcion prototipo
 
 // EXAMPLES OF ECHO 
 

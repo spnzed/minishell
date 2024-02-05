@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/01 18:15:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:07:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,4 @@ void	ft_env(t_info *data)
 		temp->list_env = temp->list_env->next;
 	}
 }
-	
+// Funcion prototipo

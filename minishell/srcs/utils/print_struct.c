@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   print_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/05 13:07:08 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/05 14:22:20 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/05 14:26:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(t_info *data)
+void	ft_print_struct_tlist(t_list *list)
 {
-	t_info *temp;
-	temp = data;
-	char *str = "PWD=";
-	while (temp->list_env)
+	t_list	*temp;
+
+	temp = list;
+	while(list->next)
 	{
-		while (temp->list_env->content)
-		{
-			if (ft_strcmp(str, temp->list_env->content)) // check if found it exits
-			{
-				printf("only after 'PWD='");
-				return(0);
-			}
-			temp->list_env = temp->list_env->next;
-		}
+		printf("%s\n",temp->content);
+		temp = temp->next;
 	}
-	return(1); // PWD not found
 }
-// Funcion prototipo

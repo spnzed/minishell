@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 18:52:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:19:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ typedef enum		e_token_type
 
 typedef enum		e_cmd_type
 {
-	ECHO,
-	CD,
-	PWD,
-	EXPORT,
-	UNSET,
-	ENV,
-	EXIT,
+	ECHO_,
+	CD_,
+	PWD_,
+	EXPORT_,
+	UNSET_,
+	ENV_,
+	EXIT_,
 }					t_cmd_type;
 
 //	STRUCTS
