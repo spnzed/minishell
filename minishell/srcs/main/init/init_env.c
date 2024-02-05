@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:29:38 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:31:29 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@ static t_list	*start_env(char **env)
 		else // Si la lista no está vacía, agrega el nuevo nodo al final
 			ft_lstadd_back(&begin, new);
 	}
-
-	// Agrega un nodo nulo al final de la lista enlazada
-	new = ft_lstnew(NULL);
-	if (!new)
-	{
-		ft_lstclear(&begin, free); // Libera la lista si falla la asignación de memoria
-		return (NULL);
-	}
-	ft_lstadd_back(&begin, new);
 
 	return (begin);
 }

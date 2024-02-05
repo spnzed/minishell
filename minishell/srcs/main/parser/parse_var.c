@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:27:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:34:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ t_list	*var_is_found(t_list *list_env, char *var)
 	t_list	*top;
 
 	top = list_env;
-	while (top != NULL)
+	while (top)
 	{
 		if (ft_strcmp(top->content, var) == 0)
 			return (top);
+		printf("%s\n", top->content);
 		top = top->next;
 	}
 	return (NULL);
