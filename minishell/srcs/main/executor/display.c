@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 16:01:27 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:04:22 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ char	*display_term_message(void)
 
 	line = readline("42-Minishell ~ % ");
 	if (line == NULL)
-	{
-		free(line);
-		return(NULL);
-	}
+		return(free(line), NULL);
 	if (ft_strlen(line) > 0)
 		add_history(line);
 	return (line);

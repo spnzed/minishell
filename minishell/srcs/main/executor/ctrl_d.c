@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctrl_d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:22:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 16:01:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:23:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int	ctrl_d(t_info *data)
 		write(2, "exit\n", 6);
 	//free_env(data->list_env); // New add
 	//free_array(data->env, array_size(data->env)); // New add
-	exit(data->status); // New add
+	exit(data->cmd_return); // New add
 }

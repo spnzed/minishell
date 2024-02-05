@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/05 13:19:58 by pquintan         ###   ########.fr       */
@@ -56,7 +56,7 @@ typedef struct		s_info
 	struct termios	n_settings;
 	int				std_in;
 	int				std_out;
-	int				status;
+	int				cmd_return;
 
 	char			**env;
 	char			**tab_var_env;

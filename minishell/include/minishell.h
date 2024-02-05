@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/05 14:31:08 by pquintan         ###   ########.fr       */
@@ -60,6 +60,11 @@ void			lexer(char *input, t_info	*data);
 int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
+char			*parse_var(t_info *data);
+t_list			*var_is_found(t_list *list_env, char *var);
+char			*put_status(t_info *data, char *var);
+char			*put_variable(char *line, char *var, char *replace);
+
 
 //				Executor
 int				ctrl_d(t_info *data);
@@ -91,5 +96,12 @@ int				array_size(char **Array);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 int				check_redir_ends(char *str);
+
+//				search_var
+char			*search_var(char *line);
+int				check_var_syntax(char *var);
+char			*export_id(char *var);
+char			*parse_var(t_info *data);
+
 
 #endif

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:28:35 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/01 18:43:52 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/01 18:44:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "libft.h"
 
-int	init_data(t_info *data, char **env)
+char	*ft_strpbrk(const char *s, const char *charset)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	if (init_settings(data))
-		return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->cmd_return = 0;
-	return (0);
+	while (s)
+	{
+		if (ft_strchr(charset, *s))
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
 }
