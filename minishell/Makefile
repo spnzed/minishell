@@ -60,7 +60,7 @@ PARSER 			=	parser.c parse_var.c put_variable.c
 EXECUTOR		=	ctrl_d.c display.c signal_handler.c 
 INIT			=	init_data.c init_env.c init_fd.c init_settings.c
 MANAGE_CMD		=	counter_cmd.c manage_cmd.c
-BUILTINS		=	commands.c env.c pwd.c
+BUILTINS		=	commands.c env.c pwd.c cd.c echo.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MAIN))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR)))

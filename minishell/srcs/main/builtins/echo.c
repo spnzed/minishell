@@ -6,12 +6,23 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/05 13:07:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:30:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	ft_echo(char *line, int len)
+{
+	//printf("here: %c%c%c\n", line[4], line[5], line[6]);
+	if (len == 4)
+		printf("\n");
+	else if(line[4] == ' ' && line[5] == '-' && line[6] == 'n' && len == 7)
+		printf("");
+	else // porque no va este else? // entra solo cuando hago enter sin comando y nose porque
+		printf("new\n");
+	// check if echo or echo -n
+}
 /*
 
 	int newline = 1;
