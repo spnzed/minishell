@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 18:35:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:31:08 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,15 @@ char			*put_variable(char *line, char *var, char *replace);
 int				ctrl_d(t_info *data);
 //				Expander
 
+//				builtins
+void			ft_env(t_info *data);
+void			ft_builtins(t_info *data);
 
 //				manage_command
+void			ft_builtins(t_info *data);
 int				manage_cmd(t_info *data);
 int				counter_cmd(char *line);
+
 //				display
 char			*display_term_message(void);
 

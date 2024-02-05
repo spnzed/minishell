@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-RFLAGS = /Users/aaespino/.brew/opt/readline/include
-LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+#RFLAGS = /Users/aaespino/.brew/opt/readline/include
+#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -36,7 +36,7 @@ LEXER_DIR		=	main/lexer/
 PARSER_DIR		=	main/parser/
 INIT_DIR		=	main/init/
 MANAGE_CMD_DIR	=	main/manage_cmd/
-
+BUILTINS_DIR	=	main/builtins/
 
 OBJ_DIR			=	build/
 
@@ -60,6 +60,7 @@ PARSER 			=	parser.c parse_var.c put_variable.c
 EXECUTOR		=	ctrl_d.c display.c signal_handler.c 
 INIT			=	init_data.c init_env.c init_fd.c init_settings.c
 MANAGE_CMD		=	counter_cmd.c manage_cmd.c
+BUILTINS		=	commands.c env.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MAIN))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR)))
@@ -68,6 +69,7 @@ SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(PARSER_DIR), $(PARSER)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(UTILS_DIR), $(UTILS)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(INIT_DIR), $(INIT)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MANAGE_CMD_DIR), $(MANAGE_CMD)))
+SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(BUILTINS_DIR), $(BUILTINS)))
 
 OBJS			=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS			+=	$(addsuffix .d, $(basename $(OBJS)))

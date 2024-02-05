@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 15:12:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:19:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ typedef enum		e_token_type
 	literal,				//	
 }					t_token_type;
 
+typedef enum		e_cmd_type
+{
+	ECHO_,
+	CD_,
+	PWD_,
+	EXPORT_,
+	UNSET_,
+	ENV_,
+	EXIT_,
+}					t_cmd_type;
+
 //	STRUCTS
 //	Data
 typedef struct		s_info
@@ -52,6 +63,7 @@ typedef struct		s_info
 	void			*ptr;
 	int				ret;
 	char			*cmd_line;
+	char			**split_line;
 	int				cmd_nbr;
 }					t_info;
 //	Token
