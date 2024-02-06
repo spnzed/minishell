@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_cmd.c                                        :+:      :+:    :+:   */
+/*   print_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 11:58:44 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/05 14:22:20 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/05 14:26:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_check_complex_cmd(char *strbase, char *strcomp, int len)
+void	ft_print_struct_tlist(t_list *list)
 {
-	int x;
-	int y;
-	
-	x = 0;
-	y = 0;
-	while(strbase[x] && x < len)
+	t_list	*temp;
+
+	temp = list;
+	while(list->next)
 	{
-		if(strbase[x] == strcomp[x])
-			y++;
-		x++;
+		printf("%s\n",temp->content);
+		temp = temp->next;
 	}
-	if (x == len)
-		return(0);
-	else
-		return(1);
 }
