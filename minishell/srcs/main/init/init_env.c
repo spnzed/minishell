@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 14:24:45 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:13:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static t_environment	*start_sig(t_list *env)
 			begin = new_env;	
 		else
 			ft_envadd_back(&begin, new_env);
-		printf("content: %s, signal: %s\n", new_env->content, new_env->signal);
 		env = env->next;
 	}
 	return(begin);
