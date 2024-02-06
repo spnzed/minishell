@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/05 19:14:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:08:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ char			*search_var(char *line);
 int				check_var_syntax(char *var);
 char			*export_id(char *var);
 char			*parse_var(t_info *data);
+
+
+t_environment	*ft_envnew(void *content);
+void			ft_envclear(t_environment **env, void (*del)(void*));
+void			ft_envadd_back(t_environment **env, t_environment *new);
+
 
 
 #endif

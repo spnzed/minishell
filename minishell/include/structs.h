@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/05 19:05:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:10:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef enum		e_cmd_type
 //	Token
 typedef struct		s_environment
 {
+	char					*full_line;
 	char					*signal;
 	char					*content;
 	struct s_environment	*next;
