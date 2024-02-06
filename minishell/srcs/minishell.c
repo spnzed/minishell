@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 18:02:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:50:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv, char **env)
 	t_info	data;
 
 	init_data(&data, env);
-	
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
 	{
 		no_interactive(argv[2], &data);

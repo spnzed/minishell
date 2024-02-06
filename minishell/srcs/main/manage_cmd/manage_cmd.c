@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 15:36:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:58:11 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	manage_cmd(t_info *data)
 	data->cmd_nbr = counter_cmd(data->cmd_line);
 	if (syntax_error(data))
 		return (0);
-	//while (search_var(data->cmd_line)) // work aaespino
-	//	data->cmd_line = parse_var(data); // work aaespino
+	while (search_var(data->cmd_line)) // work aaespino
+		data->cmd_line = parse_var(data); // work aaespino
  	data->split_line = ft_split(data->cmd_line, ' '); // work pquintan
 	data->cmd_line = ft_normal(data->cmd_line);
 	ft_builtins(data); // work pquintan

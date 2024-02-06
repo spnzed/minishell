@@ -6,28 +6,51 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 14:02:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:52:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	cmd_line_size(char* cmd_line)
+int	cmd_line_size(char* cmd_line)
 {
-	size_t x;
+	int x;
 
 	x = 0;
-	while(cmd_line[x])// && cmd_line[x] != ' ')
+	while(cmd_line[x])
 		x++;
 	return(x);
 }
 
+int	is_env(char	*line, int len)
+{
+	char *var;
+	int x = 0;
+	int temp = len;
+	var = "env";
+	while(line[x] && var[x] && len != x)
+	{
+		if (line[x] == var[x])
+		{
+			x++;
+			len--;
+		}
+	}
+	//printf("x: %d, temp: %d, len: %d\n", x, temp, len);
+	if (x == temp && x != len)
+		return(1);
+	else
+		return(0);
+}
+
 void	ft_builtins(t_info *data)
 {
-	int  len;
-
+	int len;
+	
 	len = cmd_line_size(data->cmd_line);
-	if (ft_strcmp(data->cmd_line, "env") == 0)
+	if (is_env(data->cmd_line, len))
+	{
+		printf("entra?\n");
 		ft_env(&data->list_env);
 	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
 		ft_pwd();
@@ -46,5 +69,3 @@ void	ft_builtins(t_info *data)
 		//exit(0);
 	}*/
 }
-
-// mirar en que casos si pones un espacio despues de el comando sigue funcionando
