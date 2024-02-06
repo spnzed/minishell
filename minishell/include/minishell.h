@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 15:54:33 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:17:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int				ctrl_d(t_info *data);
 
 //				builtins
 void			ft_env(t_list **list_env);
+void			ft_pwd(void);
+void			ft_cd(void);
+void			ft_echo(char *line, int len);
+void			ft_builtins(t_info *data);
 void			ft_builtins(t_info *data);
 
 //				manage_command
@@ -96,6 +100,7 @@ int				array_size(char **Array);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 int				check_redir_ends(char *str);
+int				ft_check_complex_cmd(char *strbase, char *strcomp, int len);
 char 			*ft_normal(char *str);
 
 //				search_var
