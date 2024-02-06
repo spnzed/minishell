@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 16:00:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:01:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 t_token	*create_token(void *value, t_token_type type, t_info *data)
 {
-	int		size;
 	t_token	*token;
 
-	size = sizeof(t_token);
-	token = malloc(size);
+	token = malloc(sizeof(t_token));
 	if (!token || !value)
 		exit(free_all(data, 1));
 	token->value = value;
@@ -26,7 +24,7 @@ t_token	*create_token(void *value, t_token_type type, t_info *data)
 	return (token);
 }
 
-void	lexer(char *input, t_info	*data)
+void	lexer(char *input, t_info *data)
 {
 	char 			*value;
 	t_list			*new;
