@@ -6,36 +6,76 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/05 13:07:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:55:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
+void	ft_echo(char *line, int len)
+{
+	int x;
+	bool n_option;
 
-	int newline = 1;
-	int escape = 0;
-	if (echo is the only input)
-	{
+	x = 4;
+	n_option = false;
+	if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
+		n_option = true;
+	if (len == 4)
 		printf("\n");
-		return(0);
-	}
-	else if (the cmd input starts with echo)
+	else if (len > 4)
 	{
-		if (echo + 1 " " && echo + 2 "-" && echo + 3 is "n") // meaning echo -n
+		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+			x++;
+		while(line[x])
 		{
-			newline--;
-			escape = 1;
+			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
+				printf("%c", line[x++]);
+			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+				x++;
+			printf(" ");
 		}
-		printf("everything after "echo -n "");
-		while(newline != 0)
+		if (n_option == false)
 			printf("\n");
-		return(0);
 	}
-	return(1);
-*/
-// Funcion prototipo
+}
+
+// void	ft_echo(char *line, int len)
+// {
+// 	int x;
+// 	bool n_option;
+
+// 	x = 4;
+// 	while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 	n_option = false;
+// 	if (len > 4)
+// 	{
+// 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 		x--;
+// 		if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
+// 			n_option = true;
+// 	}
+// 	x = 4;
+// 	if (len == 4)
+// 		printf("\n"); // only echo
+// 	else if (len > 4) //echo normal
+// 	{
+// 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 		while(line[x])
+// 		{
+// 			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
+// 				printf("%c", line[x++]);
+// 			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 				x++;
+// 			printf(" ");
+// 		}
+// 		if (n_option == false) // nuse como arreglarlo
+// 			printf("\n");
+// 	} // sera provisional porque hay que ver el parseo creo
+// }
 
 // EXAMPLES OF ECHO 
 
