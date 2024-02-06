@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 14:24:45 by aaespino         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/02/06 14:44:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -53,6 +54,7 @@ static t_list	*start_env(char **env)
 	begin = NULL;
 	i = -1;
 	while (env[++i])
+	while (env[++i])
 	{
 		new = ft_lstnew(env[i]);
 		if (!new)
@@ -65,6 +67,7 @@ static t_list	*start_env(char **env)
 		else
 			ft_lstadd_back(&begin, new);
 	}
+
 	return (begin);
 }
 

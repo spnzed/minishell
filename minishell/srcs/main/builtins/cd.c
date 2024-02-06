@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 14:43:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:49:24 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(void)
+void	ft_cd(void)
 {
-	char *buffer;
-
-	buffer = malloc(sizeof (char)* 5000);
-	printf("%s\n", getcwd(buffer, 5000));
-	free(buffer);
+	printf("CD!\n");
+	// chdir
 }
 // Funcion prototipo

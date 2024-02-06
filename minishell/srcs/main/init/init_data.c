@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 13:52:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:36:14 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_data(t_info *data, char **env)
 	if (init_fd(data))
 		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
 			2), 1);
+	data->cmd_return = 0;
 	data->cmd_return = 0;
 	return (0);
 }
