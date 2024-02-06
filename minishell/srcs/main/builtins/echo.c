@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/05 19:30:12 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:12:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,30 @@
 
 void	ft_echo(char *line, int len)
 {
-	//printf("here: %c%c%c\n", line[4], line[5], line[6]);
+	int x;
+
+	x = 4;
 	if (len == 4)
-		printf("\n");
+		printf("\n"); // only echo
 	else if(line[4] == ' ' && line[5] == '-' && line[6] == 'n' && len == 7)
 		printf("");
-	else // porque no va este else? // entra solo cuando hago enter sin comando y nose porque
-		printf("new\n");
+	else if (len > 4) //echo normal
+	{
+		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+			x++;
+		while(line[x])
+		{
+			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
+				printf("%c", line[x++]);
+			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+				x++;
+			printf(" ");
+		}
+		printf("\n");
+	}
+	//printf("line: %s\n", line);
+//	else if () // porque no va este else? // entra solo cuando hago enter sin comando y nose porque
+//		printf("after -n without spaces\n");
 	// check if echo or echo -n
 }
 /*
