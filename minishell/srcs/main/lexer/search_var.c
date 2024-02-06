@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 16:37:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:53:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,7 @@ char	*search_var(char *line)
 	}
 	return (NULL);
 }
+
+/*
+HOLA QUE TAL | $USER | QUE PASO
+*/
