@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 16:09:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:14:36 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	ft_pwd(void)
 	buffer = malloc(sizeof (char)* 5000);
 	printf("%s\n", getcwd(buffer, 5000));
 	free(buffer);
-
 }

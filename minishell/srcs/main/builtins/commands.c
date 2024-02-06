@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 14:02:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:13:54 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	cmd_line_size(char* cmd_line)
 	size_t x;
 
 	x = 0;
-	while(cmd_line[x])// && cmd_line[x] != ' ')
+	while(cmd_line[x])
 		x++;
 	return(x);
 }
