@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 16:17:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:01:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 char			*parse_var(t_info *data);
-int				var_is_found(t_list *list_env, char *var);
+int				var_is_found(t_environment *list_env, char *var);
 char			*put_status(t_info *data, char *var);
 char			*put_variable(char *line, char *var, char *replace);
 
