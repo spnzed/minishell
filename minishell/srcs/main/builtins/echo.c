@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 12:35:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:46:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,11 @@ void	ft_echo(char *line, int len)
 
 	x = 4;
 	n_option = false;
-	if (len > 4)
-	{
-		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
-			x++;
-		x--;
-		if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
-			n_option = true;
-	}
-	x = 4;
+	if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
+		n_option = true;
 	if (len == 4)
-		printf("\n"); // only echo
-	else if (len > 4) //echo normal
+		printf("\n");
+	else if (len > 4)
 	{
 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
 			x++;
@@ -42,10 +35,47 @@ void	ft_echo(char *line, int len)
 				x++;
 			printf(" ");
 		}
-		if (n_option == false) // nuse como arreglarlo
+		if (n_option == false)
 			printf("\n");
-	} // sera provisional porque hay que ver el parseo creo
+	}
 }
+
+// void	ft_echo(char *line, int len)
+// {
+// 	int x;
+// 	bool n_option;
+
+// 	x = 4;
+// 	while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 	n_option = false;
+// 	if (len > 4)
+// 	{
+// 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 		x--;
+// 		if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
+// 			n_option = true;
+// 	}
+// 	x = 4;
+// 	if (len == 4)
+// 		printf("\n"); // only echo
+// 	else if (len > 4) //echo normal
+// 	{
+// 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 			x++;
+// 		while(line[x])
+// 		{
+// 			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
+// 				printf("%c", line[x++]);
+// 			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
+// 				x++;
+// 			printf(" ");
+// 		}
+// 		if (n_option == false) // nuse como arreglarlo
+// 			printf("\n");
+// 	} // sera provisional porque hay que ver el parseo creo
+// }
 
 // EXAMPLES OF ECHO 
 

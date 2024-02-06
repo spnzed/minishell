@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 11:54:03 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:46:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 int				check_redir_ends(char *str);
 int				ft_check_complex_cmd(char *strbase, char *strcomp, int len);
+char 			*ft_normal(char *str);
 
 //				search_var
 char			*search_var(char *line);

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 11:57:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:02:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_builtins(t_info *data)
 		ft_env(&data->list_env);
 	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
 		ft_pwd();
-	else if (ft_check_complex_cmd(data->cmd_line, "echo", 4) == 0|| ft_check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
+	else if (ft_check_complex_cmd(data->cmd_line, "echo", 4) == 0 || ft_check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
 		ft_echo(data->cmd_line, len);
 	// else if(ft_strcmp(data->cmd_line, "cd") == 0)// funcion aparte
 	// 	ft_cd();
