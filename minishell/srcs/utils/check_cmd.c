@@ -6,11 +6,22 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 16:12:26 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:41:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+/*
+int	ft_strlen_word(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] != ' ' || str[i] != '\t'))
+		i++;
+	return (i);
+}
+
 
 char 	*ft_normal(char *str)// takes a string and puts all in lower and without more than one space
 {
@@ -32,6 +43,45 @@ char 	*ft_normal(char *str)// takes a string and puts all in lower and without m
 			i++;
 		if ((str[i] == ' ' || str[i] == '\t') && !(str[i + 1]))
 			i++;
+		y++;
+		i++;
+	}
+	y = 0;
+	len = ft_strlen_word(str);
+	i = len;
+	while(str[i] && (str[i] != ' ' || str[i] != '\t'))
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			normal[y] = str[i] + 32;
+		else
+			normal[y] = str[i];
+		y++;
+		i++;
+	}
+	normal[y] = '\0';
+	//printf("normal:%s, str:%s\n", normal, str);
+	return(normal);
+}
+*/
+
+char 	*ft_normal(char *str)// takes a string and puts all in lower and without more than one space
+{
+	char *normal;
+	int i;
+	int y;
+	int len;
+
+	len = ft_strlen(str);
+	normal = (char *)malloc(len + 1);
+	i = 0;
+	y = 0;
+	if ((str[i] == ' ' || str[i] == '\t') && i == 0)
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+	while(str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			i = len + 1;
 		if (str[i] >= 'A' && str[i] <= 'Z')
 			normal[y] = str[i] + 32;
 		else
