@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 16:14:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:18:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,24 @@ typedef enum		e_cmd_type
 }					t_cmd_type;
 
 //	STRUCTS
+
+//	Token
+typedef struct		s_environment
+{
+	char					*full_line;
+	char					*signal;
+	char					*content;
+	struct s_environment	*next;
+}					t_environment;
+
+
 //	Data
 typedef struct		s_info
 {
-	t_list			*list_env;
 	t_list			*list_input;
 	t_list			*list_path;
+	t_list			*list_env;
+	t_environment	*signals_env;
 	struct termios	o_settings;
 	struct termios	n_settings;
 	int				std_in;
@@ -66,7 +78,7 @@ typedef struct		s_info
 	char			**split_line;
 	int				cmd_nbr;
 }					t_info;
-//	Token
+
 typedef struct		s_token
 {
 	void			*value;

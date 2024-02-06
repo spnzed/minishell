@@ -6,72 +6,71 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:29:38 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:13:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//NULO AL FINAL
+static t_environment	*start_sig(t_list *env)
+{
+	int 			i;
+	t_environment	*begin;
+	t_environment	*new_env;
+
+	begin = NULL;
+	while (env)
+	{
+		new_env = ft_envnew(((char *)env->content));
+		i = -1;
+		if (!new_env)
+		{
+			ft_envclear(&begin, free);
+			return (NULL);
+		}
+		while (new_env->full_line[++i])
+			if (new_env->full_line[i] == '=')
+				break ;
+		new_env->signal = ft_substr(new_env->full_line, 0, i);
+		if (new_env->full_line[i] == '=')
+			new_env->content = ft_substr(new_env->full_line, i + 1, ft_strlen(new_env->full_line));
+		if (!begin)
+			begin = new_env;	
+		else
+			ft_envadd_back(&begin, new_env);
+		env = env->next;
+	}
+	return(begin);
+}
+
 static t_list	*start_env(char **env)
 {
-	int		i;
+	int				i;
 	t_list	*begin;
 	t_list	*new;
 
-	begin = NULL; // Inicializa el inicio de la lista como NULL
+	begin = NULL;
 	i = -1;
 	while (env[++i])
 	{
 		new = ft_lstnew(env[i]);
 		if (!new)
 		{
-			ft_lstclear(&begin, free); // Libera la lista si falla la asignación de memoria
+			ft_lstclear(&begin, free);
 			return (NULL);
 		}
-		if (!begin) // Si la lista está vacía, asigna el nuevo nodo como el inicio
-			begin = new;
-		else // Si la lista no está vacía, agrega el nuevo nodo al final
+		if (!begin)
+			begin = new;	
+		else
 			ft_lstadd_back(&begin, new);
 	}
-
-	// Agrega un nodo nulo al final de la lista enlazada
-	new = ft_lstnew(NULL);
-	if (!new)
-	{
-		ft_lstclear(&begin, free); // Libera la lista si falla la asignación de memoria
-		return (NULL);
-	}
-	ft_lstadd_back(&begin, new);
-
 	return (begin);
 }
-
-//NULO AL PRINCIPIO
-// static t_list	*start_env(char **env)
-// {
-// 	int		i;
-// 	t_list	*begin;
-// 	t_list	*new;
-
-// 	begin = malloc(sizeof(t_list));
-// 	if (!begin)
-// 		return(NULL);
-// 	new = malloc(sizeof(t_list));
-// 	if (!new)
-// 		return(NULL);
-// 	i = -1;
-// 	while(env[++i])
-// 	{
-// 		new = ft_lstnew(env[i]);
-// 		ft_lstadd_back(&begin, new);
-// 	}
-// 	return (begin);
-// }
 
 int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
+	data->signals_env = start_sig(data->list_env);
 	if (!data->list_env)
 		return (1);
 	return (0);

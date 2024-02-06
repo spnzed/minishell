@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 16:14:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:17:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				syntax_error(t_info *data);
 //				Parser
 int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 char			*parse_var(t_info *data);
-t_list			*var_is_found(t_list *list_env, char *var);
+int				var_is_found(t_list *list_env, char *var);
 char			*put_status(t_info *data, char *var);
 char			*put_variable(char *line, char *var, char *replace);
 
@@ -75,6 +75,7 @@ void			ft_env(t_list **list_env);
 void			ft_pwd(void);
 void			ft_cd(void);
 void			ft_echo(char *line, int len);
+void			ft_builtins(t_info *data);
 void			ft_builtins(t_info *data);
 
 //				manage_command
@@ -107,6 +108,12 @@ char			*search_var(char *line);
 int				check_var_syntax(char *var);
 char			*export_id(char *var);
 char			*parse_var(t_info *data);
+
+
+t_environment	*ft_envnew(void *content);
+void			ft_envclear(t_environment **env, void (*del)(void*));
+void			ft_envadd_back(t_environment **env, t_environment *new);
+
 
 
 #endif
