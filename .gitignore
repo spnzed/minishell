@@ -4,3 +4,4 @@
 *.d
 minishell/libft/libft.a
 minishell/minishell
+mpanic/

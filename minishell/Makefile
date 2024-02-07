@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-RFLAGS = /Users/aaespino/.brew/opt/readline/include
-LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+#RFLAGS = /Users/aaespino/.brew/opt/readline/include
+#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -61,7 +61,7 @@ PARSER 			=	parser.c parse_var.c put_variable.c
 EXECUTOR		=	ctrl_d.c display.c signal_handler.c 
 INIT			=	init_data.c init_env.c init_fd.c init_settings.c utils_env.c
 MANAGE_CMD		=	counter_cmd.c manage_cmd.c
-BUILTINS		=	commands.c env.c echo.c pwd.c
+BUILTINS		=	commands.c env.c echo.c pwd.c exit.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MAIN))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR)))
