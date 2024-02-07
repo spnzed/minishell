@@ -53,7 +53,7 @@ MAIN			=	minishell.c
 
 UTILS		 	=	free_all.c free_double_array.c free_token.c free_tree_content.c free_tree.c \
 					get_quote_types.c get_redir_syntax.c check_redir_ends.c free_array.c free_env.c \
-					check_cmd.c \
+					check_cmd.c error_exit.c \
 
 LEXER			=	def_type.c handle_type.c lexer.c syntax_error.c search_var.c
 
