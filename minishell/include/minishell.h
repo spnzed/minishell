@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 19:01:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:17:16 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				ctrl_d(t_info *data);
 void			ft_env(t_list **list_env);
 void			ft_pwd(void);
 void			ft_cd(void);
+void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
 void			ft_builtins(t_info *data);
 void			ft_builtins(t_info *data);
@@ -102,6 +103,8 @@ int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, i
 int				check_redir_ends(char *str);
 int				ft_check_complex_cmd(char *strbase, char *strcomp, int len);
 char 			*ft_normal(char *str);
+void			ft_error_cmd(t_info *data);
+char			*ft_first_word(char *str);
 
 //				search_var
 char			*search_var(char *line);

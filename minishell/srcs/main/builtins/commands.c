@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 16:18:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:05:11 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,12 @@ void	ft_builtins(t_info *data)
 		ft_pwd();
 	else if (ft_check_complex_cmd(data->cmd_line, "echo", 4) == 0 || ft_check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
 		ft_echo(data->cmd_line, len);
+	else if (ft_strcmp(data->cmd_line, "exit") == 0)
+		ft_exit(data);
 	// else if(ft_strcmp(data->cmd_line, "cd") == 0)// funcion aparte
 	// 	ft_cd();
-	// else
-	// 	printf("command error\n"); // arreglar error
-	/*while(data->cmd_line)
-	{
-		if (is_env(data->cmd_line, len))
-			ft_env(data);
-		else
-			printf("command error\n"); // arreglar error
-		//exit(0);
-	}*/
+	else
+		ft_error_cmd(data); // arreglar error
 }
 
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando
