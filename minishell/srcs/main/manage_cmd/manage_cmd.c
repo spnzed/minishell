@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 16:21:19 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:04:58 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	manage_cmd(t_info *data)
 		return (0);
 	while (search_var(data->cmd_line)) // work aaespino
 		data->cmd_line = parse_var(data); // work aaespino
- 	data->split_line = ft_split(data->cmd_line, ' '); // work pquintan
+ 	data->split_line = ft_split(data->cmd_line, ' ');
 	data->cmd_line = ft_normal(data->cmd_line);
-	ft_builtins(data); // work pquintan
+	ft_builtins(data);
 	return (0);
 }
