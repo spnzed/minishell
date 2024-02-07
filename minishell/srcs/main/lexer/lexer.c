@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/05 17:01:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:06:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	*create_token(void *value, t_token_type type, t_info *data)
 	return (token);
 }
 
-void	lexer(char *input, t_info *data)
+void	not_interactive_lexer(char *input, t_info *data)
 {
 	char 			*value;
 	t_list			*new;

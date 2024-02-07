@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 13:50:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:07:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	no_interactive(char *str, t_info *data)
 	while (i < size)
 	{
 		new = ft_strndup(&str[i], 1);
-		lexer(new, data);
+		not_interactive_lexer(new, data);
 		ft_strdel(&new);
 		i++;
 	}
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_info	data;
 
-	init_data(&data, env);
+	lexer(&data, env);
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
 	{
 		no_interactive(argv[2], &data);
