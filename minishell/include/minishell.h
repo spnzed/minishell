@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 15:17:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:32:06 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ int				ctrl_d(t_info *data);
 //				builtins
 void			ft_env(t_list **list_env);
 void			ft_pwd(void);
-void			ft_cd(void);
+void			ft_cd(t_info *data);
 void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
-void			ft_builtins(t_info *data);
-void			ft_builtins(t_info *data);
 
 //				manage_command
 void			ft_builtins(t_info *data);

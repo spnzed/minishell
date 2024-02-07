@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 16:18:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:19:28 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct		s_info
 	char			*cmd_line;
 	char			**split_line;
 	int				cmd_nbr;
+	char			*root_path;
 }					t_info;
 
 typedef struct		s_token

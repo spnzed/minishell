@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:04:44 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/07 15:20:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:21:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_first_word(char *str)
 	return(str_copy);
 }		
 
-void	ft_error_cmd(t_info *data)
+void	ft_error_cmd(t_info *data) // faltara complentar
 {
 	printf("minishell: %s: command not found\n", ft_first_word(data->cmd_line));
 }
