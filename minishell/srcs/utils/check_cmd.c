@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/07 14:43:06 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:22:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@ char 	*ft_normal(char *str)// takes a string and puts all in lower and without m
 	int i;
 	int y;
 	int len;
+	int x;
 
 	len = ft_strlen(str);
 	normal = (char *)malloc(len + 1);
 	i = 0;
 	y = 0;
-	if ((str[i] == ' ' || str[i] == '\t') && i == 0)
-		while (str[i] == ' ' || str[i] == '\t')
+	x = 0;
+	while (str[i] == ' ' || str[i] == '\t')
 			i++;
 	while(str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && (str[i + 1] == ' ' || str[i + 1] == '\t'))
-			i++;
-		if ((str[i] == ' ' || str[i] == '\t') && !(str[i + 1]))
-			i++;
-		if (str[i] >= 'A' && str[i] <= 'Z')
+		 	i++;
+		if (str[i] == ' ' || str[i] == '\t')
+			x = 1;
+		if (x == 0 && str[i] >= 'A' && str[i] <= 'Z')
 			normal[y] = str[i] + 32;
 		else
 			normal[y] = str[i];
