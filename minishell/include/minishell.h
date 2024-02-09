@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 15:11:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:43:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char			*put_variable(char *line, char *var, char *replace);
 int				ctrl_d(t_info *data);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
+char			*clean_redir(char *str);
 
 //				Expander
 

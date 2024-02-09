@@ -6,17 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 14:07:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:48:04 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char *clean_redir(char *cmd)
-{
-	(void)cmd;
-	return (cmd);	
-}
 
 static char **split_quotes(char **cmd)
 {
