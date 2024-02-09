@@ -6,22 +6,22 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 16:07:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:51:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static void	parser(t_info *data)
-// {
-// 	data->cmd_nbr = counter_cmd(data->cmd_line);
-// 	if (syntax_error(data))
-// 		return (0);
-// 	while (search_var(data->cmd_line))
-// 		data->cmd_line = parse_var(data);
-// 	data->mul_cmds = ft_split(data->cmd_line, ' ');
-// 	data->cmd_line = ft_normal(data->cmd_line);
-// }
+static void	parser(t_info *data)
+{
+	data->cmd_nbr = counter_cmd(data->cmd_line);
+	if (syntax_error(data))
+		return (0);
+	while (search_var(data->cmd_line))
+		data->cmd_line = parse_var(data);
+	data->mul_cmds = ft_split(data->cmd_line, ' ');
+	data->cmd_line = ft_normal(data->cmd_line);
+}
 
 static void executor(t_info *data)
 {
