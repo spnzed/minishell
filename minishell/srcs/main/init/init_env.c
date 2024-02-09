@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 15:13:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:23:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ static t_environment	*start_sig(t_list *env)
 	return(begin);
 }
 
+// static t_environment	*start_exp(t_list *env)
+// {
+// 	//ordenar alfabeticamente las variables de entorno
+	//como excepcion las mayusculas se ordenan primero y luego las minusculas
+// }
+
 static t_list	*start_env(char **env)
 {
 	int				i;
@@ -67,10 +73,29 @@ static t_list	*start_env(char **env)
 	return (begin);
 }
 
+static char	*root_pwd(t_environment *signals_env)
+{
+	t_environment *temp;
+	char *root;
+
+	temp = signals_env;
+	
+	while (temp->next)
+	{
+		if (ft_strcmp(temp->signal, "HOME") == 0)
+			root = ft_strdup(temp->content);
+		temp = temp->next;
+	}
+	// printf("root: %s\n", root);
+	return(root);
+}
+
 int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
+	//data->list_exp = start_sig(start_exp(data->env)); // la idea es que primero ordene y luego lo divida
+	data->root_path = root_pwd(data->signals_env);
 	if (!data->list_env)
 		return (1);
 	return (0);
