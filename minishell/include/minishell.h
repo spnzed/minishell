@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/08 17:45:39 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:27:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*put_variable(char *line, char *var, char *replace);
 //				Executor
 int				ctrl_d(t_info *data);
 int				exec_cmds(t_info *data);
-
+void			exec_process(t_info *data, char	*cmd);
 
 //				Expander
 

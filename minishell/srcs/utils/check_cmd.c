@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/08 16:22:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:30:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char 	*ft_normal(char *str)// takes a string and puts all in lower and without m
 		i++;
 	}
 	normal[y] = '\0';
-	//printf("normal:%s, str:%s\n", normal, str);
 	return(normal);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 16:31:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:03:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ static void	parent_process(t_info *data)
 	close(data->fd[0]);
 	close(data->fd[1]);
 }
+
+static void	wait_childs(t_info *data)
+{
+	(void)data;
+	return ;
+}
+
 
 //SIGINT : CTRL+C
 //SIG_IGN : Ignorar

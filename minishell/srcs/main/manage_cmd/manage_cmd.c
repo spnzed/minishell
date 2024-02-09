@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 18:51:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:31:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ static void	parser(t_info *data)
 {
 	data->cmd_nbr = counter_cmd(data->cmd_line);
 	if (syntax_error(data))
-		return (0);
+		return ;
 	while (search_var(data->cmd_line))
 		data->cmd_line = parse_var(data);
-	data->mul_cmds = ft_split(data->cmd_line, ' ');
 	data->cmd_line = ft_normal(data->cmd_line);
+	data->split_line = ft_split(data->cmd_line, ' ');
+	ft_builtins(data);
 }
 
 static void executor(t_info *data)
 {
 	if (data->cmd_nbr)
 		exec_cmds(data);
-	ft_builtins(data);
 }
 
 /*manage_cmd
@@ -41,7 +41,8 @@ static void executor(t_info *data)
 int	manage_cmd(t_info *data)
 {
 	parser(data);
-	executor(data);
+	if (!data)
+		executor(data);
 	return (0);
 }
 
