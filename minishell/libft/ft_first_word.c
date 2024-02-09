@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tree_content.c                                :+:      :+:    :+:   */
+/*   ft_first_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 19:26:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 14:41:14 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/09 15:02:17 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/09 15:02:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	free_tree_content(void *content)
+char	*ft_first_word(char *str)
 {
-	t_token	*token;
+	int x;
+	char *str_copy;
+	int len;
 
-	if (!content)
-		return ;
-	token = (t_token *) content;
-	free_double_array(token->value);
-	free(token);
-	(void)token;
-	(void)content;
+	x = 0;
+	len = ft_strlen(str);
+	str_copy = (char *)malloc(len + 1);
+	while (str[x] && (str[x] == ' ' || str[x] == '\t'))
+		x++;
+	while (str[x] && str[x] != ' ' && str[x] != '\t')
+	{
+		str_copy[x] = str[x];
+		x++;
+	}
+	str_copy[x] = '\0';
+	return(str_copy);
 }

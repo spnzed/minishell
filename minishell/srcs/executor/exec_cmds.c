@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 14:03:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:59:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	wait_childs(t_info *data)
 	(void)data;
 	return ;
 }
-
 
 //SIGINT : CTRL+C
 //SIG_IGN : Ignorar

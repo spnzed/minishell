@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/01 19:01:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:56:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int quotes_syntax(char *line)
+static int quotes_syntax(char *line)
 {
 	int i;
 	int simple;
@@ -39,7 +39,7 @@ int quotes_syntax(char *line)
 		return (1);
 }
 
-int pipe_syntax(char *line)
+static int pipe_syntax(char *line)
 {
 	int	size;
 
@@ -54,31 +54,6 @@ int pipe_syntax(char *line)
 		ft_putstr_fd("pipe>\n", 2);
 		return (1);
 	}
-	return (0);
-}
-
-int	redir_syntax(char *line)
-{
-	int	i;
-	int	simple;
-	int	complex;
-	int	r_left;
-	int	r_right;
-
-	i = -1;
-	simple = 0;
-	complex = 0;
-	r_left = 0;
-	r_right = 0;
-	while (line[++i])
-	{
-		if (line[i] == '\'' || line[i] == '\"')
-			get_quotes_type(line[i], &simple, &complex);
-		if (get_redir_syntax_values (line[i], &simple, &complex, &r_left, &r_right))
-			return (1);
-	}
-	if (check_redir_ends(line))
-		return (1);
 	return (0);
 }
 

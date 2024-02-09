@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 14:27:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:11:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ int				init_settings(t_info *data);
 int				init_fd(t_info *data);
 void			signal_handler(int sig);
 t_token_type	def_type(char charset);
-int				type_is_separator(t_token_type type);
+int				type_separator(t_token_type type);
 void			not_interactive_lexer(char *input, t_info *data);
 int				syntax_error(t_info *data);
+int				redir_syntax(char *line);
+char			*export_id(char *var);
 
 //				Parser
 char			*parse_var(t_info *data);
@@ -81,7 +83,7 @@ void			ft_export(t_info *data);
 //				manage_command
 void			ft_builtins(t_info *data);
 int				manage_cmd(t_info *data);
-int				counter_cmd(char *line);
+int				cmd_count(char *line);
 
 //				display
 char			*display_term_message(void);
@@ -99,16 +101,14 @@ int				array_size(char **Array);
 //				general_utils
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
-int				check_redir_ends(char *str);
-int				ft_check_complex_cmd(char *strbase, char *strcomp, int len);
-char 			*ft_normal(char *str);
-void			ft_error_cmd(t_info *data);
+int				get_redir_end(char *str);
+int				check_complex_cmd(char *strbase, char *strcomp, int len);
+char 			*normalizer(char *str);
+void			error_exit(t_info *data);
 char			*ft_first_word(char *str);
 
 //				search_var
 char			*search_var(char *line);
-int				check_var_syntax(char *var);
-char			*export_id(char *var);
 char			*parse_var(t_info *data);
 
 

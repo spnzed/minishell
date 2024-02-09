@@ -53,6 +53,7 @@ SRC		=	ft_isalnum.c \
 			ft_strpbrk.c \
 			ft_strjoin_free_first.c \
 			ft_strcmp.c \
+			ft_first_word.c \
 
 OBJECTS	= $(SRC:%.c=%.o)
 

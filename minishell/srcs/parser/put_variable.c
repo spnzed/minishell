@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:44:07 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 18:53:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:00:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,3 @@ char	*put_variable(char *line, char *var, char *replace)
 	final_line = alloc_final_line(replace, str_before_var, str_after_var);
 	return (final_line);
 }
-
-/*
-HOLA QUE TAL | $USER | QUE PASO
-*/

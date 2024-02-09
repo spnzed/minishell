@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/09 14:15:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:47:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	ft_builtins(t_info *data)
 		ft_env(&data->list_env);
 	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
 		ft_pwd();
-	else if (ft_check_complex_cmd(data->cmd_line, "echo", 4) == 0 || ft_check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
+	else if (check_complex_cmd(data->cmd_line, "echo", 4) == 0 || check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
 		ft_echo(data->cmd_line, len);
-	else if (ft_strcmp(data->cmd_line, "exit") == 0)//(ft_check_complex_cmd(data->cmd_line, "exit", 4) == 0)
+	else if (ft_strcmp(data->cmd_line, "exit") == 0)//(check_complex_cmd(data->cmd_line, "exit", 4) == 0)
 		ft_exit(data);
-	else if(ft_check_complex_cmd(data->cmd_line, "cd", 2) == 0)// funcion aparte
+	else if(check_complex_cmd(data->cmd_line, "cd", 2) == 0)// funcion aparte
 		ft_cd(data);
-	else if(ft_check_complex_cmd(data->cmd_line, "export", 6) == 0)
+	else if(check_complex_cmd(data->cmd_line, "export", 6) == 0)
 		ft_export(data);
 	// else if (!ft_strcmp(data->cmd_line, ""))
 	// else
-	// 	ft_error_cmd(data); // arreglar error
+	// 	error_exit(data); // arreglar error
 }
 
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando

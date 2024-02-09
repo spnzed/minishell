@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   not_interactive_lexer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 16:06:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:30:02 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_token	*create_token(void *value, t_token_type type, t_info *data)
 {
 	t_token	*token;
 
+	(void)data;
 	token = malloc(sizeof(t_token));
 	if (!token || !value)
-		exit(free_all(data, 1));
+		exit(1);
 	token->value = value;
 	token->type = type;
 	return (token);

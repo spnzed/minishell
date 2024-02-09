@@ -6,40 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 18:53:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:56:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-La función strpbrk() es una función estándar en C que se utiliza para buscar 
-la primera ocurrencia de cualquiera de los caracteres en una cadena dada y devuelve 
-un puntero a esa posición en la cadena.
-*/
-char	*export_id(char *var)
-{
-	int		i;
-	char	*res;
-	char	*found;
-	char	*non_alnum;
-
-	i = 0;
-	if (*var == '$')
-		var++;
-	if (*var == '?')
-		return ("?");
-	non_alnum = ft_strdup(" \'\"!#$%%&\\()*+,-./:;<=>@[]^`{|}~");
-	found = ft_strpbrk(var, non_alnum);
-	free(non_alnum);
-	if (!found)
-		res = ft_strdup(var);
-	else
-		res = ft_substr(var, 0, found - var);
-	return (res);
-}
-
-int	check_var_syntax(char *var)
+static int	check_var_syntax(char *var)
 {
 	int	i;
 
@@ -87,7 +60,3 @@ char	*search_var(char *line)
 	}
 	return (NULL);
 }
-
-/*
-HOLA QUE TAL | $USER | QUE PASO
-*/

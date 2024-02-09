@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counter_cmd.c                                      :+:      :+:    :+:   */
+/*   cmd_count.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,7 +21,7 @@ static void	write_syntax_error(char *cmd, int i)
 	}
 }
 
-int		counter_cmd(char *line)
+int		cmd_count(char *line)
 {
 	int i;
 	int count;

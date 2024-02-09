@@ -28,15 +28,17 @@ LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
-MAIN_DIR		=	srcs/main/
+
+
+MAIN_DIR		=	main/
 UTILS_DIR		=	utils/
 INC_DIR			=	include/
-EXECUTOR_DIR	=	main/executor/
-LEXER_DIR		=	main/lexer/
-PARSER_DIR		=	main/parser/
-INIT_DIR		=	main/init/
-MANAGE_CMD_DIR	=	main/manage_cmd/
-BUILTINS_DIR	=	main/builtins/
+EXECUTOR_DIR	=	executor/
+LEXER_DIR		=	lexer/
+PARSER_DIR		=	parser/
+INIT_DIR		=	init/
+MANAGE_CMD_DIR	=	manage_cmd/
+BUILTINS_DIR	=	builtins/
 
 OBJ_DIR			=	build/
 
@@ -49,21 +51,19 @@ LIBFT			=	libft/libft.a
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 
 
-MAIN			=	minishell.c
+MINISHELL		=	minishell.c
 
-UTILS		 	=	free_all.c free_double_array.c free_token.c free_tree_content.c free_tree.c \
-					get_quote_types.c get_redir_syntax.c check_redir_ends.c free_array.c free_env.c \
-					check_cmd.c error_exit.c \
-
-LEXER			=	def_type.c handle_type.c lexer.c syntax_error.c search_var.c
-
+MAIN			=	manage_cmd.c
+BUILTINS		=	cd.c commands.c echo.c env.c exit.c export.c pwd.c
+LEXER			=	def_type.c init_data.c init_env.c init_fd.c init_settings.c lexer_utils.c \
+					not_interactive_lexer.c search_var.c syntax_error.c utils_env.c
 PARSER 			=	parse_var.c put_variable.c
-EXECUTOR		=	ctrl_d.c display.c signal_handler.c exec_cmds.c exec_process.c
-INIT			=	init_data.c init_env.c init_fd.c init_settings.c utils_env.c
-MANAGE_CMD		=	counter_cmd.c manage_cmd.c
-BUILTINS		=	commands.c env.c echo.c pwd.c exit.c cd.c export.c
+EXECUTOR		=	ctrl_d.c display_term_message.c exec_cmds.c exec_process.c signal_handler.c
+UTILS		 	=	check_complex_cmd.c cmd_count.c error_exit.c get_quote_types.c \
+					get_redir_end.c  get_redir_syntax.c normalizer.c
 
-SRCS			+=	$(addprefix $(SRCS_DIR), $(MAIN))
+SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
+SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(EXECUTOR_DIR), $(EXECUTOR)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(LEXER_DIR), $(LEXER)))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(PARSER_DIR), $(PARSER)))

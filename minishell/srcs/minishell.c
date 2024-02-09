@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 16:07:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:05:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	no_interactive(char *str, t_info *data)
 		ft_strdel(&new);
 		i++;
 	}
+	manage_cmd(data);
 }
 
 int	main(int argc, char **argv, char **env) 
@@ -35,11 +36,7 @@ int	main(int argc, char **argv, char **env)
 
 	lexer(&data, env);
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
-	{
 		no_interactive(argv[2], &data);
-		manage_cmd(&data);
-		free_all(&data, 1);
-	}
 	else
 	{
 		while (1)
