@@ -64,6 +64,7 @@ typedef struct		s_info
 	t_list			*list_path;
 	t_list			*list_env;
 	t_environment	*signals_env;
+	t_environment	*list_exp;
 	struct termios	o_settings;
 	struct termios	n_settings;
 	int				std_in;
@@ -79,6 +80,7 @@ typedef struct		s_info
 	char			**mul_cmds;
 	char			**split_line;
 	int				cmd_nbr;
+	char			*root_path;
 }					t_info;
 
 typedef struct		s_token

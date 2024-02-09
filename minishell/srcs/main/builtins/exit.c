@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/09 11:36:42 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/07 15:02:38 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(void)
+void	ft_exit(t_info *data)
 {
-	char *buffer;
-
-	buffer = malloc(sizeof (char)* 5000);
-	printf("%s\n", getcwd(buffer, 5000));
-	free(buffer);
-}
+	printf("exit\n");
+	exit(data->cmd_return);
+} // faltan muchas cosas de momento sale y ya

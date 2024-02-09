@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/07 18:51:59 by aaespino         ###   ########.fr       */
