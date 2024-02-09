@@ -46,28 +46,28 @@
 
 //				THE PROJECT
 
-//				INIT PROGRAM
-int				init_data(t_info *data, char **env);
+//				Lexer
+int				lexer(t_info *data, char **env);
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
 void			signal_handler(int sig);
-
-//				Lexer
 t_token_type	def_type(char charset);
 int				type_is_separator(t_token_type type);
-void			lexer(char *input, t_info	*data);
+void			not_interactive_lexer(char *input, t_info *data);
 int				syntax_error(t_info *data);
+
 //				Parser
-int				parser(t_list *cmd, int cmd_nbr, t_info *data);
 char			*parse_var(t_info *data);
 int				var_is_found(t_environment *list_env, char *var);
 char			*put_status(t_info *data, char *var);
 char			*put_variable(char *line, char *var, char *replace);
 
-
 //				Executor
 int				ctrl_d(t_info *data);
+int				exec_cmds(t_info *data);
+
+
 //				Expander
 
 //				builtins
