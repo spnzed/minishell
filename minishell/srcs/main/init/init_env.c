@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 18:38:52 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:23:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ static t_environment	*start_sig(t_list *env)
 	}
 	return(begin);
 }
+
+// static t_environment	*start_exp(t_list *env)
+// {
+// 	//ordenar alfabeticamente las variables de entorno
+	//como excepcion las mayusculas se ordenan primero y luego las minusculas
+// }
 
 static t_list	*start_env(char **env)
 {
@@ -86,9 +92,9 @@ static char	*root_pwd(t_environment *signals_env)
 
 int	init_env(t_info *data, char **env)
 {
-	
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
+	//data->list_exp = start_sig(start_exp(data->env)); // la idea es que primero ordene y luego lo divida
 	data->root_path = root_pwd(data->signals_env);
 	if (!data->list_env)
 		return (1);

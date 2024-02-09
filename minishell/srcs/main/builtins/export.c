@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/08 18:18:55 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:42:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_export(t_info *data) // ordenar?
 {
 	t_environment *temp;
 
-	temp = data->signals_env;
+	//temp = data->list_exp;
+	temp = data->signals_env; // provisional
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
@@ -25,9 +26,9 @@ void	ft_export(t_info *data) // ordenar?
 			temp=temp->next;
 		}		
 	}
-	// else if // only ADIOS
-	// else if // only ADIOS=
-	// else if // ADIOS= + something
+	// else if // only ADIOS // la guardo en export pero no en env
+	// else if // only ADIOS= // la guardo en las dos export: ADIOS="" env: ADIOS=
+	// else if // ADIOS= + something // la guardo en las dos export: HOLA="si", env: HOLA=si
 	else
 	{
 		//NOSEPUEDETONTA//data->list_env->next->content = data->split_line[1];
@@ -39,4 +40,13 @@ void	ft_export(t_info *data) // ordenar?
 /*
 pquintan@cbr12s4 ~ % export      ADIOS =
 zsh: bad assignment
+*/
+
+// cuando pones export HOLA sin un igual detras se guarda en export y no en env
+/*
+no se puede poner un numero al principio del nombre de la variable ejemplo:
+bash-3.2$ export 3GOL="no"
+bash: export: `3GOL=no': not a valid identifier
+bash: export: `.gol3=si': not a valid identifier // ni punto
+// deduzco que solo letras 
 */
