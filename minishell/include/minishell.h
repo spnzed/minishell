@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 15:43:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:23:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,85 +38,61 @@
 #include <termios.h>
 #include <term.h>
 #include <stdbool.h>
-
 //	libft
 #include "libft.h"
 #include "structs.h"
 
-
 //				THE PROJECT
-
-//				Lexer
+int				manage_cmd(t_info *data);
+////////////////////////////////////////////////////////////////////////////////
+//				LEXER		📝
 int				lexer(t_info *data, char **env);
+//				non_interactive
+void			not_interactive_lexer(char *input, t_info *data);
+t_token_type	def_type(char charset);
+//				interactive
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
-void			signal_handler(int sig);
-t_token_type	def_type(char charset);
-int				type_separator(t_token_type type);
-void			not_interactive_lexer(char *input, t_info *data);
+////////////////////////////////////////////////////////////////////////////////
+//				PARSER		📖
+int				cmd_count(char *line);
 int				syntax_error(t_info *data);
-int				redir_syntax(char *line);
-char			*export_id(char *var);
-
-//				Parser
+////////////////////////////////////////////////////////////////////////////////
+//				EXPANDER	🌱
+char			*search_var(char *line);
 char			*parse_var(t_info *data);
-int				var_is_found(t_environment *list_env, char *var);
-char			*put_status(t_info *data, char *var);
+char			*export_id(char *var);
+int				redir_syntax(char *line);
 char			*put_variable(char *line, char *var, char *replace);
-
-//				Executor
+////////////////////////////////////////////////////////////////////////////////
+//				EXECUTOR	🚀
+char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
+char			*display_term_message(void);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
-char			*clean_redir(char *str);
-
-//				Expander
-
+void			signal_handler(int sig);
 //				builtins
+void			ft_builtins(t_info *data);
 void			ft_env(t_list **list_env);
 void			ft_pwd(void);
 void			ft_cd(t_info *data);
 void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
 void			ft_export(t_info *data);
-
-//				manage_command
-void			ft_builtins(t_info *data);
-int				manage_cmd(t_info *data);
-int				cmd_count(char *line);
-
-//				display
-char			*display_term_message(void);
-
-//				cleaning
-int				free_all(t_info *info, int code_return);
-void			free_double_array(void *ptr);
-void			free_token(void *content);
-void			free_tree_content(void *content);
-void			free_tree(t_tree *root, void (*del)(void *));
-void			free_env(t_list *env);
-char			**free_array(char **Array, int len);
-int				array_size(char **Array);
-
-//				general_utils
-void			get_quotes_type(char c, int *simple, int *complex);
-int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
-int				get_redir_end(char *str);
+////////////////////////////////////////////////////////////////////////////////
+//				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
-char 			*normalizer(char *str);
 void			error_exit(t_info *data);
-char			*ft_first_word(char *str);
-
-//				search_var
-char			*search_var(char *line);
-char			*parse_var(t_info *data);
-
-
+void			get_quotes_type(char c, int *simple, int *complex);
+int				get_redir_end(char *str);
+int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
+char			*normalizer(char *str);
+//				new env_utils
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
-
-
+////////////////////////////////////////////////////////////////////////////////
 
 #endif
