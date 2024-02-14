@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-RFLAGS = /Users/aaespino/.brew/opt/readline/include
-LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+#RFLAGS = /Users/aaespino/.brew/opt/readline/include
+#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -58,7 +58,7 @@ BUILTINS		=	cd.c commands.c echo.c env.c exit.c export.c pwd.c
 LEXER			=	def_type.c init_data.c init_env.c init_fd.c init_settings.c lexer_utils.c \
 					not_interactive_lexer.c search_var.c syntax_error.c utils_env.c
 PARSER 			=	parse_var.c put_variable.c
-EXECUTOR		=	ctrl_d.c display_term_message.c exec_cmds.c exec_process.c signal_handler.c
+EXECUTOR		=	ctrl_d.c display_term_message.c signal_handler.c #exec_cmds.c #exec_process.c #clean_redir.c
 UTILS		 	=	check_complex_cmd.c cmd_count.c error_exit.c get_quote_types.c \
 					get_redir_end.c  get_redir_syntax.c normalizer.c
 

@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/06 19:02:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:13:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*put_status(t_info *data, char *var)
+static char	*put_status(t_info *data, char *var)
 {	
 	char	*cmd_ret;
 	char	*result;
@@ -24,7 +24,7 @@ char	*put_status(t_info *data, char *var)
 	return (result);
 }
 
-t_environment	*assign_var(t_environment *list_env, char *var)
+static t_environment	*assign_var(t_environment *list_env, char *var)
 {
 	t_environment	*top;
 
@@ -38,7 +38,7 @@ t_environment	*assign_var(t_environment *list_env, char *var)
 	return (NULL);
 }
 
-int	var_is_found(t_environment *list_env, char *var)
+static int	var_is_found(t_environment *list_env, char *var)
 {
 	t_environment	*top;
 
