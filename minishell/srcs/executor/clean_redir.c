@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/07 18:56:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:59:47 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	*get_end_redir(char *str, int i)
+static int	get_end_redir(char *str, int i)
 {
 	while (str[i])
 	{
@@ -25,7 +25,9 @@ static int	*get_end_redir(char *str, int i)
 		while (str[i] == ' ' && str[i + 1] != '\0')
 			i++;
 		if (str[i + 1] == '\0')
+		{
 			return (i + 1);
+		}
 		if (str[i] == '<' || str[i] == '>')
 			i++;
 		else
@@ -75,7 +77,7 @@ char	*clean_redir(char *str)
 	clean = ft_strdup(str);
 	while (clean[++i])
 	{
-		get_quotes_type(clean[i], simple, complex);
+		get_quotes_type(clean[i], &simple, &complex);
 		if ((clean[i] == '<' || clean[i] == '>' ) && !simple && !complex)
 		{
 			clean = remove_redir(clean, i);

@@ -60,8 +60,8 @@ LEXER			=	def_type.c init_data.c init_env.c init_fd.c init_settings.c lexer_util
 PARSER 			=	parse_var.c put_variable.c
 EXECUTOR		=	ctrl_d.c display_term_message.c exec_cmds.c exec_process.c signal_handler.c \
 					clean_redir.c split_quotes.c
-UTILS		 	=	check_complex_cmd.c cmd_count.c error_exit.c get_quote_types.c \
-					get_redir_end.c  get_redir_syntax.c normalizer.c
+UTILS		 	=	check_complex_cmd.c cmd_count.c count_words.c error_exit.c get_quote_final.c \
+					get_quote_types.c get_redir_end.c  get_redir_syntax.c normalizer.c split_substr_quotes.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))

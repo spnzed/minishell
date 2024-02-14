@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/12 14:23:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:06:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char			*display_term_message(void);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 void			signal_handler(int sig);
+char			**split_quotes(char *cmd);
 //				builtins
 void			ft_builtins(t_info *data);
 void			ft_env(t_list **list_env);
@@ -85,14 +86,17 @@ void			ft_export(t_info *data);
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
 void			error_exit(t_info *data);
+int				get_quote_final(char *str, int i, int simple, int complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
+char			*split_substr_quotes(char *str, int i, int start, int end);
 //				new env_utils
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
+int				count_words(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 
 #endif
