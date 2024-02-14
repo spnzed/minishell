@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 11:23:20 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:30:35 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,42 @@ static t_environment	*start_sig(t_list *env)
 	return(begin);
 }
 
-// static t_environment	*start_exp(t_list *env)
-// {
-// 	//ordenar alfabeticamente las variables de entorno
-	//como excepcion las mayusculas se ordenan primero y luego las minusculas
-// }
+static t_list *order_env(t_list *env)
+{
+	t_list *list_order;
+	int len_list;
+	int index;
+	t_list *temp;
+	t_list *tempvar;
+
+	list_order = ft_copy_list(env); // copy list
+	len_list = ft_lstsize(list_order);
+	index = 0;
+
+	while (index < len_list)
+	{
+		temp = list_order;
+		while (temp->next != NULL)
+		{
+			if ((ft_strcmp(temp->content, temp->next->content)) > 0)
+			{
+				tempvar = temp->next;
+				temp->next = temp->next->next;
+				tempvar->next = list_order;
+				list_order = tempvar;
+			}
+			else
+				temp = temp->next;
+		}
+		index++;
+	}
+
+	return (list_order);
+}
 
 static t_list	*start_env(char **env)
 {
-	int				i;
+	int		i;
 	t_list	*begin;
 	t_list	*new;
 
@@ -94,7 +121,7 @@ int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
-	//data->list_exp = start_sig(start_exp(data->env)); // la idea es que primero ordene y luego lo divida
+	data->list_exp = start_sig(order_env(data->list_env)); // la idea es que primero ordene y luego lo divida
 	data->root_path = root_pwd(data->signals_env);
 	if (!data->list_env)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 16:13:47 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:31:46 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_env(t_list **list_env)
 	t_list *temp;
 	
 	temp = *list_env;
-	while (temp && temp->next)
+	while (temp)
 	{
 		printf("%s\n", temp->content);
 		temp = temp->next;
