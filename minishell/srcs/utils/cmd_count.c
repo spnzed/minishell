@@ -29,9 +29,11 @@ int		cmd_count(char *line)
 	int	complex;
 
 	i = -1;
-	count = 0;
+	count = 1;
 	simple = 0;
 	complex = 0;
+	if (!line[0])
+		return (0);
 	while (line[++i])
 	{
 		if (line[i] == '\'' || line[i] == '\"')

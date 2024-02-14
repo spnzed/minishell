@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 14:59:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:16:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	exec_cmds(t_info *data)
 	int	i;
 
 	i = -1;
+	printf("handle_cmd str: %s\n", data->cmd_line);
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);
@@ -57,7 +58,7 @@ int	exec_cmds(t_info *data)
 		if (data->pid == 0)
 		{
 			child_process(data, i);
-			exec_process(data, data->mul_cmds[i]);
+			exec_process(data, data->split_line[i]);
 		}
 		parent_process(data);
 	}

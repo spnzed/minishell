@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 18:08:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:44:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
         - [ ]  copy_word
 */
 
-char **put_split_quotes(int size, char *cmd, char **spl, int simple, int complex)
+static char **put_split_quotes(int size, char *cmd, char **spl, int simple, int complex)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,7 @@ char **put_split_quotes(int size, char *cmd, char **spl, int simple, int complex
 char **split_quotes(char *cmd)
 {
 	int		size;
-	char	**spl;
+	char	**split;
 	int		simple;
 	int		complex;
 
@@ -63,11 +63,11 @@ char **split_quotes(char *cmd)
 	complex = 0;
 
 	size = count_words(cmd) + 1;
-	spl = malloc(sizeof(char *) * (size));
-	if (!spl)
+	split = malloc(sizeof(char *) * (size));
+	if (!split)
 		return (NULL);
-	spl[size] = NULL;
-	spl = put_split_quotes(size, cmd, spl, simple, complex);
+	split[size] = NULL;
+	split = put_split_quotes(size, cmd, split, simple, complex);
 	//clean_split();
-	return (spl);
+	return (split);
 }

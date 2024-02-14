@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 18:06:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:46:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
+char			**split_cmds(t_info *data);
+char			**split_pipe(char *str, int c);
 char			*split_substr_quotes(char *str, int i, int start, int end);
 //				new env_utils
 t_environment	*ft_envnew(void *content);
