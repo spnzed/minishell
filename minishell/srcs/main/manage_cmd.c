@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 14:50:01 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:04:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void executor(t_info *data)
 	data->cmd_line = normalizer(data->cmd_line);
 	data->split_line = ft_split(data->cmd_line, ' ');
 	ft_builtins(data);
-	if (data->cmd_nbr)
-		exec_cmds(data);
+	// if (data->cmd_nbr)
+	// 	exec_cmds(data);
 }
 
 int	manage_cmd(t_info *data)

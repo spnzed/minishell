@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/09 11:42:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:30:11 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_export(t_info *data) // ordenar?
 {
 	t_environment *temp;
 
-	//temp = data->list_exp;
-	temp = data->signals_env; // provisional
+	temp = data->list_exp;
+	//temp = data->signals_env; // provisional
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)

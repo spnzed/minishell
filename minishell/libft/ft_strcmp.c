@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/02 19:25:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:43:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strcmp(char *s1, char *s2)
 		if (s1[i] == s2[i])
 			i++;
 		else
-			return (s1[i] - s2[i]);
+			return (s1[i] - s2[i]); // + swap
 	}
 	// Si una cadena es más larga que la otra, devuelve la diferencia de longitud
 	return (s1[i] - s2[i]);
