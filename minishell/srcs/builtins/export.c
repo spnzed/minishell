@@ -6,18 +6,17 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/14 19:30:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:46:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(t_info *data) // ordenar?
+void	ft_export(t_info *data)
 {
 	t_environment *temp;
 
 	temp = data->list_exp;
-	//temp = data->signals_env; // provisional
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
@@ -31,6 +30,9 @@ void	ft_export(t_info *data) // ordenar?
 	// else if // ADIOS= + something // la guardo en las dos export: HOLA="si", env: HOLA=si
 	else
 	{
+		// nueva idea
+		// si lo meto debajo de la lista env luego se ordenara sola en el export
+		
 		//NOSEPUEDETONTA//data->list_env->next->content = data->split_line[1];
 		// mirar si existe en la lista, sobrescribir
 		// crear nuevo nodo abajo de la lista.
