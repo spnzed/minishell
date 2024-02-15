@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 19:44:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:25:14 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ char **split_quotes(char *cmd)
 		return (NULL);
 	split[size] = NULL;
 	split = put_split_quotes(size, cmd, split, simple, complex);
-	//clean_split();
 	return (split);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 19:36:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:06:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void executor(t_info *data)
 {
 	//data->cmd_line = normalizer(data->cmd_line);
 	data->split_line = split_cmds(data);
-	ft_builtins(data);
 	if (data->cmd_nbr)
 		exec_cmds(data);
 }

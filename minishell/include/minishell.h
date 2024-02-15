@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 16:08:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:07:29 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			exec_process(t_info *data, char	*cmd);
 void			signal_handler(int sig);
 char			**split_quotes(char *cmd);
 //				builtins
-void			ft_builtins(t_info *data);
+int				ft_builtins(t_info *data);
 void			ft_env(t_list **list_env);
 void			ft_pwd(void);
 void			ft_cd(t_info *data);
