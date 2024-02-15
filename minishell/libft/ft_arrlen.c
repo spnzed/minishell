@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_cmds.c                                       :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 19:35:40 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 18:38:00 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/15 14:53:10 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/15 14:54:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	**split_cmds(t_info *data)
+int	ft_arrlen(char **str)
 {
-	int		i;
-	int		len;
-	char	**splitted;
+	int	i;
 
-	i = -1;
-	splitted = split_pipe(data->cmd_line, '|');
-	while (splitted[++i])
-	{
-		printf("cmd nbr %d : /%s/\n", i, splitted[i]);
-	}
-	len = ft_arrlen(splitted);
-	while (splitted[++i])
-		;
-	return (splitted);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

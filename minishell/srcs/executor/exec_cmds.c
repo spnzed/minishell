@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 19:16:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:56:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	exec_cmds(t_info *data)
 	int	i;
 
 	i = -1;
-	printf("handle_cmd str: %s\n", data->cmd_line);
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);
