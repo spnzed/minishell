@@ -6,15 +6,67 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/14 19:46:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:00:55 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	sub_var(t_list *list, char *signal, char *content)
+{
+	int	len;
+	int	x;
+	int	i;
+
+	len = ft_strlen(signal) - 1;
+	x = 0;
+	i = 0;
+	while (list)
+	{
+		//printf("%s, %d, %d\n", signal, len, check_complex_cmd(list->content, signal, len));
+		if (check_complex_cmd(list->content, signal, len) == 0) // no sirve
+		{
+			printf("%s, %s\n", signal, content);
+			char *charcontent = (char *)list->content;
+			while(charcontent[x] && charcontent[x] != '=')
+				x++;
+			x++;
+			while(charcontent[x])
+			{
+				charcontent[x] = content[i];
+				x++;
+				i++;
+			}
+		}
+		list = list->next;
+	}
+}
+
+static	int	search_on_lists(t_info *data, t_environment *list, char *str)
+{
+	char	*signal;
+	char	*content;
+
+	signal = ft_before_set(str, '=');
+	content = ft_after_set(str, '=');
+	while (list->next)
+	{
+		if (ft_strcmp(signal, list->signal) == 0)
+		{
+			printf("actualizado\n"); // falta actualizar en list_env
+			list->content = content;
+			sub_var(data->list_env, signal, content); // arreglar // necesito reallocar memoria para poder imprimir otra vez
+			return(0);
+		}
+		list = list->next;
+	}
+	return(1);
+}
+
 void	ft_export(t_info *data)
 {
-	t_environment *temp;
+	t_environment	*temp;
+	t_list			*new;
 
 	temp = data->list_exp;
 	if(ft_strcmp(data->cmd_line, "export") == 0)
@@ -25,18 +77,36 @@ void	ft_export(t_info *data)
 			temp=temp->next;
 		}		
 	}
-	// else if // only ADIOS // la guardo en export pero no en env
 	// else if // only ADIOS= // la guardo en las dos export: ADIOS="" env: ADIOS=
 	// else if // ADIOS= + something // la guardo en las dos export: HOLA="si", env: HOLA=si
+	else if (ft_strchr(data->cmd_line, '='))
+	{
+		data->str_trim = ft_strtrim(data->cmd_line, "export ");
+		if (ft_strchr(data->str_trim, '"'))
+			data->str_trim = ft_remove_quotes_str(data->str_trim);
+		if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
+			return ;
+		else // creo nuevo
+		{
+			new = ft_lstnew(data->str_trim);
+			if (!new)
+			{
+				ft_lstclear(&data->list_env, free);
+				return ;
+			}
+			if (!data->list_env)
+				data->list_env = new;	
+			else
+				ft_lstadd_back(&data->list_env, new);
+			data->list_exp = start_sig(order_env(data->list_env)); // actualiza export ? SI
+		}
+	}
+	// else // only ADIOS // la guardo en export pero no en env
 	else
 	{
-		// nueva idea
-		// si lo meto debajo de la lista env luego se ordenara sola en el export
-		
-		//NOSEPUEDETONTA//data->list_env->next->content = data->split_line[1];
-		// mirar si existe en la lista, sobrescribir
-		// crear nuevo nodo abajo de la lista.
-		//printf("%s\n",data->split_line[1]);
+		//data->list_exp->full_line
+		//data->list_exp->signal
+		//data->list_exp->content
 	}
 }
 /*
