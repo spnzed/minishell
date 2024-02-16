@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 17:11:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:00:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void			ft_cd(t_info *data);
 void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
 void			ft_export(t_info *data);
+void			ft_unset(t_info *data);
+
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
@@ -98,6 +100,8 @@ char			*ft_after_set(char *str, char set);
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
+void			ft_free_environment(t_environment *head);
+t_environment	*ft_copy_environment(const t_environment *src);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);

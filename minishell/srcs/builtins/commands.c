@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/09 14:47:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/16 12:05:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_builtins(t_info *data)
 		ft_cd(data);
 	else if(check_complex_cmd(data->cmd_line, "export", 6) == 0)
 		ft_export(data);
-	// else if (!ft_strcmp(data->cmd_line, ""))
+	else if(check_complex_cmd(data->cmd_line, "unset", 5) == 0)
+		ft_unset(data);
 	// else
 	// 	error_exit(data); // arreglar error
 }
