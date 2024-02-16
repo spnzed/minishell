@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 19:07:29 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:27:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,15 @@ int				redir_syntax(char *line);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
+int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(void);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
+int				parent_process(t_info *data);
 void			signal_handler(int sig);
+void			catch_signal(t_info *data, int status, int set_status);
 char			**split_quotes(char *cmd);
 //				builtins
 int				ft_builtins(t_info *data);

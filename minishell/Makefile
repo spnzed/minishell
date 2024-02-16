@@ -54,15 +54,51 @@ INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
 MINISHELL		=	minishell.c
 
 MAIN			=	manage_cmd.c
-BUILTINS		=	cd.c commands.c echo.c env.c exit.c export.c pwd.c
-LEXER			=	def_type.c init_data.c init_env.c init_fd.c init_settings.c lexer_utils.c \
-					not_interactive_lexer.c search_var.c syntax_error.c utils_env.c
-PARSER 			=	parse_var.c put_variable.c
-EXECUTOR		=	ctrl_d.c display_term_message.c exec_cmds.c exec_process.c signal_handler.c \
-					clean_redir.c split_quotes.c
-UTILS		 	=	check_complex_cmd.c cmd_count.c count_words.c error_exit.c get_quote_final.c \
-					get_quote_types.c get_redir_end.c  get_redir_syntax.c normalizer.c split_cmds.c \
-					split_pipe.c split_substr_quotes.c
+
+BUILTINS		=	cd.c \
+					commands.c \
+					echo.c \
+					env.c \
+					exit.c \
+					export.c \
+					pwd.c
+
+LEXER			=	def_type.c \
+					init_data.c \
+					init_env.c \
+					init_fd.c \
+					init_settings.c \
+					lexer_utils.c \
+					not_interactive_lexer.c \
+					search_var.c \
+					syntax_error.c \
+					utils_env.c
+
+PARSER 			=	parse_var.c \
+					put_variable.c
+
+EXECUTOR		=	call_childs.c \
+					clean_redir.c \
+					ctrl_d.c \
+					display_term_message.c \
+					exec_cmds.c \
+					exec_process.c \
+					parent_process.c \
+					signal_handler.c \
+					split_quotes.c
+
+UTILS		 	=	check_complex_cmd.c \
+					cmd_count.c \
+					count_words.c \
+					error_exit.c \
+					get_quote_final.c \
+					get_quote_types.c \
+					get_redir_end.c \
+					get_redir_syntax.c \
+					normalizer.c \
+					split_cmds.c \
+					split_pipe.c \
+					split_substr_quotes.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))
