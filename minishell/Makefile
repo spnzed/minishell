@@ -96,7 +96,8 @@ UTILS		 	=	check_complex_cmd.c \
 					get_redir_end.c \
 					get_redir_syntax.c \
 					normalizer.c \
-					reset_fd.c \					split_cmds.c \
+					reset_fd.c \
+					split_cmds.c \
 					split_pipe.c \
 					split_substr_quotes.c
 
