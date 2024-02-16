@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/16 15:02:39 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:05:38 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ void	ft_export(t_info *data)
 		data->list_exp = order_exp(data->list_exp);
 	}
 }
-
 
 /*
 pquintan@cbr12s4 ~ % export      ADIOS =
