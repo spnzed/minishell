@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 16:42:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:44:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ int	manage_cmd(t_info *data)
 	parser(data);
 	expander(data);
 	executor(data);
-	//printf(RED"HOLA AQUI ESTAMOS\n"RESET);
 	return (0);
 }
