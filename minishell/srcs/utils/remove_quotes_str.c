@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   remove_quotes_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 18:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 17:43:34 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/15 15:26:44 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/15 15:32:01 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+char	*ft_remove_quotes_str(char *str)
 {
-	int	i;
-
+	int		i;
+	int		x;
+	char	*copy;
+	
 	i = 0;
-	while (s1[i] && s2[i]) // Mientras haya caracteres en ambas cadenas
+	x = 0;
+	copy = (char *)malloc(sizeof ft_strlen(str) + 1);
+	while(str[i])
 	{
-		if (s1[i] == s2[i])
+		if (str[i] == '"')
 			i++;
 		else
-			return (s1[i] - s2[i]); // + swap
+		{
+			copy[x] = str[i];
+			x++;
+			i++;
+		}
 	}
-	// Si una cadena es más larga que la otra, devuelve la diferencia de longitud
-	return (s1[i] - s2[i]);
+	copy[x] = '\0';
+	return(copy);
 }

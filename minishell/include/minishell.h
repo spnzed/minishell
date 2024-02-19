@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/19 15:12:20 by aaespino         ###   ########.fr       */
@@ -85,6 +85,8 @@ void			ft_cd(t_info *data);
 void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
 void			ft_export(t_info *data);
+void			ft_unset(t_info *data);
+
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
@@ -98,11 +100,20 @@ int				reset_fd(t_info *data);
 char			**split_cmds(t_info *data);
 char			**split_pipe(char *cmd, char c);
 char			*split_substr_quotes(char *str, int i, int start, int end);
+t_list		*ft_copy_list(const t_list *src);
+void			ft_free_list(t_list *head);
+char			*ft_remove_quotes_str(char *str);
+char			*ft_before_set(char *str, char set);
+char			*ft_after_set(char *str, char set);
 //				new env_utils
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
 int				count_words(char *str);
+void			ft_free_environment(t_environment *head);
+t_environment	*ft_copy_environment(const t_environment *src);
 ////////////////////////////////////////////////////////////////////////////////
+t_environment	*start_sig(t_list *env);
+t_list			*order_env(t_list *env);
 
 #endif

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/16 15:28:32 by aaespino         ###   ########.fr       */
@@ -69,6 +69,7 @@ typedef struct s_info
     int std_out;
     void *ptr;
     char *cmd_line;
+  	char  *str_trim;
     char *root_path;
     char **env;
     char **mul_cmds;

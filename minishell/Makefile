@@ -6,7 +6,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-RFLAGS = /Users/aaespino/.brew/opt/readline/include
-LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+#RFLAGS = /Users/aaespino/.brew/opt/readline/include
+#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
