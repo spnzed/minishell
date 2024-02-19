@@ -6,21 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 19:25:14 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:23:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-    - [ ]  put_split_quotes
-        - [ ]  get_final_quote
-        - [ ]  substr_split_quotes
-    - [ ]  clean_split
-        - [ ]  array_size
-        - [ ]  size_word
-        - [ ]  copy_word
-*/
 
 static char **put_split_quotes(int size, char *cmd, char **spl, int simple, int complex)
 {

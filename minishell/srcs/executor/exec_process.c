@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 19:17:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:21:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	do_exec(t_info *data, char	*cmd)
 {
 	(void)data;
 	(void)cmd;
+	exit(0);	
 	return ;
 }
 
