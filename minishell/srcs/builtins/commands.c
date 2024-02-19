@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/19 15:06:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:07:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	cmd_line_size(char* cmd_line)
 	return(x);
 }
 
-void	ft_builtins(t_info *data)
+int	ft_builtins(t_info *data)
 {
 	int  len;
 
@@ -47,6 +47,7 @@ void	ft_builtins(t_info *data)
 		exit(0);
 	}
 	// 	error_exit(data); // arreglar error
+	return(1);
 }
 
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando

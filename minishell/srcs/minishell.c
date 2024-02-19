@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/12 14:21:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:04:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,32 @@ static void launch_mode(int argc, char **argv, t_info *data)
 			data->cmd_line = display_term_message();
 			if (!data->cmd_line)
 				ctrl_d(data);
-			manage_cmd(data);				//Work_in_progress
-			//free_all(&data, 0);			// de momento no libera nada
+			manage_cmd(data);
+			reset_fd(data);
 		}
 	}
+}
+
+static void	free_ev(t_info *data)
+{
+	t_environment	*head;
+	int				len;
+
+	head = data->signals_env;
+	while (head != NULL)
+	{
+		if (head->full_line)
+			free(head->full_line);
+		if (head->signal)
+			free(head->signal);
+		if (head->content)
+			free(head->content);
+		head = head->next;
+	}
+	len = ft_lstsize(data->list_env);
+	while (len > 0)
+		free(&data->list_env[--len]);
+	free(data->list_env);
 }
 
 int	main(int argc, char **argv, char **env) 
@@ -55,5 +77,6 @@ int	main(int argc, char **argv, char **env)
 
 	lexer(&data, env);
 	launch_mode(argc, argv, &data);
-	return (0);
+	free_ev(&data);
+	return (data.status);
 }

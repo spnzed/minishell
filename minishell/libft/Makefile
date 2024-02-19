@@ -54,6 +54,7 @@ SRC		=	ft_isalnum.c \
 			ft_strjoin_free_first.c \
 			ft_strcmp.c \
 			ft_first_word.c \
+			ft_arrlen.c
 
 OBJECTS	= $(SRC:%.c=%.o)
 

@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 15:04:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:13:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*manage_cmd
+/*	manage_cmd
 
 	Proceso:
 		parser: 	cuenta la cantidad de comandos teniendo en cuenta las |
@@ -25,8 +25,6 @@
 	✅1. Cuenta cantidad de comandos	
 	✅2. Comprueba la syntax		
 	✅3. Busca variables de entorno, y las parsea
-	4. Comprueba que no sea todo espacio
-	5. 	Inicia->Ejecuta->Libera (Para uno o mas argumentos)
 
 */
 
@@ -45,8 +43,7 @@ static void expander(t_info *data)
 
 static void executor(t_info *data)
 {
-	data->cmd_line = normalizer(data->cmd_line);
-	data->split_line = ft_split(data->cmd_line, ' ');
+	data->split_line = split_cmds(data);
 	ft_builtins(data);
 	// if (data->cmd_nbr)
 	// 	exec_cmds(data);

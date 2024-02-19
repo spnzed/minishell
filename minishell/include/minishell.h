@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 14:00:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:12:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,18 @@ int				redir_syntax(char *line);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
+//int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(void);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
+//int				parent_process(t_info *data);
 void			signal_handler(int sig);
+void			catch_signal(t_info *data, int status, int set_status);
+char			**split_quotes(char *cmd);
 //				builtins
-void			ft_builtins(t_info *data);
+int				ft_builtins(t_info *data);
 void			ft_env(t_list **list_env);
 void			ft_pwd(void);
 void			ft_cd(t_info *data);
@@ -87,11 +91,16 @@ void			ft_unset(t_info *data);
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
 void			error_exit(t_info *data);
+int				get_quote_final(char *str, int i, int simple, int complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
-t_list			*ft_copy_list(const t_list *src);
+int				reset_fd(t_info *data);
+char			**split_cmds(t_info *data);
+char			**split_pipe(char *cmd, char c);
+char			*split_substr_quotes(char *str, int i, int start, int end);
+t_list		*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
@@ -100,6 +109,7 @@ char			*ft_after_set(char *str, char set);
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
+int				count_words(char *str);
 void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
 ////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 14:05:06 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:54:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ char		*ft_strpbrk(const char *s, const char *charset);
 char		*ft_strjoin_free_first(char *s1, char *s2);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_first_word(char *str);
-
+int			ft_arrlen(char **str);
 
 #endif
