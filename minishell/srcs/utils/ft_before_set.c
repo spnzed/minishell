@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:12:02 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/15 17:47:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:05:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,15 @@ char	*ft_before_set(char *str, char set)
 	char 			*dst;
 
 	i = 0;
-	dst = (char *)malloc(sizeof ft_strlen(str) + 1);
-	while (str[i])
-	{
-		if (set == str[i])
-			break ;
-		else
-		{
-			dst[i] = str[i];
-			i++;
-		}
-	}
+	while (str[i] && str[i] != set)
+		i++;
+	dst = (char *)malloc(i + 1);
+    int j = 0;
+    while (j < i)
+    {
+        dst[j] = str[j];
+        j++;
+    }
 	dst[i] = '\0';
 	return(dst);
 }
-	
-	// size_t	start;
-	// size_t	len;
-
-	// start = 0;
-	// len = ft_strlen(s1);
-	// while (s1[start] && ft_strchr (set, s1[start]))
-	// 	start++;
-	// while (len && ft_strrchr (set, s1[len]))
-	// 	len--;
-	// return (ft_substr (s1, start, (len - start) + 1));
-
-// una funcion que te devuelve la string antes de x caracteres

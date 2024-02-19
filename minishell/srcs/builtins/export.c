@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/16 15:05:38 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:05:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,15 @@ static void	sub_var(t_list *list, char *signal, char *content)
 
 	len_signal = ft_strlen(signal);
 	len = ft_strlen(signal) + ft_strlen(content) + 2;
-	//printf("base: %s, %s\n", signal, content);
 	while(list)
 	{
 		if (check_complex_cmd(list->content, signal, len_signal) == 0)
 		{
-			//printf("antes: %s\n", list->content);
 			free(list->content);
 			new_content = malloc(sizeof len);
 			new_content = ft_strjoin(signal, "=");
-			//printf("1r join: %s\n", new_content);
 			new_content = ft_strjoin(new_content, content);
-			//printf("2n join: %s\n", new_content);
 			list->content = ft_memcpy(list->content, new_content, len);
-			//printf("despues: %s\n", list->content);
 		}
 		list = list->next;
 	}
@@ -95,7 +90,6 @@ static int	search_on_lists(t_info *data, t_environment *list, char *str)
 	{
 		if (ft_strcmp(signal, list->signal) == 0)
 		{
-			//printf("actualizado\n"); // falta actualizar en list_env
 			list->content = content;
 			sub_var(data->list_env, signal, content);
 			return(0);
@@ -124,8 +118,6 @@ void	ft_export(t_info *data)
 			temp = temp->next;
 		}		
 	}
-	// else if // only ADIOS= // la guardo en las dos export: ADIOS="" env: ADIOS=
-	// else if // ADIOS= + something // la guardo en las dos export: HOLA="si", env: HOLA=si
 	else if (ft_strchr(data->cmd_line, '='))
 	{
 		data->str_trim = ft_strtrim(data->cmd_line, "export ");
@@ -133,7 +125,7 @@ void	ft_export(t_info *data)
 			data->str_trim = ft_remove_quotes_str(data->str_trim);
 		if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
 			return ;
-		else // creo nuevo
+		else
 		{
 			new = ft_lstnew(data->str_trim);
 			if (!new)
@@ -145,10 +137,9 @@ void	ft_export(t_info *data)
 				data->list_env = new;	
 			else
 				ft_lstadd_back(&data->list_env, new);
-			data->list_exp = start_sig(order_env(data->list_env)); // actualiza export ? SI // mirar casos mas largos
+			data->list_exp = start_sig(order_env(data->list_env));
 		}
 	}
-	// else // only ADIOS // la guardo en export pero no en env
 	else
 	{
 		data->str_trim = ft_strtrim(data->cmd_line, "export ");
@@ -156,7 +147,6 @@ void	ft_export(t_info *data)
 			data->str_trim = ft_remove_quotes_str(data->str_trim);
 		tmp = ft_envnew(data->str_trim);
 		tmp->signal = data->str_trim;
-		//printf("data->str_trim %s | tmp: %s\n", data->str_trim, tmp->content);
 		if (!tmp)
 		{
 			ft_envclear(&data->list_exp, free);
