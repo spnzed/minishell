@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 19:30:35 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:09:36 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_environment	*start_sig(t_list *env)
+t_environment	*start_sig(t_list *env)
 {
 	int 			i;
 	t_environment	*begin;
@@ -43,7 +43,7 @@ static t_environment	*start_sig(t_list *env)
 	return(begin);
 }
 
-static t_list *order_env(t_list *env)
+t_list	*order_env(t_list *env)
 {
 	t_list *list_order;
 	int len_list;

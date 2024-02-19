@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 19:12:40 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:00:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void			ft_cd(t_info *data);
 void			ft_exit(t_info *data);
 void			ft_echo(char *line, int len);
 void			ft_export(t_info *data);
+void			ft_unset(t_info *data);
+
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
@@ -91,10 +93,17 @@ int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, i
 char			*normalizer(char *str);
 t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
+char			*ft_remove_quotes_str(char *str);
+char			*ft_before_set(char *str, char set);
+char			*ft_after_set(char *str, char set);
 //				new env_utils
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
 void			ft_envadd_back(t_environment **env, t_environment *new);
+void			ft_free_environment(t_environment *head);
+t_environment	*ft_copy_environment(const t_environment *src);
 ////////////////////////////////////////////////////////////////////////////////
+t_environment	*start_sig(t_list *env);
+t_list			*order_env(t_list *env);
 
 #endif

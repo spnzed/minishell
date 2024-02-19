@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/14 16:09:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:25:01 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct		s_info
 	t_list			*list_input;
 	t_list			*list_path;
 	t_list			*list_env;
-	t_list			*list_pro; // provisional
 	t_environment	*signals_env;
 	t_environment	*list_exp;
 	struct termios	o_settings;
@@ -82,6 +81,7 @@ typedef struct		s_info
 	char			**split_line;
 	int				cmd_nbr;
 	char			*root_path;
+	char			*str_trim;
 }					t_info;
 
 typedef struct		s_token
