@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 18:51:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:48:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define MAGENTA "\033[1;35m"
 # define CYAN    "\033[1;36m"
 # define WHITE   "\033[1;37m"
+
+//	heredoc 🤭
+# define HEREDOC_FILE ".heredoc"
 
 //	libs
 #include <stdio.h>
@@ -73,9 +76,11 @@ int				ctrl_d(t_info *data);
 char			*display_term_message(void);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
+int				files_in(t_list **in_files);
+int				files_out(t_info *data);
+void			handle_heredoc(t_info *data);
+int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
-void			signal_handler(int sig);
-void			catch_signal(t_info *data, int status, int set_status);
 char			**split_quotes(char *cmd);
 //				builtins
 int				ft_builtins(t_info *data);
@@ -94,7 +99,11 @@ void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
+void 			put_error(char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);
+void			signal_handler_heredoc(int sig);
+void			catch_signal(t_info *data, int status, int set_status);
+void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(char *cmd, char c);
 char			*split_substr_quotes(char *str, int i, int start, int end);
