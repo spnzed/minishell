@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 19:02:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:13:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ static void expander(t_info *data)
 static void executor(t_info *data)
 {
 	data->split_line = split_cmds(data);
-	if (data->cmd_nbr)
-		exec_cmds(data);
+	ft_builtins(data);
+	// if (data->cmd_nbr)
+	// 	exec_cmds(data);
 }
 
 int	manage_cmd(t_info *data)

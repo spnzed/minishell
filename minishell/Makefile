@@ -77,13 +77,10 @@ LEXER			=	def_type.c \
 PARSER 			=	parse_var.c \
 					put_variable.c
 
-EXECUTOR		=	call_childs.c \
-					clean_redir.c \
+EXECUTOR		=	clean_redir.c \
 					ctrl_d.c \
 					display_term_message.c \
-					exec_cmds.c \
 					exec_process.c \
-					parent_process.c \
 					signal_handler.c \
 					split_quotes.c
 
