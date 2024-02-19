@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-#RFLAGS = /Users/aaespino/.brew/opt/readline/include
-#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+RFLAGS = /Users/aaespino/.brew/opt/readline/include
+LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -61,7 +61,8 @@ BUILTINS		=	cd.c \
 					env.c \
 					exit.c \
 					export.c \
-					pwd.c
+					pwd.c \
+					unset.c
 
 LEXER			=	def_type.c \
 					init_data.c \
@@ -86,6 +87,8 @@ EXECUTOR		=	clean_redir.c \
 
 UTILS		 	=	check_complex_cmd.c \
 					cmd_count.c \
+					copy_environment.c \
+					copy_list.c \
 					count_words.c \
 					error_exit.c \
 					get_quote_final.c \
@@ -93,7 +96,9 @@ UTILS		 	=	check_complex_cmd.c \
 					get_redir_end.c \
 					get_redir_syntax.c \
 					normalizer.c \
+					remove_quotes_str.c \
 					reset_fd.c \
+					setters.c \
 					split_cmds.c \
 					split_pipe.c \
 					split_substr_quotes.c

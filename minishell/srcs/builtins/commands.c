@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/15 19:07:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:27:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int	ft_builtins(t_info *data)
 		ft_export(data);
 	else if(check_complex_cmd(data->cmd_line, "unset", 5) == 0)
 		ft_unset(data);
-	else
-	{
-		printf("NOT BUILDIN\n");
-		exit(0);
-	}
+	// else
+	// {
+	// 	printf("NOT BUILDIN\n");
+	// 	exit(0);
+	// }
 	// 	error_exit(data); // arreglar error
 	return(1);
 }

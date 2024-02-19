@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 15:28:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:24:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ typedef struct s_info
     char **tab_var_env;
     pid_t pid;
     t_list *list_env;
-    t_list *list_exp;
     t_list *list_input;
     t_list *list_path;
+    t_environment *list_exp;
     t_environment *signals_env;
     struct termios n_settings;
     struct termios o_settings;
