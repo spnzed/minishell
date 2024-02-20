@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/20 16:21:03 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:35:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_echo(char *line, int len)
 	n_option = false;
 	if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
 		n_option = true;
+	if (n_option == true)
+		x += 3;
 	if (len == 4)
 		printf("\n");
 	else if (len > 4)
@@ -33,7 +35,8 @@ int	ft_echo(char *line, int len)
 				printf("%c", line[x++]);
 			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
 				x++;
-			printf(" ");
+			if (line[x + 1])
+				printf(" ");
 		}
 		if (n_option == false)
 			printf("\n");

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 14:54:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:34:43 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			ft_isprint(int i);
 int			ft_isspace(int c);
 void		*ft_memset(void *b, int c, size_t len);
 size_t		ft_strlcpy(char *dst, char *src, unsigned int size);
-size_t		ft_strlen(const char *str);
+int			ft_strlen(const char *str);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 size_t		ft_strlcat(char *dst, char *src, size_t dstsize);

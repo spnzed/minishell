@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 16:36:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:55:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ static void expander(t_info *data)
 
 static void executor(t_info *data)
 {
+	signal(SIGINT, SIG_IGN); // ?
 	data->split_line = split_cmds(data); // arreglar espacio
 	data->cmd_line = normalizer(data->split_line[0]);
 	data->cmd_split = ft_split(data->cmd_line, ' ');
 	data->is_builtin = ft_builtins(data);
+	//printf("%d\n", data->is_builtin);
+//	if (data->is_builtin == 0)
+//		printf("bash: %s: command not found\n", data->cmd_line);
 	// if (data->cmd_nbr)
 	// 	exec_cmds(data);
 }
