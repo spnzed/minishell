@@ -19,12 +19,12 @@ CP			=	cp -f
 ################################################################################
 
 #aaespino flags
-#RFLAGS = /Users/aaespino/.brew/opt/readline/include
-#LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
+RFLAGS = /Users/aaespino/.brew/opt/readline/include
+LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -83,6 +83,7 @@ EXECUTOR		=	add_cmd.c \
 					clean_redir.c \
 					ctrl_d.c \
 					display_term_message.c \
+					exec_cmds.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
@@ -103,7 +104,7 @@ UTILS		 	=	check_complex_cmd.c \
 					get_redir_end.c \
 					get_redir_syntax.c \
 					normalizer.c \
-					remove_quotes_str.c \\
+					remove_quotes_str.c \
 					setters.c \
 					put_error.c \
 					reset_fd.c \

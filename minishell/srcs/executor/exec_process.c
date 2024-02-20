@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 18:39:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:35:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	exec_process(t_info *data, char	*cmd)
 
 	split_cmd = handle_cmd(cmd);
 	builtin = ft_builtins(data);
-	if (builtin)
+	if (builtin != 0)
 	{
 		if (handle_redirect(data))
 			exit(1);

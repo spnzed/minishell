@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:30:06 by aaespino          #+#    #+#             */
-/*   Updated: 2023/04/26 17:27:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:21:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	count_w(const char *s, char c)
 {
-	size_t	i;
-	size_t	count;
-	size_t	trigger;
+	int	i;
+	int	count;
+	int	trigger;
 
 	i = 0;
 	count = 0;
@@ -37,7 +37,7 @@ int	count_w(const char *s, char c)
 
 char	*write_w(const char *str, int start, int end)
 {
-	size_t	i;
+	int	i;
 	char	*word;
 
 	i = 0;
@@ -56,8 +56,8 @@ char	*write_w(const char *str, int start, int end)
 
 void	put_w(char **array, const char *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	int		activador;
 
 	i = 0;
