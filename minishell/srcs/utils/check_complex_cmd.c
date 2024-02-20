@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_complex_cmd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/09 14:48:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:49:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int	check_complex_cmd(char *strbase, char *strcomp, int len)
 	x = 0;
 	y = 0;
 	base = 0;
+	char *test;
+
+//	printf("|%d|%d|\n", ft_strlen(strbase), len);
+	test = ft_before_set(strbase, ' ');
+//	printf("|%s|\n", test);
+	if (ft_strlen(test) != len)
+		return(1);
 	while (strbase[base] && (strbase[base] == ' ' || strbase[base] == '\n' || strbase[base] == '\t'))
 			base++;
 	while(strbase[base] && x < len)

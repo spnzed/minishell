@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:07:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 16:41:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:15:17 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ typedef struct s_info
 {
     int cmd_nbr;
     int cmd_return;
+	int	exit_id;
     int fd[2];
+	int	is_builtin;
     int ret;
     int status;
     int std_in;

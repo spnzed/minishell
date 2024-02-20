@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 15:12:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:14:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char			*put_variable(char *line, char *var, char *replace);
 //int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
-char			*display_term_message(void);
+//char			*display_term_message(void);
+char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 //int				parent_process(t_info *data);
@@ -79,13 +80,13 @@ void			catch_signal(t_info *data, int status, int set_status);
 char			**split_quotes(char *cmd);
 //				builtins
 int				ft_builtins(t_info *data);
-void			ft_env(t_list **list_env);
-void			ft_pwd(void);
-void			ft_cd(t_info *data);
-void			ft_exit(t_info *data);
-void			ft_echo(char *line, int len);
-void			ft_export(t_info *data);
-void			ft_unset(t_info *data);
+int				ft_env(t_list **list_env);
+int				ft_pwd(void);
+int				ft_cd(t_info *data);
+int				ft_exit(t_info *data);
+int				ft_echo(char *line, int len);
+int				ft_export(t_info *data);
+int				ft_unset(t_info *data);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧

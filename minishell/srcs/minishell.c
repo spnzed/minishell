@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 19:04:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:13:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void launch_mode(int argc, char **argv, t_info *data)
 		{
 			signal(SIGINT, signal_handler);
 			signal(SIGQUIT, SIG_IGN);
-			data->cmd_line = display_term_message();
+			data->cmd_line = display_term_message(data);
 			if (!data->cmd_line)
 				ctrl_d(data);
 			manage_cmd(data);
@@ -74,7 +74,6 @@ static void	free_ev(t_info *data)
 int	main(int argc, char **argv, char **env) 
 {
 	t_info	data;
-
 	lexer(&data, env);
 	launch_mode(argc, argv, &data);
 	free_ev(&data);

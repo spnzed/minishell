@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/19 15:04:17 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:22:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ static void delete_node_env(t_list **list, char *str)
 	free(temp);
 }
 
-void	ft_unset(t_info *data)
+int	ft_unset(t_info *data)
 {
 	data->str_trim = ft_strtrim(data->cmd_line, "unset ");
 	delete_node_env(&data->list_env, data->str_trim);
-	delete_node_exp(&data->list_exp, data->str_trim); // acabar
+	delete_node_exp(&data->list_exp, data->str_trim);
+	return(7);
 }
 
 // solo puede dar un error que es de sintaxis
