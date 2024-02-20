@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/12 14:13:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:48:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ static t_environment	*assign_var(t_environment *list_env, char *var)
 	return (NULL);
 }
 
-static int	var_is_found(t_environment *list_env, char *var)
-{
-	t_environment	*top;
-
-	top = list_env;
-	while (top)
-	{
-		if (ft_strcmp(top->signal, var) == 0)
-			return (1);
-		top = top->next;
-	}
-	return (0);
-}
-
 char	*parse_var(t_info *data)
 {
 	char			*var;
@@ -66,7 +52,7 @@ char	*parse_var(t_info *data)
 			return (put_status(data, var));
 		else
 		{
-			if (var_is_found(data->signals_env, var))
+			if (var_found(data->signals_env, var))
 			{
 				env = assign_var(data->signals_env, var);
 				res = put_variable(data->cmd_line, env->signal, env->content);

@@ -12,6 +12,17 @@
 
 #include "minishell.h"
 
+void	signal_handler_heredoc(int sig)
+{
+	if (sig == SIGINT)
+		exit(0);
+	else if (sig == SIGQUIT)
+	{
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
 /*
 Las señales en sistemas Unix y similares son identificadas por números enteros. 
 A continuación, te proporciono las 31 señales más comunes, junto con su traducción 

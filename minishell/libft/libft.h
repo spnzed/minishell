@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 17:34:43 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:17:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,11 @@ char		*ft_strndup(const char *s1, int n);
 void		ft_free_string(void *ptr); // falta
 void		ft_memdel(void **ap); // falta
 char		*ft_strpbrk(const char *s, const char *charset);
-char		*ft_strjoin_free_first(char *s1, char *s2);
+char		*ft_strjoin_clean(char *s1, char *s2);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_first_word(char *str);
 int			ft_arrlen(char **str);
+char		**ft_arrfree(char **array, int len);
+int			ft_findalnum(char *str);
 
 #endif

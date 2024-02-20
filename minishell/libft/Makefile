@@ -51,10 +51,12 @@ SRC		=	ft_isalnum.c \
 			ft_free_string.c \
 			ft_memdel.c \
 			ft_strpbrk.c \
-			ft_strjoin_free_first.c \
+			ft_strjoin_clean.c \
 			ft_strcmp.c \
 			ft_first_word.c \
-			ft_arrlen.c
+			ft_arrlen.c \
+			ft_arrfree.c \
+			ft_findalnum.c 
 
 OBJECTS	= $(SRC:%.c=%.o)
 
