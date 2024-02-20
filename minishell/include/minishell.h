@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 19:48:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:44:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WHITE   "\033[1;37m"
 
 //	heredoc 🤭
-# define HEREDOC_FILE ".heredoc"
+# define HEREDOC ".heredoc"
 
 //	libs
 #include <stdio.h>
@@ -57,19 +57,24 @@ t_token_type	def_type(char charset);
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
+int				syntax_error(t_info *data);
+t_environment	*value_export(t_environment *signals_env, char *value);
+t_environment	*var_export(t_environment *signals_env, char *var);
+int				var_found(t_environment *signals_env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(char *line);
-int				syntax_error(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);
+int				var_found(t_environment *list_env, char *var);
 char			*parse_var(t_info *data);
 char			*export_id(char *var);
 int				redir_syntax(char *line);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
+char 			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
@@ -78,6 +83,8 @@ int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				files_in(t_list **in_files);
 int				files_out(t_info *data);
+char			*find_cmd_route(t_environment *lst_env, char *cmd);
+void 			remove_heredoc(void);
 void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);

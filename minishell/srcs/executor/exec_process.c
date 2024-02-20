@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 18:36:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:39:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@ static char	**handle_cmd(char *cmd)
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
 	return (splitted_cmd);
+}
+
+static void	do_exec(t_info *data, char **splitted_cmd)
+{
+	char	*path;
+
+	if (!ft_findalnum(splitted_cmd[0]))
+		put_error(splitted_cmd[0], ": command not found\n", 127);
+	path = find_cmd_route(data->signals_env, splitted_cmd[0]);
+	if (!path)
+		put_error(splitted_cmd[0], ": No such file or directory\n", 1);
+	if (handle_redirect(data))
+		exit (1);
+	execve(path, splitted_cmd, data->list_env->content);
+	put_error(splitted_cmd[0], ": command not found\n", 127);
+	exit (127);
 }
 
 void	exec_process(t_info *data, char	*cmd)

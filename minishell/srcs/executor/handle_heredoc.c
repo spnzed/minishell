@@ -6,15 +6,37 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 20:20:49 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:47:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void remove_heredoc_file()
+/*
+	struct stat es una estructura definida en la biblioteca estándar de C 
+	(<sys/stat.h>) que contiene información sobre un archivo, como su tipo, 
+	tamaño, permisos, etc. En este contexto, se utilizará para almacenar información 
+	sobre el archivo que se va a verificar y, potencialmente, eliminar.
+
+	access()	Comprueba si el archivo existe
+	stat()		Obtiene información sobre el archivo
+	S_ISREG()	Verifica si un archivo es regular
+	unlink()	Elimina el archivo si es regular
+*/
+void remove_heredoc(void)
 {
-	
+	struct stat info;
+
+	if (access(HEREDOC, F_OK) != -1)
+	{
+		if (stat(HEREDOC, &info) == 0)
+		{
+			if (S_ISREG(info.st_mode))
+				unlink(HEREDOC);
+		}
+		else
+			perror("stat");
+	}
 }
 
 static void	putstr_newl_fd(char *str, int fd)
@@ -26,8 +48,6 @@ static void	putstr_newl_fd(char *str, int fd)
 }
 
 /*
-	REMOVE_HEREDOC_FILE;
-
 	El valor 0644 es un número octal que representa los permisos de acceso del 
 	archivo que se va a crear o truncar. En sistemas Unix y Linux, los permisos 
 	de acceso de un archivo determinan quién puede leer, escribir y ejecutar ese archivo.
@@ -69,8 +89,8 @@ static void	heredoc_loop(t_list *head, int fd)
 			close (fd);
 			if (head->next)
 			{
-				remove_heredoc_file();
-				fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				remove_heredoc();
+				fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 				if (fd == -1)
 					return (perror ("open"));
 			}
@@ -90,7 +110,7 @@ void	handle_heredoc(t_info *data)
 
 	signal(SIGINT, signal_handler_heredoc);
 	signal(SIGQUIT, signal_handler_heredoc);
-	fd = open(HEREDOC_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"));
 	temp = data->list_heredoc;

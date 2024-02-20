@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 19:02:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:52:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
-
 static void	parser(t_info *data)
 {
 	data->cmd_nbr = cmd_count(data->cmd_line);

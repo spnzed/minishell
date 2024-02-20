@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 19:42:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:38:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct 		s_info
     char 			*cmd_line;
   	char 			*str_trim;
     char 			*root_path;
+	char			*file_overwrite;
+	char			*file_append;
+	char			*from_file;
     char 			**env;
     char 			**mul_cmds;
     char 			**split_line;

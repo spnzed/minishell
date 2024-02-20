@@ -72,19 +72,24 @@ LEXER			=	def_type.c \
 					not_interactive_lexer.c \
 					search_var.c \
 					syntax_error.c \
-					utils_env.c
+					utils_var.c
 
 PARSER 			=	parse_var.c \
 					put_variable.c
 
-EXECUTOR		=	call_childs.c \
+EXECUTOR		=	add_cmd.c \
+					call_childs.c \
 					clean_redir.c \
 					ctrl_d.c \
 					display_term_message.c \
 					exec_cmds.c \
 					exec_process.c \
+					files_in.c \
+					files_out.c \
+					find_cmd_route.c \
+					handle_heredoc.c \
+					handle_redirect.c \
 					parent_process.c \
-					signal_handler.c \
 					split_quotes.c
 
 UTILS		 	=	check_complex_cmd.c \
@@ -96,10 +101,13 @@ UTILS		 	=	check_complex_cmd.c \
 					get_redir_end.c \
 					get_redir_syntax.c \
 					normalizer.c \
+					put_error.c \
 					reset_fd.c \
+					signal_handler.c \
 					split_cmds.c \
 					split_pipe.c \
-					split_substr_quotes.c
+					split_substr_quotes.c \
+					utils_env.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))
