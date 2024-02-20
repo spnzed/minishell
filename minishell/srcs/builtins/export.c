@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/19 15:05:10 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:36:43 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,57 @@ static int	search_on_lists(t_info *data, t_environment *list, char *str)
 	return(1);
 }
 
-void	ft_export(t_info *data)
+static	void	export_equal(t_info *data, t_list *new)
+{
+	data->str_trim = ft_strtrim(data->cmd_line, "export ");
+	if (ft_strchr(data->str_trim, '"'))
+		data->str_trim = ft_remove_quotes_str(data->str_trim);
+	if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
+		return ;
+	else
+	{
+		new = ft_lstnew(data->str_trim);
+		if (!new)
+		{
+			ft_lstclear(&data->list_env, free);
+			return ;
+		}
+		if (!data->list_env)
+			data->list_env = new;	
+		else
+			ft_lstadd_back(&data->list_env, new);
+		data->list_exp = start_sig(order_env(data->list_env));
+	}
+}
+
+static	void	export_else(t_info *data, t_environment *tmp)
+{
+	data->str_trim = ft_strtrim(data->cmd_line, "export ");
+	if (ft_strchr(data->str_trim, '"'))
+		data->str_trim = ft_remove_quotes_str(data->str_trim);
+	tmp = ft_envnew(data->str_trim);
+	tmp->signal = data->str_trim;
+	if (!tmp)
+	{
+		ft_envclear(&data->list_exp, free);
+		return ;
+	}
+	if (!data->list_exp)
+		data->list_exp = tmp;	
+	else
+		ft_envadd_back(&data->list_exp, tmp);
+	data->list_exp = order_exp(data->list_exp);
+}
+
+int	ft_export(t_info *data)
 {
 	t_environment	*temp;
 	t_list			*new;
 	t_environment	*tmp;
 
 	temp = data->list_exp;
+	new = NULL;
+	tmp = NULL;
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
@@ -119,45 +163,10 @@ void	ft_export(t_info *data)
 		}		
 	}
 	else if (ft_strchr(data->cmd_line, '='))
-	{
-		data->str_trim = ft_strtrim(data->cmd_line, "export ");
-		if (ft_strchr(data->str_trim, '"'))
-			data->str_trim = ft_remove_quotes_str(data->str_trim);
-		if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
-			return ;
-		else
-		{
-			new = ft_lstnew(data->str_trim);
-			if (!new)
-			{
-				ft_lstclear(&data->list_env, free);
-				return ;
-			}
-			if (!data->list_env)
-				data->list_env = new;	
-			else
-				ft_lstadd_back(&data->list_env, new);
-			data->list_exp = start_sig(order_env(data->list_env));
-		}
-	}
+		export_equal(data, new);
 	else
-	{
-		data->str_trim = ft_strtrim(data->cmd_line, "export ");
-		if (ft_strchr(data->str_trim, '"'))
-			data->str_trim = ft_remove_quotes_str(data->str_trim);
-		tmp = ft_envnew(data->str_trim);
-		tmp->signal = data->str_trim;
-		if (!tmp)
-		{
-			ft_envclear(&data->list_exp, free);
-			return ;
-		}
-		if (!data->list_exp)
-			data->list_exp = tmp;	
-		else
-			ft_envadd_back(&data->list_exp, tmp);
-		data->list_exp = order_exp(data->list_exp);
-	}
+		export_else(data, tmp);
+	return(6);
 }
 
 /*

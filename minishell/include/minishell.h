@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 15:12:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:19:32 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void			catch_signal(t_info *data, int status, int set_status);
 char			**split_quotes(char *cmd);
 //				builtins
 int				ft_builtins(t_info *data);
-void			ft_env(t_list **list_env);
-void			ft_pwd(void);
-void			ft_cd(t_info *data);
-void			ft_exit(t_info *data);
-void			ft_echo(char *line, int len);
-void			ft_export(t_info *data);
-void			ft_unset(t_info *data);
+int				ft_env(t_list **list_env);
+int				ft_pwd(void);
+int				ft_cd(t_info *data);
+int				ft_exit(t_info *data);
+int				ft_echo(char *line, int len);
+int				ft_export(t_info *data);
+int				ft_unset(t_info *data);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧

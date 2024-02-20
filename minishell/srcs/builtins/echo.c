@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/06 16:19:27 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:21:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char *line, int len)
+int	ft_echo(char *line, int len)
 {
 	int x;
 	bool n_option;
@@ -38,6 +38,7 @@ void	ft_echo(char *line, int len)
 		if (n_option == false)
 			printf("\n");
 	}
+	return(3);
 }
 
 // EXAMPLES OF ECHO 
