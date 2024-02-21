@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 14:23:16 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:30:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char **split_quotes(char *cmd)
 	simple = 0;
 	complex = 0;
 
-	size = count_words(cmd) + 1;
-	split = malloc(sizeof(char *) * (size));
+	size = count_words(cmd);
+	split = malloc(sizeof(char *) * (size + 1));
 	if (!split)
 		return (NULL);
 	split[size] = NULL;

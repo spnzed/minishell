@@ -19,6 +19,7 @@ static char	**handle_cmd(char *cmd)
 	
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
+	splitted_cmd = ft_split(splitted_cmd[0], ' ');
 	return (splitted_cmd);
 }
 
@@ -38,8 +39,8 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	}
 	if (handle_redirect(data))
 		exit (1);
-	execve(path, splitted_cmd, data->list_env->content);
-	put_error(data, splitted_cmd[0], ": command not found\n", 127);
+	execve(path, splitted_cmd, NULL);
+	put_error(splitted_cmd[0], ": command not found\n", 127);
 	exit (127);
 //	mirar si esta incorporado
 //	if (data->is_builtin == 0)
