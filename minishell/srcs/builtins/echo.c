@@ -6,11 +6,34 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/20 18:35:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:52:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static	int	str_nflag(char *str, int x)
+{
+	int	i;
+	
+	x += 2;
+	while (str[x] == 'n')
+		x++;
+	i = x;
+	while (str[i])
+	{
+		if (str[i] == '-' && str[i + 1] == 'n')
+		{
+			i++;
+			while (str[i] == 'n')
+				i++;
+			x = i;
+		}
+		i++;
+	}
+	return(x);
+	// basicamente es un '-' y tantas n como quieras
+}
 
 int	ft_echo(char *line, int len)
 {
@@ -22,7 +45,7 @@ int	ft_echo(char *line, int len)
 	if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
 		n_option = true;
 	if (n_option == true)
-		x += 3;
+		x = str_nflag(line, x);
 	if (len == 4)
 		printf("\n");
 	else if (len > 4)
@@ -43,6 +66,21 @@ int	ft_echo(char *line, int len)
 	}
 	return(3);
 }
+
+/*
+bash-3.2$ echo -nn hi
+hibash-3.2$
+
+bash-3.2$ echo -n -n hi
+hibash-3.2$
+
+-----------------------------
+42-Minishell ~ % echo -nn hi
+n hi42-Minishell ~ %
+
+42-Minishell ~ % echo -n -n hi
+-n hi42-Minishell ~ %
+*/
 
 // EXAMPLES OF ECHO 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:18:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:27:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static void executor(t_info *data)
 	signal(SIGINT, SIG_IGN); // ?
 	data->split_line = split_cmds(data); // arreglar espacio
 	// data->cmd_line = normalizer(data->split_line[0]);
-	// data->cmd_split = ft_split(data->cmd_line, ' ');
-	// data->is_builtin = ft_builtins(data);
-	// printf("%d\n", data->is_builtin);
-	// if (data->is_builtin == 0)
-	// 	printf("bash: %s: command not found\n", data->cmd_line);
-	if (data->cmd_nbr)
-		exec_cmds(data);
+	data->cmd_split = ft_split(data->cmd_line, ' ');
+	data->is_builtin = ft_builtins(data);
+	//printf("%d\n", data->is_builtin);
+//	if (data->is_builtin == 0)
+//		printf("bash: line 1: %s: command not found\n", data->cmd_line);
+	// if (data->cmd_nbr)
+	// 	exec_cmds(data);
 }
 
 int	manage_cmd(t_info *data)
