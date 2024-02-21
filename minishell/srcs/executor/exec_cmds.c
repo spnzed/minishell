@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 16:36:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:01:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	exec_cmds(t_info *data)
 		pipe(data->fd);
 		signal(SIGINT, SIG_IGN);
 		data->pid = fork();
-		if (!call_childs(data, i))
-			return (parent_process(data));
+		if (call_childs(data, i))
+			parent_process(data);
 	}
 	wait_childs(data);
 	return (0);

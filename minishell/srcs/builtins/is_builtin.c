@@ -1,52 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/20 17:47:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:06:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	cmd_line_size(char* cmd_line)
+int	is_builtin(t_info *data)
 {
-	size_t x;
+	int	i;
 
-	x = 0;
-	while(cmd_line[x])
-		x++;
-	return(x);
-}
-
-int	ft_builtins(t_info *data)
-{
-	int	len;
-	int	b;
-
-	len = cmd_line_size(data->cmd_line);
-	b = 0;
+	i = 0;
 	if (ft_strcmp(data->cmd_line, "env") == 0)
-		b = ft_env(&data->list_env);
+		i = 1;
 	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
-		b = ft_pwd();
-	else if (check_complex_cmd(data->cmd_line, "echo", 4) == 0 || check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
-		b = ft_echo(data->cmd_line, len);
+		i = 2;
+	else if (check_complex_cmd(data->cmd_line, "echo", 4) == 0 
+		|| check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
+		i = 3;
 	else if (ft_strcmp(data->cmd_line, "exit") == 0)
-		b = ft_exit(data);
+		i = 4;
 	else if(check_complex_cmd(data->cmd_line, "cd", 2) == 0)
-		b = ft_cd(data);
+		i = 5;
 	else if(check_complex_cmd(data->cmd_line, "export", 6) == 0)
-		b = ft_export(data);
+		i = 6;
 	else if(check_complex_cmd(data->cmd_line, "unset", 5) == 0)
-		b = ft_unset(data);
-	else
-		return(b);
-	// 	error_exit(data); // arreglar error
-	return(b);
+		i = 7;
+	else if (ft_strlen(data->cmd_line) > 0)
+    {
+        data->exit_id = 127;
+        return(i);
+    }
+    else
+        return(11);
+	return(i);
 }
-
-// mirar en que casos si pones un espacio despues de el comando sigue funcionando

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:18:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:03:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,7 @@ static void expander(t_info *data)
 static void executor(t_info *data)
 {
 	signal(SIGINT, SIG_IGN); // ?
-	data->split_line = split_cmds(data); // arreglar espacio
-	// data->cmd_line = normalizer(data->split_line[0]);
-	// data->cmd_split = ft_split(data->cmd_line, ' ');
-	// data->is_builtin = ft_builtins(data);
-	// printf("%d\n", data->is_builtin);
-	// if (data->is_builtin == 0)
-	// 	printf("bash: %s: command not found\n", data->cmd_line);
+	prepare_to_exec(data);
 	if (data->cmd_nbr)
 		exec_cmds(data);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:35:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:59:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,39 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	exit (127);
 }
 
+static void	do_builtin(t_info *data, int builtin)
+{
+	int	len;
+
+	len = ft_strlen(data->cmd_line);
+	if (builtin == 1)
+		ft_env(&data->list_env);
+	else if (builtin == 2)
+		ft_pwd();
+	else if (builtin == 3)
+		ft_echo(data->cmd_line, len);
+	else if (builtin == 4)
+		ft_exit(data);
+	else if (builtin == 5)
+		ft_cd(data);
+	else if (builtin == 6)
+		ft_export(data);
+	else if (builtin == 7)
+		ft_unset(data);
+}
+
 void	exec_process(t_info *data, char	*cmd)
 {
 	int		builtin;
 	char	**split_cmd;
 
 	split_cmd = handle_cmd(cmd);
-	builtin = ft_builtins(data);
+	builtin = is_builtin(data);
 	if (builtin != 0)
 	{
 		if (handle_redirect(data))
 			exit(1);
+		do_builtin(data, builtin);
 		exit(0);
 	}
 	else if (!cmd)

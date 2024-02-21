@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 18:49:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:07:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 {
 	int	fd;
 
-	if (num)
+	if (num > 0)
 		fd = open(file, open_code, num);
 	else
 		fd = open(file, open_code);
@@ -68,14 +68,16 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 	}
 	if (dup2(fd, std_mode) == -1)
 	{
-		perror ("dup2");
-		exit (1);
+		perror("dup2");
+		exit(1);
 	}
 	close (fd);
 }
 
-static void launch_file_handler(t_info *data)
+static void launch_handler(t_info *data)
 {
+	if (data->is_heredoc)
+		handle_heredoc(data);
 	if (data->file_overwrite)
 		handle_file(data->file_overwrite, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
 	if (data->file_append)
@@ -90,9 +92,7 @@ int handle_redirect(t_info *data)
 		return (1);
 	if (data->in_files && files_in(&data->in_files))
 		return (1);
-	if (data->is_heredoc)
-		handle_heredoc(data);
-	launch_file_handler(data);
+	launch_handler(data);
 	remove_heredoc();
 	return (0);
 }

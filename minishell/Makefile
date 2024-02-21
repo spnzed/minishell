@@ -56,11 +56,11 @@ MINISHELL		=	minishell.c
 MAIN			=	manage_cmd.c
 
 BUILTINS		=	cd.c \
-					commands.c \
 					echo.c \
 					env.c \
 					exit.c \
 					export.c \
+					is_builtin.c \
 					pwd.c \
 					unset.c
 
@@ -91,6 +91,7 @@ EXECUTOR		=	add_cmd.c \
 					handle_heredoc.c \
 					handle_redirect.c \
 					parent_process.c \
+					prepare_to_exec.c \
 					split_quotes.c
 
 UTILS		 	=	check_complex_cmd.c \

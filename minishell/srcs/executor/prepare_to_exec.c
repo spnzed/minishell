@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 14:44:56 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
+/*   Updated: 2024/02/21 14:01:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exit(t_info *data)
+void prepare_to_exec(t_info *data)
 {
-	printf("exit\n");
-	exit(data->exit_id);
-	return(0);
-} // faltan muchas cosas de momento sale y ya
-// AYUDA HAY ESTA EXCEPCION
-// bash-3.2$ EXIT
-// bash: EXIT: command not found
+	data->split_line = split_cmds(data);
+	data->file_overwrite = 0;
+	data->file_append = 0;
+	data->from_file = 0;
+	data->out_files = 0;
+	data->out_append = 0;
+	data->in_files = 0;
+	data->is_append = false;
+	data->is_heredoc = false;
+}
