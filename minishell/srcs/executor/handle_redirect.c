@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 14:07:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:29:26 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int handle_redirect(t_info *data)
 {
 	if ((data->out_files || data->out_append) && files_out(data))
 		return (1);
-	if (data->in_files && files_in(&data->in_files))
+	if (data->in_files && files_in(data, &data->in_files))
 		return (1);
 	launch_handler(data);
 	remove_heredoc();

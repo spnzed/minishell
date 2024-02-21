@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 16:48:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:13:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*put_status(t_info *data, char *var)
 	char	*cmd_ret;
 	char	*result;
 
-	cmd_ret = ft_itoa(data->cmd_return);
+	cmd_ret = ft_itoa(data->exit_id);
 	result = put_variable(data->cmd_line, var, cmd_ret);
 	free(cmd_ret);
 	free(data->cmd_line);
