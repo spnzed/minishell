@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:31:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:13:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ typedef struct		s_environment
 typedef struct 		s_info
 {
     int 			cmd_nbr;
-    int 			cmd_return;
 	int				exit_id;
     int 			fd[2];
 	int				is_builtin;
     int 			ret;
-    int 			status;
     int 			std_in;
     int 			std_out;
 

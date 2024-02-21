@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 15:11:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:33:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ int	ft_echo(t_info	*data, char *line, int len)
 		printf("\n");
 	else if (len > 4)
 	{
+		
 		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
 			x++;
 		while(line[x])
 		{
 			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
-				printf("%c", line[x++]);
+			{
+				if (line[x] == '"' || line[x] == '\'')
+					x++;
+				else
+					printf("%c", line[x++]);
+			}
 			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
 				x++;
 			if (line[x + 1])
