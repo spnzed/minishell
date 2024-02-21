@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 16:19:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:49:35 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_builtin(t_info *data)
 {
 	if (ft_strcmp(data->cmd_line, "env") == 0)
 		return(1);
-	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
+	else if (check_complex_cmd(data->cmd_line, "pwd", 3) == 0)
 		return(2);
 	else if (check_complex_cmd(data->cmd_line, "echo", 4) == 0 
 		|| check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
