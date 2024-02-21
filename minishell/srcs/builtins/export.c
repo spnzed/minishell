@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 14:45:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:05:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,15 +141,37 @@ static	void	export_else(t_info *data, t_environment *tmp)
 	data->list_exp = order_exp(data->list_exp);
 }
 
+// static void	ft_export_error_not_valid_id(char *arg, t_info *data)
+// {
+// 	ft_putstr_fd("minishell: export: `", 2);
+// 	ft_putstr_fd(arg, 2);
+// 	ft_putstr_fd("': not a valid identifier\n", 2);
+// 	data->exit_id = 1;
+// }
+
 int	ft_export(t_info *data)
 {
 	t_environment	*temp;
 	t_list			*new;
 	t_environment	*tmp;
+	// char	*non_alnum;
+	// char	*found;
+	// char	*var;
 
 	temp = data->list_exp;
 	new = NULL;
 	tmp = NULL;
+	//printf("%s\n", data->cmd_line);
+	// var = ft_after_set(data->cmd_line, ' ');
+	// var = ft_before_set(var, '=');
+	// non_alnum = ft_strdup(" !#$%%&\\()*+,-./:;<>@[]^`{|}~");
+	// found = ft_strpbrk(var, non_alnum);
+	// //printf("%s\n", found);
+	// if (found != NULL)
+	// {
+	// 	ft_export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
+	// 	return(10);	
+	// }
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
@@ -189,3 +211,17 @@ actualizado
 antes: ADIOS=vamoooooooADIOS
 despues: ADIOS=vamoooooooADIOS
 */
+
+/*
+bash-3.2$ export '  B=valdue '
+bash: export: `  B=valdue ': not a valid identifier
+bash-3.2$ export '  B=value '
+bash: export: `  B=value ': not a valid identifier
+bash-3.2$ export '  B=value'
+bash: export: `  B=value': not a valid identifier
+bash-3.2$ export 'B=value'
+bash-3.2$ export ' B=value'
+bash: export: ` B=value': not a valid identifier
+bash-3.2$ export  C=value
+bash-3.2$ export  C=value
+*/ //normaliza solo lo que hay sin comillas, al final si le gustan los espacios

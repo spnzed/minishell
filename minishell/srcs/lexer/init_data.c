@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 17:08:35 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:13:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	lexer(t_info *data, char **env)
 	if (init_fd(data))
 		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
 			2), 1);
-	data->cmd_return = 0;
-	data->status = 0;
+	data->exit_id = 0;
 	return (0);
 }

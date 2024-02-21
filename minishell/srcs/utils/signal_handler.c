@@ -80,7 +80,7 @@ void	catch_signal(t_info *data, int status, int set_status)
 	if (status == 131)
 		ft_putstr_fd("Quit: 3\n", STDOUT_FILENO);
 	if (set_status)
-		data->status = status;
+		data->exit_id = status;
 }
 
 /*

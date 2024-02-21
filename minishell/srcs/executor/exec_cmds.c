@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:05:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 	En ese caso, se comprueba si el proceso hijo terminó de manera 
 	normal (WIFEXITED(status)).
 	
-	Si es así, se actualiza el estado del proceso padre (data->status) con 
+	Si es así, se actualiza el estado del proceso padre (data->exit_id) con 
 	el estado de salida del proceso hijo (WEXITSTATUS(status)).
 */
 static void	wait_childs(t_info *data)
@@ -52,7 +52,7 @@ static void	wait_childs(t_info *data)
         }
 		else if (pid == data->pid)
 			if (WIFEXITED(status))
-				data->status = WEXITSTATUS(status);
+				data->exit_id = WEXITSTATUS(status);
 	}
 	return ;
 }

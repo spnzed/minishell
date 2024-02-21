@@ -3,36 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:12:02 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/19 15:25:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:07:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//PUEDE QUE PETE (seguro que si)
-char	*ft_after_set(char *str, char set)
+char *ft_after_set(char *str, char set)
 {
-	int		i;
-	char 	*dst;
-	int		x;
+    int i = 0;
+    int x = 0;
+	char *dst;
 
-	i = 0;
-	x = 0;
-	dst = (char *)malloc(sizeof ft_strlen(str) + 1);
-	while (set != str[i])
-		i++;
-	i++;
-	while (str[i])
-	{
-		dst[x] = str[i];
-		i++;
-		x++;
-	}
-	dst[i] = '\0';
-	return(dst);
+    while (str[i] != '\0' && str[i] != set)
+        i++;
+    if (str[i] == '\0')
+        return ft_strdup("");
+    i++;
+    dst = (char *)malloc(ft_strlen(str + i) + 1);
+    while (str[i] != '\0') {
+        dst[x] = str[i];
+        i++;
+        x++;
+    }
+    dst[x] = '\0';
+    return (dst);
 }
 
 char	*ft_before_set(char *str, char set)

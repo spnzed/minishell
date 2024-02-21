@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 14:53:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:29:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				ctrl_d(t_info *data);
 char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
-int				files_in(t_list **in_files);
+int				files_in(t_info *data, t_list **in_files);
 int				files_out(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
 void 			remove_heredoc(void);
@@ -97,7 +97,7 @@ int				ft_env(t_list **list_env);
 int				ft_pwd(void);
 int				ft_cd(t_info *data);
 int				ft_exit(t_info *data);
-int				ft_echo(char *line, int len);
+int				ft_echo(t_info *data, char *line, int len);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 
@@ -110,7 +110,7 @@ void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
-void 			put_error(char *cmd, char *str, int ret);
+void 			put_error(t_info *data, char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);
 void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
@@ -118,7 +118,7 @@ void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(char *cmd, char c);
 char			*split_substr_quotes(char *str, int i, int start, int end);
-t_list		*ft_copy_list(const t_list *src);
+t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
