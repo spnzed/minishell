@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:26:56 by aaespino          #+#    #+#             */
-/*   Updated: 2022/01/27 20:26:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:05:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[i] != '\0')

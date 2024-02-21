@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/15 18:50:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:20:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,29 @@ char	**split_pipe(char *cmd, char c)
 	int		simple;
 	int		complex;
 
-	i = -1;
-	j = -1;
+	i = 0;
+	j = 0;
 	start = 0;
 	end = 0;
 	simple = 0;
 	complex = 0;
 
 	cmd_nbr = cmd_count(cmd);
-	split = malloc(sizeof(char *) * cmd_nbr);
+	split = malloc(sizeof(char *) * (cmd_nbr + 1));
 	if (!split || !cmd)
 		return (NULL);
-	while (cmd[++i])
+	while (cmd[i])
 	{
 		if (cmd[i] == c || i == 0)
 		{
 			start = find_start(cmd, i, '|', &simple, &complex);
 			end = find_next_pipe(cmd, start, '|', &simple, &complex);
-			split[++j] = ft_substr(cmd, start, end - start);
+			split[j] = ft_substr(cmd, start, end - start);
+			j++;
 			i = end - 1;
 		}
+		i++;
 	}
-	split[++j] = NULL;
+	split[j] = NULL;
 	return (split);
 }
