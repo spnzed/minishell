@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/20 17:47:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:04:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_builtins(t_info *data)
 	else if (ft_strcmp(data->cmd_line, "pwd") == 0)
 		b = ft_pwd();
 	else if (check_complex_cmd(data->cmd_line, "echo", 4) == 0 || check_complex_cmd(data->cmd_line, "echo -n", 7) == 0)
-		b = ft_echo(data->cmd_line, len);
+		b = ft_echo(data, data->cmd_line, len);
 	else if (ft_strcmp(data->cmd_line, "exit") == 0)
 		b = ft_exit(data);
 	else if(check_complex_cmd(data->cmd_line, "cd", 2) == 0)
@@ -43,10 +43,15 @@ int	ft_builtins(t_info *data)
 		b = ft_export(data);
 	else if(check_complex_cmd(data->cmd_line, "unset", 5) == 0)
 		b = ft_unset(data);
-	else
+	else if (ft_strlen(data->cmd_line) > 0)
+	{
+		data->exit_id = 127;
 		return(b);
-	// 	error_exit(data); // arreglar error
+	}
+	else
+		return(11);
 	return(b);
 }
+	// 	error_exit(data); // arreglar error
 
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 12:52:39 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:36:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	int	str_nflag(char *str, int x)
 	// basicamente es un '-' y tantas n como quieras
 }
 
-int	ft_echo(char *line, int len)
+int	ft_echo(t_info	*data, char *line, int len)
 {
 	int x;
 	bool n_option;
@@ -64,6 +64,7 @@ int	ft_echo(char *line, int len)
 		if (n_option == false)
 			printf("\n");
 	}
+	data->exit_id = 0;
 	return(3);
 }
 

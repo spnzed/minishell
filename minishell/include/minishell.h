@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:16:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:38:09 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int				ft_env(t_list **list_env);
 int				ft_pwd(void);
 int				ft_cd(t_info *data);
 int				ft_exit(t_info *data);
-int				ft_echo(char *line, int len);
+int				ft_echo(t_info *data, char *line, int len);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 

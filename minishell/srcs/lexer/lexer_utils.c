@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 14:56:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:59:55 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,4 @@ char	*export_id(char *var)
 		res = ft_substr(var, 0, found - var);
 	return (res);
 }
+
