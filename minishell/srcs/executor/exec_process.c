@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 16:27:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:01:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	if (handle_redirect(data))
 		exit (1);
 	execve(path, splitted_cmd, NULL);
-	put_error(splitted_cmd[0], ": command not found\n", 127);
+	put_error(data, splitted_cmd[0], ": command not found\n", 127);
 	exit (127);
 //	mirar si esta incorporado
 //	if (data->is_builtin == 0)
