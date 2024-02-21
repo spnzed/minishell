@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 17:22:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:35:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*display_term_message(t_info *data)
 	char	*line;
 
 	line = readline("42-Minishell ~ % ");
-	data->exit_id = 0;
+	//data->exit_id = 1;
 	if (!line)
 	{
 		if (isatty(STDIN_FILENO))

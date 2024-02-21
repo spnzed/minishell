@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 14:53:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:10:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				ft_env(t_list **list_env);
 int				ft_pwd(void);
 int				ft_cd(t_info *data);
 int				ft_exit(t_info *data);
-int				ft_echo(char *line, int len);
+int				ft_echo(t_info *data, char *line, int len);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 
@@ -118,7 +118,7 @@ void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(char *cmd, char c);
 char			*split_substr_quotes(char *str, int i, int start, int end);
-t_list		*ft_copy_list(const t_list *src);
+t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);

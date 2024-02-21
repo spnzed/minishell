@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 15:06:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:12:23 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,6 @@ int	is_builtin(t_info *data)
         return(11);
 	return(i);
 }
+	// 	error_exit(data); // arreglar error
+
+// mirar en que casos si pones un espacio despues de el comando sigue funcionando

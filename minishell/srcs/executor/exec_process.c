@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 14:59:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:12:46 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	exec_process(t_info *data, char	*cmd)
 	builtin = is_builtin(data);
 	if (builtin != 0)
 	{
+		printf("built: %d\n", builtin);
 		if (handle_redirect(data))
 			exit(1);
 		do_builtin(data, builtin);

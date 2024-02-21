@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 13:03:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:14:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,33 @@ static void expander(t_info *data)
 		data->cmd_line = parse_var(data);
 }
 
+static void	ft_error_cmd(char *cmd, t_info *data)
+{
+	ft_putstr_fd("bash: line 1: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	data->status = 127;
+}
+
 static void executor(t_info *data)
 {
 	signal(SIGINT, SIG_IGN); // ?
 	prepare_to_exec(data);
 	if (data->cmd_nbr)
 		exec_cmds(data);
+/*
+	data->split_line = split_cmds(data); // arreglar espacio
+	// data->cmd_line = normalizer(data->split_line[0]);
+	data->cmd_split = ft_split(data->cmd_line, ' ');
+	data->is_builtin = ft_builtins(data);
+	// if (data->is_builtin == 10)
+	// 	printf("bash: export: `%s': not a valid identifier\n", ft_after_set(data->cmd_line, ' '));
+	//printf("%d\n", data->is_builtin);
+	if (data->is_builtin == 0)
+		ft_error_cmd(data->cmd_line, data); // put_error()
+	// if (data->cmd_nbr)
+	// 	exec_cmds(data);
+*/
 }
 
 int	manage_cmd(t_info *data)
