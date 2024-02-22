@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_environment.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:58:56 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/16 14:02:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:41:57 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

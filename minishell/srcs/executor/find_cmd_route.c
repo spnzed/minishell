@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 18:46:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:52:48 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
 static char	**handle_route(char *line, char *cmd)
 {
 	char	**route;
+	char	**tmp;
 
-	route = ft_split(line, ':');
-	route = add_cmd(route, cmd);
+	tmp = ft_split(line, ':');
+	route = add_cmd(tmp, cmd);
 	return (route);
 }
 
@@ -71,10 +72,10 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	if (!route[i])
 	{
 		ret	= ft_strtrim(cmd, " ");
-		ft_arrfree(route, ft_arrlen(route));
+		//ft_arrfree(route, ft_arrlen(route));
 		return (ret);
 	}
 	ret = ft_strdup(route[i]);
-	ft_arrfree(route, ft_arrlen(route) - 1);
+	//ft_arrfree(route, ft_arrlen(route) - 1);
 	return (ret);
 }

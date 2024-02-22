@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 17:18:49 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:53:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	call_childs(t_info *data, int i)
 		exit (0);
 	}
 	if (data->pid == 0)
-	{
-		child_process(data, i);
-		return (0);
-	}
+		return (child_process(data, i), 0);
 	return (1);
 }

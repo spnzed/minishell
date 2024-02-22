@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 16:29:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:27:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				ft_env(t_list **list_env);
 int				ft_pwd(void);
 int				ft_cd(t_info *data);
 int				ft_exit(t_info *data);
-int				ft_echo(t_info *data, char *line, int len);
+int				ft_echo(t_info	*data, char **line);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 
@@ -105,7 +105,7 @@ int				ft_unset(t_info *data);
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
 void			error_exit(t_info *data);
-int				get_quote_final(char *str, int i, int simple, int complex);
+int				get_quote_final(char *str, int i);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);

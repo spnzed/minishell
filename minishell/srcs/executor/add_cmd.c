@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:39:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 18:45:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:48:36 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ char **add_cmd(char **route, char *cmd)
 			return (NULL);
 	}
 	route[i] = "\0";
-	free(tmp);
 	return (route);
 }
