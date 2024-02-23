@@ -6,11 +6,33 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 13:01:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:49:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	*split_substr_quotes(char *cmd, int start, int end, int count)
+{
+	int		len;
+	char 	*ret_line;
+
+	len = ft_strlen(cmd);
+	if (count == 0)
+		ret_line = ft_substr(cmd, start, end - start);
+	else if ((end + 1) < len)
+	{
+		if (cmd[end] == ' ')
+			ret_line = ft_substr(cmd, start + 1, end - start - 1);
+		else
+			ret_line = ft_substr(cmd, start + 1, end - 1);
+	}
+	else
+		ret_line = ft_substr(cmd, start + 1, end - start - 1);
+	//printf("%s\n", ret_line);
+	return (ret_line);
+}
+
 
 static char **put_split_quotes(int words, char *cmd, char **spl)
 {
@@ -20,8 +42,8 @@ static char **put_split_quotes(int words, char *cmd, char **spl)
 
 	i = 0;
 	count = -1;
-	// int simple = 0;
-	// int complex = 0;
+	int simple = 0;
+	int complex = 0;
 
 	start = 0;
 	while (cmd[i] == ' ')
@@ -29,24 +51,17 @@ static char **put_split_quotes(int words, char *cmd, char **spl)
 	start = i;
 	while (cmd[i] && ++count < words)
 	{
-		start = i;
-		if (cmd[i] == '\'' || cmd[i] == '\"')
-		{
-			while (cmd[i] == '\'' || cmd[i] == '\"')
-				i++;
-			start = i;
-		}
-		while (ft_isspace(cmd[i]))
-			i++;
 		if (!ft_isspace(cmd[i]))
 		{
-			i = get_quote_final(cmd, i);
+			i = get_quote_final(cmd, i, &simple, &complex);
 			spl[count] = split_substr_quotes(cmd, start, i, count);
-			spl[count] = ft_strtrim(spl[count], " ");
-			while ((int)ft_strlen(cmd) > i && cmd[i + 1] == ' ')
+			// spl[count] = ft_strtrim(spl[count], "\'");
+			// spl[count] = ft_strtrim(spl[count], "\"");
+			while (ft_strlen(cmd) > i && cmd[i + 1] == ' ')
 				i++;
 			if (!cmd[i])
 				return (spl);
+			start = i;
 		}
 		i++;
 	}
