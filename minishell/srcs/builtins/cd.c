@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/23 14:50:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:52:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ int	ft_cd(t_info *data, char **split_cmd)
 }
 
 
-int	ft_cd(t_info *data)
-{
-	if (ft_strcmp(data->cmd_line, "cd") == 0) // cd only
-		chdir(data->root_path);
-	else
-		if (chdir(data->cmd_split[1]) == -1)
-			printf("bash: cd: %s: No such file or directory\n", data->cmd_split[1]);
-	return(0);
-}
+// int	ft_cd(t_info *data)
+// {
+// 	if (ft_strcmp(data->cmd_line, "cd") == 0) // cd only
+// 		chdir(data->root_path);
+// 	else
+// 		if (chdir(data->cmd_split[1]) == -1)
+// 			printf("bash: cd: %s: No such file or directory\n", data->cmd_split[1]);
+// 	return(0);
+// }
 
