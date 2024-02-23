@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 19:16:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:49:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int files_out(t_info *data)
 	t_list	*out_files;
 	t_list	*append;
 
-	out_files = data->out_files;
-	append = data->out_append;
+	out_files = data->list_out_files;
+	append = data->list_out_append;
 	if (open_outfiles(out_files) || open_append(append))
 		return (1);
 	return (0);

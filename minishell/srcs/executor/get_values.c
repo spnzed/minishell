@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 17:45:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:47:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,3 @@ void	get_value_heredoc(t_info *data, char *cmd)
 		data->is_heredoc = 1;
 	}
 }
-
