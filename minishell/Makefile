@@ -113,7 +113,6 @@ UTILS		 	=	check_complex_cmd.c \
 					signal_handler.c \
 					split_cmds.c \
 					split_pipe.c \
-					split_substr_quotes.c \
 					utils_env.c \
 					var_set.c
 

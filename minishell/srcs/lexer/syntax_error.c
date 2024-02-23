@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:38:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:40:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static int quotes_syntax(char *line)
 		return (1);
 }
 
-static int pipe_syntax(char *line)
+static int pipe_syntax(char *line, t_info *data)
 {
 	int	size;
 
 	size = ft_strlen(line) - 1;
 	if (line[0] == '|')
 	{
-		ft_putstr_fd("Syntax error: Unexpected token '|'\n", 2);
+		put_error(data, 0, "syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
 	if (line[size] == '|')
@@ -61,7 +61,7 @@ int	syntax_error(t_info *data)
 {
 	if (quotes_syntax(data->cmd_line))
 		return(free(data->cmd_line), write(2, "quote>\n", 8));
-	if (pipe_syntax(data->cmd_line) && data->cmd_nbr > 1)
+	if (pipe_syntax(data->cmd_line, data) && data->cmd_nbr > 1)
 		return(free(data->cmd_line), 1);
 	if (redir_syntax(data->cmd_line) && (ft_strchr(data->cmd_line, '>')
 		|| ft_strchr(data->cmd_line, '<')))
