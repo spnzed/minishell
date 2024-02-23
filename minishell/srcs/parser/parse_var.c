@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 17:13:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:23:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*parse_var(t_info *data)
 			return (put_status(data, var));
 		else
 		{
-			if (var_found(data->signals_env, var))
+			if (var_found_env(data->signals_env, var))
 			{
 				env = assign_var(data->signals_env, var);
 				res = put_variable(data->cmd_line, env->signal, env->content);

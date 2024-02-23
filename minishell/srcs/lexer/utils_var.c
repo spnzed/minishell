@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 17:24:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:55:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_environment	*var_export(t_environment *signals_env, char *var)
 	return (0);
 }
 
-int	var_found(t_environment *signals_env, char *var)
+int	var_found_env(t_environment *signals_env, char *var)
 {
 	t_environment	*head;
 
@@ -52,4 +52,32 @@ int	var_found(t_environment *signals_env, char *var)
 		head = head->next;
 	}
 	return (0);
+}
+
+int	var_found_list(t_list *env, char *var)
+{
+	t_list	*head;
+
+	head = env;
+	while (head)
+	{
+		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+
+t_list	*get_var_list(t_list *env, char *var)
+{
+	t_list	*head;
+
+	head = env;
+	while (head)
+	{
+		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
 }

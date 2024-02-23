@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 19:01:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:49:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	do_builtin(t_info *data, int builtin)
 	if (builtin == 1)
 		ft_env(&data->list_env);
 	else if (builtin == 2)
-		ft_pwd();
+		ft_pwd(data);
 	else if (builtin == 3)
 		ft_echo(data, data->cmd_line, len);
 	else if (builtin == 4)
