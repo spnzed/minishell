@@ -22,7 +22,7 @@ static char	*split_substr_quotes(char *cmd, int start, int end, int count)
 		ret_line = ft_substr(cmd, start, end - start);
 	else if ((end + 1) < len)
 	{
-		if (cmd[end] == ' ')
+		if (cmd[end + 1] == ' ')
 			ret_line = ft_substr(cmd, start + 1, end - start - 1);
 		else
 			ret_line = ft_substr(cmd, start + 1, end - 1);
