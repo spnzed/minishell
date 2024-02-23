@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 20:54:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:01:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ static char **put_split_quotes(int words, char *cmd, char **spl)
 
 	i = 0;
 	count = -1;
-	start = 0;
+	// int simple = 0;
+	// int complex = 0;
 
-	cmd = ft_strtrim(cmd, " ");
+	start = 0;
+	while (cmd[i] == ' ')
+		i++;
+	start = i;
 	while (cmd[i] && ++count < words)
 	{
 		start = i;
