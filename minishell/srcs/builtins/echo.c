@@ -3,76 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 17:33:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:06:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	int	str_nflag(char *str, int x)
+static	bool	str_nflag(char *str)
 {
 	int	i;
 	
-	x += 2;
-	while (str[x] == 'n')
-		x++;
-	i = x;
-	while (str[i])
-	{
-		if (str[i] == '-' && str[i + 1] == 'n')
-		{
-			i++;
-			while (str[i] == 'n')
-				i++;
-			x = i;
-		}
+	i = 0;
+	if (str[i] == '-')
 		i++;
-	}
-	return(x);
-	// basicamente es un '-' y tantas n como quieras
+	else
+		return (false);
+	if (str[i] == 'n')
+		while (str[i] == 'n')
+			i++;
+	else
+		return (false);
+	return(true);
 }
 
-int	ft_echo(t_info	*data, char *line, int len)
+int	ft_echo(t_info	*data, char **line)
 {
-	int x;
+	int i;
+	int j;
+	
 	bool n_option;
 
-	x = 4;
-	n_option = false;
-	if (line[x] == ' ' && line[x + 1] == '-' && line[x + 2] == 'n')
-		n_option = true;
-	if (n_option == true)
-		x = str_nflag(line, x);
-	if (len == 4)
-		printf("\n");
-	else if (len > 4)
+	i = 1;
+	j = 0;
+	if (!line[i])
+		return (printf("\n"), 0);
+	n_option = str_nflag(line[i]);
+	if (n_option)
+		i++;
+	while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
+		j++;
+	while(line[i][j])
 	{
-		
-		while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
-			x++;
-		while(line[x])
+		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
 		{
-			while (line[x] && line[x] != ' ' && line[x] != '\n' && line[x] != '\t')
-			{
-				if (line[x] == '"' || line[x] == '\'')
-					x++;
-				else
-					printf("%c", line[x++]);
-			}
-			while (line[x] && (line[x] == ' ' || line[x] == '\n' || line[x] == '\t'))
-				x++;
-			if (line[x + 1])
-				printf(" ");
+			if (line[i][j] == '\"' || line[i][j] == '\'')
+				j++;
+			else
+				printf("%c", line[i][j++]);
 		}
-		if (n_option == false)
-			printf("\n");
+		while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
+			j++;
+		if (line[i][j + 1])
+			printf(" ");
 	}
+	if (n_option == false)
+		printf("\n");
 	data->exit_id = 0;
 	return(0);
 }
+
+// int	ft_echo(t_info	*data, char *line, int len)
+// {
+// 	int x;
+// 	bool n_option;
+
+// 	x = 4;
+// 	n_option = false;
+// 	if (line[i][j] == ' ' && line[i][j + 1] == '-' && line[i][j + 2] == 'n')
+// 		n_option = true;
+// 	if (n_option == true)
+// 		x = str_nflag(line, x);
+// 	if (len == 4)
+// 		printf("\n");
+// 	else if (len > 4)
+// 	{
+		
+// 		while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
+// 			x++;
+// 		while(line[i][j])
+// 		{
+// 			while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
+// 			{
+// 				if (line[i][j] == '"' || line[i][j] == '\'')
+// 					x++;
+// 				else
+// 					printf("%c", line[i][j++]);
+// 			}
+// 			while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
+// 				x++;
+// 			if (line[i][j + 1])
+// 				printf(" ");
+// 		}
+// 		if (n_option == false)
+// 			printf("\n");
+// 	}
+// 	data->exit_id = 0;
+// 	return(0);
+// }
 
 /*
 bash-3.2$ echo -nn hi

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/23 14:43:27 by pquintan         ###   ########.fr       */
@@ -12,6 +12,17 @@
 
 #include "minishell.h"
 
+// static void print_array(char **splitted_cmd)
+// {
+// 	int i = 0;
+
+// 	while (splitted_cmd[i])
+// 	{
+// 		printf("PRINTING ARRAY: |%s|\n", splitted_cmd[i]);
+// 		i++;
+// 	}
+// }
+
 static char	**handle_cmd(char *cmd)
 {
 	char	*cleaned_cmd;
@@ -19,7 +30,8 @@ static char	**handle_cmd(char *cmd)
 	
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
-	splitted_cmd = ft_split(splitted_cmd[0], ' ');
+//	print_array(splitted_cmd);
+//	splitted_cmd = ft_split(splitted_cmd[0], ' ');
 	return (splitted_cmd);
 }
 
@@ -57,7 +69,7 @@ static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	else if (builtin == 2)
 		ft_pwd(data);
 	else if (builtin == 3)
-		ft_echo(data, data->cmd_line, len); //split_cmd
+		ft_echo(data, split_cmd);
 	else if (builtin == 4)
 		ft_exit(data);
 	else if (builtin == 5)
@@ -68,6 +80,28 @@ static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 		ft_unset(data);
 	//data->cmd_line = normalizer(data->split_line[0]); // ft_strtrim mirar si hace lo mismo
 }
+
+// static void	do_builtin(t_info *data, int builtin)
+// {
+// 	int	len;
+	
+// 	len = ft_strlen(data->cmd_line);
+// 	if (builtin == 1)
+// 		ft_env(&data->list_env);
+// 	else if (builtin == 2)
+// 		ft_pwd();
+// 	else if (builtin == 3)
+// 		ft_echo(data, data->cmd_line, len);
+// 	else if (builtin == 4)
+// 		ft_exit(data);
+// 	else if (builtin == 5)
+// 		ft_cd(data);
+// 	else if (builtin == 6)
+// 		ft_export(data);
+// 	else if (builtin == 7)
+// 		ft_unset(data);
+// 	//data->cmd_line = normalizer(data->split_line[0]); // ft_strtrim mirar si hace lo mismo
+// }
 
 void	exec_process(t_info *data, char	*cmd)
 {
@@ -90,7 +124,3 @@ void	exec_process(t_info *data, char	*cmd)
 		do_exec(data, split_cmd);
 	printf("\n");
 }
-
-	// if (data->is_builtin == 10)
-	// 	printf("bash: export: `%s': not a valid identifier\n", ft_after_set(data->cmd_line, ' '));
-	//printf("%d\n", data->is_builtin);

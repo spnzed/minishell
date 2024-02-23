@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 14:50:12 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:53:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
 int				ft_cd(t_info *data, char **split_cmd);
 int				ft_exit(t_info *data);
-int				ft_echo(t_info *data, char *line, int len);
+int				ft_echo(t_info	*data, char **line);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 int				cd_error_msg(t_info *data, char *arg, char *str);
@@ -111,7 +111,7 @@ int				permission_dir(t_info *data, char *file);
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
 void			error_exit(t_info *data);
-int				get_quote_final(char *str, int i, int simple, int complex);
+int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
@@ -123,7 +123,6 @@ void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(char *cmd, char c);
-char			*split_substr_quotes(char *str, int i, int start, int end);
 t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);

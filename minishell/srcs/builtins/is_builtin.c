@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+/* NORMALIZERS */
 int	is_builtin(t_info *data)
 {
 	if (ft_strcmp(data->cmd_line, "env") == 0)

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 14:03:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:52:48 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
 static char	**handle_route(char *line, char *cmd)
 {
 	char	**route;
+	char	**tmp;
 
-	route = ft_split(line, ':');
-	route = add_cmd(route, cmd);
+	tmp = ft_split(line, ':');
+	route = add_cmd(tmp, cmd);
 	return (route);
 }
 
