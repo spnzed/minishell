@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 10:55:52 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:57:18 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ int	var_found_env(t_environment *signals_env, char *var)
 int	var_found_list(t_list *env, char *var)
 {
 	t_list	*head;
+	char	*temp;
 
 	head = env;
 	while (head)
 	{
-		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
+		temp = ft_before_set(head->content, '=');
+		if (ft_strcmp(temp, var) == 0)
 			return (0);
 		head = head->next;
 	}

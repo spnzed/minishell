@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/23 10:59:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:07:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cd_error_msg(t_info *data, char *arg, char *str)
 	return (0);
 }
 
-void	set_directory(t_list **list_env, char *var)
+void	set_directory(t_list *list_env, char *var)
 {
 	char *path;
 

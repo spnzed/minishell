@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 11:05:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:50:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,15 @@ void			prepare_to_exec(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins
 int				is_builtin(t_info *data);
-int				ft_env(t_list **list_env);
+int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
-int				ft_cd(t_info *data);
+int				ft_cd(t_info *data, char **split_cmd);
 int				ft_exit(t_info *data);
 int				ft_echo(t_info *data, char *line, int len);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
 int				cd_error_msg(t_info *data, char *arg, char *str);
-void			set_directory(t_list **list_env, char *var);
+void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
 int				permission_dir(t_info *data, char *file);
 
@@ -136,8 +136,8 @@ void			ft_envadd_back(t_environment **env, t_environment *new);
 int				count_words(char *str);
 void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
-void			set_var(t_list **head, char *id, char *value);
-void			add_variable_list(t_list **head, char *value);
+void			set_var(t_list *head, char *id, char *value);
+void			add_variable_list(t_list *head, char *value);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);

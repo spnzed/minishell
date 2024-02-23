@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 14:23:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:03:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	if (!route[i])
 	{
 		ret	= ft_strtrim(cmd, " ");
-		ft_arrfree(route, ft_arrlen(route));
+		//ft_arrfree(route, ft_arrlen(route));
 		return (ret);
 	}
 	ret = ft_strdup(route[i]);
-	ft_arrfree(route, ft_arrlen(route) - 1);
+	//ft_arrfree(route, ft_arrlen(route) - 1);
 	return (ret);
 }
