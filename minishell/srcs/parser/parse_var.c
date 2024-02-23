@@ -52,7 +52,7 @@ char	*parse_var(t_info *data)
 			return (put_status(data, var));
 		else
 		{
-			if (var_found(data->signals_env, var))
+			if (var_found_env(data->signals_env, var))
 			{
 				env = assign_var(data->signals_env, var);
 				res = put_variable(data->cmd_line, env->signal, env->content);

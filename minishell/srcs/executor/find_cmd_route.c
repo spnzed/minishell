@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd_route.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/22 18:52:48 by aaespino         ###   ########.fr       */
@@ -19,7 +19,7 @@ static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
 	tmp = NULL;
 	if (!ft_findalnum(cmd))
 		return (NULL);
-	if (var_found(lst_env, "PATH"))
+	if (var_found_env(lst_env, "PATH"))
 	{
 		tmp = var_export(lst_env, "PATH");
 		line = tmp->content;

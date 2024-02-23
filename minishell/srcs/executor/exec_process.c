@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 12:50:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:43:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,21 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 //		put_error(data, data->cmd_line, ": command not found", 127); // "bash: line 1: "
 }
 
-
 static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 {
 	int	len;
 	
 	len = ft_strlen(data->cmd_line);
 	if (builtin == 1)
-		ft_env(&data->list_env);
+		ft_env(data->list_env);
 	else if (builtin == 2)
-		ft_pwd();
+		ft_pwd(data);
 	else if (builtin == 3)
 		ft_echo(data, split_cmd);
 	else if (builtin == 4)
 		ft_exit(data);
 	else if (builtin == 5)
-		ft_cd(data);
+		ft_cd(data, split_cmd);
 	else if (builtin == 6)
 		ft_export(data);
 	else if (builtin == 7)
@@ -116,10 +115,12 @@ void	exec_process(t_info *data, char	*cmd)
 		if (handle_redirect(data))
 			exit(1);
 		do_builtin(data, builtin, split_cmd);
+		//printf("Before chdir: %s\n", getcwd(NULL, 0));
 		exit(0);
 	}
 	else if (!cmd)
 		exit(0);
 	else
 		do_exec(data, split_cmd);
+	printf("\n");
 }

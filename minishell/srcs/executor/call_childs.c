@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   call_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/22 16:53:06 by aaespino         ###   ########.fr       */

@@ -60,7 +60,9 @@ int				init_fd(t_info *data);
 int				syntax_error(t_info *data);
 t_environment	*value_export(t_environment *signals_env, char *value);
 t_environment	*var_export(t_environment *signals_env, char *var);
-int				var_found(t_environment *signals_env, char *var);
+int				var_found_env(t_environment *signals_env, char *var);
+int				var_found_list(t_list *env, char *var);
+t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(char *line);
@@ -93,13 +95,17 @@ void			prepare_to_exec(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins
 int				is_builtin(t_info *data);
-int				ft_env(t_list **list_env);
-int				ft_pwd(void);
-int				ft_cd(t_info *data);
+int				ft_env(t_list *list_env);
+int				ft_pwd(t_info *data);
+int				ft_cd(t_info *data, char **split_cmd);
 int				ft_exit(t_info *data);
 int				ft_echo(t_info	*data, char **line);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
+int				cd_error_msg(t_info *data, char *arg, char *str);
+void			set_directory(t_list *list_env, char *var);
+int				cd_error_file_too_long(t_info *data, char *file);
+int				permission_dir(t_info *data, char *file);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
@@ -129,6 +135,8 @@ void			ft_envadd_back(t_environment **env, t_environment *new);
 int				count_words(char *str);
 void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
+void			set_var(t_list *head, char *id, char *value);
+void			add_variable_list(t_list *head, char *value);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);
