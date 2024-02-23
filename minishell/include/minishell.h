@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 13:53:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:45:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ void			exec_process(t_info *data, char	*cmd);
 int				files_in(t_info *data, t_list **in_files);
 int				files_out(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
+void			get_redirections(char *cmd, t_info *data);
+void			get_value_infile(t_info *data, char *cmd);
+void			get_value_outfile(t_info *data, char *cmd);
+void			get_value_append(t_info *data, char *cmd);
+void			get_value_heredoc(t_info *data, char *cmd);
 void 			remove_heredoc(void);
 void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
