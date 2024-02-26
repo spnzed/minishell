@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 16:22:30 by pquintan         ###   ########.fr       */
+/*   Created: 2023/10/20 13:11:27 by jcheel-n          #+#    #+#             */
+/*   Updated: 2024/02/26 19:09:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	lexer(t_info *data, char **env)
+int	ft_isnumeric(char *str)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	// if (init_settings(data))
-	// 	return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->exit_id = 0;
-	return (0);
+	int		i;
+
+	i = 0;
+	if (str == NULL || *str == '\0')
+		return (0);
+	while (str[0] == ' ')
+		str++;
+	if (str[0] == '-' || str[0] == '+')
+		str++;
+	if (str == NULL || *str == '\0')
+		return (0);
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]) && str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }

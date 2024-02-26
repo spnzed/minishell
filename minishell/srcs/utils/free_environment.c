@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   free_enviroment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:05:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 16:22:30 by pquintan         ###   ########.fr       */
+/*   Created: 2024/02/26 18:47:13 by pquintan          #+#    #+#             */
+/*   Updated: 2024/02/26 18:47:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	lexer(t_info *data, char **env)
+void free_environment(t_environment *env)
 {
-	if (init_env(data, env))
-		return (ft_putstr_fd("Error initializing environment\n", 2), 1);
-	// if (init_settings(data))
-	// 	return (ft_putstr_fd("Error initializing terminal settings\n", 2), 1);
-	if (init_fd(data))
-		return (ft_putstr_fd("Error initializing terminal file descriptors\n", 
-			2), 1);
-	data->exit_id = 0;
-	return (0);
+    if (env)
+	{
+        if (env->full_line)
+		{
+            free(env->full_line);
+            env->full_line = NULL;
+        }
+        if (env->signal)
+		{
+            free(env->signal);
+            env->signal = NULL;
+        }
+        if (env->content)
+		{
+            free(env->content);
+            env->content = NULL;
+        }
+        free(env);
+    }
 }
