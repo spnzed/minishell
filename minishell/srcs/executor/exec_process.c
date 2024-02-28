@@ -6,22 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/28 17:17:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:43:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static void print_array(char **splitted_cmd)
-// {
-// 	int i = 0;
-
-// 	while (splitted_cmd[i])
-// 	{
-// 		printf("PRINTING ARRAY: |%s|\n", splitted_cmd[i]);
-// 		i++;
-// 	}
-// }
 
 static char	**handle_cmd(char *cmd)
 {
@@ -30,20 +19,35 @@ static char	**handle_cmd(char *cmd)
 	
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
-//	print_array(splitted_cmd);
-//	splitted_cmd = ft_split(splitted_cmd[0], ' ');
 	return (splitted_cmd);
 }
+
+static void	filter_cmd(t_info *data, char **splitted_cmd)
+{
+	char *HOME;
+	
+	HOME = get_var_list(data->list_env, "HOME")->content + 5;
+	if (ft_strcmp(splitted_cmd[0], " ") == 0)
+		put_error(data," line 1: ", ": command not found\n", 127);
+	if (ft_strcmp(splitted_cmd[0], "~") == 0)
+	{
+		ft_putstr_fd("minishell: line 1: ", 2);
+		ft_putstr_fd(HOME, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+		exit (126);
+	}
+}
+
+//| ->bash: line 1: /Users/aaespino: is a directory$<-
+//get_var_list(data->list_env, "HOME")->content
 
 static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
 
+	
 	splitted_cmd[0] = ft_strtrim(splitted_cmd[0], "\"");
-	if (!ft_findalnum(splitted_cmd[0]))
-		;
-	if (ft_strcmp(splitted_cmd[0], " ") == 0)
-		put_error(data,"  line 1:  ", ": command not found\n", 127); 
+	filter_cmd(data, &splitted_cmd[0]);
 	path = find_cmd_route(data->signals_env, splitted_cmd[0]);
 	if (!path)
 	{
