@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 17:47:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:51:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ static void	redir_add_list(char *filename, t_list **head)
 
 static char	*get_next_filename(char *cmd)
 {
-	char	**split;
+	int		i;
 	char	*filename;
+	char	**split;
 
-	while (*cmd == '<' || *cmd == '>')
-		cmd++;
-	split = split_quotes(cmd);
+	i = 0;
+	while (cmd[i] == '<' || cmd[i] == '>')
+		i++;
+	split = split_quotes(&cmd[i]);
 	if (!split)
 		return (NULL);
 	filename = ft_strdup(split[0]);
