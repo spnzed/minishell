@@ -102,7 +102,6 @@ UTILS		 	=	check_complex_cmd.c \
 					copy_environment.c \
 					copy_list.c \
 					count_words.c \
-					error_exit.c \
 					get_quote_final.c \
 					get_quote_types.c \
 					get_redir_end.c \

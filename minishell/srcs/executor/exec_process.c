@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 20:37:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:48:58 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,22 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	char	*path;
 
 	if (!ft_findalnum(splitted_cmd[0]))
-		put_error(data, splitted_cmd[0], ": command not found\n", 127);
+		;
+	//	put_error(data, splitted_cmd[0], ": command not found\n"RESET, 127);
 	path = find_cmd_route(data->signals_env, splitted_cmd[0]);
 	if (!path)
 	{
 		if (ft_strchr(splitted_cmd[0], '/'))
 			put_error(data, splitted_cmd[0], ": No such file or directory\n", 1); 
 		else
-			put_error(data, splitted_cmd[0], ": command not found\n", 127);
+			put_error(data, splitted_cmd[0], ": command not found\n"RESET, 127);
 	}
 	if (handle_redirect(data))
 		exit (1);
 	// for (int i = 0; i < ft_arrlen(splitted_cmd); i++)
 	// 	printf("&&&&&%s\n", splitted_cmd[i]);
 	execve(path, splitted_cmd, NULL);
-	put_error(data, splitted_cmd[0], ": command not found\n", 127);
+	put_error(data, splitted_cmd[0], ": command not found\n"RESET, 127);
 	exit (127);
 //	mirar si esta incorporado
 //	if (data->is_builtin == 0)

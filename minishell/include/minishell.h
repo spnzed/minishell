@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 17:45:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:44:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int				permission_dir(t_info *data, char *file);
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
-void			error_exit(t_info *data);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str);
