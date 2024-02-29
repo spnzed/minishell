@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 17:13:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:48:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,26 @@ typedef struct 		s_info
 	char 			**cmd_split;
     char 			**tab_var_env;
 
+	char			*in_file;
+	char			*out_file;
+
+    t_list			*list_env;
+    t_list			*list_input;
+    t_list			*list_path;
+	
+	t_list			*list_in_files;
+	t_list			*list_out_files;
+	t_list			*list_out_append;
+	t_list			*list_heredocs;
+    
+	t_environment	*signals_env;
+    t_environment	*list_exp;
+
 	bool			is_append;
 	bool			is_heredoc;
 	bool			is_out_heredoc;
 
     pid_t			pid;
-
-    t_list			*list_env;
-    t_list			*list_input;
-    t_list			*list_path;
-	t_list			*list_heredoc;
-	
-	t_list			*in_files;
-	t_list			*out_files;
-	t_list			*out_append;
-    
-	t_environment	*signals_env;
-    t_environment	*list_exp;
 
     struct termios 	n_settings;
     struct termios 	o_settings;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 14:43:27 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:00:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	else if (builtin == 3)
 		ft_echo(data, split_cmd);
 	else if (builtin == 4)
-		ft_exit(data);
+		ft_exit(data, split_cmd);
 	else if (builtin == 5)
 		ft_cd(data, split_cmd);
 	else if (builtin == 6)
@@ -108,6 +108,7 @@ void	exec_process(t_info *data, char	*cmd)
 	int		builtin; // data->is_builtin
 	char	**split_cmd;
 
+	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
 	builtin = is_builtin(data);
 	if (builtin != 0)

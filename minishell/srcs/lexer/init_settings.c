@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:33 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 17:15:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:22:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@
 */
 int	init_settings(t_info *data)
 {
-	// if (tcgetattr(STDIN_FILENO, &data->n_settings) != 0)
-	// {
-	// 	perror("tcgetattr");
-	// 	return (1);
-	// }
+	if (tcgetattr(STDIN_FILENO, &data->n_settings) != 0)
+	{
+		perror("tcgetattr");
+		return (1);
+	}
 	data->o_settings = data->n_settings;
 	data->n_settings.c_lflag &= ~ECHOCTL;
-	// if (tcsetattr(STDIN_FILENO, TCSANOW, &data->n_settings) != 0)
-	// {
-	// 	perror("tcsetattr");
-	// 	return (1);
-	// }
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &data->n_settings) != 0)
+	{
+		perror("tcsetattr");
+		return (1);
+	}
 	return (0);
 }

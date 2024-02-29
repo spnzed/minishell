@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/21 18:46:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:50:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ void	handle_heredoc(t_info *data)
 	fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"));
-	temp = data->list_heredoc;
+	temp = data->list_heredocs;
 	heredoc_loop(temp, fd);
 }

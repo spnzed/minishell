@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_array_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 14:46:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:09:17 by pquintan         ###   ########.fr       */
+/*   Created: 2023/10/20 13:10:40 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/10/21 14:19:17 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
-int	ft_isdigit(int i)
+char	**ft_array_free(char **Array, int len)
 {
-	if (i >= '0' && i <= '9')
-	{
-		return (1);
-	}
-	return (0);
+	while (len > 0)
+		free(Array[--len]);
+	free(Array);
+	return (NULL);
 }
