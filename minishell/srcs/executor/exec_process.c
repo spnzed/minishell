@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/28 17:43:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:02:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 	}
 }
 
-//| ->bash: line 1: /Users/aaespino: is a directory$<-
-//get_var_list(data->list_env, "HOME")->content
-
 static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
@@ -58,14 +55,9 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	}
 	if (handle_redirect(data))
 		exit (1);
-	// for (int i = 0; i < ft_arrlen(splitted_cmd); i++)
-	// 	printf("&&&&&%s\n", splitted_cmd[i]);
 	execve(path, splitted_cmd, NULL);
 	put_error(data, splitted_cmd[0], ": command not found\n", 127);
 	exit (127);
-//	mirar si esta incorporado
-//	if (data->is_builtin == 0)
-//		put_error(data, data->cmd_line, ": command not found", 127); // "bash: line 1: "
 }
 
 static void	do_builtin(t_info *data, int builtin, char **split_cmd)
@@ -97,8 +89,6 @@ void	exec_process(t_info *data, char	*cmd)
 
 	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
-	// for (int i = 0; i < ft_arrlen(split_cmd); i++)
-	// 	printf("|%c|", split_cmd[i][ft_strlen(split_cmd[i])]);
 	builtin = is_builtin(data);
 	if (builtin != 0)
 	{
