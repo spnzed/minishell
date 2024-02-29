@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/29 13:53:53 by aaespino         ###   ########.fr       */
@@ -80,8 +80,8 @@ char 			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
-//char			*display_term_message(void);
-char			*display_term_message(t_info *data);
+char			*display_term_message(void);
+//char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				files_in(t_info *data, t_list **in_files);
@@ -103,7 +103,7 @@ int				is_builtin(t_info *data);
 int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
 int				ft_cd(t_info *data, char **split_cmd);
-int				ft_exit(t_info *data);
+int				ft_exit(t_info *data, char **split_cmd);
 int				ft_echo(t_info	*data, char **line);
 int				ft_export(t_info *data);
 int				ft_unset(t_info *data);
@@ -141,6 +141,7 @@ void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
 void			set_var(t_list *head, char *id, char *value);
 void			add_variable_list(t_list *head, char *value);
+void			free_environment(t_environment *env);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
 /*   Updated: 2024/02/29 13:34:14 by aaespino         ###   ########.fr       */
@@ -36,6 +36,9 @@ int	ft_echo(t_info	*data, char **line)
 	char *HOME;
 	bool n_option;
 
+	// i = 0;
+	// while (line[i++])
+	// 	printf("%d: %s\n", i, line[i]);
 	i = 1;
 	j = 0;
 	HOME = get_var_list(data->list_env, "HOME")->content + 5;
@@ -75,45 +78,6 @@ int	ft_echo(t_info	*data, char **line)
 	data->exit_id = 0;
 	return(0);
 }
-
-// int	ft_echo(t_info	*data, char *line, int len)
-// {
-// 	int x;
-// 	bool n_option;
-
-// 	x = 4;
-// 	n_option = false;
-// 	if (line[i][j] == ' ' && line[i][j + 1] == '-' && line[i][j + 2] == 'n')
-// 		n_option = true;
-// 	if (n_option == true)
-// 		x = str_nflag(line, x);
-// 	if (len == 4)
-// 		printf("\n");
-// 	else if (len > 4)
-// 	{
-		
-// 		while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
-// 			x++;
-// 		while(line[i][j])
-// 		{
-// 			while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
-// 			{
-// 				if (line[i][j] == '"' || line[i][j] == '\'')
-// 					x++;
-// 				else
-// 					printf("%c", line[i][j++]);
-// 			}
-// 			while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
-// 				x++;
-// 			if (line[i][j + 1])
-// 				printf(" ");
-// 		}
-// 		if (n_option == false)
-// 			printf("\n");
-// 	}
-// 	data->exit_id = 0;
-// 	return(0);
-// }
 
 /*
 bash-3.2$ echo -nn hi

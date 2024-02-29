@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
 /*   Updated: 2024/02/29 15:02:08 by aaespino         ###   ########.fr       */
@@ -72,7 +72,7 @@ static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	else if (builtin == 3)
 		ft_echo(data, split_cmd);
 	else if (builtin == 4)
-		ft_exit(data);
+		ft_exit(data, split_cmd);
 	else if (builtin == 5)
 		ft_cd(data, split_cmd);
 	else if (builtin == 6)
