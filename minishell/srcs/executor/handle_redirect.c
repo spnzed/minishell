@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 17:51:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:08:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ finalmente
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-stdout_to_file_overwrite: redirigir stdout a un archivo, sobrescribiendo su contenido
+stdout_to_out_file: redirigir stdout a un archivo, sobrescribiendo su contenido
 
 stdout_to_file_append: redirigir stdout a un archivo, añadiendo al final de su contenido
 
@@ -78,12 +78,14 @@ static void launch_handler(t_info *data)
 {
 	if (data->is_heredoc)
 		handle_heredoc(data);
-	if (data->file_overwrite)
-		handle_file(data->file_overwrite, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
+	if (data->out_file)
+		handle_file(data->out_file, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
 	if (data->file_append)
 		handle_file(data->file_append, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
 	if (data->from_file)
 		handle_file(data->from_file, O_RDONLY, STDIN_FILENO, 0);
+	if (dup2(data->std_in, STDIN_FILENO) == -1)
+		return ;
 }
 
 int handle_redirect(t_info *data)
@@ -94,5 +96,7 @@ int handle_redirect(t_info *data)
 		return (1);
 	launch_handler(data);
 	remove_heredoc();
+	if (dup2(data->std_out, STDOUT_FILENO) == -1)
+		return (1);
 	return (0);
 }

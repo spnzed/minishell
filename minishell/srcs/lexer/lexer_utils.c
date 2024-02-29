@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:41:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:52:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	redir_syntax(char *line)
+int	redir_syntax(char *line, t_info *data)
 {
 	int	i;
 	int	simple;
@@ -32,7 +32,7 @@ int	redir_syntax(char *line)
 		if (get_redir_syntax_values (line[i], &simple, &complex, &r_left, &r_right))
 			return (1);
 	}
-	if (get_redir_end(line))
+	if (get_redir_end(line, data))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/26 16:26:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:34:14 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_echo(t_info	*data, char **line)
 {
 	int i;
 	int j;
-	
+	char *HOME;
 	bool n_option;
 
 	// i = 0;
@@ -41,6 +41,7 @@ int	ft_echo(t_info	*data, char **line)
 	// 	printf("%d: %s\n", i, line[i]);
 	i = 1;
 	j = 0;
+	HOME = get_var_list(data->list_env, "HOME")->content + 5;
 	if (!line[i])
 		return (printf("\n"), 0);
 	n_option = str_nflag(line[i]);
@@ -50,6 +51,16 @@ int	ft_echo(t_info	*data, char **line)
 		j++;
 	while(line[i][j])
 	{
+		if (ft_strcmp(line[i], "~") == 0)
+		{
+			printf("%s", HOME);
+			break ;	
+		}
+		if (line[i][j] == '~' && line[i][j + 1] == '/')
+		{
+			printf("%s", HOME);
+			j++;
+		}
 		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
 		{
 			if (line[i][j] == '\"' || line[i][j] == '\'')

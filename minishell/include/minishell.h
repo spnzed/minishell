@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:15:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:53:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char			*search_var(char *line);
 int				var_found(t_environment *list_env, char *var);
 char			*parse_var(t_info *data);
 char			*export_id(char *var);
-int				redir_syntax(char *line);
+int				redir_syntax(char *line, t_info *data);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
@@ -115,10 +115,9 @@ int				permission_dir(t_info *data, char *file);
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
-void			error_exit(t_info *data);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
-int				get_redir_end(char *str);
+int				get_redir_end(char *str, t_info *data);
 int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
 void 			put_error(t_info *data, char *cmd, char *str, int ret);

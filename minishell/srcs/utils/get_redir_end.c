@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	get_redir_end(char *str)
+int	get_redir_end(char *str, t_info *data)
 {
 	int	size;
 
@@ -23,16 +23,14 @@ int	get_redir_end(char *str)
 			size--;
 		if (str[size] == '<' || str[size] == '>')
 		{
-			return (write(2,
-				"Syntax error: near unexpected token 'newline'\n",
-				58));
+			put_error(data, 0, "syntax error near unexpected token `newline'\n", 
+				2);
 		}
 	}
 	if (str[size] == '<' || str[size] == '>')
 	{
-		return (write(2,
-			"Syntax error: near unexpected token 'newline'\n",
-			58));
+		put_error(data, 0, "syntax error near unexpected token `newline'\n", 
+			2);
 	}
 	return (0);
 }

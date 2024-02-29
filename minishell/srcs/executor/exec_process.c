@@ -6,22 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:00:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:02:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static void print_array(char **splitted_cmd)
-// {
-// 	int i = 0;
-
-// 	while (splitted_cmd[i])
-// 	{
-// 		printf("PRINTING ARRAY: |%s|\n", splitted_cmd[i]);
-// 		i++;
-// 	}
-// }
 
 static char	**handle_cmd(char *cmd)
 {
@@ -30,17 +19,32 @@ static char	**handle_cmd(char *cmd)
 	
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
-//	print_array(splitted_cmd);
-//	splitted_cmd = ft_split(splitted_cmd[0], ' ');
 	return (splitted_cmd);
+}
+
+static void	filter_cmd(t_info *data, char **splitted_cmd)
+{
+	char *HOME;
+	
+	HOME = get_var_list(data->list_env, "HOME")->content + 5;
+	if (ft_strcmp(splitted_cmd[0], " ") == 0)
+		put_error(data," line 1: ", ": command not found\n", 127);
+	if (ft_strcmp(splitted_cmd[0], "~") == 0)
+	{
+		ft_putstr_fd("minishell: line 1: ", 2);
+		ft_putstr_fd(HOME, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+		exit (126);
+	}
 }
 
 static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
 
-	if (!ft_findalnum(splitted_cmd[0]))
-		put_error(data, splitted_cmd[0], ": command not found\n", 127);
+	
+	splitted_cmd[0] = ft_strtrim(splitted_cmd[0], "\"");
+	filter_cmd(data, &splitted_cmd[0]);
 	path = find_cmd_route(data->signals_env, splitted_cmd[0]);
 	if (!path)
 	{
@@ -54,9 +58,6 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 	execve(path, splitted_cmd, NULL);
 	put_error(data, splitted_cmd[0], ": command not found\n", 127);
 	exit (127);
-//	mirar si esta incorporado
-//	if (data->is_builtin == 0)
-//		put_error(data, data->cmd_line, ": command not found", 127); // "bash: line 1: "
 }
 
 static void	do_builtin(t_info *data, int builtin, char **split_cmd)
@@ -81,28 +82,6 @@ static void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	//data->cmd_line = normalizer(data->split_line[0]); // ft_strtrim mirar si hace lo mismo
 }
 
-// static void	do_builtin(t_info *data, int builtin)
-// {
-// 	int	len;
-	
-// 	len = ft_strlen(data->cmd_line);
-// 	if (builtin == 1)
-// 		ft_env(&data->list_env);
-// 	else if (builtin == 2)
-// 		ft_pwd();
-// 	else if (builtin == 3)
-// 		ft_echo(data, data->cmd_line, len);
-// 	else if (builtin == 4)
-// 		ft_exit(data);
-// 	else if (builtin == 5)
-// 		ft_cd(data);
-// 	else if (builtin == 6)
-// 		ft_export(data);
-// 	else if (builtin == 7)
-// 		ft_unset(data);
-// 	//data->cmd_line = normalizer(data->split_line[0]); // ft_strtrim mirar si hace lo mismo
-// }
-
 void	exec_process(t_info *data, char	*cmd)
 {
 	int		builtin; // data->is_builtin
@@ -116,12 +95,10 @@ void	exec_process(t_info *data, char	*cmd)
 		if (handle_redirect(data))
 			exit(1);
 		do_builtin(data, builtin, split_cmd);
-		//printf("Before chdir: %s\n", getcwd(NULL, 0));
 		exit(0);
 	}
 	else if (!cmd)
 		exit(0);
 	else
 		do_exec(data, split_cmd);
-	printf("\n");
 }
