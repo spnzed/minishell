@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/04 15:27:37 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:43:54 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

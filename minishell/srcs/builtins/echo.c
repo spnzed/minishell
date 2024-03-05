@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/04 14:04:48 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:33:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_echo(t_info	*data, char **line)
 	int n;
 	bool n_option;
 	int len;
-	char quote;
+	// char quote;
 
 	i = 1;
 	j = 0;
@@ -92,15 +92,15 @@ int	ft_echo(t_info	*data, char **line)
 		{
 			if (line[i][j] == '~' && line[i][j - 1] == ' ')
 				j++;
-			if (line[i][j] == '\"' || line[i][j] == '\'')
-			{
-				quote = line[i][j];
-				j++;
-				while (line[i][j] && quote != line[i][j])
-					printf("%c", line[i][j++]);
-				if (quote == line[i][j]) 
-					j++;
-			}
+			// if (line[i][j] == '\"' || line[i][j] == '\'')
+			// {
+			// 	quote = line[i][j];
+			// 	j++;
+			// 	while (line[i][j] && quote != line[i][j])
+			// 		printf("%c", line[i][j++]);
+			// 	if (quote == line[i][j]) 
+			// 		j++;
+			// }
 			else
 				printf("%c", line[i][j++]);
 		}

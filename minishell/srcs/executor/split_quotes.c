@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 18:57:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:17:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ static char	*split_substr_quotes(char *cmd, int start, int end, int count)
 		if (cmd[end + 1] == ' ')
 			ret_line = ft_substr(cmd, start + 1, end - start - 1);
 		else
-			ret_line = ft_substr(cmd, start + 1, end - 1);
+			ret_line = ft_substr(cmd, start + 1, end - start - 1);
 	}
 	else
-		ret_line = ft_substr(cmd, start + 1, end - start - 1);
-	//printf("%s\n", ret_line);
+	{
+		ret_line = ft_substr(cmd, start + 2, end - start - 2);
+	}
 	return (ret_line);
 }
 
@@ -53,10 +54,15 @@ static char **put_split_quotes(int words, char *cmd, char **spl)
 	{
 		if (!ft_isspace(cmd[i]))
 		{
-			i = get_quote_final(cmd, i, &simple, &complex);
+			while (cmd[i] != ' ' && cmd[i] != '\'' && cmd[i] != '\"')
+				i++;
+			get_quotes_type(cmd[i], &simple, &complex);
+			if (simple || complex)
+			{
+				i = get_quote_final(cmd, i, &simple, &complex);
+//				printf("|%s|\n", cmd + i);
+			}
 			spl[count] = split_substr_quotes(cmd, start, i, count);
-			// spl[count] = ft_strtrim(spl[count], "\'");
-			// spl[count] = ft_strtrim(spl[count], "\"");
 			while (ft_strlen(cmd) > i && cmd[i + 1] == ' ')
 				i++;
 			if (!cmd[i])
@@ -73,11 +79,16 @@ char **split_quotes(char *cmd)
 	int		words;
 	char	**split;
 
+//	printf("STRING: |%s|\n", cmd);
 	words = count_words(cmd);
+//	printf("WORDS: |%d|\n", words);
 	split = malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
 	split[words] = NULL;
 	split = put_split_quotes(words, cmd, split);
+//	int i = -1;
+//	while (split[++i])
+//		printf("%d|%s|\n", i + 1, split[i]);
 	return (split);
 }
