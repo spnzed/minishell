@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:41:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:11:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,39 @@ static int	check_var_syntax(char *var)
 	return (1);
 }
 
+char	*search_var(char *line)
+{
+	int		i;
+	char	*var;
+	bool	we_in_quotes;
+
+	i = -1;
+	we_in_quotes = false;
+	while (line[++i])
+	{
+		if (line[i] == '\'')
+		{
+			if (we_in_quotes == true)
+				we_in_quotes = false;
+			else
+				we_in_quotes = true;
+		}
+		if (line[i] == '$' && (ft_isalnum(line[i + 1]) 
+			|| line[i + 1] == '\'' || line[i + 1] == '_') && we_in_quotes == false)
+		{
+			var = export_id(&line[i + 1]);
+			check_var_syntax(var);
+			free(var);
+			return (&line[i]);
+		}
+		else if (line[i] == '$' && (line[i + 1] == '?')
+			&& we_in_quotes == false)
+			return (&line[i]);
+	}
+	return (NULL);
+}
+
+/*
 char	*search_var(char *line)
 {
 	int		i;
@@ -60,3 +93,4 @@ char	*search_var(char *line)
 	}
 	return (NULL);
 }
+*/

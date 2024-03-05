@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:04:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:33:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ static void	get_values_loop(char *cmd, int i, t_info *data, int *simple,
 	while (cmd[++i])
 	{
 		get_quotes_type(cmd[i], simple, complex);
+
+		if (cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] == '<'
+			&& !*complex && !*simple)
+			return ;
+		if (cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] == '>'
+			&& !*complex && !*simple)
+			return ;
 		//	if "<" y no estamos en comillas. Proporcionar entrada desde un archivo al programa
 		if (cmd[i] == '<' && cmd[i + 1] != '<'
 			&& !*complex && !*simple)

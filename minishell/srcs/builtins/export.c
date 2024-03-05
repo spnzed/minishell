@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/26 18:50:39 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:32:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,47 @@ static int	search_on_lists(t_info *data, t_environment *list, char *str)
 	return(1);
 }
 
+static int	ft_envsize(t_environment *lst)
+{
+	size_t	size;
+
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return ((int)size);
+}
+
+static char	**ft_env_to_array(t_environment *head)
+{
+	int		i;
+	int		strsize;
+	int		lstsize;
+	char	**array;
+	t_environment	*temp;
+
+	i = 0;
+	lstsize = ft_envsize(head);
+	array = malloc(sizeof(char *) * (lstsize + 1));
+	if (!array)
+		return (NULL);
+	temp = head;
+	while (i < lstsize)
+	{
+		strsize = ft_strlen(temp->signal) + 1 + ft_strlen(temp->content);
+		array[i] = malloc(sizeof(char) * (strsize + 1));
+		ft_strlcpy(array[i], temp->signal, strsize + 1);
+		ft_strlcat(array[i], "=", strsize + 1);
+		ft_strlcat(array[i], temp->content, strsize + 1);
+		temp = temp->next;
+		i++;
+	}
+	array[i] = NULL;
+	return (array);
+}
+
 static	void	export_equal(t_info *data, t_list *new)
 {
 	// printf("entras?\n");
@@ -121,16 +162,7 @@ static	void	export_equal(t_info *data, t_list *new)
 			ft_lstadd_back(&data->list_env, new);
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
-		while(data->list_exp)
-		{
-			printf("%s\n", data->list_exp->full_line);
-			data->list_exp = data->list_exp->next;
-		}
-		// while(data->list_env)
-		// {
-		// 	printf("%s\n", data->list_env->content);
-		// 	data->list_env = data->list_env->next;
-		// }		
+		data->env = ft_env_to_array(data->list_exp);
 	}
 }
 
@@ -151,6 +183,7 @@ static	void	export_else(t_info *data, t_environment *tmp)
 	else
 		ft_envadd_back(&data->list_exp, tmp);
 	data->list_exp = order_exp(data->list_exp);
+	data->env = ft_env_to_array(data->list_exp);
 }
 
 static void	ft_export_error_not_valid_id(char *arg, t_info *data)

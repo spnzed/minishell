@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:35:40 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 15:15:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:52:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	**split_cmds(t_info *data)
 {
 	int		i;
 	int		len;
+	// char	**line;
 	char	**splitted;
 
 	if (little_cases(data->cmd_line))
@@ -64,5 +65,12 @@ char	**split_cmds(t_info *data)
 			exit (2);
 		i++;
 	}
+	// if (ft_strcmp(ft_strtrim(splitted[0], " "), ft_strtrim(splitted[1], " ")) == 0)
+	// {
+	// 	line[0] = ft_strdup(ft_strtrim(splitted[0], " "));
+	// 	line[1] = NULL;
+	// 	free(splitted);
+	// 	return (line);
+	// }
 	return (splitted);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 15:23:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:07:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,26 @@ static char	*root_pwd(t_environment *signals_env)
 	return(root);
 }
 
+char	**malloc_env_array(char **env)
+{
+	int		i;
+	char	**array;
+
+	i = -1;
+	array = malloc(sizeof(char *) * (ft_arrlen(env) + 1));
+	while (env[++i])
+		array[i] = ft_strdup(env[i]);
+	array[i] = NULL;
+	return (array);
+}
+
 int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
 	data->list_exp = start_sig(order_env(data->list_env)); // la idea es que primero ordene y luego lo divida
 	data->root_path = root_pwd(data->signals_env);
+	data->env = malloc_env_array(env);
 	if (!data->list_env)
 		return (1);
 	return (0);

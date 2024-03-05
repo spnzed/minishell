@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 13:52:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:25 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ int	redir_syntax(char *line, t_info *data)
 	r_right = 0;
 	while (line[++i])
 	{
+		if (line[i] == '>' && line[i + 1] == '<')
+		{
+			ft_putstr_fd("minishell: line 1: syntax error near unexpected token `<'\n", 2);
+			return (2);
+		}			
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
-		if (get_redir_syntax_values (line[i], &simple, &complex, &r_left, &r_right))
-			return (1);
+		if (get_redir_syntax_values (data, line[i], &simple, &complex, 
+			&r_left, &r_right))
+			return (2);
 	}
 	if (get_redir_end(line, data))
 		return (1);

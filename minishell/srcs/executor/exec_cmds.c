@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 15:02:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:59:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	exec_cmds(t_info *data)
 	int	i;
 
 	i = -1;
+	signal(SIGINT, SIG_IGN);
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);

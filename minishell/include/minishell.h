@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 13:53:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:49:13 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(char *line);
+int				**count_quotes(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);
@@ -81,8 +82,10 @@ int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(void);
+void			do_builtin(t_info *data, int builtin, char **split_cmd);
 //char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
+int				exec_one_cmd(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				files_in(t_info *data, t_list **in_files);
 int				files_out(t_info *data);
@@ -97,6 +100,7 @@ void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
 void			prepare_to_exec(t_info *data);
+void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins
 int				is_builtin(t_info *data);
@@ -118,7 +122,7 @@ int				check_complex_cmd(char *strbase, char *strcomp, int len);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str, t_info *data);
-int				get_redir_syntax_values(char c, int *simple, int *complex, int *r_left, int *r_right);
+int				get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
 void 			put_error(t_info *data, char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);

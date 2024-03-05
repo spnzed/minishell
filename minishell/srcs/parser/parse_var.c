@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:41:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:03:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*parse_var(t_info *data)
 	char			*var;
 	char			*res;
 	t_environment	*env;
-	
 	var = search_var(data->cmd_line);
 	if (var && ft_strlen(var))
 	{

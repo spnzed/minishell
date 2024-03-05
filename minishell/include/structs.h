@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 17:48:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:48:08 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,19 @@ typedef struct 		s_info
     int 			ret;
     int 			std_in;
     int 			std_out;
+	int				**index_quotes;
 
     void 			*ptr;
 
     char 			*cmd_line;
+	char			*cmd_clean;
   	char 			*str_trim;
     char 			*root_path;
 	char			*file_overwrite;
 	char			*file_append;
 	char			*from_file;
     char 			**env;
+    char 			**one_cmd;
     char 			**mul_cmds;
     char 			**split_line;
 	char 			**cmd_split;

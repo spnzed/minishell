@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/29 13:34:14 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:04:48 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,89 @@ static	bool	str_nflag(char *str)
 	return(true);
 }
 
+static int	echo_little_cases(char *line, char *HOME, int i)
+{
+	//printf("%s | %s | %d\n", line, HOME, i);
+	if (line[0] == '~')
+	{
+		printf("%s", HOME);
+		if (line[1] == '\0')
+			return (i + 1);
+		else
+			return (i + 99);
+	}
+    return (i);
+}
+
 int	ft_echo(t_info	*data, char **line)
 {
 	int i;
 	int j;
 	char *HOME;
+	int n;
 	bool n_option;
+	int len;
+	char quote;
 
-	// i = 0;
-	// while (line[i++])
-	// 	printf("%d: %s\n", i, line[i]);
 	i = 1;
 	j = 0;
-	HOME = get_var_list(data->list_env, "HOME")->content + 5;
-	if (!line[i])
-		return (printf("\n"), 0);
-	n_option = str_nflag(line[i]);
-	if (n_option)
-		i++;
-	while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
-		j++;
-	while(line[i][j])
+	n = 0;
+	len = ft_arrlen(line);
+	n_option = false;
+	while (line[i] && str_nflag(line[i]) == true)
 	{
-		if (ft_strcmp(line[i], "~") == 0)
-		{
-			printf("%s", HOME);
-			break ;	
-		}
-		if (line[i][j] == '~' && line[i][j + 1] == '/')
-		{
-			printf("%s", HOME);
-			j++;
-		}
+		n_option = str_nflag(line[i]);
+		i++;
+		n++;
+	}
+	HOME = get_var_list(data->list_env, "HOME")->content + 5;
+	if (line[i])
+		i = echo_little_cases(line[i], HOME, i);
+	else
+	{
+		if (n_option == false)
+			return (printf("\n"), 0);
+		else
+			return(0);
+	}
+	if (i > 99)
+	{
+		i -= 99;
+		j++;
+	}
+	if (i == n + 2 && !line[i])
+	{
+		if (n_option == false)
+			return (printf("\n"), 0);
+		else
+			return(0);
+	}
+	while(len > i)
+	{
 		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
 		{
-			if (line[i][j] == '\"' || line[i][j] == '\'')
+			if (line[i][j] == '~' && line[i][j - 1] == ' ')
 				j++;
+			if (line[i][j] == '\"' || line[i][j] == '\'')
+			{
+				quote = line[i][j];
+				j++;
+				while (line[i][j] && quote != line[i][j])
+					printf("%c", line[i][j++]);
+				if (quote == line[i][j]) 
+					j++;
+			}
 			else
 				printf("%c", line[i][j++]);
 		}
 		while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
 			j++;
+		if (line[i][j] == '~' && line[i][j - 1] == ' ')
+			printf("%s", HOME);
 		if (line[i][j + 1])
 			printf(" ");
+		i++;
+		j = 0;
 	}
 	if (n_option == false)
 		printf("\n");

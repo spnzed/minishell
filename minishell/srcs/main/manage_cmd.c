@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 15:01:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:04:22 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,39 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
+static void	one_command (t_info *data)
+{
+	prepare_to_exec_one(data);
+	exec_one_cmd(data);
+}
+
+static void	multiple_commands (t_info *data)
+{
+	prepare_to_exec(data); //prepare_to_exec_mul(data);
+	exec_cmds(data); //exec_mul_cmd(data);
+}
+
 static void	parser(t_info *data)
 {
 	data->cmd_nbr = cmd_count(data->cmd_line);
 	if (syntax_error(data))
 		exit (1);
+	//data->index_quotes = count_quotes;
 }
 
 static void expander(t_info *data)
 {
 	while (search_var(data->cmd_line))
 		data->cmd_line = parse_var(data);
+	// data->cmd_nbr = cmd_count(data->cmd_line);
 }
 
 static void executor(t_info *data)
 {
-	signal(SIGINT, SIG_IGN); // ?
-	prepare_to_exec(data);
-	if (data->cmd_nbr)
-		exec_cmds(data);
+	if (data->cmd_nbr == 1)
+		one_command(data);
+	else if (data->cmd_nbr > 1)
+		multiple_commands(data);
 }
 
 int	manage_cmd(t_info *data)

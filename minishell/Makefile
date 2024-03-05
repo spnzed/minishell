@@ -95,14 +95,15 @@ EXECUTOR		=	add_cmd.c \
 					handle_redirect.c \
 					parent_process.c \
 					prepare_to_exec.c \
-					split_quotes.c
+					split_quotes.c \
+					one_cmd.c
 
 UTILS		 	=	check_complex_cmd.c \
 					cmd_count.c \
 					copy_environment.c \
 					copy_list.c \
+					count_quotes.c \
 					count_words.c \
-					error_exit.c \
 					free_environment.c \
 					get_quote_final.c \
 					get_quote_types.c \
