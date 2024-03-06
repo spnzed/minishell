@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:42:02 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 20:28:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:23:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static int move_to_end(char *str, int i, int simple, int complex)
 int	count_words(char *str)
 {
 	int		i;
-	int		len;
+	int		count;
 	int		simple;
 	int		complex;
 
 	i = -1;
-	len = 0;
+	count = 0;
 	simple = 0;
 	complex = 0;
 	while (str[++i])
@@ -55,9 +55,9 @@ int	count_words(char *str)
 		get_quotes_type(str[i], &simple, &complex);
 		if (ft_isprint(str[i]) && str[i] != ' ' && !simple && !complex)
 		{
-			len++;
+			count++;
 			i = move_to_end(str, i, simple, complex);
 		}
 	}
-	return (len);
+	return (count);
 }

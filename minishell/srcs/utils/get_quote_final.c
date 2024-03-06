@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:26:52 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/23 13:34:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:05:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int	get_quote_final(char *line, int i, int *simple, int *complex)
 {
-	while (((ft_isprint(line[i]) && line[i] != ' ' && 
-		(!*simple && !*complex))) || (ft_isprint(line[i]) && (*simple || *complex)))
+	i++;
+	while (ft_isprint(line[i]))
 	{
-		// if ((*simple || *complex) && (line[i] == '\'' || line[i] == '\'')
-		// 	&& !ft_isspace(line[i + 1]))
-		// 	return (i);
 		get_quotes_type(line[i], simple, complex);
+		if (*simple == 0 && *complex == 0)
+			break ;
 		i++;
 	}
+	while (line[i] && line[i] != ' ')
+		i++;
 	return (i);
 }
 

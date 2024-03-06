@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/04 14:04:48 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:03:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	ft_echo(t_info	*data, char **line)
 {
 	int i;
 	int j;
-	char *HOME;
 	int n;
-	bool n_option;
 	int len;
 	char quote;
+	char *HOME;
+	bool n_option;
 
 	i = 1;
 	j = 0;
@@ -91,7 +91,10 @@ int	ft_echo(t_info	*data, char **line)
 		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
 		{
 			if (line[i][j] == '~' && line[i][j - 1] == ' ')
+			{
+				printf("%s", HOME);
 				j++;
+			}
 			if (line[i][j] == '\"' || line[i][j] == '\'')
 			{
 				quote = line[i][j];
@@ -104,11 +107,7 @@ int	ft_echo(t_info	*data, char **line)
 			else
 				printf("%c", line[i][j++]);
 		}
-		while (line[i][j] && (line[i][j] == ' ' || line[i][j] == '\n' || line[i][j] == '\t'))
-			j++;
-		if (line[i][j] == '~' && line[i][j - 1] == ' ')
-			printf("%s", HOME);
-		if (line[i][j + 1])
+		if (!line[i][j] && i != len - 1)
 			printf(" ");
 		i++;
 		j = 0;
