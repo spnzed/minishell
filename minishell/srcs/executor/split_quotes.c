@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/05 19:17:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:04:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ static char	*split_substr_quotes(char *cmd, int start, int end, int count)
 	}
 	else
 	{
-		ret_line = ft_substr(cmd, start + 2, end - start - 2);
+		if (cmd[start] == '\'' || cmd[start] == '\"')
+			ret_line = ft_substr(cmd, start + 2, end - start - 2);
+		ret_line = ft_substr(cmd, start + 1, end - start - 1);
 	}
 	return (ret_line);
 }
