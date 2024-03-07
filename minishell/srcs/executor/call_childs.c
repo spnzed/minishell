@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 16:06:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:10:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	child_process(t_info *data, int nbr)
 	signal(SIGQUIT, signal_handler);
 	if (nbr != data->cmd_nbr - 1)
 	{
-		dup2(STDIN_FILENO, data->fd[1]);
+		dup2(data->fd[1], STDOUT_FILENO);
 	}
 	close(data->fd[1]);
 	close(data->fd[0]);

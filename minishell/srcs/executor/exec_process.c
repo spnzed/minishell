@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 16:09:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:08:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 		else
 			put_error(data, splitted_cmd[0], ": command not found\n", 127);
 	}
-	if (handle_redirect(data))
-		exit (1);
+	// if (handle_redirect(data))
+	// 	exit (1);
 	execve(path, splitted_cmd, data->env);
 	put_error(data, splitted_cmd[0], ": command not found\n", 127);
 	exit (127);
