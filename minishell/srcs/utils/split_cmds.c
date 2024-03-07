@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:35:40 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 18:52:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:47:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ static int little_cases(char *line)
 }
 
 
-static int	check_pipe(char **splitted, int i, int len)
+static int	check_pipe(char *splitted, int i)
 {
-	if (!splitted[i])
+	if (!splitted)
 		return(0);
-	if (ft_strcmp(splitted[i], "~") == 0)
+	if (ft_strcmp(splitted, "~") == 0)
 		return (0);
-	if (!ft_findalnum(splitted[i]) && i == 0)
+	if (!ft_findalnum(splitted) && i == 0)
 	{
-		ft_arrfree(splitted, len);
 		ft_putstr_fd(
 			"minishell: line 1: syntax error near unexpected token `|'\n", 2);
 		return (1);
@@ -61,7 +60,7 @@ char	**split_cmds(t_info *data)
 	i = 0;
 	while (splitted[i])
 	{
-		if (check_pipe(&splitted[i], i, len))
+		if (check_pipe(splitted[i], i))
 			exit (2);
 		i++;
 	}
