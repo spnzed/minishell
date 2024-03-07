@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/06 14:04:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:37:26 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,11 @@ static char **put_split_quotes(int words, char *cmd, char **spl)
 	{
 		if (!ft_isspace(cmd[i]))
 		{
-			while (cmd[i] != ' ' && cmd[i] != '\'' && cmd[i] != '\"')
+			while (cmd[i] && cmd[i] != ' ' && cmd[i] != '\'' && cmd[i] != '\"')
 				i++;
 			get_quotes_type(cmd[i], &simple, &complex);
 			if (simple || complex)
-			{
 				i = get_quote_final(cmd, i, &simple, &complex);
-//				printf("|%s|\n", cmd + i);
-			}
 			spl[count] = split_substr_quotes(cmd, start, i, count);
 			while (ft_strlen(cmd) > i && cmd[i + 1] == ' ')
 				i++;
@@ -83,14 +80,11 @@ char **split_quotes(char *cmd)
 
 //	printf("STRING: |%s|\n", cmd);
 	words = count_words(cmd);
-//	printf("WORDS: |%d|\n", words);
 	split = malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
 	split[words] = NULL;
+//	printf("WORDS: |%d|\n", words);
 	split = put_split_quotes(words, cmd, split);
-//	int i = -1;
-//	while (split[++i])
-//		printf("%d|%s|\n", i + 1, split[i]);
 	return (split);
 }
