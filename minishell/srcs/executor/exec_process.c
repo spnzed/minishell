@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/05 17:36:14 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:09:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**handle_cmd(char *cmd)
 {
 	char	*cleaned_cmd;
 	char	**splitted_cmd;
-	
+
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
 	return (splitted_cmd);
@@ -42,7 +42,6 @@ static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
 
-	
 	splitted_cmd[0] = ft_strtrim(splitted_cmd[0], "\"");
 	filter_cmd(data, &splitted_cmd[0]);
 	path = find_cmd_route(data->signals_env, splitted_cmd[0]);
@@ -90,7 +89,7 @@ void	exec_process(t_info *data, char	*cmd)
 	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
 	builtin = is_builtin(data);
-	if (builtin != 0)
+	if (builtin)
 	{
 		if (handle_redirect(data))
 			exit(1);
