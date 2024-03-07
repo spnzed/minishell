@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:07:40 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 17:34:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:46:06 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return(0);
 	while (str[i])
 		i++;
 	return (i);

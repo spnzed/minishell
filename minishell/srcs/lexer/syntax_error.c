@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/29 18:29:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:54:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,14 @@ static int pipe_syntax(char *line, t_info *data)
 	int	size;
 
 	size = ft_strlen(line) - 1;
+	if (size <= 0)
+		return(0);
 	if (line[0] == '|')
 	{
 		put_error(data, 0, " : syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
+	//printf("size: %d\n", size);
 	if (line[size] == '|')
 	{
 		ft_putstr_fd("pipe>\n", 2);

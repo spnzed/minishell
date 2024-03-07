@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 20:08:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:49:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 		fd = open(file, open_code);
 	if (fd == -1)
 	{
-		perror("open");
+		perror("open3");
 		exit(1);
 	}
 	if (dup2(fd, std_mode) == -1)
@@ -78,11 +78,11 @@ static void launch_handler(t_info *data)
 {
 	if (data->is_heredoc)
 		handle_heredoc(data);
-	if (data->out_file)
+	if (ft_strlen(data->out_file) > 0)
 		handle_file(data->out_file, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
-	if (data->file_append)
+	if (ft_strlen(data->file_append) > 0)
 		handle_file(data->file_append, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
-	if (data->from_file)
+	if (ft_strlen(data->from_file) > 0)
 		handle_file(data->from_file, O_RDONLY, STDIN_FILENO, 0);
 	if (dup2(data->std_in, STDIN_FILENO) == -1)
 		return ;

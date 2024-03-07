@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/05 17:43:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:11:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,5 @@ void prepare_to_exec_one(t_info *data)
 		data->cmd_clean = clean_redir(data->cmd_line);
 	else
 		data->cmd_clean = ft_strdup(data->cmd_line);
-	//printf("%s\n", data->cmd_clean);
 	data->one_cmd = split_quotes(data->cmd_clean);
-	//ft_arrfree(data->one_cmd, ft_arrlen(data->one_cmd));
-	//data->one_cmd = ft_split(data->cmd_clean, ' ');
-	// int i  = 0;
-	// while(data->one_cmd[i])
-	// 	printf("%s\n", data->one_cmd[i++]);
 }
