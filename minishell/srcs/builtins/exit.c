@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/07 18:09:10 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:14:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,3 @@ int	ft_exit(t_info *data, char **split_cmd)
 	exit(0);
 	return(0);
 }
-
-// int	ft_exit(t_info *data)
-// {
-// 	printf("exit\n");
-// 	exit(data->exit_id);
-// 	return(0);
-// }
