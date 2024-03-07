@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 16:53:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:06:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static void	child_process(t_info *data, int nbr)
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	if (nbr != data->cmd_nbr - 1)
-		dup2(data->fd[1], STDOUT_FILENO);
+	{
+		dup2(STDIN_FILENO, data->fd[1]);
+	}
 	close(data->fd[1]);
 	close(data->fd[0]);
 	exec_process(data, data->split_line[nbr]);
