@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/23 14:52:27 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:28:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_cd(t_info *data, char **split_cmd)
 	char	*content;
 
 	content = ft_after_set(data->cmd_line, ' ');
-	//printf("%s\n", content);
+	//No such file or directory("%s\n", content);
 	if (!split_cmd[1])
 		change_home(data);//change home dir + put it there
 	else

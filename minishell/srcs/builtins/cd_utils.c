@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/23 14:07:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:37:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	cd_error_msg(t_info *data, char *arg, char *str)
 {
 	ft_putstr_fd("minishell: cd: ", 2);
+	ft_putstr_fd((ft_strtrim(ft_strtrim(str, "\'"), "\"")), 2);
 	ft_putstr_fd(arg, 2);
-	ft_putstr_fd(str, 2);
 	data->exit_id = 1;
 	return (0);
 }
@@ -92,9 +92,19 @@ int	permission_dir(t_info *data, char *file)
 	}
 	else
 	{
+		if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
+			return(0);
 		if (cd_error_file_too_long(data, file))
 			return (0);
 		cd_error_msg(data, ": No such file or directory\n", file);
 	}
 	return (0);
 }
+/*
+	este caso igual que si pones muchas mas comillas cd "" ""
+	se puede solucionar en el if este
+			if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
+			return(0);
+	pero habria que hacer una funcion para que mientras solo haya comillas 
+	pues se lo salte
+*/
