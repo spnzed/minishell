@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 10:57:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:18:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static int	echo_little_cases(char *line, char *HOME, int i)
 {
 	if (line[0] == '~')
 	{
-		printf("%s", HOME);
+		if (line[1] == ' ' || line[1] == '\0' || line[1] == '/')
+			printf("%s", HOME);
+		else
+			printf("~");
 		if (line[1] == '\0')
 			return (i + 1);
 		else
