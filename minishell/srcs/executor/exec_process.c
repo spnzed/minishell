@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 20:08:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:13:57 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	else if (builtin == 6)
 		ft_export(data);
 	else if (builtin == 7)
-		ft_unset(data);
-	//data->cmd_line = normalizer(data->split_line[0]); // ft_strtrim mirar si hace lo mismo
+		ft_unset(data, split_cmd);
 }
 
 void	exec_process(t_info *data, char	*cmd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/06 19:18:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:12:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int normalize_cmd(t_info *data)
 	return (0);
 }
 
-/* NORMALIZERS */
 int	is_builtin(t_info *data)
 {
 	int	normalized;
@@ -87,6 +86,4 @@ int	is_builtin(t_info *data)
     }
 	return(0);
 }
-	// 	error_exit(data); // arreglar error
-
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando

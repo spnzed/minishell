@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/01 15:32:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:25:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_environmentsize(t_environment *env)
 	return (size);
 }
 
-static t_environment	*order_exp(t_environment *exp) // t_list env
+static t_environment	*order_exp(t_environment *exp)
 {
 	t_environment *exp_order;
 	int len_list;
@@ -142,7 +142,6 @@ static char	**ft_env_to_array(t_environment *head)
 
 static	void	export_equal(t_info *data, t_list *new)
 {
-	// printf("entras?\n");
 	data->str_trim = ft_after_set(data->cmd_line, ' ');
 	if (ft_strchr(data->str_trim, '"'))
 		data->str_trim = ft_remove_quotes_str(data->str_trim);
@@ -186,7 +185,7 @@ static	void	export_else(t_info *data, t_environment *tmp)
 	data->env = ft_env_to_array(data->list_exp);
 }
 
-static void	ft_export_error_not_valid_id(char *arg, t_info *data)
+static void	export_error_not_valid_id(char *arg, t_info *data)
 {
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(ft_remove_quotes_str(arg), 2);
@@ -223,8 +222,8 @@ int	ft_export(t_info *data)
 	tmp = NULL;
 	if (!export_valid(data))
 	{
-		ft_export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
-		return(10);	
+		export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
+		return(1);	
 	}
 	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
