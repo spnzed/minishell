@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 10:25:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:54:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ static	void	export_equal(t_info *data, t_list *new)
 			ft_lstadd_back(&data->list_env, new);
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
-		data->env = ft_env_to_array(data->list_exp);
+		data->env = ft_env_to_array(data->list_exp); // no se si hace su funcion
 	}
 }
 
@@ -182,8 +182,11 @@ static	void	export_else(t_info *data, t_environment *tmp)
 	else
 		ft_envadd_back(&data->list_exp, tmp);
 	data->list_exp = order_exp(data->list_exp);
-	data->env = ft_env_to_array(data->list_exp);
-}
+	// int x = 0;
+	// while (data->env)
+	// 	printf("%s\n", data->env[x++]);
+	//data->env = ft_env_to_array(data->list_exp);
+} // IN PROCCESS
 
 static void	export_error_not_valid_id(char *arg, t_info *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/06 16:03:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:57:13 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static	bool	str_nflag(char *str)
 
 static int	echo_little_cases(char *line, char *HOME, int i)
 {
-	//printf("%s | %s | %d\n", line, HOME, i);
 	if (line[0] == '~')
 	{
 		printf("%s", HOME);
