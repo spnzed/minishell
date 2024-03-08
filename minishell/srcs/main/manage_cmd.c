@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/05 15:04:22 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:00:46 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void expander(t_info *data)
 {
 	while (search_var(data->cmd_line))
 		data->cmd_line = parse_var(data);
+	if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
+		printf("ñ");
 	// data->cmd_nbr = cmd_count(data->cmd_line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 15:49:12 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:01:57 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 		fd = open(file, open_code);
 	if (fd == -1)
 	{
-		perror("open3");
+		perror("open");
 		exit(1);
 	}
 	if (dup2(fd, std_mode) == -1)
