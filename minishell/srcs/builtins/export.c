@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 10:54:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:40:17 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_environment	*order_exp(t_environment *exp)
 	return (exp_order);
 }
 
-static void	sub_var(t_list *list, char *signal, char *content)
+static void	sub_var(/*t_environment *env, */t_list *list, char *signal, char *content)
 {
 	int		len_signal;
 	int		len;
@@ -77,7 +77,7 @@ static void	sub_var(t_list *list, char *signal, char *content)
 		}
 		list = list->next;
 	}
-}
+} // aqui esta la solucion creo
 
 static int	search_on_lists(t_info *data, t_environment *list, char *str)
 {
@@ -91,7 +91,7 @@ static int	search_on_lists(t_info *data, t_environment *list, char *str)
 		if (ft_strcmp(signal, list->signal) == 0)
 		{
 			list->content = content;
-			sub_var(data->list_env, signal, content);
+			sub_var(/*list, */data->list_env, signal, content);
 			return(0);
 		}
 		list = list->next;
@@ -149,6 +149,7 @@ static	void	export_equal(t_info *data, t_list *new)
 		return ;
 	else
 	{
+		//printf("1r\n");
 		new = ft_lstnew(data->str_trim);
 		if (!new)
 		{
@@ -156,9 +157,15 @@ static	void	export_equal(t_info *data, t_list *new)
 			return ;
 		}
 		if (!data->list_env)
+		{
+			//printf("adios\n");
 			data->list_env = new;	
+		}
 		else
+		{
+			//printf("hola\n");
 			ft_lstadd_back(&data->list_env, new);
+		}
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
 		data->env = ft_env_to_array(data->list_exp); // no se si hace su funcion

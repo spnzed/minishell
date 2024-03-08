@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/08 10:14:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:12:28 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int				ft_unset(t_info *data, char **split_cmd);
 int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
-int				permission_dir(t_info *data, char *file);
+int				permission_dir(t_info *data, char *file, char **split_cmd);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
