@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 15:12:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:18:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	void	change_home(t_info *data, char **split_cmd)
 		ft_chdir(data, tmp, split_cmd); // para que haga la funcion
 	}
 	else
-		put_error(data, data->cmd_line, "HOME not set", 0); // cambiar seguramente
+		put_error(data, data->cmd_line, "HOME not set", 0);
 }
 
 int	ft_cd(t_info *data, char **split_cmd)
@@ -49,13 +49,12 @@ int	ft_cd(t_info *data, char **split_cmd)
 		content = ft_strdup(HOME);
 	else
 		content = ft_after_set(data->cmd_line, ' ');
-	//No such file or directory("%s\n", content);
 	if (!split_cmd[1])
 		change_home(data, split_cmd);//change home dir + put it there
 	else
 	{
 		if (ft_strlen(split_cmd[1]) == 0)
-			return(1); //?
+			return(1);
 		ft_chdir(data, content, split_cmd); // le pasamos todo para que haga lo que toca
 	}
 	return(1);

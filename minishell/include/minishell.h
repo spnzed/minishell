@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/08 15:12:28 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:37:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int				ft_pwd(t_info *data);
 int				ft_cd(t_info *data, char **split_cmd);
 int				ft_exit(t_info *data, char **split_cmd);
 int				ft_echo(t_info	*data, char **line);
-int				ft_export(t_info *data);
+int				ft_export(t_info *data, char **split_cmd);
 int				ft_unset(t_info *data, char **split_cmd);
 int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);

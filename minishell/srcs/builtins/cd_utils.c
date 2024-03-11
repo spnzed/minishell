@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 15:15:51 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:53:11 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	set_directory(t_list *list_env, char *var)
 
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
-	//printf("&&&&%s | %s\n", var, path);
 	set_var(list_env, var, path);
 	if (path)
 		free(path);
@@ -113,7 +112,6 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 	}
 	else
 	{
-		//printf("[%s]\n", file);
 		if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
 			return(0);
 		if (check_quotes_arg(split_cmd) == 0)

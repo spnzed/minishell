@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 14:40:17 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:19:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,15 +203,14 @@ static void	export_error_not_valid_id(char *arg, t_info *data)
 	data->exit_id = 1;
 }
 
-static int export_valid(t_info *data)
+static int export_valid(char **split_cmd)
 {
 	char	*non_alnum;
 	char	*alnum;
 	char	*found;
 	char	*var;
 
-	var = ft_after_set(data->cmd_line, ' ');
-	var = ft_before_set(var, '=');
+	var = ft_before_set(split_cmd[1], '=');
 	non_alnum = ft_strdup(" !#$%%&\\()*+,-./:;<>@[]^`{|}~");
 	alnum = ft_strdup("1234567890");
 	found = ft_strpbrk(var, non_alnum);
@@ -221,7 +220,7 @@ static int export_valid(t_info *data)
 	return(1);
 }
 
-int	ft_export(t_info *data)
+int	ft_export(t_info *data, char **split_cmd)
 {
 	t_environment	*temp;
 	t_list			*new;
@@ -230,12 +229,27 @@ int	ft_export(t_info *data)
 	temp = data->list_exp;
 	new = NULL;
 	tmp = NULL;
-	if (!export_valid(data))
+	if (!export_valid(split_cmd))
 	{
 		export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
 		return(1);	
 	}
-	if(ft_strcmp(data->cmd_line, "export") == 0)
+	if (ft_strcmp(split_cmd[0], "grep") == 0)
+	{
+		while(temp)
+		{
+			if (ft_strcmp(temp->signal, split_cmd[1]) == 0)
+			{
+				printf("declare -x %s", temp->signal);
+				if (temp->content != NULL)
+					printf("=\"%s\"\n", temp->content);
+				else
+					printf("\n");			
+			}
+			temp = temp->next;
+		}	
+	}
+	else if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
 		{
