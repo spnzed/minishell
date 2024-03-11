@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/08 10:01:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:53:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ finalmente
 
 stdout_to_out_file: redirigir stdout a un archivo, sobrescribiendo su contenido
 
-stdout_to_file_append: redirigir stdout a un archivo, añadiendo al final de su contenido
+stdout_to_name_append: redirigir stdout a un archivo, añadiendo al final de su contenido
 
 stdin_from_file: redirigir stdin desde un archivo
 
@@ -63,7 +63,8 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 		fd = open(file, open_code);
 	if (fd == -1)
 	{
-		perror("open");
+		dprintf (2, "minishell: ");
+		perror (file);
 		exit(1);
 	}
 	if (dup2(fd, std_mode) == -1)
@@ -74,29 +75,20 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 	close (fd);
 }
 
-static void launch_handler(t_info *data)
-{
-	if (data->is_heredoc)
-		handle_heredoc(data);
-	if (ft_strlen(data->out_file) > 0)
-		handle_file(data->out_file, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
-	if (ft_strlen(data->file_append) > 0)
-		handle_file(data->file_append, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
-	if (ft_strlen(data->from_file) > 0)
-		handle_file(data->from_file, O_RDONLY, STDIN_FILENO, 0);
-	if (dup2(data->std_in, STDIN_FILENO) == -1)
-		return ;
-}
-
 int handle_redirect(t_info *data)
 {
-	if ((data->list_out_files || data->list_out_append) && files_out(data))
+	if (comprove_stdout(data) && ((data->is_outfile || data->is_append)))
 		return (1);
-	if (data->list_in_files && files_in(data, &data->list_in_files))
+	if (comprove_stdin(data, &data->list_in_files) && data->is_infile)
 		return (1);
-	launch_handler(data);
+	if (data->is_heredoc)
+		handle_heredoc(data);
+	if (ft_strlen(data->string_infile) > 0)
+		handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
+	if (ft_strlen(data->string_outfile) > 0 && !data->is_append)
+		handle_file(data->string_outfile, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
+	if (ft_strlen(data->string_append) > 0 && data->is_append)
+		handle_file(data->string_append, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
 	remove_heredoc();
-	if (dup2(data->std_out, STDOUT_FILENO) == -1)
-		return (1);
 	return (0);
 }
