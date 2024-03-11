@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:53:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:56:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //	ENUMS
 
-typedef enum		e_token_type
+typedef enum e_token_type
 {
 	and,					//	'&&'
 	or,						//	'||'
@@ -34,7 +34,7 @@ typedef enum		e_token_type
 	literal,				//	
 }					t_token_type;
 
-typedef enum		e_cmd_type
+typedef enum e_cmd_type
 {
 	ECHO_,
 	CD_,
@@ -48,7 +48,7 @@ typedef enum		e_cmd_type
 //	STRUCTS
 
 //	Token
-typedef struct		s_environment
+typedef struct s_environment
 {
 	char					*full_line;
 	char					*signal;
@@ -56,46 +56,45 @@ typedef struct		s_environment
 	struct s_environment	*next;
 }					t_environment;
 
-
 //	Data
-typedef struct 		s_info
+typedef struct s_info
 {
-    int 			cmd_nbr;
+	int				cmd_nbr;
 	int				exit_id;
-    int 			last_fd;
-    int 			fd[2];
+	int				last_fd;
+	int				fd[2];
 	int				is_builtin;
-    int 			ret;
-    int 			std_in;
-    int 			std_out;
+	int				ret;
+	int				std_in;
+	int				std_out;
 	int				**index_quotes;
 
-    void 			*ptr;
+	void			*ptr;
 
-    char 			*cmd_line;
+	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-  	char 			*str_trim;
-    char 			*root_path;
-    char 			**env;
-    char 			**one_cmd;
-    char 			**mul_cmds;
-    char 			**split_line;
+  char 			*str_trim;
+  char 			*root_path;
+  char 			**env;
+  char 			**one_cmd;
+  char 			**mul_cmds;
+  char 			**split_line;
 	char 			**cmd_split;
-    char 			**tab_var_env;
+  char 			**tab_var_env;
 
 
-    t_list			*list_env;
-    t_list			*list_input;
-    t_list			*list_path;
-	
+	t_list			*list_env;
+	t_list			*list_input;
+	t_list			*list_path;
+
 	t_list			*list_in_files;
 	t_list			*list_out_files;
 	t_list			*list_out_append;
 	t_list			*list_heredocs;
-    
+
 	t_environment	*signals_env;
-    t_environment	*list_exp;
+	t_environment	*list_exp;
 
 	char			*string_infile;
 	char			*string_outfile;
@@ -109,25 +108,24 @@ typedef struct 		s_info
 	bool			is_heredoc;
 	bool			is_append;
 
-    pid_t			pid;
+	pid_t			pid;
 
-    struct termios 	n_settings;
-    struct termios 	o_settings;
+	struct termios	n_settings;
+	struct termios	o_settings;
 
 }					t_info;
 
-typedef struct		s_token
+typedef struct s_token
 {
 	void			*value;
 	t_token_type	type;
 }					t_token;
 //	Command Tree
-typedef struct		s_tree
+typedef struct s_tree
 {
 	void			*content;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
-
 
 #endif
