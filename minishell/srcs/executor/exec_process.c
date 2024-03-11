@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/08 10:13:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:53:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 	else if (builtin == 5)
 		ft_cd(data, split_cmd);
 	else if (builtin == 6)
-		ft_export(data);
+		ft_export(data, split_cmd);
 	else if (builtin == 7)
 		ft_unset(data, split_cmd);
 }
