@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 12:18:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:35:46 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_echo(t_info	*data, char **line)
 	int n;
 	int len;
 	char quote;
-	char *HOME;
 	bool n_option;
 
 	i = 1;
@@ -66,9 +65,8 @@ int	ft_echo(t_info	*data, char **line)
 		i++;
 		n++;
 	}
-	HOME = get_var_list(data->list_env, "HOME")->content + 5;
 	if (line[i])
-		i = echo_little_cases(line[i], HOME, i);
+		i = echo_little_cases(line[i], data->home, i);
 	else
 	{
 		if (n_option == false)
@@ -94,7 +92,7 @@ int	ft_echo(t_info	*data, char **line)
 		{
 			if (line[i][j] == '~' && line[i][j - 1] == ' ')
 			{
-				printf("%s", HOME);
+				printf("%s", data->home);
 				j++;
 			}
 			if (line[i][j] == '\"' || line[i][j] == '\'')
