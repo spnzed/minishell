@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/08 15:37:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:49:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@
 # define HEREDOC ".heredoc"
 
 //	libs
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <string.h>
-#include <termios.h>
-#include <term.h>
-#include <stdbool.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <string.h>
+# include <termios.h>
+# include <term.h>
+# include <stdbool.h>
 //	libft
-#include "libft.h"
-#include "structs.h"
+# include "libft.h"
+# include "structs.h"
 
 //				THE PROJECT
 int				manage_cmd(t_info *data);
@@ -77,7 +77,7 @@ int				redir_syntax(char *line, t_info *data);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
-char 			**add_cmd(char **route, char *cmd);
+char			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
 int				ctrl_d(t_info *data);
@@ -95,7 +95,7 @@ void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd);
 void			get_value_append(t_info *data, char *cmd);
 void			get_value_heredoc(t_info *data, char *cmd);
-void 			remove_heredoc(void);
+void			remove_heredoc(void);
 void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
@@ -124,7 +124,7 @@ void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str, t_info *data);
 int				get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
-void 			put_error(t_info *data, char *cmd, char *str, int ret);
+void			put_error(t_info *data, char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);
 void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
