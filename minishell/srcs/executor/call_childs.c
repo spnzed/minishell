@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 20:10:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:15:46 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	call_childs(t_info *data, int i)
 {
 	if (data->pid < 0)
 	{
-		close(data->fd[1]);			// Cerrar el extremo de escritura del tubo
-		close(data->fd[0]);			// Cerrar el extremo de lectura del tubo
+		close(data->fd[1]);
+		close(data->fd[0]);
 		exit (0);
 	}
 	if (data->pid == 0)

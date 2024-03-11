@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:56:03 by pquintan         ###   ########.fr       */
-/*                                                                            */
+/*	*/
+/*	:::	::::::::	 */
+/*	 structs.h	:+:	:+:	:+:	 */
+/*	+:+ +:+	 +:+	 */
+/*	 By: pquintan <pquintan@student.42barcelona.	+#+	+:+	 +#+	*/
+/*	+#+#+#+#+#+	 +#+	 */
+/*	 Created: 2024/02/19 18:31:45 by aaespino	#+#	#+#	 */
+/*	 Updated: 2024/03/11 16:56:03 by pquintan	 ###	 ########.fr	 */
+/*	*/
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
@@ -19,7 +19,7 @@ typedef enum e_token_type
 {
 	and,					//	'&&'
 	or,						//	'||'
-	semicolon,				// 	';'
+	semicolon,				//	';'
 	simple_redir_left,		//	'<'
 	simple_redir_right,		//	'>'
 	double_redir_left,		//	'<<'
@@ -74,15 +74,14 @@ typedef struct s_info
 	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-  char 			*str_trim;
-  char 			*root_path;
-  char 			**env;
-  char 			**one_cmd;
-  char 			**mul_cmds;
-  char 			**split_line;
-	char 			**cmd_split;
-  char 			**tab_var_env;
-
+	char			*str_trim;
+	char			*root_path;
+	char			**env;
+	char			**one_cmd;
+	char			**mul_cmds;
+	char			**split_line;
+	char			**cmd_split;
+	char			**tab_var_env;
 
 	t_list			*list_env;
 	t_list			*list_input;

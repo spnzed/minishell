@@ -6,12 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 14:26:10 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:31:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static int	ft_isstrprint(char *str)
 {
@@ -31,15 +30,15 @@ static int	ft_isstrprint(char *str)
 
 static void	filter_cmd(t_info *data, char **splitted_cmd)
 {
-	char *HOME;
-	
-	HOME = get_var_list(data->list_env, "HOME")->content + 5;
+	char	*home;
+
+	home = get_var_list(data->list_env, "HOME")->content + 5;
 	if (ft_strcmp(splitted_cmd[0], " ") == 0)
-		put_error(data," line 1: ", ": command not found\n", 127);
+		put_error(data, " line 1: ", ": command not found\n", 127);
 	if (ft_strcmp(splitted_cmd[0], "~") == 0)
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
-		ft_putstr_fd(HOME, 2);
+		ft_putstr_fd(home, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		exit (126);
 	}
@@ -58,7 +57,7 @@ static void	exec_one(t_info *data)
 	if (!path)
 	{
 		if (ft_strchr(data->one_cmd[0], '/'))
-			put_error(data, data->one_cmd[0], ": No such file or directory\n", 1); 
+			put_error(data, data->one_cmd[0], ": No such file or directory\n", 1);
 		else
 			put_error(data, data->one_cmd[0], ": command not found\n", 127);
 	}
@@ -68,7 +67,6 @@ static void	exec_one(t_info *data)
 	put_error(data, data->one_cmd[0], ": command not found\n", 127);
 	exit (127);
 }
-
 
 static int	one_bultin(t_info *data)
 {

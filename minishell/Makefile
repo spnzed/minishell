@@ -23,8 +23,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -101,7 +101,6 @@ UTILS		 	=	check_complex_cmd.c \
 					cmd_count.c \
 					copy_environment.c \
 					copy_list.c \
-					count_quotes.c \
 					count_words.c \
 					free_environment.c \
 					get_quote_final.c \

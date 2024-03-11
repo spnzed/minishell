@@ -1,32 +1,19 @@
-/* ************************************************************************		*/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:22:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 15:59:20 by aaespino         ###   ########.fr       */
+/*   Created: 2024/03/11 17:40:36 by pquintan          #+#    #+#             */
+/*   Updated: 2024/03/11 17:48:08 by pquintan         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************		*/
-
-#include "minishell.h"
-
-void	signal_handler_heredoc(int sig)
-{
-	if (sig == SIGINT)
-		exit(0);
-	else if (sig == SIGQUIT)
-	{
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+/* ************************************************************************** */
 
 /*
 Las señales en sistemas Unix y similares son identificadas por números enteros. 
-A continuación, te proporciono las 31 señales más comunes, junto con su traducción 
-en inglés y su valor numérico:
+A continuación, te proporciono las 31 señales más comunes, 
+junto con su traducción en inglés y su valor numérico:
 
 1. SIGHUP		(Hangup)
 2. SIGINT		(Interrupt)
@@ -60,11 +47,12 @@ en inglés y su valor numérico:
 30. SIGPWR		(Power failure restart)
 31. SIGSYS		(Bad system call)
 
-Cuando sumas 128 al valor numérico de una señal, obtienes el número que se usa en el 
-estado devuelto por `waitpid` cuando un proceso hijo termina debido a esa señal. 
-Por ejemplo, si sumas 128 a 2 (que es el valor de SIGINT), obtienes 130, que es el 
-número que se usará en el estado devuelto por `waitpid` cuando un proceso hijo termine 
-debido a SIGINT.
+Cuando sumas 128 al valor numérico de una señal, obtienes el número que se usa en
+el estado devuelto por `waitpid` cuando un proceso hijo termina debido
+a esa señal. 
+Por ejemplo, si sumas 128 a 2 (que es el valor de SIGINT), obtienes 130,
+que es el número que se usará en el estado devuelto por `waitpid` cuando un
+proceso hijo termine debido a SIGINT.
 
 De esta forma
 
@@ -72,7 +60,23 @@ De esta forma
 
 	2 + 128 = 130 	-> 	SIGINT	->	CTRL+C
 	3 + 128 = 131 	-> 	SIGQUIT	->	CTRL+\
+
+	SIGINT: CTRL+C
+	SIGQUIT: CTRL+\
 */
+#include "minishell.h"
+
+void	signal_handler_heredoc(int sig)
+{
+	if (sig == SIGINT)
+		exit(0);
+	else if (sig == SIGQUIT)
+	{
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
 void	catch_signal(t_info *data, int status, int set_status)
 {
 	if (status == 130)
@@ -83,10 +87,6 @@ void	catch_signal(t_info *data, int status, int set_status)
 		data->exit_id = status;
 }
 
-/*
-	SIGINT: CTRL+C
-	SIGQUIT: CTRL+\
-*/
 void	signal_handler(int sig)
 {
 	if (sig == SIGINT)

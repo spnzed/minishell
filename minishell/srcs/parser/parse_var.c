@@ -6,14 +6,14 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/04 15:03:40 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:00:54 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static char	*put_status(t_info *data, char *var)
-{	
+{
 	char	*cmd_ret;
 	char	*result;
 
@@ -43,6 +43,7 @@ char	*parse_var(t_info *data)
 	char			*var;
 	char			*res;
 	t_environment	*env;
+
 	var = search_var(data->cmd_line);
 	if (var && ft_strlen(var))
 	{
@@ -60,7 +61,7 @@ char	*parse_var(t_info *data)
 				res = put_variable(data->cmd_line, var, "");
 			free(var);
 			free(data->cmd_line);
-			return(res);
+			return (res);
 		}
 	}
 	return (data->cmd_line);

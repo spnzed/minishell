@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 15:07:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:35:13 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	open_outfiles(t_list *outfiles)
 {
-	int	fd;
+	int		fd;
 	t_list	*tmp;
 
 	tmp = outfiles;
@@ -31,7 +31,7 @@ static int	open_outfiles(t_list *outfiles)
 
 static int	open_append(t_list *append)
 {
-	int	fd;
+	int		fd;
 	t_list	*tmp;
 
 	tmp = append;
@@ -46,7 +46,7 @@ static int	open_append(t_list *append)
 	return (0);
 }
 
-int comprove_stdout(t_info *data)
+int	comprove_stdout(t_info *data)
 {
 	t_list	*out_files;
 	t_list	*append;

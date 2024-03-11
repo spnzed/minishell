@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:42:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:16:17 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static char	*remove_redir(char *str, int pos)
 	if (str)
 		free(str);
 	return (clean);
-		
 }
 
 char	*clean_redir(char *str)

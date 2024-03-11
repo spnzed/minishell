@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/26 18:34:48 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:37:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_env(t_list *list_env)
 {
-	t_list *temp;
-	
+	t_list	*temp;
+
 	temp = list_env;
 	while (temp)
 	{
 		printf("%s\n", temp->content);
 		temp = temp->next;
 	}
-	return(0);
+	return (0);
 }

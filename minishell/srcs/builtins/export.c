@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 15:54:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:58:17 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ static int	ft_environmentsize(t_environment *env)
 
 static t_environment	*order_exp(t_environment *exp)
 {
-	t_environment *exp_order;
-	int len_list;
-	int index;
-	t_environment *temp;
-	t_environment *tempvar;
+	t_environment	*exp_order;
+	int				len_list;
+	int				index;
+	t_environment	*temp;
+	t_environment	*tempvar;
 
 	exp_order = ft_copy_environment(exp);
 	len_list = ft_environmentsize(exp_order);
 	index = 0;
-
 	while (index < len_list)
 	{
 		temp = exp_order;
@@ -63,7 +62,7 @@ static void	sub_var(t_list *list, char *signal, char *content)
 	char	*new_content;
 
 	len = ft_strlen(signal) + ft_strlen(content) + 2;
-	while(list)
+	while (list)
 	{
 		if (ft_strcmp(ft_before_set(list->content, '='), signal) == 0)
 		{
@@ -91,11 +90,11 @@ static int	search_on_lists(t_info *data, t_environment *list, char *str)
 			list->full_line = ft_strjoin(signal, "=");
 			list->full_line = ft_strjoin(list->full_line, content);
 			sub_var(data->list_env, signal, content);
-			return(0);
+			return (0);
 		}
 		list = list->next;
 	}
-	return(1);
+	return (1);
 }
 
 static int	ft_envsize(t_environment *lst)
@@ -113,10 +112,10 @@ static int	ft_envsize(t_environment *lst)
 
 static char	**ft_env_to_array(t_environment *head)
 {
-	int		i;
-	int		strsize;
-	int		lstsize;
-	char	**array;
+	int				i;
+	int				strsize;
+	int				lstsize;
+	char			**array;
 	t_environment	*temp;
 
 	i = 0;
@@ -129,7 +128,7 @@ static char	**ft_env_to_array(t_environment *head)
 	{
 		strsize = ft_strlen(temp->signal) + 1 + ft_strlen(temp->content);
 		if (ft_strlen(temp->content) > 0)
-		{		
+		{
 			array[i] = malloc(sizeof(char) * (strsize + 1));
 			ft_strlcpy(array[i], temp->signal, strsize + 1);
 			ft_strlcat(array[i], "=", strsize + 1);
@@ -142,7 +141,7 @@ static char	**ft_env_to_array(t_environment *head)
 	return (array);
 }
 
-static	void	export_equal(t_info *data, t_list *new)
+static void	export_equal(t_info *data, t_list *new)
 {
 	data->str_trim = ft_after_set(data->cmd_line, ' ');
 	if (ft_strchr(data->str_trim, '"'))
@@ -167,7 +166,7 @@ static	void	export_equal(t_info *data, t_list *new)
 			ft_lstadd_back(&data->list_env, new);
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
-		data->env = ft_env_to_array(data->list_exp); // no se si hace su funcion
+		data->env = ft_env_to_array(data->list_exp);
 	}
 }
 
@@ -182,9 +181,9 @@ static	void	export_else(t_info *data, t_environment *tmp, char **split_cmd)
 	{
 		ft_envclear(&data->list_exp, free);
 		return ;
-	} 
+	}
 	if (!data->list_exp)
-		data->list_exp = tmp;	
+		data->list_exp = tmp;
 	else
 		ft_envadd_back(&data->list_exp, tmp);
 	data->list_exp = order_exp(data->list_exp);
@@ -199,7 +198,7 @@ static void	export_error_not_valid_id(char *arg, t_info *data)
 	data->exit_id = 1;
 }
 
-static int export_valid(char **split_cmd)
+static int	export_valid(char **split_cmd)
 {
 	char	*non_alnum;
 	char	*alnum;
@@ -212,8 +211,8 @@ static int export_valid(char **split_cmd)
 	found = ft_strpbrk(var, non_alnum);
 	found = ft_strjoin(found, ft_strpbrk(var, alnum));
 	if (ft_strlen(found) > 0)
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }
 
 int	ft_export(t_info *data, char **split_cmd)
@@ -228,11 +227,11 @@ int	ft_export(t_info *data, char **split_cmd)
 	if (!export_valid(split_cmd))
 	{
 		export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
-		return(1);	
+		return (1);
 	}
 	if (ft_strcmp(split_cmd[0], "grep") == 0)
 	{
-		while(temp)
+		while (temp)
 		{
 			if (ft_strcmp(temp->signal, split_cmd[1]) == 0)
 			{
@@ -240,14 +239,14 @@ int	ft_export(t_info *data, char **split_cmd)
 				if (temp->content != NULL)
 					printf("=\"%s\"\n", temp->content);
 				else
-					printf("\n");			
+					printf("\n");
 			}
 			temp = temp->next;
-		}	
+		}
 	}
-	else if(ft_strcmp(data->cmd_line, "export") == 0)
+	else if (ft_strcmp(data->cmd_line, "export") == 0)
 	{
-		while(temp)
+		while (temp)
 		{
 			printf("declare -x %s", temp->signal);
 			if (temp->content != NULL)
@@ -255,13 +254,13 @@ int	ft_export(t_info *data, char **split_cmd)
 			else
 				printf("\n");
 			temp = temp->next;
-		}		
+		}
 	}
 	else if (ft_strchr(split_cmd[1], '='))
 		export_equal(data, new);
 	else
 		export_else(data, tmp, split_cmd);
-	return(0);
+	return (0);
 }
 
 /*

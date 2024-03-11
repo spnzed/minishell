@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/28 18:01:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:31:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int find_start(char *str, int i, char c, int *simple, int *complex)
+static int	find_start(char *str, int i, char c, int *simple, int *complex)
 {
 	while ((*simple > 0 || *complex > 0) && str[i] != c)
 	{
@@ -21,10 +21,10 @@ static int find_start(char *str, int i, char c, int *simple, int *complex)
 	}
 	while (str[i] == c)
 		i++;
-	return(i);
+	return (i);
 }
 
-static int find_next_pipe(char *str, int i, char c, int *simple, int *complex)
+static int	find_next_pipe(char *str, int i, char c, int *simple, int *complex)
 {
 	while (str[i])
 	{
@@ -43,7 +43,7 @@ char	**split_pipe(char *cmd, char c)
 	int		start;
 	int		end;
 	int		cmd_nbr;
-	char 	**split;
+	char	**split;
 	int		simple;
 	int		complex;
 
@@ -53,7 +53,6 @@ char	**split_pipe(char *cmd, char c)
 	end = 0;
 	simple = 0;
 	complex = 0;
-
 	cmd_nbr = cmd_count(cmd);
 	split = malloc(sizeof(char *) * (cmd_nbr + 1));
 	if (!split || !cmd)

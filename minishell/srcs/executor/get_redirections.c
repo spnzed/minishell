@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_redirections.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:38:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:27:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	get_values_loop(char *cmd, int i, t_info *data, int *simple,
-		 int *complex)
+static void	get_values_loop(char *cmd, int i, t_info *data, int *simple, int *complex)
 {
 	while (cmd[++i])
 	{
@@ -56,7 +55,7 @@ static void	get_values_loop(char *cmd, int i, t_info *data, int *simple,
 	}
 }
 
-void	 get_redirections(char *cmd, t_info *data)
+void	get_redirections(char *cmd, t_info *data)
 {
 	int		simple;
 	int		complex;

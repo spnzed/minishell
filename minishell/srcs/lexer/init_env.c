@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:30:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:14:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_environment	*start_sig(t_list *env)
 {
-	int 			i;
+	int				i;
+	int				len;
 	t_environment	*begin;
 	t_environment	*new_env;
 
@@ -33,28 +34,30 @@ t_environment	*start_sig(t_list *env)
 				break ;
 		new_env->signal = ft_substr(new_env->full_line, 0, i);
 		if (new_env->full_line[i] == '=')
-			new_env->content = ft_substr(new_env->full_line, i + 1, ft_strlen(new_env->full_line));
+		{
+			len = ft_strlen(new_env->full_line);
+			new_env->content = ft_substr(new_env->full_line, i + 1, len);
+		}
 		if (!begin)
-			begin = new_env;	
+			begin = new_env;
 		else
 			ft_envadd_back(&begin, new_env);
 		env = env->next;
 	}
-	return(begin);
+	return (begin);
 }
 
 t_list	*order_env(t_list *env)
 {
-	t_list *list_order;
-	int len_list;
-	int index;
-	t_list *temp;
-	t_list *tempvar;
+	t_list	*list_order;
+	int		len_list;
+	int		index;
+	t_list	*temp;
+	t_list	*tempvar;
 
-	list_order = ft_copy_list(env); // copy list
+	list_order = ft_copy_list(env);
 	len_list = ft_lstsize(list_order);
 	index = 0;
-
 	while (index < len_list)
 	{
 		temp = list_order;
@@ -72,7 +75,6 @@ t_list	*order_env(t_list *env)
 		}
 		index++;
 	}
-
 	return (list_order);
 }
 
@@ -93,7 +95,7 @@ static t_list	*start_env(char **env)
 			return (NULL);
 		}
 		if (!begin)
-			begin = new;	
+			begin = new;
 		else
 			ft_lstadd_back(&begin, new);
 	}
@@ -102,19 +104,17 @@ static t_list	*start_env(char **env)
 
 static char	*root_pwd(t_environment *signals_env)
 {
-	t_environment *temp;
-	char *root;
+	t_environment	*temp;
+	char			*root;
 
 	temp = signals_env;
-	
 	while (temp->next)
 	{
 		if (ft_strcmp(temp->signal, "HOME") == 0)
 			root = ft_strdup(temp->content);
 		temp = temp->next;
 	}
-	// printf("root: %s\n", root);
-	return(root);
+	return (root);
 }
 
 char	**malloc_env_array(char **env)
@@ -134,7 +134,7 @@ int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
-	data->list_exp = start_sig(order_env(data->list_env)); // la idea es que primero ordene y luego lo divida
+	data->list_exp = start_sig(order_env(data->list_env));
 	data->root_path = root_pwd(data->signals_env);
 	data->env = malloc_env_array(env);
 	data->home = get_var_list(data->list_env, "HOME")->content + 5;

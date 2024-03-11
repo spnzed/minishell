@@ -21,11 +21,11 @@ static void	write_syntax_error(char *cmd, int i)
 	}
 }
 
-int		cmd_count(char *line)
+int	cmd_count(char *line)
 {
-	int i;
-	int count;
-	int simple;
+	int	i;
+	int	count;
+	int	simple;
 	int	complex;
 
 	i = -1;

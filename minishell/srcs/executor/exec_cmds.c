@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   exec_cmds.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 14:54:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 16:11:17 by aaespino         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   exec_cmds.c										:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: pquintan <pquintan@student.42barcelona.	+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/02/07 14:54:15 by aaespino		  #+#	#+#			 */
+/*   Updated: 2024/03/11 18:19:37 by pquintan		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "minishell.h"
@@ -18,7 +18,8 @@
 		-1 indica que waitpid debe esperar a cualquier hijo.
 		&status es un puntero a un entero donde waitpid almacenará el estado de 
 			salida del proceso hijo. 
-		0 indica que waitpid debe esperar de manera bloqueante hasta que un hijo termine.
+		0 indica que waitpid debe esperar de manera bloqueante hasta que un 
+			hijo termine.
 	
 	Entonces en pid se almacena el ID del proceso hijo
 
@@ -37,19 +38,19 @@
 */
 static void	wait_childs(t_info *data)
 {
-    int nbr;
-    int pid;
-    int status;
+	int	nbr;
+	int	pid;
+	int	status;
 
-    nbr = data->cmd_nbr;
-    while (nbr--)
+	nbr = data->cmd_nbr;
+	while (nbr--)
 	{
 		pid = waitpid(-1, &status, 0);
-        if (nbr == 0 && WIFSIGNALED(status))
-        {
-            status += 128;
-            catch_signal(data, status, 0);
-        }
+		if (nbr == 0 && WIFSIGNALED(status))
+		{
+			status += 128;
+			catch_signal(data, status, 0);
+		}
 		else if (pid == data->pid)
 			if (WIFEXITED(status))
 				data->exit_id = WEXITSTATUS(status);
@@ -77,6 +78,5 @@ int	exec_cmds(t_info *data)
 			parent_process(data);
 	}
 	wait_childs(data);
-	//ft_env(data->list_env);
 	return (0);
 }

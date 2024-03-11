@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:38:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:30:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int little_cases(char *line)
+static int	little_cases(char *line)
 {
 	if (ft_strcmp(line, "\" \"") == 0)
 	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);
+		ft_putstr_fd("minishell: line 1: : command not found\n", 2);
 		return (1);
 	}
 	if (ft_strcmp(line, "\"\"") == 0)
 	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);	
+		ft_putstr_fd("minishell: line 1: : command not found\n", 2);
 		return (1);
 	}
 	return (0);
 }
 
-void prepare_to_exec(t_info *data)
+void	prepare_to_exec(t_info *data)
 {
 	data->split_line = split_cmds(data);
 	data->from_file = 0;
@@ -46,7 +44,7 @@ void prepare_to_exec(t_info *data)
 	data->is_heredoc = false;
 }
 
-void prepare_to_exec_one(t_info *data)
+void	prepare_to_exec_one(t_info *data)
 {
 	if (little_cases(data->cmd_line))
 		exit (127);
@@ -64,7 +62,7 @@ void prepare_to_exec_one(t_info *data)
 	data->is_heredoc = false;
 	get_redirections(data->cmd_line, data);
 	if (data->list_in_files || data->list_out_files
-		 || data->list_out_append || data->list_heredocs)
+		|| data->list_out_append || data->list_heredocs)
 		data->cmd_clean = clean_redir(data->cmd_line);
 	else
 		data->cmd_clean = ft_strdup(data->cmd_line);
