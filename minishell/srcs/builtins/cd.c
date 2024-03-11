@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 15:18:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:18:30 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	ft_cd(t_info *data, char **split_cmd)
 	HOME = get_var_list(data->list_env, "HOME")->content + 5;
 	if (split_cmd[1] && ft_strcmp(split_cmd[1], "~") == 0)
 		content = ft_strdup(HOME);
-	else
-		content = ft_after_set(data->cmd_line, ' ');
+	else if (split_cmd[1])
+		content = ft_strdup(split_cmd[1]);
 	if (!split_cmd[1])
 		change_home(data, split_cmd);//change home dir + put it there
 	else
