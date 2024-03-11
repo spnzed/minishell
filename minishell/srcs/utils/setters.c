@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:12:02 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 13:07:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:07:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ char	*ft_before_set(char *str, char set)
 	char 			*dst;
 
 	i = 0;
+    if (!str)
+        return(NULL);
 	while (str[i] && str[i] != set)
 		i++;
 	dst = (char *)malloc(i + 1);
+    if (!dst)
+        return(NULL);
     int j = 0;
     while (j < i)
     {
