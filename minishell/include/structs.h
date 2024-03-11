@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*	*/
-/*	:::	  ::::::::   */
-/*   structs.h	  :+:	  :+:	:+:   */
-/*	+:+ +:+	 +:+	 */
-/*   By: pquintan <pquintan@student.42barcelona.	+#+  +:+	   +#+	*/
-/*	+#+#+#+#+#+   +#+	   */
-/*   Created: 2024/02/19 18:31:45 by aaespino	  #+#	#+#	 */
-/*   Updated: 2024/03/11 16:56:03 by pquintan	 ###   ########.fr	   */
-/*	*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
+/*   Updated: 2024/03/11 16:56:03 by pquintan         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
@@ -74,20 +74,15 @@ typedef struct s_info
 	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-	char			*str_trim;
-	char			*root_path;
-	char			*file_overwrite;
-	char			*file_append;
-	char			*from_file;
-	char			**env;
-	char			**one_cmd;
-	char			**mul_cmds;
-	char			**split_line;
-	char			**cmd_split;
-	char			**tab_var_env;
+  char 			*str_trim;
+  char 			*root_path;
+  char 			**env;
+  char 			**one_cmd;
+  char 			**mul_cmds;
+  char 			**split_line;
+	char 			**cmd_split;
+  char 			**tab_var_env;
 
-	char			*in_file;
-	char			*out_file;
 
 	t_list			*list_env;
 	t_list			*list_input;
@@ -101,9 +96,17 @@ typedef struct s_info
 	t_environment	*signals_env;
 	t_environment	*list_exp;
 
-	bool			is_append;
+	char			*string_infile;
+	char			*string_outfile;
+	char			*string_overwrite;
+	char			*string_heredoc;
+	char			*string_append;
+	char			*from_file;
+
+	bool			is_infile;
+	bool			is_outfile;
 	bool			is_heredoc;
-	bool			is_out_heredoc;
+	bool			is_append;
 
 	pid_t			pid;
 

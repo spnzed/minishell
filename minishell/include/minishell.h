@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/03/11 16:49:00 by pquintan         ###   ########.fr       */
@@ -87,8 +87,8 @@ void			do_builtin(t_info *data, int builtin, char **split_cmd);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
-int				files_in(t_info *data, t_list **in_files);
-int				files_out(t_info *data);
+int				comprove_stdin(t_info *data, t_list **in_files);
+int				comprove_stdout(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
 void			get_redirections(char *cmd, t_info *data);
 void			get_value_infile(t_info *data, char *cmd);

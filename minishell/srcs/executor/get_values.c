@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:51:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:20:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_value_infile(t_info *data, char *cmd)
 	if (filename)
 	{
 		redir_add_list(filename, &data->list_in_files);
-		data->in_file = filename;
+		data->string_infile = filename;
 	}
 }
 
@@ -59,8 +59,8 @@ void	get_value_outfile(t_info *data, char *cmd)
 	if (filename)
 	{
 		redir_add_list(filename, &data->list_out_files);
-		data->out_file = filename;
-		data->is_append = 0;
+		data->string_outfile = filename;
+		data->is_outfile = false;
 	}
 }
 
@@ -72,8 +72,8 @@ void	get_value_append(t_info *data, char *cmd)
 	if (filename)
 	{
 		redir_add_list(filename, &data->list_out_append);
-		data->out_file = filename;
-		data->is_append = 1;
+		data->string_append = filename;
+		data->is_append = true;
 	}
 }
 
@@ -85,7 +85,7 @@ void	get_value_heredoc(t_info *data, char *cmd)
 	if (filename)
 	{
 		redir_add_list(filename, &data->list_heredocs);
-		data->in_file = HEREDOC;
-		data->is_heredoc = 1;
+		data->string_heredoc = HEREDOC;
+		data->is_heredoc = true;
 	}
 }
