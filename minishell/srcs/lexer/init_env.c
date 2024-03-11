@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/01 16:07:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:30:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int	init_env(t_info *data, char **env)
 	data->list_exp = start_sig(order_env(data->list_env)); // la idea es que primero ordene y luego lo divida
 	data->root_path = root_pwd(data->signals_env);
 	data->env = malloc_env_array(env);
+	data->home = get_var_list(data->list_env, "HOME")->content + 5;
 	if (!data->list_env)
 		return (1);
 	return (0);

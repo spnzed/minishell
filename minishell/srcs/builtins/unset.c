@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 10:25:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:36:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void delete_node_env(t_list **list, char *str)
 			else
 				previous->next = current->next;
 			free(temp);
-			free(current->content);
 			free(current);
 			return;
 		}
