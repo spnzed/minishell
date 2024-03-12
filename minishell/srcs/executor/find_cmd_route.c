@@ -6,15 +6,15 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 18:26:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
+static char	*handle_path(t_env *lst_env, char *cmd, char *line)
 {
-	t_environment	*tmp;
+	t_env	*tmp;
 
 	tmp = NULL;
 	if (!ft_findalnum(cmd))
@@ -52,7 +52,7 @@ static char	**handle_route(char *line, char *cmd)
 		Es decir quuiere dejar la iteracion hasta que encuentre
 		un archivo que existe
 */
-char	*find_cmd_route(t_environment *lst_env, char *cmd)
+char	*find_cmd_route(t_env *lst_env, char *cmd)
 {
 	int		i;
 	char	*ret;

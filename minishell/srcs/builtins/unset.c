@@ -6,16 +6,16 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:38:56 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	delete_node_exp(t_environment **list, char *str)
+static void	delete_node_exp(t_env **list, char *str)
 {
-	t_environment	*current;
-	t_environment	*previous;
+	t_env	*current;
+	t_env	*previous;
 
 	current = *list;
 	previous = NULL;

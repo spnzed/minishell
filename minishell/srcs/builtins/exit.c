@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:51:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:52:57 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	ft_print_quotes_arg(char *split_cmd)
 	if (space_and_num(new) == 0)
 	{
 		new = ft_strtrim(new, " ");
-		//write(1, "exit\n", 6); // el mpanic lo da como bueno sin, bash lo necesita
+		//write(1, "exit\n", 6); 
+		// el mpanic lo da como bueno sin, bash lo necesita
 		exit (ft_atoi(new));
 	}
 	else
@@ -77,24 +78,6 @@ void	ft_normin(char **split_cmd)
 	nbr = (uint8_t)tmp_nbr;
 	ft_arrfree(split_cmd, ft_arrlen(split_cmd));
 	exit (nbr);
-}
-
-int	ft_is_bigger_maxll(char *str)
-{
-	int	negative;
-
-	negative = 0;
-	if (str[0] == '-')
-		negative = 1;
-	if (ft_strcmp(str, "-9223372036854775808") == 0)
-		return (0);
-	else if (ft_strcmp(str, "9223372036854775807") == 0)
-		return (0);
-	else if (ft_strcmp(str, "-9223372036854775808") > 0 && negative == 1)
-		return (1);
-	else if (ft_strcmp(str, "9223372036854775807") > 0)
-		return (1);
-	return (0);
 }
 
 int	ft_exit(t_info *data, char **split_cmd)

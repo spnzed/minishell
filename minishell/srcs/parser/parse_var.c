@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:47:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 18:00:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static char	*put_status(t_info *data, char *var)
 	return (result);
 }
 
-static t_environment	*assign_var(t_environment *list_env, char *var)
+static t_env	*assign_var(t_env *list_env, char *var)
 {
-	t_environment	*top;
+	t_env	*top;
 
 	top = list_env;
 	while (top)
@@ -42,7 +42,7 @@ char	*parse_var(t_info *data)
 {
 	char			*var;
 	char			*res;
-	t_environment	*env;
+	t_env	*env;
 
 	var = search_var(data->cmd_line);
 	if (var && ft_strlen(var))

@@ -6,18 +6,18 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 18:14:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_environment	*start_sig(t_list *env)
+t_env	*start_sig(t_list *env)
 {
 	int				i;
 	int				len;
-	t_environment	*begin;
-	t_environment	*new_env;
+	t_env	*begin;
+	t_env	*new_env;
 
 	begin = NULL;
 	while (env)
@@ -102,9 +102,9 @@ static t_list	*start_env(char **env)
 	return (begin);
 }
 
-static char	*root_pwd(t_environment *signals_env)
+static char	*root_pwd(t_env *signals_env)
 {
-	t_environment	*temp;
+	t_env	*temp;
 	char			*root;
 
 	temp = signals_env;

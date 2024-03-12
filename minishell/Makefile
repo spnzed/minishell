@@ -62,7 +62,9 @@ BUILTINS		=	cd.c \
 					export.c \
 					is_builtin.c \
 					pwd.c \
-					unset.c
+					unset.c \
+					utils_built.c \
+					utils_export.c
 
 LEXER			=	def_type.c \
 					init_data.c \

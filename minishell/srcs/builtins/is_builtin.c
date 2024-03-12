@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:44:47 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:10:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ int	normalize_cmd(t_info *data)
 	return (0);
 }
 
+static int	is_builtin_two(t_info *data)
+{
+	if (ft_strcmp(data->one_cmd[0], "exit") == 0)
+		return (4);
+	else if (check_complex_cmd(data->one_cmd[0], "cd", 2) == 0)
+		return (5);
+	else if (check_complex_cmd(data->one_cmd[0], "export", 6) == 0)
+		return (6);
+	else if (check_complex_cmd(data->one_cmd[0], "unset", 5) == 0)
+		return (7);
+	return (0);
+}
+
 int	is_builtin(t_info *data)
 {
 	int	normalized;
@@ -71,14 +84,8 @@ int	is_builtin(t_info *data)
 	else if (check_complex_cmd(data->one_cmd[0], "echo", 4) == 0
 		|| check_complex_cmd(data->one_cmd[0], "echo -n", 7) == 0)
 		return (3);
-	else if (ft_strcmp(data->one_cmd[0], "exit") == 0)
-		return (4);
-	else if (check_complex_cmd(data->one_cmd[0], "cd", 2) == 0)
-		return (5);
-	else if (check_complex_cmd(data->one_cmd[0], "export", 6) == 0)
-		return (6);
-	else if (check_complex_cmd(data->one_cmd[0], "unset", 5) == 0)
-		return (7);
+	if (is_builtin_two(data) != 0)
+		return (is_builtin_two(data));
 	else if (ft_strlen(data->one_cmd[0]) > 0)
 	{
 		data->exit_id = 127;

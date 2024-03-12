@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:49:43 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:49:25 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	bool	str_nflag(char *str)
 	return (true);
 }
 
-static int	echo_little_cases(char *line, char *HOME, int i)
+static int	echo_home(char *line, char *HOME, int i)
 {
 	if (line[0] == '~')
 	{
@@ -45,75 +45,109 @@ static int	echo_little_cases(char *line, char *HOME, int i)
 	return (i);
 }
 
+// static int	echo_prev_one(t_info *data, t_echo e, char **line)
+// {
+// 	while (line[e.i] && str_nflag(line[e.i]) == true)
+// 	{
+// 		e.n_option = str_nflag(line[e.i]);
+// 		e.i++;
+// 		e.n++;
+// 	}
+// 	if (line[e.i])
+// 		e.i = echo_home(line[e.i], data->home, e.i);
+// 	else
+// 	{
+// 		if (e.n_option == false)
+// 			return(2);
+// 		else
+// 			return (0);
+// 	}
+// 	if (e.i > 99)
+// 	{
+// 		e.i -= 99;
+// 		e.j++;
+// 	}
+// 	if (e.i == e.n + 2 && !line[e.i])
+// 	{
+// 		if (e.n_option == false)
+// 			return (2);
+// 		else
+// 			return (0);
+// 	}
+// 	return (1);
+// }
+// static void	echo_prev_two()
+// {	
+// }
+
 int	ft_echo(t_info	*data, char **line)
 {
-	int		i;
-	int		j;
-	int		n;
-	int		len;
-	char	quote;
-	bool	n_option;
+	t_echo e;
 
-	i = 1;
-	j = 0;
-	n = 0;
-	len = ft_arrlen(line);
-	n_option = false;
-	while (line[i] && str_nflag(line[i]) == true)
+	e.i = 1;
+	e.j = 0;
+	e.n = 0;
+	e.len = ft_arrlen(line);
+	e.n_option = false;
+	// if (echo_prev_one(data, e, line) == 0)
+	// 	return (0);
+	// else if (echo_prev_one(data, e, line) == 2)
+	// 	return (printf("\n"), 0);
+	while (line[e.i] && str_nflag(line[e.i]) == true)
 	{
-		n_option = str_nflag(line[i]);
-		i++;
-		n++;
+		e.n_option = str_nflag(line[e.i]);
+		e.i++;
+		e.n++;
 	}
-	if (line[i])
-		i = echo_little_cases(line[i], data->home, i);
+	if (line[e.i])
+		e.i = echo_home(line[e.i], data->home, e.i);
 	else
 	{
-		if (n_option == false)
+		if (e.n_option == false)
 			return (printf("\n"), 0);
 		else
 			return (0);
 	}
-	if (i > 99)
+	if (e.i > 99)
 	{
-		i -= 99;
-		j++;
+		e.i -= 99;
+		e.j++;
 	}
-	if (i == n + 2 && !line[i])
+	if (e.i == e.n + 2 && !line[e.i])
 	{
-		if (n_option == false)
+		if (e.n_option == false)
 			return (printf("\n"), 0);
 		else
 			return (0);
 	}
-	while (len > i)
+	while (e.len > e.i)
 	{
-		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n'
-				&& line[i][j] != '\t')
+		while (line[e.i][e.j] && line[e.i][e.j] != ' ' && line[e.i][e.j] != '\n'
+				&& line[e.i][e.j] != '\t')
 		{
-			if (line[i][j] == '~' && line[i][j - 1] == ' ')
+			if (line[e.i][e.j] == '~' && line[e.i][e.j - 1] == ' ')
 			{
 				printf("%s", data->home);
-				j++;
+				e.j++;
 			}
-			if (line[i][j] == '\"' || line[i][j] == '\'')
+			if (line[e.i][e.j] == '\"' || line[e.i][e.j] == '\'')
 			{
-				quote = line[i][j];
-				j++;
-				while (line[i][j] && quote != line[i][j])
-					printf("%c", line[i][j++]);
-				if (quote == line[i][j])
-					j++;
+				e.quote = line[e.i][e.j];
+				e.j++;
+				while (line[e.i][e.j] && e.quote != line[e.i][e.j])
+					printf("%c", line[e.i][e.j++]);
+				if (e.quote == line[e.i][e.j])
+					e.j++;
 			}
 			else
-				printf("%c", line[i][j++]);
+				printf("%c", line[e.i][e.j++]);
 		}
-		if (!line[i][j] && i != len - 1)
+		if (!line[e.i][e.j] && e.i != e.len - 1)
 			printf(" ");
-		i++;
-		j = 0;
+		e.i++;
+		e.j = 0;
 	}
-	if (n_option == false)
+	if (e.n_option == false)
 		printf("\n");
 	data->exit_id = 0;
 	return (0);

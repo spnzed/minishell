@@ -48,13 +48,13 @@ typedef enum e_cmd_type
 //	STRUCTS
 
 //	Token
-typedef struct s_environment
+typedef struct s_env
 {
 	char					*full_line;
 	char					*signal;
 	char					*content;
-	struct s_environment	*next;
-}					t_environment;
+	struct s_env			*next;
+}					t_env;
 
 //	Data
 typedef struct s_info
@@ -92,8 +92,8 @@ typedef struct s_info
 	t_list			*list_out_append;
 	t_list			*list_heredocs;
 
-	t_environment	*signals_env;
-	t_environment	*list_exp;
+	t_env			*signals_env;
+	t_env			*list_exp;
 
 	char			*string_infile;
 	char			*string_outfile;
@@ -113,6 +113,16 @@ typedef struct s_info
 	struct termios	o_settings;
 
 }					t_info;
+
+typedef struct s_echo
+{
+	int		i;
+	int		j;
+	int		n;
+	int		len;
+	char	quote;
+	bool	n_option;
+}					t_echo;
 
 typedef struct s_token
 {

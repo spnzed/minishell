@@ -6,15 +6,15 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 18:58:51 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_environment	*value_export(t_environment *signals_env, char *value)
+t_env	*value_export(t_env *signals_env, char *value)
 {
-	t_environment	*head;
+	t_env	*head;
 
 	head = signals_env;
 	while (head != NULL)
@@ -26,9 +26,9 @@ t_environment	*value_export(t_environment *signals_env, char *value)
 	return (NULL);
 }
 
-t_environment	*var_export(t_environment *signals_env, char *var)
+t_env	*var_export(t_env *signals_env, char *var)
 {
-	t_environment	*head;
+	t_env	*head;
 
 	head = signals_env;
 	while (head)
@@ -40,9 +40,9 @@ t_environment	*var_export(t_environment *signals_env, char *var)
 	return (0);
 }
 
-int	var_found_env(t_environment *signals_env, char *var)
+int	var_found_env(t_env *signals_env, char *var)
 {
-	t_environment	*head;
+	t_env	*head;
 
 	head = signals_env;
 	while (head)

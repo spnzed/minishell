@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:49:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:23:16 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
 int				syntax_error(t_info *data);
-t_environment	*value_export(t_environment *signals_env, char *value);
-t_environment	*var_export(t_environment *signals_env, char *var);
-int				var_found_env(t_environment *signals_env, char *var);
+t_env			*value_export(t_env *signals_env, char *value);
+t_env			*var_export(t_env *signals_env, char *var);
+int				var_found_env(t_env *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
 t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ int				**count_quotes(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);
-int				var_found(t_environment *list_env, char *var);
+int				var_found(t_env *list_env, char *var);
 char			*parse_var(t_info *data);
 char			*export_id(char *var);
 int				redir_syntax(char *line, t_info *data);
@@ -89,7 +89,7 @@ int				exec_one_cmd(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				comprove_stdin(t_info *data, t_list **in_files);
 int				comprove_stdout(t_info *data);
-char			*find_cmd_route(t_environment *lst_env, char *cmd);
+char			*find_cmd_route(t_env *lst_env, char *cmd);
 void			get_redirections(char *cmd, t_info *data);
 void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd);
@@ -115,6 +115,13 @@ int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
 int				permission_dir(t_info *data, char *file, char **split_cmd);
+int				ft_is_bigger_maxll(char *str);
+int				search_on_lists(t_info *data, t_env *list, char *str);
+int				ft_envsize(t_env *env);
+t_env			*order_exp(t_env *exp);
+void			sub_var(t_list *list, char *signal, char *content);
+int				ft_envsize(t_env *lst);
+char			**ft_env_to_array(t_env *head);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
@@ -137,17 +144,17 @@ char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
 char			*ft_after_set(char *str, char set);
 //				new env_utils
-t_environment	*ft_envnew(void *content);
-void			ft_envclear(t_environment **env, void (*del)(void*));
-void			ft_envadd_back(t_environment **env, t_environment *new);
+t_env			*ft_envnew(void *content);
+void			ft_envclear(t_env **env, void (*del)(void*));
+void			ft_envadd_back(t_env **env, t_env *new);
 int				count_words(char *str);
-void			ft_free_environment(t_environment *head);
-t_environment	*ft_copy_environment(const t_environment *src);
+void			ft_free_env(t_env *head);
+t_env			*ft_copy_env(const t_env *src);
 void			set_var(t_list *head, char *id, char *value);
 void			add_variable_list(t_list *head, char *value);
-void			free_environment(t_environment *env);
+void			free_env(t_env *env);
 ////////////////////////////////////////////////////////////////////////////////
-t_environment	*start_sig(t_list *env);
+t_env			*start_sig(t_list *env);
 t_list			*order_env(t_list *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:46:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:10:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ int	cd_error_msg(t_info *data, char *arg, char *str)
 	ft_putstr_fd(arg, 2);
 	data->exit_id = 1;
 	return (0);
-}
-
-void	set_directory(t_list *list_env, char *var)
-{
-	char	*path;
-
-	path = (char *)malloc(sizeof(char) * 4097);
-	getcwd(path, 4097);
-	set_var(list_env, var, path);
-	if (path)
-		free(path);
 }
 
 int	cd_error_file_too_long(t_info *data, char *file)

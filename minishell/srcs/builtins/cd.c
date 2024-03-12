@@ -6,11 +6,22 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 18:47:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:10:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	set_directory(t_list *list_env, char *var)
+{
+	char	*path;
+
+	path = (char *)malloc(sizeof(char) * 4097);
+	getcwd(path, 4097);
+	set_var(list_env, var, path);
+	if (path)
+		free(path);
+}
 
 static	void	ft_chdir(t_info	*data, char *directory, char **split_cmd)
 {
