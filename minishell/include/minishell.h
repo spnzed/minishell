@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:53:47 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:02:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char			*put_variable(char *line, char *var, char *replace);
 char			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
+int				num_quotes(char *str);
+char			*clean_quotes(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(void);
 void			do_builtin(t_info *data, int builtin, char **split_cmd);

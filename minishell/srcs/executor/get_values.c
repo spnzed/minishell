@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 16:09:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:08:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,32 @@ static char	*get_next_filename(char *cmd)
 {
 	int		i;
 	int		end;
+	int		is_quotes;
 	char	*filename;
-	char	*clean_redirs;
+	char	*redirs_cleaned;
+	char	*quotes_cleaned;
 	char	**split;
 
 	i = 0;
 	while (cmd[i] == '<' || cmd[i] == '>' || ft_isspace(cmd[i]))
 		i++;
 	end = get_next_redir(&cmd[i], i);
-	clean_redirs = ft_substr(cmd, i, end - 0);
-	split = split_quotes(clean_redirs);
-	if (!split)
-		return (NULL);
-	filename = ft_strdup(split[0]);
-	ft_arrfree(split, ft_arrlen(split));
+	redirs_cleaned = ft_substr(cmd, i, end - 0);
+	is_quotes = num_quotes(redirs_cleaned);
+	if (!is_quotes)
+	{
+		split = split_quotes(redirs_cleaned);
+		if (!split)
+			return (NULL);
+		filename = ft_strdup(split[0]);
+		ft_arrfree(split, ft_arrlen(split));
+	}
+	else
+	{
+		quotes_cleaned = clean_quotes(redirs_cleaned);
+		filename = ft_strdup(quotes_cleaned);	
+	}
+	//printf("CMD |%s|\n", filename);
 	return (filename);
 }
 

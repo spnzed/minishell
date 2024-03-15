@@ -80,6 +80,7 @@ PARSER 			=	parse_var.c \
 
 EXECUTOR		=	add_cmd.c \
 					call_childs.c \
+					clean_quotes.c \
 					clean_redir.c \
 					ctrl_d.c \
 					display_term_message.c \
