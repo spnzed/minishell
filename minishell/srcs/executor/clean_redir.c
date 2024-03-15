@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:42:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:09:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static char	*remove_redir(char *str, int pos)
 
 	len = ft_strlen(str);
 	end = get_end_redir(str, pos);
+	if (str[end - 1] == ' ')
+		end--;
 	if (pos == 0)
 		clean = ft_substr(str, end, len);
 	else if (len == end)
