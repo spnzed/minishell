@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:27:36 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:42:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	parser(t_info *data)
 {
 	data->cmd_nbr = cmd_count(data->cmd_line);
 	if (syntax_error(data))
-		exit (1);
+		return ;
 	//data->index_quotes = count_quotes;
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/12 18:20:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:24:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int handle_redirect(t_info *data)
 {
 	if (comprove_stdout(data))
 		return (1);
-	if (comprove_stdin(data, &data->list_in_files))
+	if (comprove_stdin(data))
 		return (1);
 	if (data->is_heredoc)
 		handle_heredoc(data);
