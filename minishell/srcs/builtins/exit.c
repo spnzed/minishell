@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/12 15:52:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:48:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static void	ft_print_quotes_arg(char *split_cmd)
 	if (space_and_num(new) == 0)
 	{
 		new = ft_strtrim(new, " ");
-		//write(1, "exit\n", 6); 
-		// el mpanic lo da como bueno sin, bash lo necesita
+		//write(1, "exit\n", 6); // bash lo necesita mpanic no lo quiere
 		exit (ft_atoi(new));
 	}
 	else

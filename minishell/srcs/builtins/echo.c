@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/12 15:49:25 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:53:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,54 +45,8 @@ static int	echo_home(char *line, char *HOME, int i)
 	return (i);
 }
 
-// static int	echo_prev_one(t_info *data, t_echo e, char **line)
-// {
-// 	while (line[e.i] && str_nflag(line[e.i]) == true)
-// 	{
-// 		e.n_option = str_nflag(line[e.i]);
-// 		e.i++;
-// 		e.n++;
-// 	}
-// 	if (line[e.i])
-// 		e.i = echo_home(line[e.i], data->home, e.i);
-// 	else
-// 	{
-// 		if (e.n_option == false)
-// 			return(2);
-// 		else
-// 			return (0);
-// 	}
-// 	if (e.i > 99)
-// 	{
-// 		e.i -= 99;
-// 		e.j++;
-// 	}
-// 	if (e.i == e.n + 2 && !line[e.i])
-// 	{
-// 		if (e.n_option == false)
-// 			return (2);
-// 		else
-// 			return (0);
-// 	}
-// 	return (1);
-// }
-// static void	echo_prev_two()
-// {	
-// }
-
-int	ft_echo(t_info	*data, char **line)
+static int	echo_prev_one(t_info *data, t_echo e, char **line)
 {
-	t_echo e;
-
-	e.i = 1;
-	e.j = 0;
-	e.n = 0;
-	e.len = ft_arrlen(line);
-	e.n_option = false;
-	// if (echo_prev_one(data, e, line) == 0)
-	// 	return (0);
-	// else if (echo_prev_one(data, e, line) == 2)
-	// 	return (printf("\n"), 0);
 	while (line[e.i] && str_nflag(line[e.i]) == true)
 	{
 		e.n_option = str_nflag(line[e.i]);
@@ -104,7 +58,7 @@ int	ft_echo(t_info	*data, char **line)
 	else
 	{
 		if (e.n_option == false)
-			return (printf("\n"), 0);
+			return(2);
 		else
 			return (0);
 	}
@@ -116,10 +70,53 @@ int	ft_echo(t_info	*data, char **line)
 	if (e.i == e.n + 2 && !line[e.i])
 	{
 		if (e.n_option == false)
-			return (printf("\n"), 0);
+			return (2);
 		else
 			return (0);
 	}
+	return (1);
+}
+
+int	ft_echo(t_info	*data, char **line)
+{
+	t_echo	e;
+
+	e.i = 1;
+	e.j = 0;
+	e.n = 0;
+	e.len = ft_arrlen(line);
+	e.n_option = false;
+	if (echo_prev_one(data, e, line) == 0)
+		return (0);
+	else if (echo_prev_one(data, e, line) == 2)
+		return (printf("\n"), 0);
+	// while (line[e.i] && str_nflag(line[e.i]) == true)
+	// {
+	// 	e.n_option = str_nflag(line[e.i]);
+	// 	e.i++;
+	// 	e.n++;
+	// }
+	// if (line[e.i])
+	// 	e.i = echo_home(line[e.i], data->home, e.i);
+	// else
+	// {
+	// 	if (e.n_option == false)
+	// 		return (printf("\n"), 0);
+	// 	else
+	// 		return (0);
+	// }
+	// if (e.i > 99)
+	// {
+	// 	e.i -= 99;
+	// 	e.j++;
+	// }
+	// if (e.i == e.n + 2 && !line[e.i])
+	// {
+	// 	if (e.n_option == false)
+	// 		return (printf("\n"), 0);
+	// 	else
+	// 		return (0);
+	// }
 	while (e.len > e.i)
 	{
 		while (line[e.i][e.j] && line[e.i][e.j] != ' ' && line[e.i][e.j] != '\n'
