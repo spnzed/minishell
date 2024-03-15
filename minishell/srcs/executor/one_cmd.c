@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/15 17:47:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:10:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 {
 	char *HOME;
 	
+	if (!splitted_cmd[0])
+		return ;
 	HOME = get_var_list(data->list_env, "HOME")->content + 5;
 	if (ft_strcmp(splitted_cmd[0], " ") == 0)
 		put_error(data," line 1: ", ": command not found\n", 127);
@@ -45,26 +47,34 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 	}
 }
 
+static bool	comprove_redirs(t_info *data)
+{
+	if (!data->is_append && !data->is_outfile && !data->is_infile && !data->is_append)
+		return (false);
+	return (true);
+}
+
 static void	exec_one(t_info *data)
 {
 	char	*path;
 
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
-	if (!ft_isstrprint(data->one_cmd[0]))
+	if (handle_redirect(data))
+		exit (1);
+	if (!ft_isstrprint(data->one_cmd[0]) && !comprove_redirs(data))
 		put_error(data, data->one_cmd[0], ": command not found\n", 127);
 	filter_cmd(data, &data->one_cmd[0]);
 	path = find_cmd_route(data->signals_env, data->one_cmd[0]);
-	if (!path)
+	if (!path && !comprove_redirs(data))
 	{
 		if (ft_strchr(data->one_cmd[0], '/'))
 			put_error(data, data->one_cmd[0], ": No such file or directory\n", 1); 
 		else
 			put_error(data, data->one_cmd[0], ": command not found\n", 127);
 	}
-	if (handle_redirect(data))
-		exit (1);
 	execve(path, data->one_cmd, data->env);
+	if (!comprove_redirs(data))
 	put_error(data, data->one_cmd[0], ": command not found\n", 127);
 	exit (127);
 }

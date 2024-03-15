@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 17:50:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:54:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	 get_redirections(char *cmd, t_info *data)
 
 	simple = 0;
 	complex = 0;
-	get_values_loop(cmd, 0, data, &simple, &complex);
+	get_values_loop(cmd, -1, data, &simple, &complex);
 }

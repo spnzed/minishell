@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 18:08:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:57:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static char	*get_next_filename(char *cmd)
 		quotes_cleaned = clean_quotes(redirs_cleaned);
 		filename = ft_strdup(quotes_cleaned);	
 	}
-	//printf("CMD |%s|\n", filename);
 	return (filename);
 }
 

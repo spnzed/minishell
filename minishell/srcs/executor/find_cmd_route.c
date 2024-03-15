@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:21:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:43:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 
 	i = -1;
 
-	
+	if (!cmd)
+		return (NULL);
 	line = handle_path(lst_env, cmd, NULL);
 	if (!line)
 		return (NULL);
