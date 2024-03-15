@@ -23,13 +23,13 @@ int	get_redir_end(char *str, t_info *data)
 			size--;
 		if (str[size] == '<' || str[size] == '>')
 		{
-			put_error(data, 0, "syntax error near unexpected token `newline'\n", 
+			put_error_prev(data, 0, "syntax error near unexpected token `newline'\n", 
 				2);
 		}
 	}
 	if (str[size] == '<' || str[size] == '>')
 	{
-		put_error(data, 0, "syntax error near unexpected token `newline'\n", 
+		put_error_prev(data, 0, "syntax error near unexpected token `newline'\n", 
 			2);
 	}
 	return (0);

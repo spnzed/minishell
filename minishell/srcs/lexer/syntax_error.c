@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 15:54:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:54:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int pipe_syntax(char *line, t_info *data)
 		return(0);
 	if (line[0] == '|')
 	{
-		put_error(data, 0, " : syntax error near unexpected token `|'\n", 2);
+		put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
 	//printf("size: %d\n", size);
@@ -76,7 +76,7 @@ int	syntax_error(t_info *data)
 		if (double_redir == 2)
 		{
 			free(data->cmd_line);
-			exit (2);
+			return (2);
 		}
 		return(free(data->cmd_line), 1);
 	}

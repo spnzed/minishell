@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:28:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:53:47 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int				get_redir_end(char *str, t_info *data);
 int				get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
 void			put_error(t_info *data, char *cmd, char *str, int ret);
+void			put_error_prev(t_info *data, char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);
 void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
