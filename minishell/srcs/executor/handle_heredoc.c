@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 15:39:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:50:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	heredoc_loop(t_list *head, int fd)
 			if (head->next)
 			{
 				remove_heredoc();
-				fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
 				if (fd == -1)
 					return (perror ("open"));
 			}
@@ -110,9 +110,9 @@ void	handle_heredoc(t_info *data)
 
 	signal(SIGINT, signal_handler_heredoc);
 	signal(SIGQUIT, signal_handler_heredoc);
-	fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"));
-	temp = data->list_heredocs;
+	temp = data->list_in_files;
 	heredoc_loop(temp, fd);
 }
