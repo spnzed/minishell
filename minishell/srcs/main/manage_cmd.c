@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:54:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:19:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void expander(t_info *data)
 		data->cmd_line = parse_var(data);
 	if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
 		printf("ñ");
-	// data->cmd_nbr = cmd_count(data->cmd_line);
 }
 
 static void executor(t_info *data)

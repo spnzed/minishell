@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 13:01:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:17:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void	redir_add_list(char *filename, t_list **head)
 {
 	t_list	*temp;
 
-	temp = ft_lstnew((char *)filename);
-	if (!temp)
-		return ;
+	temp = ft_lstnew((void *)filename);
 	ft_lstadd_back(head, temp);
 }
 
@@ -65,7 +63,23 @@ static char	*get_next_filename(char *cmd)
 	return (filename);
 }
 
-void	get_value_infile(t_info *data, char *cmd, t_type_redir code)
+void	get_value_heredoc(t_info *data, char *cmd)
+{
+	char	*filename;
+	t_list	*aux = data->list_heredocs;
+	
+	filename = get_next_filename(cmd);
+	if (filename)
+	{
+		redir_add_list(filename, &aux);
+		data->list_heredocs = aux;
+		data->string_infile = aux->content;
+		data->is_heredoc = true;
+		data->is_infile = false;
+	}
+}
+
+void	get_value_infile(t_info *data, char *cmd)
 {
 	char	*filename;
 
@@ -74,16 +88,8 @@ void	get_value_infile(t_info *data, char *cmd, t_type_redir code)
 	{
 		redir_add_list(filename, &data->list_in_files);
 		data->string_infile = filename;
-		if (code == HEREDOC_INFILE)
-		{
-			data->is_heredoc = true;
-			data->is_infile = false;
-		}
-		else
-		{
-			data->is_heredoc = false;
-			data->is_infile = true;
-		}
+		data->is_heredoc = false;
+		data->is_infile = true;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:21:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 12:59:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:34:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ int	comprove_stdin(t_info *data)
 	head = data->list_in_files;
 	while (head)
 	{
-		if (!head->heredoc)
+		if (access(head->content, F_OK) == 0)
 		{
-			if (access(head->content, F_OK) == 0)
-			{
-				if (access(head->content, W_OK) != 0)
-					return (put_error(data, head->content, ": Permission denied\n",
-						-1), 1);
-			}
-			else
-			{
-				return (put_error(data, head->content, ": No such file or directory\n",
+			if (access(head->content, W_OK) != 0)
+				return (put_error(data, head->content, ": Permission denied\n",
 					-1), 1);
-			}
+		}
+		else
+		{
+			return (put_error(data, head->content, ": No such file or directory\n",
+				-1), 1);
 		}
 		head = head->next;
 	}

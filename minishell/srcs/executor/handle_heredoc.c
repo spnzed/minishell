@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/18 15:50:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:33:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static void	heredoc_loop(t_list *head, int fd)
 			break ;
 		if (ft_strcmp(line, head->content) == 0)
 		{
-			close (fd);
 			if (head->next)
 			{
+				close (fd);
 				remove_heredoc();
 				fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
 				if (fd == -1)
@@ -100,7 +100,6 @@ static void	heredoc_loop(t_list *head, int fd)
 			putstr_newl_fd(line, fd);
 		free (line);
 	}
-	close(fd);
 }
 
 void	handle_heredoc(t_info *data)
@@ -113,6 +112,7 @@ void	handle_heredoc(t_info *data)
 	fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"));
-	temp = data->list_in_files;
+	temp = data->list_heredocs;
 	heredoc_loop(temp, fd);
+	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:38:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 18:54:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:17:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	get_values_loop(char *cmd, int i, t_info *data, int *simple,
 			&& !*complex && !*simple)
 		{
 			i++;
-			get_value_infile(data, &cmd[i], SIMPLE_INFILE);
+			get_value_infile(data, &cmd[i]);
 		}
 		//	if "<<" y no estamos en comillas. Proporcionar entrada (multilineal) desde un archivo al programa
 		else if (cmd[i] == '<' && cmd[i + 1] == '<'
 			&& !*complex && !*simple)
 		{
 			i++;
-			get_value_infile(data, &cmd[i], HEREDOC_INFILE);
+			get_value_heredoc(data, &cmd[i]);
 		}
 		//	if ">" y no estamos en comillas. Redirigir salida estandar de un programa a un archivo
 		else if (cmd[i] == '>' && cmd[i + 1] != '>'

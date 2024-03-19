@@ -85,6 +85,7 @@ EXECUTOR		=	add_cmd.c \
 					ctrl_d.c \
 					display_term_message.c \
 					exec_cmds.c \
+					exec_one_cmd.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
@@ -95,8 +96,7 @@ EXECUTOR		=	add_cmd.c \
 					handle_redirect.c \
 					parent_process.c \
 					prepare_to_exec.c \
-					split_quotes.c \
-					one_cmd.c
+					split_quotes.c
 
 UTILS		 	=	check_complex_cmd.c \
 					cmd_count.c \
