@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/19 12:12:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:36:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,7 @@ static	void	export_equal(t_info *data, t_list *new)
 	if (ft_strchr(data->str_trim, '"'))
 		data->str_trim = ft_remove_quotes_str(data->str_trim);
 	if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
-	{
-		new = ft_lstnew(data->str_trim);
-		ft_lstadd_back(&data->list_env, new);
 		return ;
-	}
 	else
 	{
 		new = ft_lstnew(data->str_trim);
