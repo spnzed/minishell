@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:22:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 16:36:17 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:16:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int	ctrl_d(t_info *data)
 {
 	if (isatty(STDIN_FILENO))
 		write(2, "exit\n", 6);
-	exit(data->exit_id); // New add
+	exit(data->exit_id);
 }

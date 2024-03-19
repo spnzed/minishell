@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void put_error(t_info *data, char *cmd, char *str, int ret)
+void	put_error(t_info *data, char *cmd, char *str, int ret)
 {
 	ft_putstr_fd("minishell: ", 2);
 	if (cmd)

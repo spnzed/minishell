@@ -27,16 +27,16 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
-static void	one_command (t_info *data)
+static void	one_command(t_info *data)
 {
 	prepare_to_exec_one(data);
 	exec_one_cmd(data);
 }
 
-static void	multiple_commands (t_info *data)
+static void	multiple_commands(t_info *data)
 {
-	prepare_to_exec(data); //prepare_to_exec_mul(data);
-	exec_cmds(data); //exec_mul_cmd(data);
+	prepare_to_exec(data);
+	exec_cmds(data);
 }
 
 static void	parser(t_info *data)
@@ -45,16 +45,15 @@ static void	parser(t_info *data)
 	syntax_error(data);
 }
 
-static void expander(t_info *data)
+static void	expander(t_info *data)
 {
 	while (search_var(data->cmd_line))
 		data->cmd_line = parse_var(data);
 	if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
 		printf("ñ");
-	// data->cmd_nbr = cmd_count(data->cmd_line);
 }
 
-static void executor(t_info *data)
+static void	executor(t_info *data)
 {
 	if (data->cmd_nbr == 1)
 		one_command(data);

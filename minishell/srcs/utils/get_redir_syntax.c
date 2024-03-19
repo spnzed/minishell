@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:13 by aaespino          #+#    #+#             */
 /*   Updated: 2024/03/15 15:03:18 by aaespino         ###   ########.fr       */
@@ -12,9 +12,7 @@
 
 #include "minishell.h"
 
-// Revisar ultimo if
-int	get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, 
-	int *r_left, int *r_right)
+int	get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right)
 {
 	if (c == '<' && !*complex && !*simple)
 		*r_left += 1;

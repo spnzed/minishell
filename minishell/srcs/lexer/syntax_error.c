@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-static int quotes_syntax(char *line)
+static int	quotes_syntax(char *line)
 {
-	int i;
-	int simple;
+	int	i;
+	int	simple;
 	int	complex;
 
 	i = -1;
@@ -27,31 +27,30 @@ static int quotes_syntax(char *line)
 	{
 		if ((line[i] == '\'') && (complex == 0 || (complex == 0 && simple != 0)))
 			simple++;
-		else if ((line[i] == '\"') && (simple % 2 == 0 
-			|| (simple == 0 && complex != 0)))
+		else if ((line[i] == '\"') && (simple % 2 == 0
+				|| (simple == 0 && complex != 0)))
 			complex++;
 	}
 	if ((simple == 0 && complex % 2 == 0)
 		|| (simple % 2 == 0 && complex == 0)
-		|| (simple % 2 == 0 && complex % 2 == 0 ))
+		|| (simple % 2 == 0 && complex % 2 == 0))
 		return (0);
 	else
 		return (1);
 }
 
-static int pipe_syntax(char *line, t_info *data)
+static int	pipe_syntax(char *line, t_info *data)
 {
 	int	size;
 
 	size = ft_strlen(line) - 1;
 	if (size <= 0)
-		return(0);
+		return (0);
 	if (line[0] == '|')
 	{
 		put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
-	//printf("size: %d\n", size);
 	if (line[size] == '|')
 	{
 		ft_putstr_fd("pipe>\n", 2);
@@ -62,23 +61,23 @@ static int pipe_syntax(char *line, t_info *data)
 
 int	syntax_error(t_info *data)
 {
-	int double_redir;
+	int	double_redir;
 
 	double_redir = 0;
 	if (quotes_syntax(data->cmd_line))
-		return(free(data->cmd_line), write(2, "quote>\n", 8));
+		return (free(data->cmd_line), write(2, "quote>\n", 8));
 	if (pipe_syntax(data->cmd_line, data) && data->cmd_nbr > 1)
-		return(free(data->cmd_line), 1);
+		return (free(data->cmd_line), 1);
 	double_redir = redir_syntax(data->cmd_line, data);
 	if (double_redir > 0 && (ft_strchr(data->cmd_line, '>')
-		|| ft_strchr(data->cmd_line, '<')))
+			|| ft_strchr(data->cmd_line, '<')))
 	{
 		if (double_redir == 2)
 		{
 			free(data->cmd_line);
 			return (2);
 		}
-		return(free(data->cmd_line), 1);
+		return (free(data->cmd_line), 1);
 	}
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:26:44 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/08 11:38:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:48:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ char	*ft_remove_quotes_str(char *str)
 	int		i;
 	int		x;
 	char	*copy;
-	
+
 	i = 0;
 	x = 0;
 	copy = (char *)malloc(sizeof ft_strlen(str) + 1);
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '\"' || str[i] == '\'')
 			i++;
@@ -33,5 +33,5 @@ char	*ft_remove_quotes_str(char *str)
 		}
 	}
 	copy[x] = '\0';
-	return(copy);
+	return (copy);
 }

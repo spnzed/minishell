@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   def_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/30 15:59:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:08:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static 	t_token_type	get_type(char *str)
+static t_token_type	get_type(char *str)
 {
 	if (str[0] == '&')
-		return(and);
+		return (and);
 	if (str[0] == '|')
-		return(pipeline);
+		return (pipeline);
 	if (str[0] == '<')
-		return(simple_redir_left);
+		return (simple_redir_left);
 	if (str[0] == '>')
-		return(simple_redir_right);
+		return (simple_redir_right);
 	if (str[0] == ';')
-		return(semicolon);
+		return (semicolon);
 	if (str[0] == '\"')
-		return(double_quote);
+		return (double_quote);
 	if (str[0] == '\'')
-		return(single_quote);
+		return (single_quote);
 	if (str[0] == '\\')
-		return(backslash);
+		return (backslash);
 	if (str[0] == '\f' || str[0] == '\n' || str[0] == '\r' || str[0] == '\t'
-			|| str[0] == '\v' || str[0] == ' ')
-		return(space);
+		|| str[0] == '\v' || str[0] == ' ')
+		return (space);
 	if (str[0] == '$')
-		return(variable);
+		return (variable);
 	if (str[0] == '\0')
-		return(literal);
-	return(literal);
+		return (literal);
+	return (literal);
 }
 
-static void		put_values(char *values, int i)
+static void	put_values(char *values, int i)
 {
 	if (i == 1)
 		values[0] = '&';
@@ -76,10 +76,10 @@ static void		put_values(char *values, int i)
 		values[0] = '\0';
 }
 
-static void		get_values(char **values)
+static void	get_values(char **values)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -95,7 +95,7 @@ static void		get_values(char **values)
 ** This function defines the type of token for the character inside token
 ** the type of token depend of table => g_tab_token
 */
-t_token_type		def_type(char charset)
+t_token_type	def_type(char charset)
 {
 	int				i;
 	char			*str;
@@ -112,8 +112,8 @@ t_token_type		def_type(char charset)
 		if (str[0] == charset)
 		{
 			type = get_type(&str[0]);
-				if (type == literal)
-					return (type);
+			if (type == literal)
+				return (type);
 			return (type);
 		}
 		i++;

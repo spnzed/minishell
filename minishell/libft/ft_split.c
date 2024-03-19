@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:30:06 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/20 19:21:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:14:22 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	count_w(const char *s, char c)
 
 char	*write_w(const char *str, int start, int end)
 {
-	int	i;
+	int		i;
 	char	*word;
 
 	i = 0;
@@ -56,8 +56,8 @@ char	*write_w(const char *str, int start, int end)
 
 void	put_w(char **array, const char *s, char c)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	int		activador;
 
 	i = 0;

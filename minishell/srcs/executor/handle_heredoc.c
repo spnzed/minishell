@@ -23,9 +23,9 @@
 	S_ISREG()	Verifica si un archivo es regular
 	unlink()	Elimina el archivo si es regular
 */
-void remove_heredoc(void)
+void	remove_heredoc(void)
 {
-	struct stat info;
+	struct stat	info;
 
 	if (access(HEREDOC, F_OK) != -1)
 	{
@@ -77,7 +77,7 @@ En el caso de 0644:
 */
 static void	heredoc_loop(t_list *head, int fd)
 {
-	char *line;
+	char	*line;
 
 	while (head)
 	{

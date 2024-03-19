@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
 /*   Updated: 2024/03/18 15:55:19 by aaespino         ###   ########.fr       */
@@ -17,10 +17,10 @@
 STDIN: es el flujo de entrada estándar usado para ingresar datos en un programa, 
 típicamente asociado al teclado.
 
-STDOUT: es el flujo de salida estándar utilizado para mostrar resultados y mensajes 
-de salida de un programa, comúnmente asociado a la pantalla o terminal.
+STDOUT: es el flujo de salida estándar utilizado para mostrar resultados y
+mensajes de salida de un programa, comúnmente asociado a la pantalla o terminal.
 
-/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 (O_WRONLY): Abre el archivo en modo escritura.
 (O_RDONLY): Abre el archivo en modo lectura.
@@ -31,15 +31,16 @@ finalmente
 (O_TRUNC): Trunca el archivo a longitud cero si existe
 (O_APPEND): Añade los datos al final del archivo.
 
-/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 stdout_to_out_file: redirigir stdout a un archivo, sobrescribiendo su contenido
 
-stdout_to_name_append: redirigir stdout a un archivo, añadiendo al final de su contenido
+stdout_to_name_append: redirigir stdout a un archivo, 
+						añadiendo al final de su contenido
 
 stdin_from_file: redirigir stdin desde un archivo
 
-/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 TLDR
 
@@ -53,7 +54,7 @@ TLDR
 	fd = open(filename, O_RDONLY);
 
 */
-static void handle_file(char *file, int open_code, int std_mode, int num)
+static void	handle_file(char *file, int open_code, int std_mode, int num)
 {
 	int	fd;
 
@@ -96,6 +97,7 @@ static void build_files(t_info *data)
 }
 
 int handle_redirect(t_info *data)
+
 {
 	if (comprove_stdout(data))
 		return (1);

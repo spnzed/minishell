@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_environment.c                                 :+:      :+:    :+:   */
+/*   copy_env.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-void	ft_free_environment(t_environment *head)
+void	ft_free_env(t_env *head)
 {
-	t_environment	*temp;
+	t_env	*temp;
 
 	while (head)
 	{
@@ -24,12 +24,12 @@ void	ft_free_environment(t_environment *head)
 	}
 }
 
-t_environment	*ft_copy_environment(const t_environment *src)
+t_env	*ft_copy_env(const t_env *src)
 {
-	t_environment	*head;
-	t_environment	*current_dest;
+	t_env	*head;
+	t_env	*current_dest;
 
-	head = malloc(sizeof(t_environment));
+	head = malloc(sizeof(t_env));
 	current_dest = head;
 	if (!src)
 		return (NULL);
@@ -43,10 +43,10 @@ t_environment	*ft_copy_environment(const t_environment *src)
 		src = src->next;
 		if (src)
 		{
-			current_dest->next = malloc(sizeof(t_environment));
+			current_dest->next = malloc(sizeof(t_env));
 			if (!current_dest->next)
 			{
-				ft_free_environment(head);
+				ft_free_env(head);
 				return (NULL);
 			}
 			current_dest = current_dest->next;
@@ -60,11 +60,11 @@ t_environment	*ft_copy_environment(const t_environment *src)
 }
 
 /*
-typedef struct		s_environment
+typedef struct		s_env
 {
 	char					*full_line;
 	char					*signal;
 	char					*content;
-	struct s_environment	*next;
-}					t_environment;
+	struct s_env	*next;
+}					t_env;
 */

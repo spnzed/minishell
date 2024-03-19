@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   files_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:21:35 by aaespino          #+#    #+#             */
 /*   Updated: 2024/03/15 13:22:19 by aaespino         ###   ########.fr       */

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
+static char	*handle_path(t_env *lst_env, char *cmd, char *line)
 {
 	t_environment *head;
 
@@ -52,7 +52,7 @@ static char	**handle_route(char *line, char *cmd)
 		Es decir quuiere dejar la iteracion hasta que encuentre
 		un archivo que existe
 */
-char	*find_cmd_route(t_environment *lst_env, char *cmd)
+char	*find_cmd_route(t_env *lst_env, char *cmd)
 {
 	int		i;
 	char	*ret;
@@ -67,16 +67,13 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	if (!line)
 		return (NULL);
 	route = handle_route(line, cmd);
-	
 	while (route[++i] && access(route[i], F_OK) == -1)
 		;
 	if (!route[i])
 	{
-		ret	= ft_strtrim(cmd, " ");
-		//ft_arrfree(route, ft_arrlen(route));
+		ret = ft_strtrim(cmd, " ");
 		return (ret);
 	}
 	ret = ft_strdup(route[i]);
-	//ft_arrfree(route, ft_arrlen(route) - 1);
 	return (ret);
 }

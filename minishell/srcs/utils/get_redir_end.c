@@ -14,8 +14,10 @@
 
 int	get_redir_end(char *str, t_info *data)
 {
-	int	size;
+	int		size;
+	char	*line;
 
+	line = "syntax error near unexpected token `newline'\n";
 	size = ft_strlen(str) - 1;
 	if (str[size] == ' ')
 	{

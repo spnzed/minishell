@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:59:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:37:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_envdelone(t_environment *env, void (*del)(void *))
+static void	ft_envdelone(t_env *env, void (*del)(void *))
 {
 	if (env)
 	{
@@ -24,11 +24,11 @@ static void	ft_envdelone(t_environment *env, void (*del)(void *))
 	}
 }
 
-t_environment	*ft_envnew(void *content)
+t_env	*ft_envnew(void *content)
 {
-	t_environment	*new_node;
+	t_env	*new_node;
 
-	new_node = malloc(sizeof(t_environment));
+	new_node = malloc(sizeof(t_env));
 	if (!new_node)
 		return (0);
 	new_node->full_line = content;
@@ -36,9 +36,9 @@ t_environment	*ft_envnew(void *content)
 	return (new_node);
 }
 
-void	ft_envclear(t_environment **env, void (*del)(void*))
+void	ft_envclear(t_env **env, void (*del)(void*))
 {
-	t_environment	*aux;
+	t_env	*aux;
 
 	if (!*env)
 		return ;
@@ -51,9 +51,9 @@ void	ft_envclear(t_environment **env, void (*del)(void*))
 	*env = 0;
 }
 
-void	ft_envadd_back(t_environment **env, t_environment *new)
+void	ft_envadd_back(t_env **env, t_env *new)
 {
-	t_environment	*aux;
+	t_env	*aux;
 
 	aux = *env;
 	if (*env)

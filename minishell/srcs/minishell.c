@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:28:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:19:39 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	no_interactive(char *str, t_info *data)
 	manage_cmd(data);
 }
 
-static void launch_mode(int argc, char **argv, t_info *data)
+static void	launch_mode(int argc, char **argv, t_info *data)
 {
 	if (argc == 3 && !ft_strncmp(argv[1], "-c", ft_strlen(argv[1])))
 		no_interactive(argv[2], data);
@@ -51,7 +51,7 @@ static void launch_mode(int argc, char **argv, t_info *data)
 
 static void	free_ev(t_info *data)
 {
-	t_environment	*head;
+	t_env	*head;
 	int				len;
 
 	head = data->signals_env;
@@ -71,9 +71,10 @@ static void	free_ev(t_info *data)
 	free(data->list_env);
 }
 
-int	main(int argc, char **argv, char **env) 
+int	main(int argc, char **argv, char **env)
 {
 	t_info	data;
+
 	lexer(&data, env);
 	launch_mode(argc, argv, &data);
 	free_ev(&data);

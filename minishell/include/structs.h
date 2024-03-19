@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/12 19:00:20 by aaespino         ###   ########.fr       */
-/*                                                                            */
+/*	*/
+/*	:::	::::::::	 */
+/*	 structs.h	:+:	:+:	:+:	 */
+/*	+:+ +:+	 +:+	 */
+/*	 By: pquintan <pquintan@student.42barcelona.	+#+	+:+	 +#+	*/
+/*	+#+#+#+#+#+	 +#+	 */
+/*	 Created: 2024/02/19 18:31:45 by aaespino	#+#	#+#	 */
+/*	 Updated: 2024/03/11 16:56:03 by pquintan	 ###	 ########.fr	 */
+/*
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
@@ -19,7 +19,7 @@ typedef enum e_token_type
 {
 	and,					//	'&&'
 	or,						//	'||'
-	semicolon,				// 	';'
+	semicolon,				//	';'
 	simple_redir_left,		//	'<'
 	simple_redir_right,		//	'>'
 	double_redir_left,		//	'<<'
@@ -57,13 +57,13 @@ typedef enum		e_type_redir
 //	STRUCTS
 
 //	Token
-typedef struct s_environment
+typedef struct s_env
 {
 	char					*full_line;
 	char					*signal;
 	char					*content;
-	struct s_environment	*next;
-}					t_environment;
+	struct s_env			*next;
+}					t_env;
 
 //	Data
 typedef struct s_info
@@ -83,15 +83,14 @@ typedef struct s_info
 	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-  char 			*str_trim;
-  char 			*root_path;
-  char 			**env;
-  char 			**one_cmd;
-  char 			**mul_cmds;
-  char 			**split_line;
-	char 			**cmd_split;
-  char 			**tab_var_env;
-
+	char			*str_trim;
+	char			*root_path;
+	char			**env;
+	char			**one_cmd;
+	char			**mul_cmds;
+	char			**split_line;
+	char			**cmd_split;
+	char			**tab_var_env;
 
 	t_list			*list_env;
 	t_list			*list_input;
@@ -102,8 +101,8 @@ typedef struct s_info
 	t_list			*list_out_append;
 	t_list			*list_heredocs;
 
-	t_environment	*signals_env;
-	t_environment	*list_exp;
+	t_env			*signals_env;
+	t_env			*list_exp;
 
 	char			*string_infile;
 	char			*string_outfile;
@@ -123,6 +122,16 @@ typedef struct s_info
 	struct termios	o_settings;
 
 }					t_info;
+
+typedef struct s_echo
+{
+	int		i;
+	int		j;
+	int		n;
+	int		len;
+	char	quote;
+	bool	n_option;
+}					t_echo;
 
 typedef struct s_token
 {
