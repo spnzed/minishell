@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 15:54:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:12:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ int	ft_export(t_info *data, char **split_cmd)
 	t_environment	*temp;
 	t_list			*new;
 	t_environment	*tmp;
+	int x = 0;
 
 	temp = data->list_exp;
 	new = NULL;
@@ -236,9 +237,30 @@ int	ft_export(t_info *data, char **split_cmd)
 		{
 			if (ft_strcmp(temp->signal, split_cmd[1]) == 0)
 			{
-				printf("declare -x %s", temp->signal);
+				printf("declare -x %s=", temp->signal);
 				if (temp->content != NULL)
-					printf("=\"%s\"\n", temp->content);
+				{
+					//printf("[%s]\n\n", temp->content);
+					while (temp->content[x])
+					{
+						printf("\"");
+						while (temp->content[x] != ' ' && temp->content[x])
+							printf("%c", temp->content[x++]);
+						printf("\"");
+						if (temp->content[x] == ' ')
+						{
+							x++;
+							printf("\ndeclare -x %s=", ft_after_set(ft_before_set(temp->content, '='), ' '));
+							printf("\"");
+							while(temp->content[x] != '=')
+								x++;
+							x++;
+							while (temp->content[x])
+								printf("%c", temp->content[x++]);//printf("\"%s\"\n", temp->content);
+							printf("\"\n");
+						}
+					}
+				}
 				else
 					printf("\n");			
 			}
