@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_complex_cmd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:48:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/02/21 18:46:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:53:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_complex_cmd(char *strbase, char *strcomp, int len)
 		x++;
 		base++;
 	}
-	//printf("x: %d, y: %d, len: %d, base:%d\n", x, y, len, base);
+	// printf("x: %d, y: %d, len: %d, base:%d\n", x, y, len, base);
 	if (x == len && y == x)//(x == len && y == len && y == x)
 		return(0);
 	else

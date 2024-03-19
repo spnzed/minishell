@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/19 14:36:19 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:55:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ static	void	export_equal(t_info *data, t_list *new)
 		return ;
 	else
 	{
+		//printf("[%s] | [%s]\n", signal, list->signal);
 		new = ft_lstnew(data->str_trim);
 		if (!new)
 		{
@@ -163,7 +164,7 @@ static	void	export_equal(t_info *data, t_list *new)
 			ft_lstadd_back(&data->list_env, new);
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
-		data->env = ft_env_to_array(data->list_exp); // no se si hace su funcion
+		data->env = ft_env_to_array(data->list_exp);
 	}
 }
 
@@ -212,6 +213,28 @@ static int export_valid(char **split_cmd)
 	return(1);
 }
 
+static int	strcmp_len(char *strbase, char *strcomp, int len)
+{
+	int x;
+	int y;
+	int base;
+	
+	x = 0;
+	y = 0;
+	base = 0;
+	while(strbase[base] && strcomp[x])
+	{
+		if(strbase[base] == strcomp[x])
+			y++;
+		base++;
+		x++;
+	}
+	if (y == len)
+		return(0);
+	else
+		return(1);
+}
+
 int	ft_export(t_info *data, char **split_cmd)
 {
 	t_environment	*temp;
@@ -231,20 +254,19 @@ int	ft_export(t_info *data, char **split_cmd)
 	{
 		while(temp)
 		{
-			if (ft_strcmp(temp->signal, split_cmd[1]) == 0)
+			if (strcmp_len(temp->signal, split_cmd[1], ft_strlen(split_cmd[1])) == 0)
 			{
-				printf("declare -x %s=", temp->signal);
-				if (temp->content != NULL)
+				if (ft_strlen(temp->content) > 0)
 				{
-					//printf("[%s]\n\n", temp->content);
 					while (temp->content[x])
 					{
-						printf("\"");
-						while (temp->content[x] != ' ' && temp->content[x])
-							printf("%c", temp->content[x++]);
-						printf("\"");
-						if (temp->content[x] == ' ')
+						if (ft_strchr(temp->content, ' '))
 						{
+							printf("declare -x %s=", temp->signal);
+							printf("\"");
+							while (temp->content[x] != ' ' && temp->content[x])
+								printf("%c", temp->content[x++]);
+							printf("\"");
 							x++;
 							printf("\ndeclare -x %s=", ft_after_set(ft_before_set(temp->content, '='), ' '));
 							printf("\"");
@@ -252,16 +274,20 @@ int	ft_export(t_info *data, char **split_cmd)
 								x++;
 							x++;
 							while (temp->content[x])
-								printf("%c", temp->content[x++]);//printf("\"%s\"\n", temp->content);
+								printf("%c", temp->content[x++]);
 							printf("\"\n");
 						}
+						else
+							printf("declare -x %s=\"%s\"\n", temp->signal, temp->content);
+						break ;
 					}
 				}
 				else
-					printf("\n");			
+					printf("declare -x %s\n", temp->signal);
 			}
 			temp = temp->next;
-		}	
+		}
+		return (0);
 	}
 	else if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
