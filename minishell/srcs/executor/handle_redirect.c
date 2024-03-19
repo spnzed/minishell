@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/18 15:55:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:55:36 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ static void build_files(t_info *data)
 
 int handle_redirect(t_info *data)
 {
+	if (data->is_heredoc)
+		handle_heredoc(data);
 	if (comprove_stdout(data))
 		return (1);
 	if (comprove_stdin(data))
 		return (1);
-	if (data->is_heredoc)
-		handle_heredoc(data);
 	build_files(data);
 	remove_heredoc();
 	return (0);

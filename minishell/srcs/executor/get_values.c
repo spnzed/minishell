@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 18:57:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:01:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	get_value_infile(t_info *data, char *cmd, t_type_redir code)
 		if (code == HEREDOC_INFILE)
 		{
 			data->is_heredoc = true;
-			data->is_outfile = false;	
+			data->is_infile = false;
 		}
 		else
 		{
 			data->is_heredoc = false;
-			data->is_outfile = true;
+			data->is_infile = true;
 		}
 	}
 }
@@ -99,12 +99,12 @@ void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
 		if (code == APPEND_OUTFILE)
 		{
 			data->is_append = true;
-			data->is_infile = false;
+			data->is_outfile = false;	
 		}
 		else
 		{
 			data->is_append = false;
-			data->is_infile = true;
+			data->is_outfile = true;
 		}
 	}
 }
