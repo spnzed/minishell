@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/20 13:28:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:19:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,26 @@ static bool	comprove_redirs(t_info *data)
 static void last_error(t_info *data)
 {
 	int size;
+	int i;
 
+	i = 1;
 	size = ft_strlen(data->one_cmd[0]);
+	if (ft_isspace(data->one_cmd[0][i]) 
+		&& ((data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] != '\'')
+		|| (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] != '\"')))
+	{
+		ft_putstr_fd("minishell: line 1: ", 2);
+		while (ft_isspace(data->one_cmd[0][i]))
+		{
+			ft_putstr_fd(" ", 2);
+			i++;
+		}
+		if ((data->one_cmd[0][i] == '\'' || data->one_cmd[0][i] == '\"'))
+			i++;
+		dprintf(2, "%s: command not found\n", &data->one_cmd[0][i]);
+		data->exit_id = 127;
+		exit (127);
+	}
 	if (data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] == '\'')
 		put_error(data, ft_strtrim(data->one_cmd[0], "\'"), ": command not found\n", 127);
 	if (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] == '\"')
