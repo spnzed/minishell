@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/19 16:16:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:28:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ static bool	comprove_redirs(t_info *data)
 	return (true);
 }
 
+static void last_error(t_info *data)
+{
+	int size;
+
+	size = ft_strlen(data->one_cmd[0]);
+	if (data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] == '\'')
+		put_error(data, ft_strtrim(data->one_cmd[0], "\'"), ": command not found\n", 127);
+	if (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] == '\"')
+		put_error(data, ft_strtrim(data->one_cmd[0], "\""), ": command not found\n", 127);
+	else
+		put_error(data, data->one_cmd[0], ": command not found\n", 127);
+}
+
 static void	exec_one(t_info *data)
 {
 	char	*path;
@@ -75,7 +88,7 @@ static void	exec_one(t_info *data)
 	}
 	execve(path, data->one_cmd, data->env);
 	if (!comprove_redirs(data))
-		put_error(data, data->one_cmd[0], ": command not found\n", 127);
+		last_error(data);
 	exit (127);
 }
 
