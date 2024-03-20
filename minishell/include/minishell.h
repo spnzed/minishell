@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:48:16 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:01:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				var_found_list(t_list *env, char *var);
 t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
-int				cmd_count(char *line);
+int				cmd_count(t_info *data, char *line);
 int				**count_quotes(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
@@ -133,7 +133,7 @@ void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
-char			**split_pipe(char *cmd, char c);
+char			**split_pipe(t_info *data, char *cmd, char c);
 t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);

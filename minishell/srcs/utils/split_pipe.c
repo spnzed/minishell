@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/28 18:01:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:00:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int find_next_pipe(char *str, int i, char c, int *simple, int *complex)
 	return (i);
 }
 
-char	**split_pipe(char *cmd, char c)
+char	**split_pipe(t_info *data, char *cmd, char c)
 {
 	int		i;
 	int		j;
@@ -54,7 +54,7 @@ char	**split_pipe(char *cmd, char c)
 	simple = 0;
 	complex = 0;
 
-	cmd_nbr = cmd_count(cmd);
+	cmd_nbr = cmd_count(data, cmd);
 	split = malloc(sizeof(char *) * (cmd_nbr + 1));
 	if (!split || !cmd)
 		return (NULL);

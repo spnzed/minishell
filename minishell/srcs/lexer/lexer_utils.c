@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 15:00:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:24:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,19 @@ int	redir_syntax(char *line, t_info *data)
 	{
 		if (line[i] == '>' && line[i + 1] == '<')
 		{
-			ft_putstr_fd("minishell: line 1: syntax error near unexpected token `<'\n", 2);
+			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
 			return (2);
-		}			
+		}
+		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<')
+		{
+			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
+			return (2);
+		}
+		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
+		{
+			put_error_prev(data, 0, "syntax error near unexpected token `>'\n", 2);
+			return (2);
+		}
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
 		if (get_redir_syntax_values (data, line[i], &simple, &complex, 
