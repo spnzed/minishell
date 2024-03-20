@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/20 12:01:38 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:28:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_list			*get_var_list(t_list *env, char *var);
 //				PARSER		📖
 int				cmd_count(t_info *data, char *line);
 int				**count_quotes(t_info *data);
+char			*remove_quotes(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);

@@ -76,7 +76,8 @@ LEXER			=	def_type.c \
 					utils_var.c
 
 PARSER 			=	parse_var.c \
-					put_variable.c
+					put_variable.c \
+					remove_quotes.c
 
 EXECUTOR		=	add_cmd.c \
 					call_childs.c \
