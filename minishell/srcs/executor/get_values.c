@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_values.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:17:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:02:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*get_next_filename(char *cmd)
 	else
 	{
 		quotes_cleaned = clean_quotes(redirs_cleaned);
-		filename = ft_strdup(quotes_cleaned);	
+		filename = ft_strdup(quotes_cleaned);
 	}
 	return (filename);
 }
@@ -66,8 +66,9 @@ static char	*get_next_filename(char *cmd)
 void	get_value_heredoc(t_info *data, char *cmd)
 {
 	char	*filename;
-	t_list	*aux = data->list_heredocs;
-	
+	t_list	*aux;
+
+	aux = data->list_heredocs;
 	filename = get_next_filename(cmd);
 	if (filename)
 	{
@@ -105,7 +106,7 @@ void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
 		if (code == APPEND_OUTFILE)
 		{
 			data->is_append = true;
-			data->is_outfile = false;	
+			data->is_outfile = false;
 		}
 		else
 		{

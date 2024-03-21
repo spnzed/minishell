@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:26:56 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/23 19:36:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:30:55 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strndup(const char *s1, int n)
 	size = (int)ft_strlen(s1);
 	if (n > size)
 		n = size;
-	if (!(str = malloc(sizeof(char) * (n + 1))))
+	str = malloc(sizeof(char) * (n + 1));
+	if (!str)
 	{
 		ft_putstr_fd("Malloc failure\n", 1);
 		return (NULL);

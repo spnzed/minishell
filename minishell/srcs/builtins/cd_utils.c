@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 14:29:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:42:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cd_error_msg(t_info *data, char *arg, char *str)
 
 void	set_directory(t_list *list_env, char *var)
 {
-	char *path;
+	char	*path;
 
 	path = (char *)malloc(sizeof(char) * 4097);
 	getcwd(path, 4097);
@@ -60,7 +60,7 @@ static int	file_permissions(t_info *data, char *file)
 {
 	struct stat	buffer;
 
-	if (access(file, R_OK) != -1) //&& access(file, X_OK) != -1)
+	if (access(file, R_OK) != -1)
 	{
 		if (stat(file, &buffer) == 0)
 		{
@@ -82,25 +82,25 @@ static int	file_permissions(t_info *data, char *file)
 	return (0);
 }
 
-static int check_quotes_arg(char **split_cmd)
+static int	check_quotes_arg(char **split_cmd)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 1;
 	y = 0;
-	while(split_cmd[x])
+	while (split_cmd[x])
 	{
-		while(split_cmd[x][y])
+		while (split_cmd[x][y])
 		{
 			if (split_cmd[x][y] != '\'' && split_cmd[x][y] != '\"')
-		 		return(1);
+				return (1);
 			y++;
 		}
 		x++;
 		y = 0;
 	}
-	return(0);
+	return (0);
 }
 
 int	permission_dir(t_info *data, char *file, char **split_cmd)
@@ -113,9 +113,9 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 	else
 	{
 		if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
-			return(0);
+			return (0);
 		if (check_quotes_arg(split_cmd) == 0)
-			return(0);
+			return (0);
 		if (cd_error_file_too_long(data, file))
 			return (0);
 		if (ft_strchr(file, '/'))

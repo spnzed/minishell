@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 14:42:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:39:18 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
-static void	one_command (t_info *data)
+static void	one_command(t_info *data)
 {
 	prepare_to_exec_one(data);
 	exec_one_cmd(data);
 }
 
-static void	multiple_commands (t_info *data)
+static void	multiple_commands(t_info *data)
 {
-	prepare_to_exec(data); //prepare_to_exec_mul(data);
-	exec_cmds(data); //exec_mul_cmd(data);
+	prepare_to_exec(data);
+	exec_cmds(data);
 }
 
 static void	parser(t_info *data)
@@ -44,7 +44,7 @@ static void	parser(t_info *data)
 	syntax_error(data);
 }
 
-static void expander(t_info *data)
+static void	expander(t_info *data)
 {
 	if (data->cmd_line)
 	{
@@ -55,7 +55,7 @@ static void expander(t_info *data)
 	}
 }
 
-static void executor(t_info *data)
+static void	executor(t_info *data)
 {
 	if (data->cmd_line)
 	{

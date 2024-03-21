@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd_route.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:16:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:04:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*handle_path(t_environment *lst_env, char *cmd, char *line)
 {
-	t_environment *head;
+	t_environment	*head;
 
 	head = NULL;
 	if (!ft_findalnum(cmd))
@@ -60,23 +60,19 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	char	**route;
 
 	i = -1;
-
 	if (!cmd)
 		return (NULL);
 	line = handle_path(lst_env, cmd, NULL);
 	if (!line)
 		return (NULL);
 	route = handle_route(line, cmd);
-	
 	while (route[++i] && access(route[i], F_OK) == -1)
 		;
 	if (!route[i])
 	{
-		ret	= ft_strtrim(cmd, " ");
-		//ft_arrfree(route, ft_arrlen(route));
+		ret = ft_strtrim(cmd, " ");
 		return (ret);
 	}
 	ret = ft_strdup(route[i]);
-	//ft_arrfree(route, ft_arrlen(route) - 1);
 	return (ret);
 }

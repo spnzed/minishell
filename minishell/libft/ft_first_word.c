@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_first_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:02:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 15:02:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:33:38 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_first_word(char *str)
 {
-	int x;
-	char *str_copy;
-	int len;
+	int		x;
+	char	*str_copy;
+	int		len;
 
 	x = 0;
 	len = ft_strlen(str);
@@ -29,5 +29,5 @@ char	*ft_first_word(char *str)
 		x++;
 	}
 	str_copy[x] = '\0';
-	return(str_copy);
+	return (str_copy);
 }
