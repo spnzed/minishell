@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 11:28:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:25:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,31 @@ int normalize_cmd(char **cmd)
 
 int	is_builtin(char **cmd, t_info *data)
 {
+	char	*aux;
 	int		normalized;
 	
 	if (!cmd[0])
 		return (0);
 	normalized = normalize_cmd(cmd);
+	aux = remove_quotes(cmd[0]);
 	if (normalized)
 		return (normalized);
-	if (ft_strcmp(cmd[0], "env") == 0)
+	if (ft_strcmp(aux, "env") == 0)
 		return(1);
-	else if (check_complex_cmd(cmd[0], "pwd", 3) == 0)
+	else if (check_complex_cmd(aux, "pwd", 3) == 0)
 		return(2);
-	else if (check_complex_cmd(cmd[0], "echo", 4) == 0 
-		|| check_complex_cmd(cmd[0], "echo -n", 7) == 0)
+	else if (check_complex_cmd(aux, "echo", 4) == 0 
+		|| check_complex_cmd(aux, "echo -n", 7) == 0)
 		return(3);
-	else if (ft_strcmp(cmd[0], "exit") == 0)
+	else if (ft_strcmp(aux, "exit") == 0)
 		return(4);
-	else if(check_complex_cmd(cmd[0], "cd", 2) == 0)
+	else if(check_complex_cmd(aux, "cd", 2) == 0)
 		return(5);
-	else if(check_complex_cmd(cmd[0], "export", 6) == 0)
+	else if(check_complex_cmd(aux, "export", 6) == 0)
 		return(6);
-	else if(check_complex_cmd(cmd[0], "unset", 5) == 0)
+	else if(check_complex_cmd(aux, "unset", 5) == 0)
 		return(7);
-	else if (ft_strlen(cmd[0]) > 0)
+	else if (ft_strlen(aux) > 0)
     {
         data->exit_id = 127;
         return(0);
