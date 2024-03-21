@@ -59,6 +59,7 @@ SRC			=	ft_isalnum.c \
 				ft_findalnum.c \
 				ft_atoll.c \
 				ft_isnumeric.c \
+				ft_strcmp_len.c \
 
 OBJECTS		= $(SRC:%.c=%.o)
 

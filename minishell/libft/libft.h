@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:47:01 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:29:32 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ char			**ft_arrfree(char **array, int len);
 int				ft_findalnum(char *str);
 long long int	ft_atoll(const char *str);
 int				ft_isnumeric(char *str);
+int				ft_strcmp_len(char *strbase, char *strcomp, int len);
 
 #endif

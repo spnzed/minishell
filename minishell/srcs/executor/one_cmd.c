@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/18 15:51:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:12:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	one_bultin(t_info *data)
 {
 	int	builtin;
 
-	builtin = is_builtin(data);
+	builtin = is_builtin(data->one_cmd, data);
 	if (builtin)
 	{
 		if (handle_redirect(data))

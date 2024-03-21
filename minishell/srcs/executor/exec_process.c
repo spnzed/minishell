@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/12 16:03:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:12:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	exec_process(t_info *data, char	*cmd)
 
 	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
-	builtin = is_builtin(data);
+	builtin = is_builtin(split_cmd, data);
 	if (builtin)
 	{
 		if (handle_redirect(data))
