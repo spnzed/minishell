@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/19 14:43:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:21:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ static	void	export_equal(t_info *data, t_list *new)
 		return ;
 	else
 	{
+		//printf("[%s] | [%s]\n", signal, list->signal);
 		new = ft_lstnew(data->str_trim);
 		if (!new)
 		{
@@ -163,7 +164,7 @@ static	void	export_equal(t_info *data, t_list *new)
 			ft_lstadd_back(&data->list_env, new);
 		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
-		data->env = ft_env_to_array(data->list_exp); // no se si hace su funcion
+		data->env = ft_env_to_array(data->list_exp);
 	}
 }
 
@@ -224,24 +225,9 @@ int	ft_export(t_info *data, char **split_cmd)
 	if (!export_valid(split_cmd))
 	{
 		export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
-		return(1);	
+		return (1);	
 	}
-	if (ft_strcmp(split_cmd[0], "grep") == 0)
-	{
-		while(temp)
-		{
-			if (ft_strcmp(temp->signal, split_cmd[1]) == 0)
-			{
-				printf("declare -x %s", temp->signal);
-				if (temp->content != NULL)
-					printf("=\"%s\"\n", temp->content);
-				else
-					printf("\n");			
-			}
-			temp = temp->next;
-		}	
-	}
-	else if(ft_strcmp(data->cmd_line, "export") == 0)
+	if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
 		{
@@ -257,7 +243,7 @@ int	ft_export(t_info *data, char **split_cmd)
 		export_equal(data, new);
 	else
 		export_else(data, tmp, split_cmd);
-	return(0);
+	return (0);
 }
 
 /*

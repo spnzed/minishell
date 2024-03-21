@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/20 15:28:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:21:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void			prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins
-int				is_builtin(t_info *data);
+int				is_builtin(char **cmd, t_info *data);
 int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
 int				ft_cd(t_info *data, char **split_cmd);

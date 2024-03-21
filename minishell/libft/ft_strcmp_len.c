@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_strcmplen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/19 17:51:13 by pquintan         ###   ########.fr       */
+/*   Created: 2024/03/21 10:28:19 by pquintan          #+#    #+#             */
+/*   Updated: 2024/03/21 10:28:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_env(t_list *list_env)
+int	ft_strcmp_len(char *strbase, char *strcomp, int len)
 {
-	t_list *temp;
-	
-	temp = list_env;
-	while (temp)
+	int x;
+	int y;
+	int base;
+
+	x = 0;
+	y = 0;
+	base = 0;
+	while(strbase[base] && strcomp[x])
 	{
-		if (ft_strchr(temp->content, '='))
-			printf("%s\n", temp->content);
-		temp = temp->next;
+		if(strbase[base] == strcomp[x])
+			y++;
+		base++;
+		x++;
 	}
-	return(0);
+	if (y == len)
+		return(0);
+	else
+		return(1);
 }
