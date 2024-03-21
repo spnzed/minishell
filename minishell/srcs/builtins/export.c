@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 11:21:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:39:30 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,16 @@ static char	**ft_env_to_array(t_environment *head)
 	return (array);
 }
 
-static	void	export_equal(t_info *data, t_list *new)
+static	void	export_equal(t_info *data, t_list *new, char *cmd)
 {
-	data->str_trim = ft_after_set(data->cmd_line, ' ');
-	if (ft_strchr(data->str_trim, '"'))
-		data->str_trim = ft_remove_quotes_str(data->str_trim);
-	if (search_on_lists(data, data->list_exp, data->str_trim) == 0)
+	if (ft_strchr(cmd, '"'))
+		cmd = ft_remove_quotes_str(cmd);
+	if (search_on_lists(data, data->list_exp, cmd) == 0)
 		return ;
 	else
 	{
 		//printf("[%s] | [%s]\n", signal, list->signal);
-		new = ft_lstnew(data->str_trim);
+		new = ft_lstnew(cmd);
 		if (!new)
 		{
 			ft_lstclear(&data->list_env, free);
@@ -168,13 +167,12 @@ static	void	export_equal(t_info *data, t_list *new)
 	}
 }
 
-static	void	export_else(t_info *data, t_environment *tmp, char **split_cmd)
+static	void	export_else(t_info *data, t_environment *tmp, char *cmd)
 {
-	data->str_trim = split_cmd[1];
-	if (ft_strchr(data->str_trim, '"'))
-		data->str_trim = ft_remove_quotes_str(data->str_trim);
-	tmp = ft_envnew(data->str_trim);
-	tmp->signal = data->str_trim;
+	if (ft_strchr(cmd, '"'))
+		cmd = ft_remove_quotes_str(cmd);
+	tmp = ft_envnew(cmd);
+	tmp->signal = cmd;
 	if (!tmp)
 	{
 		ft_envclear(&data->list_exp, free);
@@ -196,21 +194,57 @@ static void	export_error_not_valid_id(char *arg, t_info *data)
 	data->exit_id = 1;
 }
 
-static int export_valid(char **split_cmd)
+static char	*first_num(char *var)
+{
+	int		x;
+	int		y;
+	char	*zero;
+
+	x = 0;
+	y = 0;
+	zero = "";
+	if (var[x] >= '0' && var[x] <= '9')
+		return(var);
+	return(zero);
+}
+
+static int export_valid(char *cmd)
 {
 	char	*non_alnum;
-	char	*alnum;
 	char	*found;
 	char	*var;
 
-	var = ft_before_set(split_cmd[1], '=');
+	var = ft_before_set(cmd, '=');
+	//printf("[%s]\n", var);
 	non_alnum = ft_strdup(" !#$%%&\\()*+,-./:;<>@[]^`{|}~");
-	alnum = ft_strdup("1234567890");
 	found = ft_strpbrk(var, non_alnum);
-	found = ft_strjoin(found, ft_strpbrk(var, alnum));
+	//printf("found[%s][%d]\n", found, ft_strlen(found));
+	found = ft_strjoin(found, first_num(var));
+	//printf("found[%s][%d]\n", found, ft_strlen(found));
 	if (ft_strlen(found) > 0)
 		return(0);
 	return(1);
+}
+
+static int	cmdsize(char **command)
+{
+	int	size;
+	int	count;
+
+	size = 0;
+	if (ft_strlen(command[0]) > 0)
+		size++;
+	else
+		return (size);
+	count = ft_arrlen(command);
+	while (size < count)
+	{
+		if (command[size][0] == '-')
+			size++;
+		else
+			break ;
+	}
+	return (size);
 }
 
 int	ft_export(t_info *data, char **split_cmd)
@@ -218,16 +252,24 @@ int	ft_export(t_info *data, char **split_cmd)
 	t_environment	*temp;
 	t_list			*new;
 	t_environment	*tmp;
+	int x = cmdsize(split_cmd) - 1;
+	int i = 1;
 
 	temp = data->list_exp;
 	new = NULL;
 	tmp = NULL;
-	if (!export_valid(split_cmd))
+	while (split_cmd[i])
 	{
-		export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
-		return (1);	
+		if (!export_valid(ft_remove_quotes_str(split_cmd[i])))
+		{
+			export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
+			return (1);	
+		}
+		i++;	
 	}
-	if(ft_strcmp(data->cmd_line, "export") == 0)
+	i = 1;
+	//printf("[%d] | [%d]\n", ((x + 1) == 1), (ft_arrlen(split_cmd) == 1));
+	if (((x + 1) == 1) && (ft_arrlen(split_cmd) == 1))//if(ft_strcmp(data->cmd_line, "export") == 0)
 	{
 		while(temp)
 		{
@@ -239,10 +281,13 @@ int	ft_export(t_info *data, char **split_cmd)
 			temp = temp->next;
 		}		
 	}
+	// hay que ver como lo hacemos cuando haya varias variables en un comando
 	else if (ft_strchr(split_cmd[1], '='))
-		export_equal(data, new);
+		while (split_cmd[i])
+		export_equal(data, new, split_cmd[i++]);
 	else
-		export_else(data, tmp, split_cmd);
+		while (split_cmd[i])
+			export_else(data, tmp, split_cmd[i++]);
 	return (0);
 }
 
