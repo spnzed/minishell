@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 11:22:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:28:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int normalize_cmd(char **cmd)
 
 int	is_builtin(char **cmd, t_info *data)
 {
-	char	*aux;
 	int		normalized;
 	
 	if (!cmd[0])

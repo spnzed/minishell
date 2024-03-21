@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 11:22:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:28:01 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static int	one_bultin(t_info *data)
 {
 	int	builtin;
 
-	builtin = is_builtin(data);
+	builtin = is_builtin(data->one_cmd, data);
 	if (builtin)
 	{
 		if (handle_redirect(data))
