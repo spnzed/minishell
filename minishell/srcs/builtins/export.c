@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 12:39:30 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:46:22 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ static	void	export_equal(t_info *data, t_list *new, char *cmd)
 		return ;
 	else
 	{
-		//printf("[%s] | [%s]\n", signal, list->signal);
 		new = ft_lstnew(cmd);
 		if (!new)
 		{
@@ -215,12 +214,9 @@ static int export_valid(char *cmd)
 	char	*var;
 
 	var = ft_before_set(cmd, '=');
-	//printf("[%s]\n", var);
 	non_alnum = ft_strdup(" !#$%%&\\()*+,-./:;<>@[]^`{|}~");
 	found = ft_strpbrk(var, non_alnum);
-	//printf("found[%s][%d]\n", found, ft_strlen(found));
 	found = ft_strjoin(found, first_num(var));
-	//printf("found[%s][%d]\n", found, ft_strlen(found));
 	if (ft_strlen(found) > 0)
 		return(0);
 	return(1);
@@ -268,8 +264,7 @@ int	ft_export(t_info *data, char **split_cmd)
 		i++;	
 	}
 	i = 1;
-	//printf("[%d] | [%d]\n", ((x + 1) == 1), (ft_arrlen(split_cmd) == 1));
-	if (((x + 1) == 1) && (ft_arrlen(split_cmd) == 1))//if(ft_strcmp(data->cmd_line, "export") == 0)
+	if (((x + 1) == 1) && (ft_arrlen(split_cmd) == 1))
 	{
 		while(temp)
 		{
@@ -281,7 +276,6 @@ int	ft_export(t_info *data, char **split_cmd)
 			temp = temp->next;
 		}		
 	}
-	// hay que ver como lo hacemos cuando haya varias variables en un comando
 	else if (ft_strchr(split_cmd[1], '='))
 		while (split_cmd[i])
 		export_equal(data, new, split_cmd[i++]);
