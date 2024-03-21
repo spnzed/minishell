@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/18 15:55:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:46:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 	if (dup2(fd, std_mode) == -1)
 	{
 		perror("dup2");
+		close (fd);
 		exit(1);
 	}
 	close (fd);
@@ -78,7 +79,6 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 
 static void build_files(t_info *data)
 {
-	// printf("HOOOOOOLAAAA\n");
 	if (ft_strlen(data->string_infile) > 0) 
 	{
 		if (!data->is_heredoc)
@@ -97,12 +97,12 @@ static void build_files(t_info *data)
 
 int handle_redirect(t_info *data)
 {
+	if (comprove_heredoc(data))
+		return (1);
 	if (comprove_stdout(data))
 		return (1);
 	if (comprove_stdin(data))
 		return (1);
-	if (data->is_heredoc)
-		handle_heredoc(data);
 	build_files(data);
 	remove_heredoc();
 	return (0);

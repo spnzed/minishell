@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   one_cmd.c                                          :+:      :+:    :+:   */
+/*   exec_one_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 11:12:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:22:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,37 @@ static bool	comprove_redirs(t_info *data)
 	return (true);
 }
 
+static void last_error(t_info *data)
+{
+	int size;
+	int i;
+
+	i = 1;
+	size = ft_strlen(data->one_cmd[0]);
+	if (ft_isspace(data->one_cmd[0][i]) 
+		&& ((data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] != '\'')
+		|| (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] != '\"')))
+	{
+		ft_putstr_fd("minishell: line 1: ", 2);
+		while (ft_isspace(data->one_cmd[0][i]))
+		{
+			ft_putstr_fd(" ", 2);
+			i++;
+		}
+		if ((data->one_cmd[0][i] == '\'' || data->one_cmd[0][i] == '\"'))
+			i++;
+		dprintf(2, "%s: command not found\n", &data->one_cmd[0][i]);
+		data->exit_id = 127;
+		exit (127);
+	}
+	if (data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] == '\'')
+		put_error(data, ft_strtrim(data->one_cmd[0], "\'"), ": command not found\n", 127);
+	if (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] == '\"')
+		put_error(data, ft_strtrim(data->one_cmd[0], "\""), ": command not found\n", 127);
+	else
+		put_error(data, data->one_cmd[0], ": command not found\n", 127);
+}
+
 static void	exec_one(t_info *data)
 {
 	char	*path;
@@ -75,7 +106,7 @@ static void	exec_one(t_info *data)
 	}
 	execve(path, data->one_cmd, data->env);
 	if (!comprove_redirs(data))
-		put_error(data, data->one_cmd[0], ": command not found\n", 127);
+		last_error(data);
 	exit (127);
 }
 
@@ -84,7 +115,7 @@ static int	one_bultin(t_info *data)
 {
 	int	builtin;
 
-	builtin = is_builtin(data->one_cmd, data);
+	builtin = is_builtin(data);
 	if (builtin)
 	{
 		if (handle_redirect(data))

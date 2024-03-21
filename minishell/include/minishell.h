@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 11:12:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:21:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int				var_found_list(t_list *env, char *var);
 t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
-int				cmd_count(char *line);
+int				cmd_count(t_info *data, char *line);
 int				**count_quotes(t_info *data);
+char			*remove_quotes(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);
@@ -89,15 +90,16 @@ void			do_builtin(t_info *data, int builtin, char **split_cmd);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
+int				comprove_heredoc(t_info *data);
 int				comprove_stdin(t_info *data);
 int				comprove_stdout(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
 void			get_redirections(char *cmd, t_info *data);
-void			get_value_infile(t_info *data, char *cmd, t_type_redir code);
+void			get_value_heredoc(t_info *data, char *cmd);
+void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd, t_type_redir code);
 void 			remove_heredoc(void);
 void			remove_heredoc(void);
-void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
 void			prepare_to_exec(t_info *data);
@@ -132,7 +134,7 @@ void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
-char			**split_pipe(char *cmd, char c);
+char			**split_pipe(t_info *data, char *cmd, char c);
 t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);
