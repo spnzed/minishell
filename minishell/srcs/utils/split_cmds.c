@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:35:40 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 18:47:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:01:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**split_cmds(t_info *data)
 
 	if (little_cases(data->cmd_line))
 		exit (127);
-	splitted = split_pipe(data->cmd_line, '|');
+	splitted = split_pipe(data, data->cmd_line, '|');
 	len = ft_arrlen(splitted);
 	i = 0;
 	while (splitted[i])

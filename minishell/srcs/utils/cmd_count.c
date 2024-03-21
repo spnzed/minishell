@@ -12,16 +12,34 @@
 
 #include "minishell.h"
 
-static void	write_syntax_error(char *cmd, int i)
+static int	check_cmd_error(t_info *data, char *cmd, int i)
 {
-	if (cmd[i + 1] == '|')
+	int aux;
+
+	aux = i;
+	if (cmd[i + 1] == ' ')
 	{
-		ft_putstr_fd("Minishell: syntax error", 2);
-		ft_putstr_fd("Near unexpected token `|'\n", 2);
+		i++;
+		while (ft_isspace(cmd[i]))
+		{
+			if (cmd[i + 1] == '|')
+			{
+				put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
+				return(1);
+			}
+			i++;
+		}
 	}
+	i = aux;
+	if (cmd[i + 1] == '|' && cmd[i + 2] == '|')
+	{
+		put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
+		return (1);
+	}
+	return (0);
 }
 
-int		cmd_count(char *line)
+int		cmd_count(t_info *data, char *line)
 {
 	int i;
 	int count;
@@ -38,9 +56,12 @@ int		cmd_count(char *line)
 	{
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
-		if (line[i] == '|' && simple == 0 && complex == 0)
+		if (line[i + 1] == '|' && line[i + 2] == ' ')
+			i++;
+		if (line[i] == '|' && !simple && !complex)
 		{
-			write_syntax_error(line, i);
+			if (check_cmd_error(data, line, i))
+				return (42);
 			count++;
 		}
 	}

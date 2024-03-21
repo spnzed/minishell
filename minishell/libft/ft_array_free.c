@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_array_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:10:40 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/10/21 14:19:17 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:25:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "libft.h"
 
 char	**ft_array_free(char **Array, int len)
 {

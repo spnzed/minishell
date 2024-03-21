@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/12 19:00:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:15:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_info
 
 	t_list			*list_in_files;
 	t_list			*list_out_files;
-	t_list			*list_out_append;
+	// t_list			*list_out_append;
 	t_list			*list_heredocs;
 
 	t_environment	*signals_env;

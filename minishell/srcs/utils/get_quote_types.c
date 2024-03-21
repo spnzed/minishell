@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:56 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 18:21:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:35:27 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	get_quotes_type(char c, int *simple, int *complex)
 {
 	if (c == '\'')
 		*simple += 1;
-	if (c == '\"')
+	else if (c == '\"')
 		*complex += 1;
 	if (c == '\'' && *simple == 2)
 		*simple = 0;
-	if (c == '\"' && *complex == 2)
+	else if (c == '\"' && *complex == 2)
 		*complex = 0;
 }
