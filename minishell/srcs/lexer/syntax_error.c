@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/20 12:11:38 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:20:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	syntax_error(t_info *data)
 	}
 	if (quotes_syntax(data->cmd_line)) 
 	{
+		put_error_prev(data, 0, " : syntax error open quotes\n", 2);
+		data->cmd_line = NULL;
 		free(data->cmd_line);
 		return (1);
 	}
