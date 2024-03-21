@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 14:05:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:42:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static void	multiple_commands (t_info *data)
 static void	parser(t_info *data)
 {
 	syntax_error(data);
-	// if (syntax_error(data))
-	//		return ;
 }
 
 static void expander(t_info *data)

@@ -6,12 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 14:24:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:54:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static int	ft_isstrprint(char *str)
 {
@@ -92,7 +91,7 @@ static void	exec_one(t_info *data)
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	if (!ft_isstrprint(data->one_cmd[0]) && !comprove_redirs(data))
-		put_error(data, data->one_cmd[0], ": command not found\n", 127);
+		exit (0);
 	if (handle_redirect(data))
 		exit (1);
 	filter_cmd(data, &data->one_cmd[0]);
