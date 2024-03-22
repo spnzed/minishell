@@ -14,7 +14,7 @@
 
 static int	check_cmd_error(t_info *data, char *cmd, int i)
 {
-	int aux;
+	int	aux;
 
 	aux = i;
 	if (cmd[i + 1] == ' ')
@@ -24,8 +24,9 @@ static int	check_cmd_error(t_info *data, char *cmd, int i)
 		{
 			if (cmd[i + 1] == '|')
 			{
-				put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
-				return(1);
+				put_error_prev(data, 0,
+					" : syntax error near unexpected token `|'\n", 2);
+				return (1);
 			}
 			i++;
 		}
@@ -33,17 +34,18 @@ static int	check_cmd_error(t_info *data, char *cmd, int i)
 	i = aux;
 	if (cmd[i + 1] == '|' && cmd[i + 2] == '|')
 	{
-		put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
+		put_error_prev(data, 0,
+			" : syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
 	return (0);
 }
 
-int		cmd_count(t_info *data, char *line)
+int	cmd_count(t_info *data, char *line)
 {
-	int i;
-	int count;
-	int simple;
+	int	i;
+	int	count;
+	int	simple;
 	int	complex;
 
 	i = -1;
