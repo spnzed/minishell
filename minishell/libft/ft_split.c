@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:30:06 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:32:27 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:44:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ void	put_w(char **array, const char *s, char c)
 	int	i;
 	int	j;
 	int	activador;
+	int	len;
 
 	i = 0;
 	j = 0;
 	activador = -1;
-	while (i <= ft_strlen(s))
+	len = ft_strlen(s);
+	while (i <= len)
 	{
 		if (s[i] != c && activador < 0)
 			activador = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && activador >= 0)
+		else if ((s[i] == c || i == len) && activador >= 0)
 		{
 			array[j++] = write_w(s, activador, i);
 			activador = -1;
@@ -82,10 +84,10 @@ char	**ft_split(char const *s, char c)
 	char	**array;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	array = malloc(sizeof(char *) * (count_w(s, c) + 1));
 	if (!array)
-		return (0);
+		return (NULL);
 	put_w(array, s, c);
 	return (array);
 }

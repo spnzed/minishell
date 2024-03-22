@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:04:29 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:29:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static char	**handle_route(char *line, char *cmd)
 
 /*
 	while (route[++i] && access(route[i], F_OK) == -1)
-		
+
 		access comprueba si un archivo existe
-		
-		F_OK se pasa como segundo argumento para indicar 
+
+		F_OK se pasa como segundo argumento para indicar
 		que estamos verificando solo la existencia del archivo.
 
 			Queremos comprobar que no existe, usando == -1
@@ -52,6 +52,7 @@ static char	**handle_route(char *line, char *cmd)
 		Es decir quuiere dejar la iteracion hasta que encuentre
 		un archivo que existe
 */
+
 char	*find_cmd_route(t_environment *lst_env, char *cmd)
 {
 	int		i;
@@ -71,8 +72,11 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	if (!route[i])
 	{
 		ret = ft_strtrim(cmd, " ");
+		ft_arrfree(route, ft_arrlen(route));
 		return (ret);
 	}
 	ret = ft_strdup(route[i]);
+	ft_arrfree(route, ft_arrlen(route));
 	return (ret);
 }
+//printf("[%s]\n", route[i]);

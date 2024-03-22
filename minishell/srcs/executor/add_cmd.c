@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:39:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:56:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:30:32 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	**add_cmd(char **route, char *cmd)
 		if (!route[i])
 			return (NULL);
 	}
-	route[i] = "\0";
+	route[i] = NULL;
 	return (route);
 }
