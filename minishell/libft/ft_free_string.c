@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_string.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:19:26 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/23 16:25:50 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:33:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_free_string(void *ptr)
+void	ft_free_string(void *ptr)
 {
 	char	*str;
 

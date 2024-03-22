@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 16:46:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:29:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	file_permissions(t_info *data, char *file)
 {
 	struct stat	buffer;
 
-	if (access(file, R_OK) != -1 && access(file, X_OK) != -1)
+	if (access(file, R_OK) != -1) //&& access(file, X_OK) != -1)
 	{
 		if (stat(file, &buffer) == 0)
 		{
@@ -118,6 +118,8 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 			return(0);
 		if (cd_error_file_too_long(data, file))
 			return (0);
+		if (ft_strchr(file, '/'))
+			cd_error_msg(data, ": Not a directory\n", file);
 		cd_error_msg(data, ": No such file or directory\n", file);
 	}
 	return (0);

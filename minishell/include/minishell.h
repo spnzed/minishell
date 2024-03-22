@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:49:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:34:56 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int				var_found_list(t_list *env, char *var);
 t_list			*get_var_list(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
-int				cmd_count(char *line);
+int				cmd_count(t_info *data, char *line);
 int				**count_quotes(t_info *data);
+char			*remove_quotes(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
 char			*search_var(char *line);
@@ -80,6 +81,8 @@ char			*put_variable(char *line, char *var, char *replace);
 char			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
+int				num_quotes(char *str);
+char			*clean_quotes(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(void);
 void			do_builtin(t_info *data, int builtin, char **split_cmd);
@@ -87,23 +90,22 @@ void			do_builtin(t_info *data, int builtin, char **split_cmd);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
-int				comprove_stdin(t_info *data, t_list **in_files);
+int				comprove_heredoc(t_info *data);
+int				comprove_stdin(t_info *data);
 int				comprove_stdout(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
 void			get_redirections(char *cmd, t_info *data);
-void			get_value_infile(t_info *data, char *cmd);
-void			get_value_outfile(t_info *data, char *cmd);
-void			get_value_append(t_info *data, char *cmd);
 void			get_value_heredoc(t_info *data, char *cmd);
+void			get_value_infile(t_info *data, char *cmd);
+void			get_value_outfile(t_info *data, char *cmd, t_type_redir code);
 void			remove_heredoc(void);
-void			handle_heredoc(t_info *data);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
 void			prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins
-int				is_builtin(t_info *data);
+int				is_builtin(char **cmd, t_info *data);
 int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
 int				ft_cd(t_info *data, char **split_cmd);
@@ -122,15 +124,17 @@ int				check_complex_cmd(char *strbase, char *strcomp, int len);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str, t_info *data);
-int				get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right);
+int				get_redir_syntax_values(t_info *data, char c, int *simple,
+					int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
 void			put_error(t_info *data, char *cmd, char *str, int ret);
+void			put_error_prev(t_info *data, char *cmd, char *str, int ret);
 int				reset_fd(t_info *data);
 void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
-char			**split_pipe(char *cmd, char c);
+char			**split_pipe(t_info *data, char *cmd, char c);
 t_list			*ft_copy_list(const t_list *src);
 void			ft_free_list(t_list *head);
 char			*ft_remove_quotes_str(char *str);

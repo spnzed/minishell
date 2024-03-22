@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 15:39:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:50:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,18 @@ En el caso de 0644:
     Otros usuarios tienen permisos de solo lectura (4), representado por 100 en binario.
 
 */
-static void	heredoc_loop(t_list *head, int fd)
+int	comprove_heredoc(t_info *data)
 {
-	char *line;
+	int		fd;
+	char 	*line;
+	t_list	*head;
 
+	signal(SIGINT, signal_handler_heredoc);
+	signal(SIGQUIT, signal_handler_heredoc);
+	fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		return (perror ("open"), 1);
+	head = data->list_heredocs;
 	while (head)
 	{
 		line = readline("> ");
@@ -86,13 +94,13 @@ static void	heredoc_loop(t_list *head, int fd)
 			break ;
 		if (ft_strcmp(line, head->content) == 0)
 		{
-			close (fd);
 			if (head->next)
 			{
+				close (fd);
 				remove_heredoc();
-				fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
 				if (fd == -1)
-					return (perror ("open"));
+					return (perror ("open"), 1);
 			}
 			head = head->next;
 		}
@@ -101,18 +109,5 @@ static void	heredoc_loop(t_list *head, int fd)
 		free (line);
 	}
 	close(fd);
-}
-
-void	handle_heredoc(t_info *data)
-{
-	int		fd;
-	t_list	*temp;
-
-	signal(SIGINT, signal_handler_heredoc);
-	signal(SIGQUIT, signal_handler_heredoc);
-	fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
-		return (perror ("open"));
-	temp = data->list_heredocs;
-	heredoc_loop(temp, fd);
+	return (0);
 }

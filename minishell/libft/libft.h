@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:17:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:09:40 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:29:54 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ char			**ft_split(char const *s, char c);
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
-t_list		*ft_lstlast(t_list *lst);
+t_list			*ft_lstlast(t_list *lst);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+					void (*del)(void *));
 //				extras
 int				ft_lstpos(t_list *lst, int *value);
 void			*ft_cleanp(void *p);
@@ -90,5 +91,6 @@ char			**ft_arrfree(char **array, int len);
 int				ft_findalnum(char *str);
 long long int	ft_atoll(const char *str);
 int				ft_isnumeric(char *str);
+int				ft_strcmp_len(char *strbase, char *strcomp, int len);
 
 #endif

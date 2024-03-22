@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/07 15:54:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:20:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ static int pipe_syntax(char *line, t_info *data)
 		return(0);
 	if (line[0] == '|')
 	{
-		put_error(data, 0, " : syntax error near unexpected token `|'\n", 2);
+		put_error_prev(data, 0, " : syntax error near unexpected token `|'\n", 2);
 		return (1);
 	}
-	//printf("size: %d\n", size);
 	if (line[size] == '|')
 	{
 		ft_putstr_fd("pipe>\n", 2);
@@ -62,23 +61,30 @@ static int pipe_syntax(char *line, t_info *data)
 
 int	syntax_error(t_info *data)
 {
-	int double_redir;
-
-	double_redir = 0;
-	if (quotes_syntax(data->cmd_line))
-		return(free(data->cmd_line), write(2, "quote>\n", 8));
-	if (pipe_syntax(data->cmd_line, data) && data->cmd_nbr > 1)
-		return(free(data->cmd_line), 1);
-	double_redir = redir_syntax(data->cmd_line, data);
-	if (double_redir > 0 && (ft_strchr(data->cmd_line, '>')
-		|| ft_strchr(data->cmd_line, '<')))
+	data->cmd_nbr = cmd_count(data, data->cmd_line);
+	if (data->cmd_nbr == 42)
 	{
-		if (double_redir == 2)
-		{
-			free(data->cmd_line);
-			exit (2);
-		}
-		return(free(data->cmd_line), 1);
+		free(data->cmd_line);
+		data->cmd_line = NULL;
+		return (1);
+	}
+	if (quotes_syntax(data->cmd_line)) 
+	{
+		put_error_prev(data, 0, " : syntax error open quotes\n", 2);
+		data->cmd_line = NULL;
+		free(data->cmd_line);
+		return (1);
+	}
+	if (pipe_syntax(data->cmd_line, data) && data->cmd_nbr > 1) 
+	{
+		free(data->cmd_line);
+		return (1);	
+	}
+	if (redir_syntax(data->cmd_line, data)) 
+	{
+		free(data->cmd_line);
+		data->cmd_line = NULL;
+		return (1);
 	}
 	return(0);
 }

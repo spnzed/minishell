@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:27:36 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:42:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,29 @@ static void	multiple_commands (t_info *data)
 
 static void	parser(t_info *data)
 {
-	data->cmd_nbr = cmd_count(data->cmd_line);
-	if (syntax_error(data))
-		exit (1);
-	//data->index_quotes = count_quotes;
+	syntax_error(data);
 }
 
 static void expander(t_info *data)
 {
-	while (search_var(data->cmd_line))
-		data->cmd_line = parse_var(data);
-	if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
-		printf("ñ");
-	// data->cmd_nbr = cmd_count(data->cmd_line);
+	if (data->cmd_line)
+	{
+		while (search_var(data->cmd_line))
+			data->cmd_line = parse_var(data);
+		if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
+			printf("ñ");
+	}
 }
 
 static void executor(t_info *data)
 {
-	if (data->cmd_nbr == 1)
-		one_command(data);
-	else if (data->cmd_nbr > 1)
-		multiple_commands(data);
+	if (data->cmd_line)
+	{
+		if (data->cmd_nbr == 1)
+			one_command(data);
+		else if (data->cmd_nbr > 1)
+			multiple_commands(data);
+	}
 }
 
 int	manage_cmd(t_info *data)

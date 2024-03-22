@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:56:03 by pquintan         ###   ########.fr       */
+/*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
+/*   Updated: 2024/03/21 15:37:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ typedef enum e_cmd_type
 	EXIT_,
 }					t_cmd_type;
 
+typedef enum e_type_redir
+{
+	SIMPLE_INFILE,
+	HEREDOC_INFILE,
+	SIMPLE_OUTFILE,
+	APPEND_OUTFILE,
+}					t_type_redir;
+
 //	STRUCTS
 
 //	Token
@@ -74,15 +82,14 @@ typedef struct s_info
 	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-  char 			*str_trim;
-  char 			*root_path;
-  char 			**env;
-  char 			**one_cmd;
-  char 			**mul_cmds;
-  char 			**split_line;
-	char 			**cmd_split;
-  char 			**tab_var_env;
-
+	char			*str_trim;
+	char			*root_path;
+	char			**env;
+	char			**one_cmd;
+	char			**mul_cmds;
+	char			**split_line;
+	char			**cmd_split;
+	char			**tab_var_env;
 
 	t_list			*list_env;
 	t_list			*list_input;
@@ -90,7 +97,7 @@ typedef struct s_info
 
 	t_list			*list_in_files;
 	t_list			*list_out_files;
-	t_list			*list_out_append;
+	// t_list			*list_out_append;
 	t_list			*list_heredocs;
 
 	t_environment	*signals_env;

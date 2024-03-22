@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 16:53:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:46:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,31 +64,46 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 	if (fd == -1)
 	{
 		dprintf (2, "minishell: ");
+		dprintf (2, "line 1: ");
 		perror (file);
 		exit(1);
 	}
 	if (dup2(fd, std_mode) == -1)
 	{
 		perror("dup2");
+		close (fd);
 		exit(1);
 	}
 	close (fd);
 }
 
+static void build_files(t_info *data)
+{
+	if (ft_strlen(data->string_infile) > 0) 
+	{
+		if (!data->is_heredoc)
+			handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
+		else
+			handle_file(HEREDOC, O_RDONLY, STDIN_FILENO, 0);
+	}
+	if (ft_strlen(data->string_outfile) > 0)
+	{
+		if (data->is_append)
+			handle_file(data->string_outfile, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
+		else
+			handle_file(data->string_outfile, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
+	}
+}
+
 int handle_redirect(t_info *data)
 {
-	if (comprove_stdout(data) && ((data->is_outfile || data->is_append)))
+	if (comprove_heredoc(data))
 		return (1);
-	if (comprove_stdin(data, &data->list_in_files) && data->is_infile)
+	if (comprove_stdout(data))
 		return (1);
-	if (data->is_heredoc)
-		handle_heredoc(data);
-	if (ft_strlen(data->string_infile) > 0)
-		handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
-	if (ft_strlen(data->string_outfile) > 0 && !data->is_append)
-		handle_file(data->string_outfile, O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
-	if (ft_strlen(data->string_append) > 0 && data->is_append)
-		handle_file(data->string_append, O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
+	if (comprove_stdin(data))
+		return (1);
+	build_files(data);
 	remove_heredoc();
 	return (0);
 }

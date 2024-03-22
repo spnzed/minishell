@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:13 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/01 17:59:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:03:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_redir_syntax_values(t_info *data, char c, int *simple, int *complex,
 		*r_left += 1;
 	else if (c == '>' && !*complex && !*simple)
 		*r_right += 1;
-	if (ft_isspace(c) && !*complex && !*simple)
+	if (ft_isprint(c) && !*complex && !*simple)
 	{
 		*r_left = 0;
 		*r_right = 0;

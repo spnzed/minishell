@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:38:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:47:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void prepare_to_exec(t_info *data)
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;
-	data->list_out_append = NULL;
+	data->list_heredocs = NULL;
 	data->string_infile = 0;
 	data->string_outfile = 0;
 	data->string_overwrite = 0;
@@ -53,7 +53,7 @@ void prepare_to_exec_one(t_info *data)
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;
-	data->list_out_append = NULL;
+	data->list_heredocs = NULL;
 	data->string_infile = 0;
 	data->string_outfile = 0;
 	data->string_overwrite = 0;
@@ -64,7 +64,7 @@ void prepare_to_exec_one(t_info *data)
 	data->is_heredoc = false;
 	get_redirections(data->cmd_line, data);
 	if (data->list_in_files || data->list_out_files
-		 || data->list_out_append || data->list_heredocs)
+	 	|| data->list_heredocs)
 		data->cmd_clean = clean_redir(data->cmd_line);
 	else
 		data->cmd_clean = ft_strdup(data->cmd_line);

@@ -23,8 +23,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -48,7 +48,6 @@ LIBFT_DIR		= 	libft/
 LIBFT			=	libft/libft.a
 
 INCLUDE			+= -I $(INC_DIR) -I $(LIBFT_INC)
-
 
 MINISHELL		=	minishell.c
 
@@ -76,14 +75,17 @@ LEXER			=	def_type.c \
 					utils_var.c
 
 PARSER 			=	parse_var.c \
-					put_variable.c
+					put_variable.c \
+					remove_quotes.c
 
 EXECUTOR		=	add_cmd.c \
 					call_childs.c \
+					clean_quotes.c \
 					clean_redir.c \
 					ctrl_d.c \
 					display_term_message.c \
 					exec_cmds.c \
+					exec_one_cmd.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
@@ -94,8 +96,7 @@ EXECUTOR		=	add_cmd.c \
 					handle_redirect.c \
 					parent_process.c \
 					prepare_to_exec.c \
-					split_quotes.c \
-					one_cmd.c
+					split_quotes.c
 
 UTILS		 	=	check_complex_cmd.c \
 					cmd_count.c \
@@ -142,7 +143,6 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 	
-##	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) $(INCLUDE) $< -o $@
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
 
 all:		libft_link $(NAME) 
