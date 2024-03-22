@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:48:29 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:21:35 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_print_quotes_arg(char *split_cmd)
 	if (space_and_num(new) == 0)
 	{
 		new = ft_strtrim(new, " ");
-		write(1, "exit\n", 6);
+		//write(1, "exit\n", 6); // quitar el comentado antes de entregar
 		exit (ft_atoi(new));
 	}
 	else
