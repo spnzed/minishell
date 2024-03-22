@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 13:23:24 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:34:56 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void			get_redirections(char *cmd, t_info *data);
 void			get_value_heredoc(t_info *data, char *cmd);
 void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd, t_type_redir code);
-void 			remove_heredoc(void);
 void			remove_heredoc(void);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
@@ -125,7 +124,8 @@ int				check_complex_cmd(char *strbase, char *strcomp, int len);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str, t_info *data);
-int				get_redir_syntax_values(t_info *data, char c, int *simple, int *complex, int *r_left, int *r_right);
+int				get_redir_syntax_values(t_info *data, char c, int *simple,
+					int *complex, int *r_left, int *r_right);
 char			*normalizer(char *str);
 void			put_error(t_info *data, char *cmd, char *str, int ret);
 void			put_error_prev(t_info *data, char *cmd, char *str, int ret);

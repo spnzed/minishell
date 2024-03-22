@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 18:31:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 13:15:43 by aaespino         ###   ########.fr       */
+/*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
+/*   Updated: 2024/03/21 15:37:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ typedef enum e_cmd_type
 	EXIT_,
 }					t_cmd_type;
 
-typedef enum		e_type_redir
+typedef enum e_type_redir
 {
 	SIMPLE_INFILE,
 	HEREDOC_INFILE,
 	SIMPLE_OUTFILE,
 	APPEND_OUTFILE,
 }					t_type_redir;
-
 
 //	STRUCTS
 
@@ -83,15 +82,14 @@ typedef struct s_info
 	char			*cmd_line;
 	char			*cmd_clean;
 	char			*home;
-  char 			*str_trim;
-  char 			*root_path;
-  char 			**env;
-  char 			**one_cmd;
-  char 			**mul_cmds;
-  char 			**split_line;
-	char 			**cmd_split;
-  char 			**tab_var_env;
-
+	char			*str_trim;
+	char			*root_path;
+	char			**env;
+	char			**one_cmd;
+	char			**mul_cmds;
+	char			**split_line;
+	char			**cmd_split;
+	char			**tab_var_env;
 
 	t_list			*list_env;
 	t_list			*list_input;
