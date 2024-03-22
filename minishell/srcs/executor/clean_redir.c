@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:09:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:24:47 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 static int	get_end_redir(char *str, int i)
 {
+	int		simple;
+	int		complex;
+
+	simple = 0;
+	complex = 0;
 	while (str[i])
 	{
 		while (str[i] == '<' || str[i] == '>')
@@ -21,17 +26,23 @@ static int	get_end_redir(char *str, int i)
 		while (str[i] == ' ')
 			i++;
 		while (!ft_isspace(str[i]) && str[i + 1] != '\0')
+		{
+			get_quotes_type(str[i], &simple, &complex);
 			i++;
+		}
 		while (str[i] == ' ' && str[i + 1] != '\0')
 			i++;
 		if (str[i + 1] == '\0')
-		{
 			return (i + 1);
-		}
 		if (str[i] == '<' || str[i] == '>')
 			i++;
 		else
-			return (i);
+		{
+			if (!simple && !complex)
+				return (i);
+			else
+				i++;
+		}
 	}
 	return (i);
 }
