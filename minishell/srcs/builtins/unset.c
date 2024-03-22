@@ -6,20 +6,19 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 16:36:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:56:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void delete_node_exp(t_environment **list, char *str)
+static void	delete_node_exp(t_environment **list, char *str)
 {
-	t_environment *current;
-	t_environment *previous;
+	t_environment	*current;
+	t_environment	*previous;
 
 	current = *list;
 	previous = NULL;
-
 	while (current != NULL)
 	{
 		if (ft_strcmp(str, current->signal) == 0)
@@ -29,23 +28,21 @@ static void delete_node_exp(t_environment **list, char *str)
 			else
 				previous->next = current->next;
 			free(current);
-			return;
+			return ;
 		}
 		previous = current;
 		current = current->next;
 	}
 }
 
-
-static void delete_node_env(t_list **list, char *str)
+static void	delete_node_env(t_list **list, char *str)
 {
-	char *temp;
-	t_list *current;
-	t_list *previous;
+	char	*temp;
+	t_list	*current;
+	t_list	*previous;
 
 	current = *list;
 	previous = NULL;
-
 	while (current != NULL)
 	{
 		temp = ft_before_set(current->content, '=');
@@ -57,12 +54,12 @@ static void delete_node_env(t_list **list, char *str)
 				previous->next = current->next;
 			free(temp);
 			free(current);
-			return;
+			return ;
 		}
 		previous = current;
 		current = current->next;
 	}
-	free(temp);
+	free (temp);
 }
 
 static void	unset_error_not_valid_id(char *arg, t_info *data)
@@ -73,7 +70,7 @@ static void	unset_error_not_valid_id(char *arg, t_info *data)
 	data->exit_id = 1;
 }
 
-static int unset_valid(t_info *data)
+static int	unset_valid(t_info *data)
 {
 	char	*non_alnum;
 	char	*alnum;
@@ -87,21 +84,20 @@ static int unset_valid(t_info *data)
 	found = ft_strpbrk(var, non_alnum);
 	found = ft_strjoin(found, ft_strpbrk(var, alnum));
 	if (ft_strlen(found) > 0)
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }
-
 
 int	ft_unset(t_info *data, char **split_cmd)
 {
 	if (!unset_valid(data))
 	{
 		unset_error_not_valid_id(split_cmd[1], data);
-		return(1);	
+		return (1);
 	}
 	delete_node_env(&data->list_env, split_cmd[1]);
 	delete_node_exp(&data->list_exp, split_cmd[1]);
-	return(0);
+	return (0);
 }
 
 // solo puede dar un error que es de sintaxis

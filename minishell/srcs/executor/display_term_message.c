@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/26 19:14:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:09:37 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ char	*display_term_message(void)
 
 	line = readline("42-Minishell ~ % ");
 	if (line == NULL)
-		return(free(line), NULL);
+		return (free(line), NULL);
 	if (ft_strlen(line) > 0)
 		add_history(line);
 	return (line);
 }
+// nose cual era el bueno para el final
 
 // char	*display_term_message(t_info *data)
 // {

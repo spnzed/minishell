@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 18:01:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:08:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int num_quotes(char *str)
+int	num_quotes(char *str)
 {
 	int	i;
 	int	count;
@@ -31,7 +31,7 @@ static char	*str_wo_quotes(char *s1)
 {
 	size_t	i;
 	size_t	j;
-	int 	count;
+	int		count;
 	char	*str;
 
 	if (!s1)
@@ -54,7 +54,6 @@ static char	*str_wo_quotes(char *s1)
 	str[j] = '\0';
 	return (str);
 }
-
 
 char	*clean_quotes(char *str)
 {

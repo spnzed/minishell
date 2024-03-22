@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:46:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:01:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ TLDR
 	fd = open(filename, O_RDONLY);
 
 */
-static void handle_file(char *file, int open_code, int std_mode, int num)
+static void	handle_file(char *file, int open_code, int std_mode, int num)
 {
 	int	fd;
 
@@ -77,9 +77,9 @@ static void handle_file(char *file, int open_code, int std_mode, int num)
 	close (fd);
 }
 
-static void build_files(t_info *data)
+static void	build_files(t_info *data)
 {
-	if (ft_strlen(data->string_infile) > 0) 
+	if (ft_strlen(data->string_infile) > 0)
 	{
 		if (!data->is_heredoc)
 			handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
@@ -95,7 +95,7 @@ static void build_files(t_info *data)
 	}
 }
 
-int handle_redirect(t_info *data)
+int	handle_redirect(t_info *data)
 {
 	if (comprove_heredoc(data))
 		return (1);

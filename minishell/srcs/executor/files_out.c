@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   files_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:22:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:04:47 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int comprove_stdout(t_info *data)
+int	comprove_stdout(t_info *data)
 {
 	int		fd;
 	t_list	*head;
@@ -26,7 +26,6 @@ int comprove_stdout(t_info *data)
 			dprintf(2, "minishell: ");
 			perror (head->content);
 			exit (1);
-//			return (perror ("open"), 1);
 		}
 		close(fd);
 		head = head->next;

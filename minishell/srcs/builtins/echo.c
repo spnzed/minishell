@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 16:35:46 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:46:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static	bool	str_nflag(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	if (str[i] == '-')
 		i++;
@@ -26,7 +26,7 @@ static	bool	str_nflag(char *str)
 			i++;
 	else
 		return (false);
-	return(true);
+	return (true);
 }
 
 static int	echo_little_cases(char *line, char *HOME, int i)
@@ -42,17 +42,17 @@ static int	echo_little_cases(char *line, char *HOME, int i)
 		else
 			return (i + 99);
 	}
-    return (i);
+	return (i);
 }
 
 int	ft_echo(t_info	*data, char **line)
 {
-	int i;
-	int j;
-	int n;
-	int len;
-	char quote;
-	bool n_option;
+	int		i;
+	int		j;
+	int		n;
+	int		len;
+	char	quote;
+	bool	n_option;
 
 	i = 1;
 	j = 0;
@@ -72,7 +72,7 @@ int	ft_echo(t_info	*data, char **line)
 		if (n_option == false)
 			return (printf("\n"), 0);
 		else
-			return(0);
+			return (0);
 	}
 	if (i > 99)
 	{
@@ -84,9 +84,9 @@ int	ft_echo(t_info	*data, char **line)
 		if (n_option == false)
 			return (printf("\n"), 0);
 		else
-			return(0);
+			return (0);
 	}
-	while(len > i)
+	while (len > i)
 	{
 		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
 		{
@@ -101,7 +101,7 @@ int	ft_echo(t_info	*data, char **line)
 				j++;
 				while (line[i][j] && quote != line[i][j])
 					printf("%c", line[i][j++]);
-				if (quote == line[i][j]) 
+				if (quote == line[i][j])
 					j++;
 			}
 			else
@@ -115,7 +115,7 @@ int	ft_echo(t_info	*data, char **line)
 	if (n_option == false)
 		printf("\n");
 	data->exit_id = 0;
-	return(0);
+	return (0);
 }
 
 /*
