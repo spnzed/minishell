@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:54:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:16:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*little_normalizer(char *cmd)
 		i++;
 	while (cmd[i] && (cmd[i] != '\'' || cmd[i] != '\"'))
 		i++;
-	aux = malloc(sizeof(char *) * i + 1);
+	aux = malloc(sizeof(char) * i + 1);
 	i = 0;
 	while (cmd[i] == '\'' || cmd[i] == '\"')
 		i++;

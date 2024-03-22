@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:48:18 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/19 17:03:51 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:19:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char 	*normalizer(char *str)// takes a string and puts all in lower and without 
 	if (!str)
 		return(normal);
 	len = ft_strlen(str);
-	normal = (char *)malloc(len + 1);
+	normal = malloc(sizeof(char) * (len + 1));
 	i = 0;
 	y = 0;
 	x = 0;

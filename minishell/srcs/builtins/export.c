@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:51:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:16:02 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	sub_var(t_list *list, char *signal, char *content)
 	{
 		if (ft_strcmp(ft_before_set(list->content, '='), signal) == 0)
 		{
-			new_content = malloc(sizeof len);
+			new_content = malloc(sizeof(char) * len);
 			new_content = ft_strjoin(signal, "=");
 			new_content = ft_strjoin(new_content, content);
 			list->content = ft_memcpy(list->content, new_content, len);

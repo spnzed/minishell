@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:12:02 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/11 14:07:19 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:20:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char *ft_after_set(char *str, char set)
     if (str[i] == '\0')
         return ft_strdup("");
     i++;
-    dst = (char *)malloc(ft_strlen(str + i) + 1);
+    dst = malloc(sizeof(char) * (ft_strlen(str + i) + 1));
     while (str[i] != '\0') {
         dst[x] = str[i];
         i++;
@@ -43,7 +43,7 @@ char	*ft_before_set(char *str, char set)
         return(NULL);
 	while (str[i] && str[i] != set)
 		i++;
-	dst = (char *)malloc(i + 1);
+    dst = malloc(sizeof(char) * (i + 1));
     if (!dst)
         return(NULL);
     int j = 0;
