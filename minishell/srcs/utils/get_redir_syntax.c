@@ -6,13 +6,12 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:13 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 11:26:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:43:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Revisar ultimo if
 int	get_redir_syntax_values(t_info *data, char c, int *simple, int *complex)
 {
 	int	r_left;
