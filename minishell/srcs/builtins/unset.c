@@ -97,6 +97,7 @@ int	ft_unset(t_info *data, char **split_cmd)
 	}
 	delete_node_env(&data->list_env, split_cmd[1]);
 	delete_node_exp(&data->list_exp, split_cmd[1]);
+	delete_node_exp(&data->signals_env, split_cmd[1]);
 	return (0);
 }
 

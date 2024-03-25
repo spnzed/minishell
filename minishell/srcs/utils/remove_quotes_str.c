@@ -20,6 +20,8 @@ char	*ft_remove_quotes_str(char *str)
 	
 	i = 0;
 	x = 0;
+	if (!str)
+		return (NULL);
 	copy = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	while(str[i])
 	{

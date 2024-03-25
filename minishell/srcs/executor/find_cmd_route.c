@@ -63,7 +63,7 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	i = -1;
 	if (!cmd)
 		return (NULL);
-	line = handle_path(lst_env, cmd, NULL);
+	line = ft_remove_quotes_str(handle_path(lst_env, cmd, NULL));
 	if (!line)
 		return (NULL);
 	route = handle_route(line, cmd);
@@ -79,4 +79,5 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	ft_arrfree(route, ft_arrlen(route));
 	return (ret);
 }
+
 //printf("[%s]\n", route[i]);

@@ -88,8 +88,8 @@ int syntax_error(t_info *data)
 		data->cmd_line = NULL;
 		return (1);
 	}
-    if (data->cmd_nbr == 42)
-    {
+  if (data->cmd_nbr == 42)
+  {
         free(data->cmd_line);
         data->cmd_line = NULL;
         return (1);

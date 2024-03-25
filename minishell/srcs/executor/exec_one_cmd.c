@@ -95,14 +95,9 @@ static void	exec_one(t_info *data)
 	if (handle_redirect(data))
 		exit (1);
 	filter_cmd(data, &data->one_cmd[0]);
-	path = find_cmd_route(data->signals_env, data->one_cmd[0]);
+	path = find_cmd_route(data->list_exp, data->one_cmd[0]);
 	if (!path && !comprove_redirs(data))
-	{
-		if (ft_strchr(data->one_cmd[0], '/'))
-			put_error(data, data->one_cmd[0], ": No such file or directory\n", 1); 
-		else
-			put_error(data, data->one_cmd[0], ": command not found\n", 127);
-	}
+		put_error(data, data->one_cmd[0], ": No such file or directory\n", 127); 
 	execve(path, data->one_cmd, data->env);
 	if (!comprove_redirs(data))
 		last_error(data);
