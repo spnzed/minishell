@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:46:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:16:47 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	ft_echo(t_info	*data, char **line)
 	n = 0;
 	len = ft_arrlen(line);
 	n_option = false;
+	// int x = 0;
+	// while (line[x])
+	// 	printf ("%s\n", line[x++]);
 	while (line[i] && str_nflag(line[i]) == true)
 	{
 		n_option = str_nflag(line[i]);

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 13:29:33 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:37:35 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	i = -1;
 	if (!cmd)
 		return (NULL);
-	line = handle_path(lst_env, cmd, NULL);
+	line = ft_remove_quotes_str(handle_path(lst_env, cmd, NULL));
 	if (!line)
 		return (NULL);
 	route = handle_route(line, cmd);
