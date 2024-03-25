@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/22 11:41:35 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:15:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ typedef struct s_info
 
 	struct termios	n_settings;
 	struct termios	o_settings;
-
 }					t_info;
 
 typedef struct s_token

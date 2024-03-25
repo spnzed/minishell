@@ -103,7 +103,7 @@ UTILS		 	=	check_complex_cmd.c \
 					copy_environment.c \
 					copy_list.c \
 					count_words.c \
-					free_environment.c \
+					free.c \
 					get_quote_final.c \
 					get_quote_types.c \
 					get_redir_end.c \

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 16:02:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:30:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 
 //				THE PROJECT
 int				manage_cmd(t_info *data);
+void			free_info(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				LEXER		📝
 int				lexer(t_info *data, char **env);
@@ -138,7 +139,8 @@ void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(t_info *data, char *cmd, char c);
 t_list			*ft_copy_list(const t_list *src);
-void			ft_free_list(t_list *head);
+void			free_list(t_list *list);
+void			free_environment(t_environment *env);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
 char			*ft_after_set(char *str, char set);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 17:53:47 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:21:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,6 @@ static void	launch_mode(t_info *data)
 	}
 }
 
-static void	free_ev(t_info *data)
-{
-	t_environment	*head;
-	int				len;
-
-	head = data->signals_env;
-	while (head != NULL)
-	{
-		if (head->full_line)
-			free(head->full_line);
-		if (head->signal)
-			free(head->signal);
-		if (head->content)
-			free(head->content);
-		head = head->next;
-	}
-	len = ft_lstsize(data->list_env);
-	while (len > 0)
-		free(&data->list_env[--len]);
-	free(data->list_env);
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_info	data;
@@ -59,6 +37,6 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	lexer(&data, env);
 	launch_mode (&data);
-	free_ev(&data);
+	free_info(&data);
 	return (data.exit_id);
 }

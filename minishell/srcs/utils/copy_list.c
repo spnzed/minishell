@@ -12,18 +12,6 @@
 
 #include "minishell.h"
 
-void	ft_free_list(t_list *head)
-{
-	t_list	*temp;
-
-	while (head)
-	{
-		temp = head;
-		head = head->next;
-		free(temp);
-	}
-}
-
 t_list	*ft_copy_list(const t_list *src)
 {
 	t_list	*head;
@@ -44,7 +32,7 @@ t_list	*ft_copy_list(const t_list *src)
 			current_dest->next = malloc(sizeof(t_list));
 			if (!current_dest->next)
 			{
-				ft_free_list(head);
+				free_list(head);
 				return (NULL);
 			}
 			current_dest = current_dest->next;
