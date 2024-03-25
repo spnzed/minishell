@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:39:18 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:45:57 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
-static void	one_command(t_info *data)
+static void	one_command (t_info *data)
 {
 	prepare_to_exec_one(data);
 	exec_one_cmd(data);
 }
 
-static void	multiple_commands(t_info *data)
+static void	multiple_commands (t_info *data)
 {
-	prepare_to_exec(data);
-	exec_cmds(data);
+	prepare_to_exec(data); //prepare_to_exec_mul(data);
+	exec_cmds(data); //exec_mul_cmd(data);
 }
 
 static void	parser(t_info *data)
@@ -44,18 +44,18 @@ static void	parser(t_info *data)
 	syntax_error(data);
 }
 
-static void	expander(t_info *data)
+static void expander(t_info *data)
 {
 	if (data->cmd_line)
 	{
-		while (search_var(data->cmd_line))
+		while (comprove_var(data->cmd_line))
 			data->cmd_line = parse_var(data);
 		if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
 			printf("ñ");
 	}
 }
 
-static void	executor(t_info *data)
+static void executor(t_info *data)
 {
 	if (data->cmd_line)
 	{
