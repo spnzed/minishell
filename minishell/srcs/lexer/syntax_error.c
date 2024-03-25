@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:54:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 14:43:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:17:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,37 @@ static int pipe_syntax(char *line, t_info *data)
 	return (0);
 }
 
+static int str_is_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int syntax_error(t_info *data)
 {
     data->cmd_nbr = cmd_count(data, data->cmd_line);
-    if (data->cmd_nbr == 42)
-    {
+	if (ft_strlen(data->cmd_line) == 0)
+	{
+		free(data->cmd_line);
+		data->cmd_line = NULL;
+		return (1);
+	}
+	if (str_is_space(data->cmd_line))
+	{
+		free(data->cmd_line);
+		data->cmd_line = NULL;
+		return (1);
+	}
+  if (data->cmd_nbr == 42)
+  {
         free(data->cmd_line);
         data->cmd_line = NULL;
         return (1);
