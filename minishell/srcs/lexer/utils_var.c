@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 14:02:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:01:56 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ t_list	*get_var_list(t_list *env, char *var)
 	{
 		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
 			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
+
+char	*get_var_init(t_list *env, char *var)
+{
+	t_list	*head;
+
+	head = env;
+	while (head)
+	{
+		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
+			return (ft_after_set(head->content, '='), var);
 		head = head->next;
 	}
 	return (NULL);

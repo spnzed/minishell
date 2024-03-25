@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 14:46:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:02:08 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_environment	*var_export(t_environment *signals_env, char *var);
 int				var_found_env(t_environment *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
 t_list			*get_var_list(t_list *env, char *var);
+char			*get_var_init(t_list *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(t_info *data, char *line);

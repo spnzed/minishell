@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:40:07 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:00:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static void	launch_mode(int argc, char **argv, t_info *data)
 			data->cmd_line = display_term_message();
 			if (!data->cmd_line)
 				ctrl_d(data);
+			if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
+				printf("ñ\n");
+			else
 			manage_cmd(data);
 			reset_fd(data);
 		}
