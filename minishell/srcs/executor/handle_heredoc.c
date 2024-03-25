@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/19 16:50:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:01:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 	S_ISREG()	Verifica si un archivo es regular
 	unlink()	Elimina el archivo si es regular
 */
-void remove_heredoc(void)
+void	remove_heredoc(void)
 {
-	struct stat info;
+	struct stat	info;
 
 	if (access(HEREDOC, F_OK) != -1)
 	{
@@ -78,7 +78,7 @@ En el caso de 0644:
 int	comprove_heredoc(t_info *data)
 {
 	int		fd;
-	char 	*line;
+	char	*line;
 	t_list	*head;
 
 	signal(SIGINT, signal_handler_heredoc);

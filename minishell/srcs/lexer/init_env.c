@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 14:07:48 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:16:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,12 @@ int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
 	data->signals_env = start_sig(data->list_env);
-	data->list_exp = start_sig(order_env(data->list_env)); // la idea es que primero ordene y luego lo divida
+	data->list_exp = start_sig(order_env(data->list_env));
 	data->root_path = root_pwd(data->signals_env);
 	data->env = malloc_env_array(env);
-	data->home = get_var_list(data->list_env, "HOME")->content + 5;
+	data->home = get_var_init(data->list_env, "HOME");
+	if (data->home)
+		data->home = get_var_list(data->list_env, "HOME")->content + 5;
 	if (!data->list_env)
 		return (1);
 	return (0);

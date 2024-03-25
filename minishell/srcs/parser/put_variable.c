@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:44:07 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:41:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:42:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,16 @@ static char	*alloc_final_line(char *replacer, char *before_val, char *after_val)
 
 char	*put_variable(char *line, char *var, char *replace)
 {
-	int			len_var;
-	int			len_before_var;
-	int			len_after_var;
-	int			final_position;
-	char		*str_before_var;
-	char		*str_after_var;
-	char		*final_line;
+	t_var	s;
+	char	*final_line;
 
 	final_line = 0;
-	len_var = ft_strlen(var);
-	len_before_var = ft_strlen(line) - ft_strlen(search_var(line));
-	len_after_var = ft_strlen(search_var(line) + len_var);
-	final_position = len_before_var + len_var + 1;
-	str_before_var = ft_substr(line, 0, len_before_var);
-	str_after_var = ft_substr(line, final_position, len_after_var);
-	final_line = alloc_final_line(replace, str_before_var, str_after_var);
+	s.len_var = ft_strlen(var);
+	s.len_before_var = ft_strlen(line) - ft_strlen(search_var(line));
+	s.len_after_var = ft_strlen(search_var(line) + s.len_var);
+	s.final_position = s.len_before_var + s.len_var + 1;
+	s.str_before_var = ft_substr(line, 0, s.len_before_var);
+	s.str_after_var = ft_substr(line, s.final_position, s.len_after_var);
+	final_line = alloc_final_line(replace, s.str_before_var, s.str_after_var);
 	return (final_line);
 }

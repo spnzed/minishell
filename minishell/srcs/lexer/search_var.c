@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/05 15:11:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:46:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,32 @@ char	*search_var(char *line)
 			return (&line[i]);
 	}
 	return (NULL);
+}
+
+int	comprove_var(char *line)
+{
+	int		i;
+	bool	we_in_quotes;
+
+	i = -1;
+	we_in_quotes = false;
+	while (line[++i])
+	{
+		if (line[i] == '\'')
+		{
+			if (we_in_quotes == true)
+				we_in_quotes = false;
+			else
+				we_in_quotes = true;
+		}
+		if (line[i] == '$' && (ft_isalnum(line[i + 1]) 
+			|| line[i + 1] == '\'' || line[i + 1] == '_') && we_in_quotes == false)
+			return (1);
+		else if (line[i] == '$' && (line[i + 1] == '?')
+			&& we_in_quotes == false)
+			return (1);
+	}
+	return (0);
 }
 
 /*

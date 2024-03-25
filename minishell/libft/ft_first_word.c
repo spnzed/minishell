@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_first_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:02:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:33:38 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:14:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_first_word(char *str)
 
 	x = 0;
 	len = ft_strlen(str);
-	str_copy = (char *)malloc(len + 1);
+	str_copy = malloc(sizeof(char) * (len + 1));
 	while (str[x] && (str[x] == ' ' || str[x] == '\t'))
 		x++;
 	while (str[x] && str[x] != ' ' && str[x] != '\t')

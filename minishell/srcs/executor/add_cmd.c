@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   add_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:39:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/22 18:48:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:30:32 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **add_cmd(char **route, char *cmd)
+char	**add_cmd(char **route, char *cmd)
 {
 	int		i;
 	char	*tmp;
@@ -30,6 +30,6 @@ char **add_cmd(char **route, char *cmd)
 		if (!route[i])
 			return (NULL);
 	}
-	route[i] = "\0";
+	route[i] = NULL;
 	return (route);
 }
