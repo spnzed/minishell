@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 19:21:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:38:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	launch_mode(t_info *data)
 	{
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, SIG_IGN);
-		data->cmd_line = display_term_message();
+		data->cmd_line = display_term_message(data);
 		if (!data->cmd_line)
 			ctrl_d(data);
 		if (ft_strcmp(data->cmd_line, "echo ñ") == 0)

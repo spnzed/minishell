@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 18:30:19 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:39:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char			*clean_redir(char *str);
 int				num_quotes(char *str);
 char			*clean_quotes(char *str);
 int				ctrl_d(t_info *data);
-char			*display_term_message(void);
+char			*display_term_message(t_info *data);
 void			do_builtin(t_info *data, int builtin, char **split_cmd);
 //char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
