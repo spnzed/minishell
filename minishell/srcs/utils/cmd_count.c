@@ -48,13 +48,13 @@ int	cmd_count(t_info *data, char *line)
 	int	simple;
 	int	complex;
 
-	i = -1;
+	i = 0;
 	count = 1;
 	simple = 0;
 	complex = 0;
 	if (!line[0])
 		return (0);
-	while (line[++i])
+	while (line[i])
 	{
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
@@ -66,6 +66,7 @@ int	cmd_count(t_info *data, char *line)
 				return (42);
 			count++;
 		}
+		i++;
 	}
 	return (count);
 }

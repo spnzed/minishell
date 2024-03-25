@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/22 12:16:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:28:37 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,15 +124,16 @@ static char	**ft_env_to_array(t_environment *head)
 	if (!array)
 		return (NULL);
 	temp = head;
-	while (i < lstsize)
+	while (i < lstsize && temp)
 	{
-		strsize = ft_strlen(temp->signal) + 1 + ft_strlen(temp->content);
+		strsize = ft_strlen(temp->signal) + ft_strlen(temp->content) + 2;
 		if (ft_strlen(temp->content) > 0)
 		{
 			array[i] = malloc(sizeof(char) * (strsize + 1));
 			ft_strlcpy(array[i], temp->signal, strsize + 1);
 			ft_strlcat(array[i], "=", strsize + 1);
 			ft_strlcat(array[i], temp->content, strsize + 1);
+			
 		}
 		temp = temp->next;
 		i++;
@@ -171,6 +172,7 @@ static void	export_else(t_info *data, t_environment *tmp, char *cmd)
 		cmd = ft_remove_quotes_str(cmd);
 	tmp = ft_envnew(cmd);
 	tmp->signal = cmd;
+	tmp->content = NULL;
 	if (!tmp)
 	{
 		ft_envclear(&data->list_exp, free);

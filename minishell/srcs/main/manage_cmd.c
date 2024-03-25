@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 14:45:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:46:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static void	parser(t_info *data)
 
 static void expander(t_info *data)
 {
-	if (data->cmd_line)
+	// if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
+	// 	printf("ñ");
+	if (ft_strchr(data->cmd_line, '$'))
 	{
 		while (comprove_var(data->cmd_line))
 			data->cmd_line = parse_var(data);
-		if (ft_strcmp(data->cmd_line, "echo ñ") == 0)
-			printf("ñ");
 	}
 }
 

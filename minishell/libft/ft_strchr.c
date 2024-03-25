@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:18:25 by aaespino          #+#    #+#             */
-/*   Updated: 2022/02/02 14:56:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:44:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	int		i;
 	char	*str;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	str = (char *)s;
 	while (str[i] != '\0')
