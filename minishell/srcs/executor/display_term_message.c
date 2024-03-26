@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 19:40:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:45:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 // 	return (line);
 // }
 
+// por eesto no funcionaba el free
 char	*display_term_message(t_info *data)
 {
 	char	*line;

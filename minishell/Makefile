@@ -141,7 +141,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
-	
+
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
 
 all:		libft_link $(NAME) 
