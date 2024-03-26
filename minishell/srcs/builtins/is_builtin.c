@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/22 12:16:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:11:54 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static char	*little_normalizer(char *cmd)
 
 	i = 0;
 	j = 0;
+	aux = NULL;
 	while (cmd[i] == '\'' || cmd[i] == '\"')
 		i++;
 	while (cmd[i] && (cmd[i] != '\'' || cmd[i] != '\"'))
@@ -34,7 +35,7 @@ static char	*little_normalizer(char *cmd)
 		j++;
 		i++;
 	}
-	aux[i] = '\0';
+	aux[j] = '\0';
 	return (aux);
 }
 
@@ -42,16 +43,20 @@ int	normalize_cmd(char **cmd)
 {
 	char	*aux;
 
-	if ((cmd[0][0] == '\'' || cmd[0][0] == '\"')
-		|| (cmd[0][ft_strlen(cmd[0]) - 1] == '\''
-		|| cmd[0][ft_strlen(cmd[0]) - 1] == '\"'))
+	aux = NULL;
+	if (cmd[0] != NULL && ft_strlen(cmd[0]) > 0)
 	{
-		aux = little_normalizer(cmd[0]);
-		if (ft_strcmp(aux, "echo") == 0)
+		if ((cmd[0][0] == '\'' || cmd[0][0] == '\"')
+			|| (cmd[0][ft_strlen(cmd[0]) - 1] == '\''
+			|| cmd[0][ft_strlen(cmd[0]) - 1] == '\"'))
 		{
-			if (check_complex_cmd(aux, "echo", 4) == 0
-				|| check_complex_cmd(aux, "echo -n", 7) == 0)
-				return (3);
+			aux = little_normalizer(cmd[0]);
+			if (ft_strcmp(aux, "echo") == 0)
+			{
+				if (check_complex_cmd(aux, "echo", 4) == 0
+					|| check_complex_cmd(aux, "echo -n", 7) == 0)
+					return (3);
+			}
 		}
 	}
 	return (0);

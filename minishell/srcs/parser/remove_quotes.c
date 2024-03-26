@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 12:17:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:07:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*remove_quotes(char *str)
 
 	i = 0;
 	j = 0;
+	simple = 0;
+	complex = 0;
 	ret = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!ret)
 		return (NULL);
@@ -38,6 +40,7 @@ char	*remove_quotes(char *str)
 		i++;
 	}
 	ret[j] = '\0';
+	free(str);
 	return (ret);
 }
 
