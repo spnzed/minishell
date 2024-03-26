@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 19:38:52 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:45:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	lexer(&data, env);
 	launch_mode (&data);
-	free_info(&data);
+	//free_info(&data);
 	return (data.exit_id);
 }

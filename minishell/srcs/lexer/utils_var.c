@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 16:16:09 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:30:47 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,29 @@ int	var_found_list(t_list *env, char *var)
 	return (1);
 }
 
-t_list	*get_var_list(t_list *env, char *var)
+t_environment	*get_var_list(t_environment *env, char *var)
 {
-	t_list	*head;
+	t_environment	*head;
 
 	head = env;
 	while (head)
 	{
-		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
+		if (ft_strcmp(head->signal, var) == 0)
 			return (head);
 		head = head->next;
 	}
 	return (NULL);
 }
 
-char	*get_var_init(t_list *env, char *var)
+char	*get_var_init(t_environment *env, char *var)
 {
-	t_list	*head;
+	t_environment	*head;
 
 	head = env;
 	while (head)
 	{
-		if (ft_strcmp(ft_before_set(head->content, '='), var) == 0)
-			return (ft_after_set(head->content, '='), var);
+		if (ft_strcmp(head->signal, var) == 0)
+			return (head->content);
 		head = head->next;
 	}
 	return (NULL);

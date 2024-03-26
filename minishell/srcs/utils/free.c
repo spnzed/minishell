@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void free_string_array(char **array) 
+void free_array(char **array) 
 {
 	int		i;
 	char	*str;
@@ -99,12 +99,12 @@ void free_info(t_info *info)
 	if (info->string_append)
 		free(info->string_append);
 
-	free_string_array(info->env);
-	free_string_array(info->one_cmd);
-	free_string_array(info->mul_cmds);
-	free_string_array(info->split_line);
-	free_string_array(info->tab_var_env);
-	free_string_array(info->cmd_split);
+	free_array(info->env);
+	free_array(info->one_cmd);
+	free_array(info->mul_cmds);
+	free_array(info->split_line);
+	free_array(info->tab_var_env);
+	free_array(info->cmd_split);
 
 	free_list(info->list_env);
 	free_list(info->list_input);
