@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 16:49:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:57:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_environment	*start_sig(t_list *env)
 			ft_envadd_back(&begin, new_env);
 		env = env->next;
 	}
-	if (x > 0)
+	if (x == 1)
 		free_list(env_head);
 	x++;
 	return(begin);
