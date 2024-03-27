@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 14:14:41 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:49:43 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_environment	*value_export(t_environment *signals_env, char *value);
 t_environment	*var_export(t_environment *signals_env, char *var);
 int				var_found_env(t_environment *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
-t_list			*get_var_list(t_list *env, char *var);
-char			*get_var_init(t_list *env, char *var);
+t_environment	*get_var_list(t_environment *env, char *var);
+char			*get_var_init(t_environment *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(t_info *data, char *line);
@@ -154,6 +154,7 @@ t_environment	*ft_copy_environment(const t_environment *src);
 void			set_var(t_list *head, char *id, char *value);
 void			add_variable_list(t_list *head, char *value);
 void			free_environment(t_environment *env);
+void			free_array(char **array);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);

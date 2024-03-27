@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:08:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:12:14 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@ static char	**handle_cmd(char *cmd)
 
 static void	filter_cmd(t_info *data, char **splitted_cmd)
 {
-	char	*home;
-
-	home = get_var_list(data->list_env, "HOME")->content + 5;
 	if (ft_strcmp(splitted_cmd[0], " ") == 0)
 		put_error(data, " line 1: ", ": command not found\n", 127);
 	if (ft_strcmp(splitted_cmd[0], "~") == 0)
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
-		ft_putstr_fd(home, 2);
+		ft_putstr_fd(data->home, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		exit (126);
 	}

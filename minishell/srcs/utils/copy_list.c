@@ -25,14 +25,14 @@ t_list	*ft_copy_list(const t_list *src)
 		return (NULL);
 	while (src)
 	{
-		current_dest->content = src->content;
+		current_dest->content = ft_strdup(src->content);
 		src = src->next;
 		if (src)
 		{
 			current_dest->next = malloc(sizeof(t_list));
 			if (!current_dest->next)
 			{
-				free_list(head);
+				free_list(current_dest);
 				return (NULL);
 			}
 			current_dest = current_dest->next;

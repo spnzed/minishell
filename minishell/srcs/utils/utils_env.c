@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:59:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/11 14:37:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:39:01 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_environment	*ft_envnew(void *content)
 	new_node = malloc(sizeof(t_environment));
 	if (!new_node)
 		return (0);
-	new_node->full_line = content;
+	new_node->full_line = ft_strdup(content);
 	new_node->next = NULL;
 	return (new_node);
 }
