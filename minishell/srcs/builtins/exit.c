@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/26 13:50:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:23:25 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,17 @@ static int	space_and_num(char *str)
 static void	ft_print_quotes_arg(char *split_cmd)
 {
 	char	*new;
+	int		n;
 
 	new = ft_remove_quotes_str(split_cmd);
+	if (ft_strrchr(new, ' ') && ft_strcmp_len(new, " ", 1))
+		new = ft_strtrim(new, " ");
 	if (space_and_num(new) == 0)
 	{
-		new = ft_strtrim(new, " ");
+		n = ft_atoi(new);
+		free (new);
 		//write(1, "exit\n", 6); // quitar el comentado antes de entregar
-		exit (ft_atoi(new));
+		exit (n);
 	}
 	else
 	{
@@ -53,6 +57,7 @@ static void	ft_print_quotes_arg(char *split_cmd)
 		ft_putstr_fd("exit: ", 2);
 		ft_putstr_fd(new, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
+		free (new);
 		exit (255);
 	}
 }

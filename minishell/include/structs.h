@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 13:27:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:17:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_info
 	char			*home;
 	char			*str_trim;
 	char			*root_path;
+	char			*found;
 	char			**env;
 	char			**one_cmd;
 	char			**mul_cmds;
