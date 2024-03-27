@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:42:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:30:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ static int	check_quotes_arg(char **split_cmd)
 
 int	permission_dir(t_info *data, char *file, char **split_cmd)
 {
+	// char *simple_aux;
+	// char *complex_aux;
+
+	// simple_aux = NULL;
+	// complex_aux = NULL;
 	if (access(file, F_OK) != -1)
 	{
 		if (file_permissions(data, file))
@@ -112,6 +117,8 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 	}
 	else
 	{
+		// simple_aux = NULL;
+		// complex_aux = NULL;
 		if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
 			return (0);
 		if (check_quotes_arg(split_cmd) == 0)

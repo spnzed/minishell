@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 18:12:14 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:18:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static char	**handle_cmd(char *cmd)
 
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
+	free(cleaned_cmd);
 	return (splitted_cmd);
 }
 

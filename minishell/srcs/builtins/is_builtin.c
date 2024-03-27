@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/26 16:11:54 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:27:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@ int	normalize_cmd(char **cmd)
 			{
 				if (check_complex_cmd(aux, "echo", 4) == 0
 					|| check_complex_cmd(aux, "echo -n", 7) == 0)
+				{
+					free(aux);
 					return (3);
+				}
 			}
 		}
 	}
+	free(aux);
 	return (0);
 }
 
@@ -74,25 +78,48 @@ int	is_builtin(char **cmd, t_info *data)
 	if (normalized)
 		return (normalized);
 	if (ft_strcmp(aux, "env") == 0)
+	{
+		free(aux);
 		return (1);
+	}
 	else if (check_complex_cmd(aux, "pwd", 3) == 0)
+	{
+		free(aux);	
 		return (2);
+	}
 	else if (check_complex_cmd(aux, "echo", 4) == 0
 		|| check_complex_cmd(aux, "echo -n", 7) == 0)
+	{
+		free(aux);	
 		return (3);
+	}
 	else if (ft_strcmp(aux, "exit") == 0)
+	{
+		free(aux);
 		return (4);
+	}
 	else if (check_complex_cmd(aux, "cd", 2) == 0)
+	{
+		free(aux);	
 		return (5);
+	}
 	else if (check_complex_cmd(aux, "export", 6) == 0)
+	{
+		free(aux);
 		return (6);
+	}
 	else if (check_complex_cmd(aux, "unset", 5) == 0)
+	{
+		free(aux);	
 		return (7);
+	}
 	else if (ft_strlen(aux) > 0)
 	{
 		data->exit_id = 127;
+		free(aux);
 		return (0);
 	}
+	free(aux);
 	return (0);
 }
 // mirar en que casos si pones un espacio despues de el comando sigue funcionando

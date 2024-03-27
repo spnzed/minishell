@@ -76,45 +76,46 @@ void	free_list(t_list *list)
 
 void free_info(t_info *info) 
 {
+
 	if (info->cmd_line)
 		free(info->cmd_line);
-	if (info->cmd_clean)
-		free(info->cmd_clean);
-	if (info->home)
-		free(info->home);
-	if (info->str_trim)
-		free(info->str_trim);
-	if (info->root_path)
-		free(info->root_path);
-	if (info->from_file)
-		free(info->from_file);
-	if (info->string_infile)
-		free(info->string_infile);
-	if (info->string_outfile)
-		free(info->string_outfile);
-	if (info->string_overwrite)
-		free(info->string_overwrite);
-	if (info->string_heredoc)
-		free(info->string_heredoc);
-	if (info->string_append)
-		free(info->string_append);
+	// if (info->cmd_clean)
+	// 	free(info->cmd_clean);
+	// if (info->home)
+	// 	free(info->home);
+	// if (info->str_trim)
+	// 	free(info->str_trim);
+	// if (info->root_path)
+	// 	free(info->root_path);
+	// if (info->from_file)
+	// 	free(info->from_file);
+	// if (info->string_infile)
+	// 	free(info->string_infile);
+	// if (info->string_outfile)
+	// 	free(info->string_outfile);
+	// if (info->string_overwrite)
+	// 	free(info->string_overwrite);
+	// if (info->string_heredoc)
+	// 	free(info->string_heredoc);
+	// if (info->string_append)
+	// 	free(info->string_append);
 
-	free_array(info->env);
-	free_array(info->one_cmd);
-	free_array(info->mul_cmds);
-	free_array(info->split_line);
-	free_array(info->tab_var_env);
-	free_array(info->cmd_split);
+	// free_array(info->env);
+	// free_array(info->one_cmd);
+	// free_array(info->mul_cmds);
+	// free_array(info->split_line);
+	// free_array(info->tab_var_env);
+	// free_array(info->cmd_split);
 
-	free_list(info->list_env);
-	free_list(info->list_input);
-	free_list(info->list_path);
-	free_list(info->list_in_files);
-	free_list(info->list_out_files);
-	free_list(info->list_heredocs);
+	// free_list(info->list_env);
+	// free_list(info->list_input);
+	// free_list(info->list_path);
+	// free_list(info->list_in_files);
+	// free_list(info->list_out_files);
+	// free_list(info->list_heredocs);
 
-	free_environment(info->signals_env);
-	free_environment(info->list_exp);
+	// free_environment(info->signals_env);
+	// free_environment(info->list_exp);
 }
 
 //	free_list(info->list_env);
