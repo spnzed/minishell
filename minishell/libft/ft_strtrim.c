@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:38:14 by aaespino          #+#    #+#             */
-/*   Updated: 2022/02/02 17:32:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:40:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	start = 0;
 	len = ft_strlen(s1);
+	if (!s1 || !set)
+		return (NULL);
 	while (s1[start] && ft_strchr (set, s1[start]))
 		start++;
 	while (len && ft_strrchr (set, s1[len]))
