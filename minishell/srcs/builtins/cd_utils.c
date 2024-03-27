@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 14:30:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:43:15 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 int	cd_error_msg(t_info *data, char *arg, char *str)
 {
+	char *simple_aux;
+	char *complex_aux;
+
+	simple_aux = ft_strtrim(str, "\'");
+	complex_aux = ft_strtrim(simple_aux, "\"");
 	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd((ft_strtrim(ft_strtrim(str, "\'"), "\"")), 2);
+	ft_putstr_fd(complex_aux, 2);
 	ft_putstr_fd(arg, 2);
 	data->exit_id = 1;
+	free(simple_aux);
+	free(complex_aux);
 	return (0);
 }
 
@@ -105,11 +112,11 @@ static int	check_quotes_arg(char **split_cmd)
 
 int	permission_dir(t_info *data, char *file, char **split_cmd)
 {
-	// char *simple_aux;
-	// char *complex_aux;
+	char *simple_aux;
+	char *complex_aux;
 
-	// simple_aux = NULL;
-	// complex_aux = NULL;
+	simple_aux = NULL;
+	complex_aux = NULL;
 	if (access(file, F_OK) != -1)
 	{
 		if (file_permissions(data, file))
@@ -117,17 +124,31 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 	}
 	else
 	{
-		// simple_aux = NULL;
-		// complex_aux = NULL;
-		if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
+		simple_aux = ft_strtrim(file, "\'");
+		complex_aux = ft_strtrim(simple_aux, "\"");
+		if (ft_strlen(complex_aux) == 0)
+		{
+			free(simple_aux);
+			free(complex_aux);
 			return (0);
+		}
 		if (check_quotes_arg(split_cmd) == 0)
+		{
+			free(simple_aux);
+			free(complex_aux);
 			return (0);
+		}
 		if (cd_error_file_too_long(data, file))
+		{
+			free(simple_aux);
+			free(complex_aux);
 			return (0);
+		}
 		if (ft_strchr(file, '/'))
 			cd_error_msg(data, ": Not a directory\n", file);
 		cd_error_msg(data, ": No such file or directory\n", file);
+		free(simple_aux);
+		free(complex_aux);
 	}
 	return (0);
 }
