@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 19:49:40 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:49:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 t_environment	*start_sig(t_list *env)
 {
 	int 			i;
+	static int		x;
 	t_environment	*begin;
 	t_environment	*new_env;
+	t_list			*env_head;
 
+	env_head = env;
 	begin = NULL;
 	while (env)
 	{
@@ -35,11 +38,14 @@ t_environment	*start_sig(t_list *env)
 		if (new_env->full_line[i] == '=')
 			new_env->content = ft_substr(new_env->full_line, i + 1, ft_strlen(new_env->full_line));
 		if (!begin)
-			begin = new_env;	
+			begin = new_env;
 		else
 			ft_envadd_back(&begin, new_env);
 		env = env->next;
 	}
+	if (x > 0)
+		free_list(env_head);
+	x++;
 	return(begin);
 }
 
@@ -72,7 +78,6 @@ t_list	*order_env(t_list *env)
 		}
 		index++;
 	}
-
 	return (list_order);
 }
 
