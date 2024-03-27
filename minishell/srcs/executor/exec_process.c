@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 14:51:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:15:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
+	char	*aux;
 
-	splitted_cmd[0] = ft_strtrim(splitted_cmd[0], "\"");
-	filter_cmd(data, &splitted_cmd[0]);
-	path = find_cmd_route(data->list_exp, splitted_cmd[0]);
+	aux = ft_strtrim(splitted_cmd[0], "\"");
+	filter_cmd(data, &aux);
+	path = find_cmd_route(data->list_exp, aux);
 	if (!path)
-		put_error(data, splitted_cmd[0], ": No such file or directory\n", 127); 
+		put_error(data, aux, ": No such file or directory\n", 127); 
 	execve(path, splitted_cmd, data->env);
-	put_error(data, splitted_cmd[0], ": command not found\n", 127);
+	put_error(data, aux, ": command not found\n", 127);
 	exit (127);
 }
 

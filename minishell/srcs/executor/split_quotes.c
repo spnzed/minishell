@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 15:59:22 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:05:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ static char	*split_substr_quotes(char *cmd, int start, int end, int count)
 	if (count == 0)
 		ret_line = ft_substr(cmd, start, end - start);
 	else if ((end + 1) < len)
-	{
-		if (cmd[end + 1] == ' ')
-			ret_line = ft_substr(cmd, start + 1, end - start - 1);
-		else
-			ret_line = ft_substr(cmd, start + 1, end - start - 1);
-	}
+		ret_line = ft_substr(cmd, start + 1, end - start - 1);
 	else
 	{
 		if (cmd[start] == '\'' || cmd[start] == '\"')
