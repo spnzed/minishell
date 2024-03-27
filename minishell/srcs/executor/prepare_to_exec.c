@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:00:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:35:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static int	little_cases(char *line)
 
 void	prepare_to_exec(t_info *data)
 {
+	static int	x;
+
+	if (x)
+		free_array(data->split_line);
 	data->split_line = split_cmds(data);
 	data->from_file = 0;
 	data->list_in_files = NULL;
@@ -44,10 +48,18 @@ void	prepare_to_exec(t_info *data)
 	data->is_outfile = false;
 	data->is_append = false;
 	data->is_heredoc = false;
+	x++;
 }
 
 void	prepare_to_exec_one(t_info *data)
 {
+	static int	x;
+
+	if (x)
+	{
+		free(data->cmd_clean);
+		free_array(data->one_cmd);
+	}
 	if (little_cases(data->cmd_line))
 		exit (127);
 	data->from_file = 0;
@@ -69,4 +81,5 @@ void	prepare_to_exec_one(t_info *data)
 	else
 		data->cmd_clean = ft_strdup(data->cmd_line);
 	data->one_cmd = split_quotes(data->cmd_clean);
+	x++;
 }
