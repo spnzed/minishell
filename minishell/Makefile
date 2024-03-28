@@ -55,10 +55,14 @@ MAIN			=	manage_cmd.c
 
 BUILTINS		=	cd.c \
 					cd_utils.c \
+					cd_utils2.c \
 					echo.c \
 					env.c \
 					exit.c \
+					exit_utils.c \
 					export.c \
+					export_utils.c \
+					export_utils2.c \
 					is_builtin.c \
 					pwd.c \
 					unset.c
@@ -117,7 +121,8 @@ UTILS		 	=	check_complex_cmd.c \
 					split_cmds.c \
 					split_pipe.c \
 					utils_env.c \
-					var_set.c
+					var_set.c \
+					cmd_size.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))

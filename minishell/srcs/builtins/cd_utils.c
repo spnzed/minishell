@@ -3,65 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 14:43:15 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:31:40 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	cd_error_msg(t_info *data, char *arg, char *str)
-{
-	char *simple_aux;
-	char *complex_aux;
-
-	simple_aux = ft_strtrim(str, "\'");
-	complex_aux = ft_strtrim(simple_aux, "\"");
-	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd(complex_aux, 2);
-	ft_putstr_fd(arg, 2);
-	data->exit_id = 1;
-	free(simple_aux);
-	free(complex_aux);
-	return (0);
-}
-
-void	set_directory(t_list *list_env, char *var)
-{
-	char	*path;
-
-	path = (char *)malloc(sizeof(char) * 4097);
-	getcwd(path, 4097);
-	set_var(list_env, var, path);
-	if (path)
-		free(path);
-}
-
-int	cd_error_file_too_long(t_info *data, char *file)
-{
-	char	*filename;
-
-	filename = ft_strrchr(file, '/');
-	if (filename)
-	{
-		if (ft_strlen(filename) > 255)
-		{
-			cd_error_msg(data, ": File name too long\n", file);
-			return (1);
-		}
-	}
-	else
-	{
-		if (ft_strlen(file) > 255)
-		{
-			cd_error_msg(data, ": File name too long\n", file);
-			return (1);
-		}
-	}
-	return (0);
-}
 
 static int	file_permissions(t_info *data, char *file)
 {
@@ -110,46 +59,44 @@ static int	check_quotes_arg(char **split_cmd)
 	return (0);
 }
 
+static int	free_return(char *simple, char *complex)
+{
+	free(simple);
+	free(complex);
+	return (1);
+}
+
+static int	else_permission(t_info *data, char *file, char **split_cmd)
+{
+	char	*simple;
+	char	*complex;
+
+	simple = ft_strtrim(file, "\'");
+	complex = ft_strtrim(simple, "\"");
+	if (ft_strlen(complex) == 0)
+		return (free_return(simple, complex));
+	if (check_quotes_arg(split_cmd) == 0)
+		return (free_return(simple, complex));
+	if (cd_error_file_too_long(data, file))
+		return (free_return(simple, complex));
+	if (ft_strchr(file, '/'))
+		cd_error_msg(data, ": Not a directory\n", file);
+	cd_error_msg(data, ": No such file or directory\n", file);
+	free(simple);
+	free(complex);
+	return (0);
+}
+
 int	permission_dir(t_info *data, char *file, char **split_cmd)
 {
-	char *simple_aux;
-	char *complex_aux;
-
-	simple_aux = NULL;
-	complex_aux = NULL;
 	if (access(file, F_OK) != -1)
 	{
 		if (file_permissions(data, file))
 			return (1);
 	}
 	else
-	{
-		simple_aux = ft_strtrim(file, "\'");
-		complex_aux = ft_strtrim(simple_aux, "\"");
-		if (ft_strlen(complex_aux) == 0)
-		{
-			free(simple_aux);
-			free(complex_aux);
+		if (else_permission(data, file, split_cmd) == 1)
 			return (0);
-		}
-		if (check_quotes_arg(split_cmd) == 0)
-		{
-			free(simple_aux);
-			free(complex_aux);
-			return (0);
-		}
-		if (cd_error_file_too_long(data, file))
-		{
-			free(simple_aux);
-			free(complex_aux);
-			return (0);
-		}
-		if (ft_strchr(file, '/'))
-			cd_error_msg(data, ": Not a directory\n", file);
-		cd_error_msg(data, ": No such file or directory\n", file);
-		free(simple_aux);
-		free(complex_aux);
-	}
 	return (0);
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 14:32:39 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:00:16 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	**split_pipe(t_info *data, char *cmd, char c)
 	end = 0;
 	simple = 0;
 	complex = 0;
-
 	cmd_nbr = cmd_count(data, cmd);
 	split = malloc(sizeof(char *) * (cmd_nbr + 1));
 	if (!split || !cmd)

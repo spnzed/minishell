@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 18:24:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:19:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	launch_mode(t_info *data)
 int	main(int argc, char **argv, char **env)
 {
 	t_info	data;
-	
+
 	if (argc != 1 && !argv)
 		return (1);
 	lexer(&data, env);

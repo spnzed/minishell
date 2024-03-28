@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 19:49:43 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:57:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,20 @@ int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
 int				permission_dir(t_info *data, char *file, char **split_cmd);
+// 				new export utils
+int				ft_is_bigger_maxll(char *str);
+void			ft_normin(char **split_cmd);
+int				ft_environmentsize(t_environment *env);
+t_environment	*order_exp(t_environment *exp);
+void			sub_var(t_list *list, char *signal, char *content);
+int				search_on_lists(t_info *data, t_environment *list, char *str);
+void			add_array(int strsize, t_environment *temp, char *array);
+char			**ft_env_to_array(t_environment *head);
+void			export_error_not_valid_id(char *arg, t_info *data);
+char			*first_num(char *var);
+int				export_valid(char *cmd);
+int				ft_envsize(t_environment *lst);
+int				cmdsize(char **command);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧

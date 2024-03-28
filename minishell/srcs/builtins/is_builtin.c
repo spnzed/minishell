@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 14:44:19 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:10:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,38 @@ int	normalize_cmd(char **cmd)
 	return (0);
 }
 
+static int	free_and_return(char *aux, int ret)
+{
+	free(aux);
+	return (ret);
+}
+
+static int	what_builtin(char *aux, t_info *data)
+{
+	if (ft_strcmp(aux, "env") == 0)
+		return (1);
+	else if (ft_strcmp(aux, "pwd") == 0)
+		return (2);
+	else if (check_complex_cmd(aux, "echo", 4) == 0
+		|| check_complex_cmd(aux, "echo -n", 7) == 0)
+		return (3);
+	else if (ft_strcmp(aux, "exit") == 0)
+		return (4);
+	else if (check_complex_cmd(aux, "cd", 2) == 0)
+		return (5);
+	else if (check_complex_cmd(aux, "export", 6) == 0)
+		return (6);
+	else if (check_complex_cmd(aux, "unset", 5) == 0)
+		return (7);
+	else if (ft_strlen(aux) > 0)
+	{
+		data->exit_id = 127;
+		return (0);
+	}
+	else
+		return (0);
+}
+
 int	is_builtin(char **cmd, t_info *data)
 {
 	char	*aux;
@@ -75,51 +107,7 @@ int	is_builtin(char **cmd, t_info *data)
 		return (0);
 	normalized = normalize_cmd(cmd);
 	aux = remove_quotes(cmd[0]);
-	if (normalized)
+	if (normalize_cmd(cmd))
 		return (normalized);
-	if (ft_strcmp(aux, "env") == 0)
-	{
-		free(aux);
-		return (1);
-	}
-	else if (ft_strcmp(aux, "pwd") == 0)
-	{
-		free(aux);	
-		return (2);
-	}
-	else if (check_complex_cmd(aux, "echo", 4) == 0
-		|| check_complex_cmd(aux, "echo -n", 7) == 0)
-	{
-		free(aux);	
-		return (3);
-	}
-	else if (ft_strcmp(aux, "exit") == 0)
-	{
-		free(aux);
-		return (4);
-	}
-	else if (check_complex_cmd(aux, "cd", 2) == 0)
-	{
-		free(aux);	
-		return (5);
-	}
-	else if (check_complex_cmd(aux, "export", 6) == 0)
-	{
-		free(aux);
-		return (6);
-	}
-	else if (check_complex_cmd(aux, "unset", 5) == 0)
-	{
-		free(aux);	
-		return (7);
-	}
-	else if (ft_strlen(aux) > 0)
-	{
-		data->exit_id = 127;
-		free(aux);
-		return (0);
-	}
-	free(aux);
-	return (0);
+	return (free_and_return(aux, what_builtin(aux, data)));
 }
-// mirar en que casos si pones un espacio despues de el comando sigue funcionando
