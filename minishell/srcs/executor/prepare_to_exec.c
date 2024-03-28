@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 18:35:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:43:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	little_cases(char *line)
-{
-	if (ft_strcmp(line, "\" \"") == 0)
-	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);
-		return (1);
-	}
-	if (ft_strcmp(line, "\"\"") == 0)
-	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);
-		return (1);
-	}
-	return (0);
-}
 
 void	prepare_to_exec(t_info *data)
 {
@@ -60,8 +43,6 @@ void	prepare_to_exec_one(t_info *data)
 		free(data->cmd_clean);
 		free_array(data->one_cmd);
 	}
-	if (little_cases(data->cmd_line))
-		exit (127);
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;

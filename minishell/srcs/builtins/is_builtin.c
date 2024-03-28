@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 14:27:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:44:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	is_builtin(char **cmd, t_info *data)
 		free(aux);
 		return (1);
 	}
-	else if (check_complex_cmd(aux, "pwd", 3) == 0)
+	else if (ft_strcmp(aux, "pwd") == 0)
 	{
 		free(aux);	
 		return (2);
