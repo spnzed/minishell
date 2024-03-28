@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 14:27:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:44:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_cd(t_info *data, char **split_cmd)
 		content = ft_strdup(data->home);
 	else if (split_cmd[1])
 		content = ft_strdup(split_cmd[1]);
-	if (!split_cmd[1])
+	if (!split_cmd[1] || ft_strchr(split_cmd[1], '\\'))
 		change_home(data, split_cmd);
 	else
 	{
