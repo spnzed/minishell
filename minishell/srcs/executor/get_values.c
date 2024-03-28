@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:02:29 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:26:47 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	redir_add_list(char *filename, t_list **head)
 
 	temp = ft_lstnew((void *)filename);
 	ft_lstadd_back(head, temp);
+	ft_lstclear(&temp, NULL);
 }
 
 static int	get_next_redir(char *str, int i)
@@ -51,7 +52,10 @@ static char	*get_next_filename(char *cmd)
 	{
 		split = split_quotes(redirs_cleaned);
 		if (!split)
+		{
+			//free(redirs_cleaned);
 			return (NULL);
+		}
 		filename = ft_strdup(split[0]);
 		ft_arrfree(split, ft_arrlen(split));
 	}
@@ -60,6 +64,7 @@ static char	*get_next_filename(char *cmd)
 		quotes_cleaned = clean_quotes(redirs_cleaned);
 		filename = ft_strdup(quotes_cleaned);
 	}
+	//free(redirs_cleaned);
 	return (filename);
 }
 
@@ -78,6 +83,7 @@ void	get_value_heredoc(t_info *data, char *cmd)
 		data->is_heredoc = true;
 		data->is_infile = false;
 	}
+	//free(filename);
 }
 
 void	get_value_infile(t_info *data, char *cmd)
@@ -92,6 +98,7 @@ void	get_value_infile(t_info *data, char *cmd)
 		data->is_heredoc = false;
 		data->is_infile = true;
 	}
+	//free(filename);
 }
 
 void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
@@ -114,4 +121,5 @@ void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
 			data->is_outfile = true;
 		}
 	}
+	//free(filename);
 }
