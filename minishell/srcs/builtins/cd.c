@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:44:35 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:26:04 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_cd(t_info *data, char **split_cmd)
 		content = ft_strdup(home);
 	else if (split_cmd[1])
 		content = ft_strdup(split_cmd[1]);
-	if (!split_cmd[1])
+	if (!split_cmd[1] || ft_strchr(split_cmd[1], '\\'))
 		change_home(data, split_cmd);
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:38:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 17:02:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:18:03 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,31 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
-static void	one_command (t_info *data)
+static int  little_cases(t_info *data, char *line)
 {
-	prepare_to_exec_one(data);
-	exec_one_cmd(data);
+    if (ft_strcmp(line, "\" \"") == 0)
+    {
+        ft_putstr_fd(
+            "minishell: line 1: : command not found\n", 2);
+        data->exit_id = 127;
+        return (1);
+    }
+    if (ft_strcmp(line, "\"\"") == 0)
+    {
+        ft_putstr_fd(
+            "minishell: line 1: : command not found\n", 2);
+        data->exit_id = 127;
+        return (1);
+    }
+    return (0);
+}
+
+static void one_command (t_info *data)
+{
+    if (little_cases(data, data->cmd_line))
+        return ;
+    prepare_to_exec_one(data);
+    exec_one_cmd(data);
 }
 
 static void	multiple_commands (t_info *data)

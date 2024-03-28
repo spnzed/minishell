@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:42:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:24:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 		if (cd_error_file_too_long(data, file))
 			return (0);
 		if (ft_strchr(file, '/'))
-			cd_error_msg(data, ": Not a directory\n", file);
+			cd_error_msg(data, ": Not a directory\n", file);			
 		cd_error_msg(data, ": No such file or directory\n", file);
 	}
 	return (0);
