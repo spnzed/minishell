@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 14:17:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:34:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	redir_add_list(char *filename, t_list **head)
 
 	temp = ft_lstnew((void *)filename);
 	ft_lstadd_back(head, temp);
-	// ft_lstclear(&temp, NULL);
+	ft_lstclear(&temp, NULL);
 }
 
 static int	get_next_redir(char *str, int i)

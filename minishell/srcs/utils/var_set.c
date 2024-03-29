@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:36:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 18:00:01 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:28:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	set_var(t_list *head, char *id, char *value)
 	}
 	else
 		add_variable_list(head, value);
+	free(tmp);
+	free(value);
 }
 
 void	add_variable_list(t_list *head, char *value)
