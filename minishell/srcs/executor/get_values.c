@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_values.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 15:39:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:17:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*get_next_filename(char *cmd)
 		split = split_quotes(redirs_cleaned);
 		if (!split)
 		{
-			// free(redirs_cleaned);
+			free(redirs_cleaned);
 			return (NULL);
 		}
 		filename = ft_strdup(split[0]);
@@ -64,7 +64,7 @@ static char	*get_next_filename(char *cmd)
 		quotes_cleaned = clean_quotes(redirs_cleaned);
 		filename = ft_strdup(quotes_cleaned);
 	}
-	// free(redirs_cleaned);
+	free(redirs_cleaned);
 	return (filename);
 }
 
@@ -82,7 +82,7 @@ void	get_value_heredoc(t_info *data, char *cmd)
 		data->string_infile = aux->content;
 		data->is_heredoc = true;
 		data->is_infile = false;
-		// free(filename);
+		free(filename);
 	}
 }
 
