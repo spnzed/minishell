@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:23:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 18:01:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:11:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	put_error(t_info *data, char *cmd, char *str, int ret)
 	if (ret < 0)
 		return ;
 	data->exit_id = ret;
-	// free_info(data);
 	exit (ret);
 }
 
@@ -34,5 +33,4 @@ void	put_error_prev(t_info *data, char *cmd, char *str, int ret)
 	if (ret < 0)
 		return ;
 	data->exit_id = ret;
-	// free_info(data);
 }

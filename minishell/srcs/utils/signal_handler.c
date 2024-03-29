@@ -1,14 +1,14 @@
-/* ************************************************************************		*/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:22:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/16 15:59:20 by aaespino         ###   ########.fr       */
+/*   Created: 2024/03/29 20:09:13 by aaespino          #+#    #+#             */
+/*   Updated: 2024/03/29 20:09:15 by aaespino         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************		*/
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -24,8 +24,10 @@ void	signal_handler_heredoc(int sig)
 }
 
 /*
-Las señales en sistemas Unix y similares son identificadas por números enteros. 
-A continuación, te proporciono las 31 señales más comunes, junto con su traducción 
+Las señales en sistemas Unix y similares son identificadas por números 
+enteros. 
+A continuación, te proporciono las 31 señales más comunes, junto con 
+su traducción 
 en inglés y su valor numérico:
 
 1. SIGHUP		(Hangup)
@@ -60,10 +62,14 @@ en inglés y su valor numérico:
 30. SIGPWR		(Power failure restart)
 31. SIGSYS		(Bad system call)
 
-Cuando sumas 128 al valor numérico de una señal, obtienes el número que se usa en el 
-estado devuelto por `waitpid` cuando un proceso hijo termina debido a esa señal. 
-Por ejemplo, si sumas 128 a 2 (que es el valor de SIGINT), obtienes 130, que es el 
-número que se usará en el estado devuelto por `waitpid` cuando un proceso hijo termine 
+Cuando sumas 128 al valor numérico de una señal, obtienes el número 
+que se usa en el 
+estado devuelto por `waitpid` cuando un proceso hijo termina debido 
+a esa señal. 
+Por ejemplo, si sumas 128 a 2 (que es el valor de SIGINT), obtienes 
+130, que es el 
+número que se usará en el estado devuelto por `waitpid` cuando un 
+proceso hijo termine 
 debido a SIGINT.
 
 De esta forma

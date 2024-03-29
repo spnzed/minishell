@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char *ft_after_set(char *str, char set)
+char	*ft_after_set(char *str, char set)
 {
 	int		i;
 	int		x;
@@ -20,12 +20,12 @@ char *ft_after_set(char *str, char set)
 
 	i = 0;
 	x = 0;
-    if (!str || !set)
-        return (NULL);
+	if (!str || !set)
+		return (NULL);
 	while (str[i] != '\0' && str[i] != set)
 		i++;
 	if (str[i] == '\0')
-		return ft_strdup("");
+		return (ft_strdup(""));
 	i++;
 	dst = malloc(sizeof(char) * (ft_strlen(str + i) + 1));
 	if (!dst)
@@ -49,17 +49,17 @@ char	*ft_before_set(char *str, char set)
 	i = 0;
 	j = 0;
 	if (!str)
-		return(NULL);
+		return (NULL);
 	while (str[i] && str[i] != set)
 		i++;
 	dst = malloc(sizeof(char) * (i + 1));
 	if (dst == NULL)
-		return(NULL);
+		return (NULL);
 	while (j < i)
 	{
 		dst[j] = str[j];
 		j++;
 	}
 	dst[i] = '\0';
-	return(dst);
+	return (dst);
 }

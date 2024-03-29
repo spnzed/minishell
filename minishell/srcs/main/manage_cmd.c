@@ -93,7 +93,6 @@ static void	executor(t_info *data)
 	}
 }
 
-
 int	manage_cmd(t_info *data)
 {
 	syntax_error(data);

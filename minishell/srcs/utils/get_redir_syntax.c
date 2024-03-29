@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redir_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:13 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 11:43:03 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:11:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ int	get_redir_syntax_values(t_info *data, char c, int *simple, int *complex)
 	if (r_left > 2 && r_right == 0)
 	{
 		data->exit_id = 2;
-		return (write(2, "minishell: line 1: syntax error near unexpected token `newline'\n", 65), 2);
+		return (write(2, "minishell: line 1: syntax error \
+			near unexpected token `newline'\n", 65), 2);
 	}
 	else if (r_right > 2 && r_left == 0)
 	{
 		data->exit_id = 2;
-		return (write(2, "minishell: line 1: syntax error near unexpected token `>'\n", 59), 2);
+		return (write(2, "minishell: line 1: syntax error \
+			near unexpected token `>'\n", 59), 2);
 	}
 	return (0);
 }

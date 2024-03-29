@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:00:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/02/09 15:30:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:58:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_token	*create_token(void *value, t_token_type type, t_info *data)
 
 void	not_interactive_lexer(char *input, t_info *data)
 {
-	char 			*value;
+	char			*value;
 	t_list			*new;
 	t_token			*token;
 	t_token_type	type;

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 14:34:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:34:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	get_value_infile(t_info *data, char *cmd)
 		data->string_infile = filename;
 		data->is_heredoc = false;
 		data->is_infile = true;
-		// free(filename);
 	}
 }
 
@@ -120,6 +119,5 @@ void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
 			data->is_append = false;
 			data->is_outfile = true;
 		}
-		// free(filename);
 	}
 }

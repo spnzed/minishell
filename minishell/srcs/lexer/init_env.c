@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 17:57:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:44:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_environment	*start_sig(t_list *env)
 {
-	int 			i;
+	int				i;
 	static int		x;
 	t_environment	*begin;
 	t_environment	*new_env;
@@ -36,7 +36,8 @@ t_environment	*start_sig(t_list *env)
 				break ;
 		new_env->signal = ft_substr(new_env->full_line, 0, i);
 		if (new_env->full_line[i] == '=')
-			new_env->content = ft_substr(new_env->full_line, i + 1, ft_strlen(new_env->full_line));
+			new_env->content = ft_substr(new_env->full_line, i + 1,
+					ft_strlen(new_env->full_line));
 		if (!begin)
 			begin = new_env;
 		else
@@ -46,21 +47,20 @@ t_environment	*start_sig(t_list *env)
 	if (x == 1)
 		free_list(env_head);
 	x++;
-	return(begin);
+	return (begin);
 }
 
 t_list	*order_env(t_list *env)
 {
-	t_list *list_order;
-	int len_list;
-	int index;
-	t_list *temp;
-	t_list *tempvar;
+	int		index;
+	int		len_list;
+	t_list	*temp;
+	t_list	*tempvar;
+	t_list	*list_order;
 
-	list_order = ft_copy_list(env); // copy list
+	list_order = ft_copy_list(env);
 	len_list = ft_lstsize(list_order);
 	index = 0;
-
 	while (index < len_list)
 	{
 		temp = list_order;
@@ -98,7 +98,7 @@ static t_list	*start_env(char **env)
 			return (NULL);
 		}
 		if (!begin)
-			begin = new;	
+			begin = new;
 		else
 			ft_lstadd_back(&begin, new);
 	}
@@ -107,19 +107,17 @@ static t_list	*start_env(char **env)
 
 static char	*root_pwd(t_environment *signals_env)
 {
-	t_environment *temp;
-	char *root;
+	char			*root;
+	t_environment	*temp;
 
 	temp = signals_env;
-	
 	while (temp->next)
 	{
 		if (ft_strcmp(temp->signal, "HOME") == 0)
 			root = ft_strdup(temp->content);
 		temp = temp->next;
 	}
-	// printf("root: %s\n", root);
-	return(root);
+	return (root);
 }
 
 char	**malloc_env_array(char **env)

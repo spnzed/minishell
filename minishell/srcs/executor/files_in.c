@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:21:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:05:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:33:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	comprove_stdin(t_info *data)
 		}
 		else
 		{
-			return (put_error(data, head->content, ": No such file or directory\n"
-					, -1), 1);
+			return (put_error(data, head->content,
+					": No such file or directory\n", -1), 1);
 		}
 		head = head->next;
 	}

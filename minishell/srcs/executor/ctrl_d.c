@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ctrl_d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:22:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 19:31:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:24:14 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 

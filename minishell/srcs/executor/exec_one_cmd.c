@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 13:26:16 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:31:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 	if (!splitted_cmd[0])
 		return ;
 	if (ft_strcmp(splitted_cmd[0], " ") == 0)
-		put_error(data," line 1: ", ": command not found\n", 127);
+		put_error(data, " line 1: ", ": command not found\n", 127);
 	if (ft_strcmp(splitted_cmd[0], "~") == 0)
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
@@ -45,20 +45,21 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 
 static bool	comprove_redirs(t_info *data)
 {
-	if (!data->is_outfile && !data->is_heredoc && !data->is_infile && !data->is_append)
+	if (!data->is_outfile && !data->is_heredoc
+		&& !data->is_infile && !data->is_append)
 		return (false);
 	return (true);
 }
 
-static void last_error(t_info *data)
+static void	last_error(t_info *data)
 {
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	i = 1;
 	size = ft_strlen(data->one_cmd[0]);
-	if (ft_isspace(data->one_cmd[0][i]) 
-		&& ((data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] != '\'')
+	if (ft_isspace(data->one_cmd[0][i])
+		&& ((data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1] != '\'')
 		|| (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] != '\"')))
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
@@ -73,10 +74,12 @@ static void last_error(t_info *data)
 		data->exit_id = 127;
 		exit (127);
 	}
-	if (data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1 ] == '\'')
-		put_error(data, ft_strtrim(data->one_cmd[0], "\'"), ": command not found\n", 127);
+	if (data->one_cmd[0][0] == '\'' && data->one_cmd[0][size -1] == '\'')
+		put_error(data, ft_strtrim(data->one_cmd[0], "\'"),
+			": command not found\n", 127);
 	if (data->one_cmd[0][0] == '\"' && data->one_cmd[0][size -1] == '\"')
-		put_error(data, ft_strtrim(data->one_cmd[0], "\""), ": command not found\n", 127);
+		put_error(data, ft_strtrim(data->one_cmd[0], "\""),
+			": command not found\n", 127);
 	else
 		put_error(data, data->one_cmd[0], ": command not found\n", 127);
 }
@@ -94,13 +97,13 @@ static void	exec_one(t_info *data)
 	filter_cmd(data, &data->one_cmd[0]);
 	path = find_cmd_route(data->list_exp, data->one_cmd[0]);
 	if (!path && !comprove_redirs(data))
-		put_error(data, data->one_cmd[0], ": No such file or directory\n", 127); 
+		put_error(data, data->one_cmd[0],
+			": No such file or directory\n", 127);
 	execve(path, data->one_cmd, data->env);
 	if (!comprove_redirs(data))
 		last_error(data);
 	exit (127);
 }
-
 
 static int	one_bultin(t_info *data)
 {

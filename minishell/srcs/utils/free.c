@@ -1,4 +1,16 @@
 /* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:49:04 by aaespino          #+#    #+#             */
+/*   Updated: 2024/03/29 19:49:07 by aaespino         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
 /*																			*/
 /*														:::	  ::::::::   */
 /*   free_environment.c								 :+:	  :+:	:+:   */
@@ -12,7 +24,7 @@
 
 #include "minishell.h"
 
-void free_array(char **array) 
+void	free_array(char **array)
 {
 	int		i;
 	char	*str;
@@ -32,7 +44,7 @@ void free_array(char **array)
 
 void	free_environment(t_environment *env)
 {
-	t_environment *temp;
+	t_environment	*temp;
 
 	while (env != NULL)
 	{
@@ -51,7 +63,7 @@ void	free_environment(t_environment *env)
 		{
 			free(env->full_line);
 			env->full_line = NULL;
-		}	
+		}
 		free(env);
 		env = temp;
 	}
@@ -59,7 +71,7 @@ void	free_environment(t_environment *env)
 
 void	free_list(t_list *list)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	while (list != NULL)
 	{
@@ -74,9 +86,8 @@ void	free_list(t_list *list)
 	}
 }
 
-void free_info(t_info *info) 
+void	free_info(t_info *info)
 {
-
 	if (info->cmd_line)
 		free(info->cmd_line);
 	if (info->cmd_clean)
@@ -99,28 +110,18 @@ void free_info(t_info *info)
 		free(info->string_heredoc);
 	if (info->string_append)
 		free(info->string_append);
-
 	free_array(info->env);
 	free_array(info->one_cmd);
 	free_array(info->mul_cmds);
 	free_array(info->split_line);
 	free_array(info->tab_var_env);
 	free_array(info->cmd_split);
-
 	free_list(info->list_env);
 	free_list(info->list_input);
 	free_list(info->list_path);
 	free_list(info->list_in_files);
 	free_list(info->list_out_files);
 	free_list(info->list_heredocs);
-
 	free_environment(info->signals_env);
 	free_environment(info->list_exp);
 }
-
-//	free_list(info->list_env);
-//	free_environment(info->signals_env);
-//	free_environment(info->list_exp);
-//	free(info->root_path);
-//	free_string_array(info->env);
-//	free(info->home);

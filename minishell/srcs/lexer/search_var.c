@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 14:46:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:00:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ char	*search_var(char *line)
 			else
 				we_in_quotes = true;
 		}
-		if (line[i] == '$' && (ft_isalnum(line[i + 1]) 
-			|| line[i + 1] == '\'' || line[i + 1] == '_') && we_in_quotes == false)
+		if (line[i] == '$' && (ft_isalnum(line[i + 1])
+				|| line[i + 1] == '\''
+				|| line[i + 1] == '_') && we_in_quotes == false)
 		{
 			var = export_id(&line[i + 1]);
 			check_var_syntax(var);
@@ -76,8 +77,9 @@ int	comprove_var(char *line)
 			else
 				we_in_quotes = true;
 		}
-		if (line[i] == '$' && (ft_isalnum(line[i + 1]) 
-			|| line[i + 1] == '\'' || line[i + 1] == '_') && we_in_quotes == false)
+		if (line[i] == '$' && (ft_isalnum(line[i + 1])
+				|| line[i + 1] == '\''
+				|| line[i + 1] == '_') && we_in_quotes == false)
 			return (1);
 		else if (line[i] == '$' && (line[i + 1] == '?')
 			&& we_in_quotes == false)

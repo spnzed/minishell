@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 11:26:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:49:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ int	redir_syntax(char *line, t_info *data)
 	{
 		if (line[i] == '>' && line[i + 1] == '<')
 		{
-			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
+			put_error_prev(data, 0,
+				"syntax error near unexpected token `<'\n", 2);
 			return (2);
 		}
 		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<')
 		{
-			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
+			put_error_prev(data, 0,
+				"syntax error near unexpected token `<'\n", 2);
 			return (2);
 		}
 		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
 		{
-			put_error_prev(data, 0, "syntax error near unexpected token `>'\n", 2);
+			put_error_prev(data, 0,
+				"syntax error near unexpected token `>'\n", 2);
 			return (2);
 		}
 		if (line[i] == '\'' || line[i] == '\"')
@@ -49,8 +52,10 @@ int	redir_syntax(char *line, t_info *data)
 }
 
 /*
-La función strpbrk() es una función estándar en C que se utiliza para buscar 
-la primera ocurrencia de cualquiera de los caracteres en una cadena dada y devuelve 
+La función strpbrk() es una función estándar en C que se utiliza
+ para buscar 
+la primera ocurrencia de cualquiera de los caracteres en una cadena
+ dada y devuelve 
 un puntero a esa posición en la cadena.
 */
 char	*export_id(char *var)
@@ -74,4 +79,3 @@ char	*export_id(char *var)
 		res = ft_substr(var, 0, found - var);
 	return (res);
 }
-

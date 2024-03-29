@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 16:38:37 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:29:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	ft_print_quotes_arg(char *split_cmd)
 	{
 		n = ft_atoi(new);
 		free (new);
-		//write(1, "exit\n", 6); // quitar el comentado antes de entregar
 		exit (n);
 	}
 	else

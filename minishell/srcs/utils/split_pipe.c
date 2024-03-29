@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 18:00:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:10:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int find_start(char *str, int i, char c, int *simple, int *complex)
+static int	find_start(char *str, int i, char c, int *simple, int *complex)
 {
 	while ((*simple > 0 || *complex > 0) && str[i] != c)
 	{
@@ -21,10 +21,10 @@ static int find_start(char *str, int i, char c, int *simple, int *complex)
 	}
 	while (str[i] == c)
 		i++;
-	return(i);
+	return (i);
 }
 
-static int find_next_pipe(char *str, int i, char c, int *simple, int *complex)
+static int	find_next_pipe(char *str, int i, char c, int *simple, int *complex)
 {
 	while (str[i])
 	{
@@ -43,7 +43,7 @@ char	**split_pipe(t_info *data, char *cmd, char c)
 	int		start;
 	int		end;
 	int		cmd_nbr;
-	char 	**split;
+	char	**split;
 	int		simple;
 	int		complex;
 
