@@ -41,6 +41,15 @@ static int	check_cmd_error(t_info *data, char *cmd, int i)
 	return (0);
 }
 
+static int	first_check(char *line, int i, int *simple, int *complex)
+{
+	if (line[i] == '\'' || line[i] == '\"')
+		get_quotes_type(line[i], simple, complex);
+	if (line[i + 1] == '|' && line[i + 2] == ' ')
+		i++;
+	return (i);
+}
+
 int	cmd_count(t_info *data, char *line)
 {
 	int	i;
@@ -56,10 +65,7 @@ int	cmd_count(t_info *data, char *line)
 		return (0);
 	while (line[i])
 	{
-		if (line[i] == '\'' || line[i] == '\"')
-			get_quotes_type(line[i], &simple, &complex);
-		if (line[i + 1] == '|' && line[i + 2] == ' ')
-			i++;
+		i = first_check(line, i, &simple, &complex);
 		if (line[i] == '|' && !simple && !complex)
 		{
 			if (check_cmd_error(data, line, i))

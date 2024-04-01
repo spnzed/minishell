@@ -19,9 +19,7 @@ t_list	*ft_copy_list(const t_list *src)
 
 	head = malloc(sizeof(t_list));
 	current_dest = head;
-	if (!src)
-		return (NULL);
-	if (!head)
+	if (!src || !head)
 		return (NULL);
 	while (src)
 	{
@@ -31,10 +29,7 @@ t_list	*ft_copy_list(const t_list *src)
 		{
 			current_dest->next = malloc(sizeof(t_list));
 			if (!current_dest->next)
-			{
-				free_list(current_dest);
-				return (NULL);
-			}
+				return (free_list(current_dest), NULL);
 			current_dest = current_dest->next;
 		}
 		else
