@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/27 15:17:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:59:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,16 @@ typedef struct s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
+
+typedef struct s_echo
+{
+	int		i;
+	int		j;
+	int		n;
+	int		len;
+	char	quote;
+	bool	n_option;
+}			t_echo;
 
 typedef struct s_var
 {

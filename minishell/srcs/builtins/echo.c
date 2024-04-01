@@ -6,28 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 16:35:04 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:54:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static	bool	str_nflag(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	else
-		return (false);
-	if (str[i] == 'n')
-		while (str[i] == 'n')
-			i++;
-	else
-		return (false);
-	return (true);
-}
 
 static int	echo_little_cases(char *line, char *HOME, int i)
 {
@@ -45,107 +28,53 @@ static int	echo_little_cases(char *line, char *HOME, int i)
 	return (i);
 }
 
-int	ft_echo(t_info	*data, char **line)
+static int	ft_n_option(t_info *data, char **line, t_echo *e)
 {
-	int		i;
-	int		j;
-	int		n;
-	int		len;
-	char	quote;
-	bool	n_option;
-
-	i = 1;
-	j = 0;
-	n = 0;
-	len = ft_arrlen(line);
-	n_option = false;
-	while (line[i] && str_nflag(line[i]) == true)
-	{
-		n_option = str_nflag(line[i]);
-		i++;
-		n++;
-	}
-	if (line[i])
-		i = echo_little_cases(line[i], data->home, i);
+	part_one(line, e);
+	if (line[e->i])
+		e->i = echo_little_cases(line[e->i], data->home, e->i);
 	else
 	{
-		if (n_option == false)
-			return (printf("\n"), 0);
+		if (e->n_option == false)
+			return (1);
 		else
 			return (0);
 	}
-	if (i > 99)
+	if (e->i > 99)
 	{
-		i -= 99;
-		j++;
+		e->i -= 99;
+		e->j++;
 	}
-	if (i == n + 2 && !line[i])
+	if (e->i == e->n + 2 && !line[e->i])
 	{
-		if (n_option == false)
-			return (printf("\n"), 0);
+		if (e->n_option == false)
+			return (1);
 		else
 			return (0);
 	}
-	while (len > i)
+	return (2);
+}
+
+int	ft_echo(t_info	*data, char **line)
+{
+	t_echo	e;
+	int		res;
+
+	res = ft_n_option(data, line, &e);
+	if (res == 1)
+		return (printf("\n"), 0);
+	else if (res == 0)
+		return (0);
+	while (e.len > e.i)
 	{
-		while (line[i][j] && line[i][j] != ' ' && line[i][j] != '\n' && line[i][j] != '\t')
-		{
-			if (line[i][j] == '~' && line[i][j - 1] == ' ')
-			{
-				printf("%s", data->home);
-				j++;
-			}
-			if (line[i][j] == '\"' || line[i][j] == '\'')
-			{
-				quote = line[i][j];
-				j++;
-				while (line[i][j] && quote != line[i][j])
-					printf("%c", line[i][j++]);
-				if (quote == line[i][j])
-					j++;
-			}
-			else
-				printf("%c", line[i][j++]);
-		}
-		if (!line[i][j] && i != len - 1)
+		loop_one(line, &e, data);
+		if (!line[e.i][e.j] && e.i != e.len - 1)
 			printf(" ");
-		i++;
-		j = 0;
+		e.i++;
+		e.j = 0;
 	}
-	if (n_option == false)
+	if (e.n_option == false)
 		printf("\n");
 	data->exit_id = 0;
 	return (0);
 }
-
-/*
-bash-3.2$ echo -nn hi
-hibash-3.2$
-
-bash-3.2$ echo -n -n hi
-hibash-3.2$
-
------------------------------
-42-Minishell ~ % echo -nn hi
-n hi42-Minishell ~ %
-
-42-Minishell ~ % echo -n -n hi
--n hi42-Minishell ~ %
-*/
-
-// EXAMPLES OF ECHO 
-
-/*
-bash-3.2$ echo -> only echo, does a double new line
-
-bash-3.2$ echo -n -> only echo -n, a new line
-bash-3.2$ echo "hola" -n -> if "-n" is after the echo input counts as an input
-hola -n
-bash-3.2$ echo -n "hola" -> if "-n" is before echo input but after "echo"
-it counts as an escape sequence and skips the new line
-holabash-3.2$ echo "hola" -> this is the traditional use of "echo" input and newline
-hola
-bash-3.2$
-bash-3.2$ echo "'hola'" -> parser things
-'hola'
-*/

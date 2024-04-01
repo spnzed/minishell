@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 16:57:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:53:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ char			*first_num(char *var);
 int				export_valid(char *cmd);
 int				ft_envsize(t_environment *lst);
 int				cmdsize(char **command);
+void			part_one(char **line, t_echo *e);
+void			loop_one(char **line, t_echo *e, t_info *data);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
