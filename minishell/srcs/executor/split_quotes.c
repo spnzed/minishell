@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 18:05:33 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/01 16:05:00 by pquintan          #+#    #+#             */
+/*   Updated: 2024/04/01 16:17:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,45 @@ static char	*split_substr_quotes(char *cmd, int start, int end, int count)
 	return (ret_line);
 }
 
-static char	**put_split_quotes(int words, char *cmd, char **spl)
+static void	cmd_treatment(char *cmd, char **spl, int *i, t_info *data)
 {
-	int	i;
-	int	count;
-	int	start;
 	int	simple;
 	int	complex;
 
-	i = 0;
-	count = -1;
 	simple = 0;
 	complex = 0;
-	start = 0;
+	while (cmd[*i] && cmd[*i] != ' ' && cmd[*i] != '\'' && cmd[*i] != '\"')
+		(*i)++;
+	get_quotes_type(cmd[*i], &simple, &complex);
+	if (simple || complex)
+		*i = get_quote_final(cmd, *i, &simple, &complex);
+	spl[data->count] = split_substr_quotes(cmd, data->start, *i, data->count);
+	while (ft_strlen(cmd) > *i && cmd[*i + 1] == ' ')
+		(*i)++;
+	data->start = *i;
+}
+
+static char	**put_split_quotes(int words, char *cmd, char **spl)
+{
+	int		i;
+	t_info	data;
+
+	i = 0;
+	data.count = 0;
+	data.start = 0;
 	while (cmd[i] == ' ')
 		i++;
-	start = i;
-	while (cmd[i] && ++count < words)
+	data.start = i;
+	while (cmd[i] && data.count < words)
 	{
 		if (!ft_isspace(cmd[i]))
 		{
-			while (cmd[i] && cmd[i] != ' ' && cmd[i] != '\'' && cmd[i] != '\"')
-				i++;
-			get_quotes_type(cmd[i], &simple, &complex);
-			if (simple || complex)
-				i = get_quote_final(cmd, i, &simple, &complex);
-			spl[count] = split_substr_quotes(cmd, start, i, count);
-			while (ft_strlen(cmd) > i && cmd[i + 1] == ' ')
-				i++;
+			cmd_treatment(cmd, spl, &i, &data);
 			if (!cmd[i])
 				return (spl);
-			start = i;
 		}
 		i++;
+		data.count++;
 	}
 	return (spl);
 }

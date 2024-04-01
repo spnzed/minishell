@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 16:22:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:15:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_info
 	int				std_in;
 	int				std_out;
 	int				**index_quotes;
+	int				count;
+	int				start;
 
 	void			*ptr;
 

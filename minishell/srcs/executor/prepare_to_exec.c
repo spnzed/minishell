@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 14:43:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:14:56 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,8 @@ void	prepare_to_exec(t_info *data)
 	x++;
 }
 
-void	prepare_to_exec_one(t_info *data)
+static void	init_var(t_info *data)
 {
-	static int	x;
-
-	if (x)
-	{
-		free(data->cmd_clean);
-		free_array(data->one_cmd);
-	}
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;
@@ -55,6 +48,18 @@ void	prepare_to_exec_one(t_info *data)
 	data->is_outfile = false;
 	data->is_append = false;
 	data->is_heredoc = false;
+}
+
+void	prepare_to_exec_one(t_info *data)
+{
+	static int	x;
+
+	if (x)
+	{
+		free(data->cmd_clean);
+		free_array(data->one_cmd);
+	}
+	init_var(data);
 	get_redirections(data->cmd_line, data);
 	if (data->list_in_files || data->list_out_files
 		|| data->list_heredocs)

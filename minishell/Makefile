@@ -91,12 +91,14 @@ EXECUTOR		=	add_cmd.c \
 					display_term_message.c \
 					exec_cmds.c \
 					exec_one_cmd.c \
+					exec_one_utils.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
 					find_cmd_route.c \
 					get_redirections.c \
 					get_values.c \
+					get_values_utils.c \
 					handle_heredoc.c \
 					handle_redirect.c \
 					parent_process.c \

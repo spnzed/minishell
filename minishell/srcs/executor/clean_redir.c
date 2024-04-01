@@ -6,11 +6,27 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 14:24:47 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:09:27 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	move_integrer(char *str, int i, int *simple, int *complex)
+{
+	while (str[i] == '<' || str[i] == '>')
+		i++;
+	while (str[i] == ' ')
+		i++;
+	while (!ft_isspace(str[i]) && str[i + 1] != '\0')
+	{
+		get_quotes_type(str[i], simple, complex);
+		i++;
+	}
+	while (str[i] == ' ' && str[i + 1] != '\0')
+		i++;
+	return (i);
+}
 
 static int	get_end_redir(char *str, int i)
 {
@@ -21,17 +37,7 @@ static int	get_end_redir(char *str, int i)
 	complex = 0;
 	while (str[i])
 	{
-		while (str[i] == '<' || str[i] == '>')
-			i++;
-		while (str[i] == ' ')
-			i++;
-		while (!ft_isspace(str[i]) && str[i + 1] != '\0')
-		{
-			get_quotes_type(str[i], &simple, &complex);
-			i++;
-		}
-		while (str[i] == ' ' && str[i + 1] != '\0')
-			i++;
+		i = move_integrer(str, i, &simple, &complex);
 		if (str[i + 1] == '\0')
 			return (i + 1);
 		if (str[i] == '<' || str[i] == '>')

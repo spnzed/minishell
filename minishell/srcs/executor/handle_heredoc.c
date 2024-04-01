@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:35:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:02:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,26 @@ En el caso de 0644:
 	100 en binario.
 
 */
+
+static int	condition(char *line, t_list **head, int *fd)
+{
+	if (ft_strcmp(line, (*head)->content) == 0)
+	{
+		if ((*head)->next)
+		{
+			close (*fd);
+			remove_heredoc();
+			*fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
+			if (*fd == -1)
+				return (1);
+		}
+		*head = (*head)->next;
+	}
+	else
+		putstr_newl_fd(line, *fd);
+	return (0);
+}
+
 int	comprove_heredoc(t_info *data)
 {
 	int		fd;
@@ -100,20 +120,8 @@ int	comprove_heredoc(t_info *data)
 		line = readline("> ");
 		if (!line)
 			break ;
-		if (ft_strcmp(line, head->content) == 0)
-		{
-			if (head->next)
-			{
-				close (fd);
-				remove_heredoc();
-				fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
-				if (fd == -1)
-					return (perror ("open"), 1);
-			}
-			head = head->next;
-		}
-		else
-			putstr_newl_fd(line, fd);
+		if (condition (line, &head, &fd) == 1)
+			return (perror ("open"), 1);
 		free (line);
 	}
 	close(fd);
