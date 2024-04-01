@@ -68,16 +68,16 @@ BUILTINS		=	cd.c \
 					pwd.c \
 					unset.c
 
-LEXER			=	def_type.c \
-					init_data.c \
+LEXER			=	init_data.c \
 					init_env.c \
+					init_env_utils.c \
 					init_fd.c \
 					init_settings.c \
 					lexer_utils.c \
-					not_interactive_lexer.c \
 					search_var.c \
 					syntax_error.c \
-					utils_var.c
+					utils_var.c \
+					utils_var2.c
 
 PARSER 			=	parse_var.c \
 					put_variable.c \

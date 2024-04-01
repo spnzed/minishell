@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:37:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:39:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:16:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,54 +75,35 @@ static int	str_is_space(char *str)
 	return (1);
 }
 
+static int	free_and_return(t_info *data)
+{
+	free(data->cmd_line);
+	data->cmd_line = NULL;
+	return (1);
+}
+
 int	syntax_error(t_info *data)
 {
 	data->cmd_nbr = cmd_count(data, data->cmd_line);
 	if (ft_strlen(data->cmd_line) == 0)
-	{
-		free(data->cmd_line);
-		data->cmd_line = NULL;
-		return (1);
-	}
+		return (free_and_return(data));
 	if (str_is_space(data->cmd_line))
-	{
-		free(data->cmd_line);
-		data->cmd_line = NULL;
-		return (1);
-	}
+		return (free_and_return(data));
 	if (data->cmd_nbr == 42)
-	{
-		free(data->cmd_line);
-		data->cmd_line = NULL;
-		return (1);
-	}
+		return (free_and_return(data));
 	if (ft_strchr(data->cmd_line, '\'') || ft_strchr(data->cmd_line, '\"'))
 	{
 		if (quotes_syntax(data->cmd_line))
 		{
 			put_error_prev(data, 0, " : syntax error open quotes\n", 2);
-			free(data->cmd_line);
-			data->cmd_line = NULL;
-			return (1);
+			return (free_and_return(data));
 		}
 	}
 	if (ft_strchr(data->cmd_line, '|'))
-	{
 		if (pipe_syntax(data->cmd_line, data) && data->cmd_nbr > 1)
-		{
-			free(data->cmd_line);
-			data->cmd_line = NULL;
-			return (1);
-		}
-	}
+			return (free_and_return(data));
 	if (ft_strchr(data->cmd_line, '>') || ft_strchr(data->cmd_line, '<'))
-	{
 		if (redir_syntax(data->cmd_line, data))
-		{
-			free(data->cmd_line);
-			data->cmd_line = NULL;
-			return (1);
-		}
-	}
+			return (free_and_return(data));
 	return (0);
 }

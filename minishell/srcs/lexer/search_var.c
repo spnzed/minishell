@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:13:58 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 20:00:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:19:07 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ static int	check_var_syntax(char *var)
 	return (1);
 }
 
+static bool	in_quotes(char *line, int i, bool we_in_quotes)
+{
+	if (line[i] == '\'')
+	{
+		if (we_in_quotes == true)
+			we_in_quotes = false;
+		else
+			we_in_quotes = true;
+	}
+	return (we_in_quotes);
+}
+
 char	*search_var(char *line)
 {
 	int		i;
@@ -38,13 +50,7 @@ char	*search_var(char *line)
 	we_in_quotes = false;
 	while (line[++i])
 	{
-		if (line[i] == '\'')
-		{
-			if (we_in_quotes == true)
-				we_in_quotes = false;
-			else
-				we_in_quotes = true;
-		}
+		we_in_quotes = in_quotes(line, i, we_in_quotes);
 		if (line[i] == '$' && (ft_isalnum(line[i + 1])
 				|| line[i + 1] == '\''
 				|| line[i + 1] == '_') && we_in_quotes == false)

@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:49:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:20:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	free_and_return(t_info *data)
+{
+	put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
+	return (2);
+}
 
 int	redir_syntax(char *line, t_info *data)
 {
@@ -24,23 +30,11 @@ int	redir_syntax(char *line, t_info *data)
 	while (line[++i])
 	{
 		if (line[i] == '>' && line[i + 1] == '<')
-		{
-			put_error_prev(data, 0,
-				"syntax error near unexpected token `<'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<')
-		{
-			put_error_prev(data, 0,
-				"syntax error near unexpected token `<'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
-		{
-			put_error_prev(data, 0,
-				"syntax error near unexpected token `>'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
 		if (get_redir_syntax_values (data, line[i], &simple, &complex))
