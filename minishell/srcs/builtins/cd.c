@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 18:03:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:40:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	change_home(t_info *data, char **split_cmd)
 int	ft_cd(t_info *data, char **split_cmd)
 {
 	char	*content;
-	
+
 	content = NULL;
 	if (split_cmd[1] && ft_strcmp(split_cmd[1], "~") == 0)
 		content = ft_strdup(data->home);

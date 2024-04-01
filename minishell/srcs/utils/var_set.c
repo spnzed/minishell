@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:36:19 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 18:07:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:39:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	set_var(t_list *head, char *id, char *value)
 	else
 		add_variable_list(head, value);
 	free(tmp);
-	//free(value);
 }
 
 void	add_variable_list(t_list *head, char *value)
