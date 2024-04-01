@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 14:21:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:10:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static char	*little_normalizer(char *cmd)
 
 	i = 0;
 	j = 0;
+	aux = NULL;
 	while (cmd[i] == '\'' || cmd[i] == '\"')
 		i++;
 	while (cmd[i] && (cmd[i] != '\'' || cmd[i] != '\"'))
@@ -34,7 +35,7 @@ static char	*little_normalizer(char *cmd)
 		j++;
 		i++;
 	}
-	aux[i] = '\0';
+	aux[j] = '\0';
 	return (aux);
 }
 
@@ -42,32 +43,37 @@ int	normalize_cmd(char **cmd)
 {
 	char	*aux;
 
-	if ((cmd[0][0] == '\'' || cmd[0][0] == '\"')
-		|| (cmd[0][ft_strlen(cmd[0]) - 1] == '\''
-		|| cmd[0][ft_strlen(cmd[0]) - 1] == '\"'))
+	aux = NULL;
+	if (cmd[0] != NULL && ft_strlen(cmd[0]) > 0)
 	{
-		aux = little_normalizer(cmd[0]);
-		if (ft_strcmp(aux, "echo") == 0)
+		if ((cmd[0][0] == '\'' || cmd[0][0] == '\"')
+			|| (cmd[0][ft_strlen(cmd[0]) - 1] == '\''
+			|| cmd[0][ft_strlen(cmd[0]) - 1] == '\"'))
 		{
-			if (check_complex_cmd(aux, "echo", 4) == 0
-				|| check_complex_cmd(aux, "echo -n", 7) == 0)
-				return (3);
+			aux = little_normalizer(cmd[0]);
+			if (ft_strcmp(aux, "echo") == 0)
+			{
+				if (check_complex_cmd(aux, "echo", 4) == 0
+					|| check_complex_cmd(aux, "echo -n", 7) == 0)
+				{
+					free(aux);
+					return (3);
+				}
+			}
 		}
 	}
+	free(aux);
 	return (0);
 }
 
-int	is_builtin(char **cmd, t_info *data)
+static int	free_and_return(char *aux, int ret)
 {
-	char	*aux;
-	int		normalized;
+	free(aux);
+	return (ret);
+}
 
-	if (!cmd[0])
-		return (0);
-	normalized = normalize_cmd(cmd);
-	aux = remove_quotes(cmd[0]);
-	if (normalized)
-		return (normalized);
+static int	what_builtin(char *aux, t_info *data)
+{
 	if (ft_strcmp(aux, "env") == 0)
 		return (1);
 	else if (ft_strcmp(aux, "pwd") == 0)
@@ -88,6 +94,20 @@ int	is_builtin(char **cmd, t_info *data)
 		data->exit_id = 127;
 		return (0);
 	}
-	return (0);
+	else
+		return (0);
 }
-// mirar en que casos si pones un espacio despues de el comando sigue funcionando
+
+int	is_builtin(char **cmd, t_info *data)
+{
+	char	*aux;
+	int		normalized;
+
+	if (!cmd[0])
+		return (0);
+	normalized = normalize_cmd(cmd);
+	aux = remove_quotes(cmd[0]);
+	if (normalize_cmd(cmd))
+		return (normalized);
+	return (free_and_return(aux, what_builtin(aux, data)));
+}

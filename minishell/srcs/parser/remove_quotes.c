@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 12:17:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:53:51 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*remove_quotes(char *str)
+static char	*loop_ret(int simple, int complex, char *str)
 {
+	char	*ret;
 	int		i;
 	int		j;
-	int		simple;
-	int		complex;
-	char	*ret;
 
 	i = 0;
 	j = 0;
@@ -39,6 +37,18 @@ char	*remove_quotes(char *str)
 	}
 	ret[j] = '\0';
 	return (ret);
+}
+
+char	*remove_quotes(char *str)
+{
+	int		simple;
+	int		complex;
+
+	simple = 0;
+	complex = 0;
+	if (!str)
+		return (NULL);
+	return (loop_ret(simple, complex, str));
 }
 
 // static char **clean_splitted_quotes(char **spl)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   put_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:23:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/15 13:53:28 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:11:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void put_error(t_info *data, char *cmd, char *str, int ret)
+void	put_error(t_info *data, char *cmd, char *str, int ret)
 {
 	ft_putstr_fd("minishell: ", 2);
 	if (cmd)
@@ -24,7 +24,7 @@ void put_error(t_info *data, char *cmd, char *str, int ret)
 	exit (ret);
 }
 
-void put_error_prev(t_info *data, char *cmd, char *str, int ret)
+void	put_error_prev(t_info *data, char *cmd, char *str, int ret)
 {
 	ft_putstr_fd("minishell: ", 2);
 	if (cmd)

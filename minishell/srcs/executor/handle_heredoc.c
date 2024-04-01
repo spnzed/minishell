@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:01:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:02:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /*
 	struct stat es una estructura definida en la biblioteca estándar de C 
 	(<sys/stat.h>) que contiene información sobre un archivo, como su tipo, 
-	tamaño, permisos, etc. En este contexto, se utilizará para almacenar información 
+	tamaño, permisos, etc. En este contexto, se utilizará para almacenar
+	 información 
 	sobre el archivo que se va a verificar y, potencialmente, eliminar.
 
 	access()	Comprueba si el archivo existe
@@ -48,14 +49,18 @@ static void	putstr_newl_fd(char *str, int fd)
 }
 
 /*
-	El valor 0644 es un número octal que representa los permisos de acceso del 
-	archivo que se va a crear o truncar. En sistemas Unix y Linux, los permisos 
-	de acceso de un archivo determinan quién puede leer, escribir y ejecutar ese archivo.
+	El valor 0644 es un número octal que representa los permisos de acceso 
+	del 
+	archivo que se va a crear o truncar. En sistemas Unix y Linux, los 
+	permisos 
+	de acceso de un archivo determinan quién puede leer, escribir y ejecutar 
+	ese archivo.
 
 El número 0644 se divide en tres partes:
 
     El primer dígito (0) indica que el valor está en base octal.
-    Los siguientes tres dígitos (644) representan los permisos de acceso del archivo.
+    Los siguientes tres dígitos (644) representan los permisos de acceso del
+	 archivo.
 
 Los permisos de acceso se dividen en tres grupos:
 
@@ -70,11 +75,34 @@ ejecución, respectivamente, para el propietario, el grupo y otros usuarios.
 
 En el caso de 0644:
 
-    El propietario tiene permisos de lectura y escritura (6), representado por 110 en binario.
-    El grupo tiene permisos de solo lectura (4), representado por 100 en binario.
-    Otros usuarios tienen permisos de solo lectura (4), representado por 100 en binario.
+    El propietario tiene permisos de lectura y escritura (6), representado 
+	por 110 en binario.
+    El grupo tiene permisos de solo lectura (4), representado por 100 
+	en binario.
+    Otros usuarios tienen permisos de solo lectura (4), representado por 
+	100 en binario.
 
 */
+
+static int	condition(char *line, t_list **head, int *fd)
+{
+	if (ft_strcmp(line, (*head)->content) == 0)
+	{
+		if ((*head)->next)
+		{
+			close (*fd);
+			remove_heredoc();
+			*fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
+			if (*fd == -1)
+				return (1);
+		}
+		*head = (*head)->next;
+	}
+	else
+		putstr_newl_fd(line, *fd);
+	return (0);
+}
+
 int	comprove_heredoc(t_info *data)
 {
 	int		fd;
@@ -92,20 +120,8 @@ int	comprove_heredoc(t_info *data)
 		line = readline("> ");
 		if (!line)
 			break ;
-		if (ft_strcmp(line, head->content) == 0)
-		{
-			if (head->next)
-			{
-				close (fd);
-				remove_heredoc();
-				fd = open(HEREDOC, O_RDWR | O_CREAT | O_TRUNC, 0644);
-				if (fd == -1)
-					return (perror ("open"), 1);
-			}
-			head = head->next;
-		}
-		else
-			putstr_newl_fd(line, fd);
+		if (condition (line, &head, &fd) == 1)
+			return (perror ("open"), 1);
 		free (line);
 	}
 	close(fd);

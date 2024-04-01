@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/21 16:08:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:26:19 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@ static char	**handle_cmd(char *cmd)
 
 	cleaned_cmd = clean_redir(cmd);
 	splitted_cmd = split_quotes(cleaned_cmd);
+	free(cleaned_cmd);
 	return (splitted_cmd);
 }
 
 static void	filter_cmd(t_info *data, char **splitted_cmd)
 {
-	char	*home;
-
-	home = get_var_list(data->list_env, "HOME")->content + 5;
 	if (ft_strcmp(splitted_cmd[0], " ") == 0)
 		put_error(data, " line 1: ", ": command not found\n", 127);
 	if (ft_strcmp(splitted_cmd[0], "~") == 0)
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
-		ft_putstr_fd(home, 2);
+		ft_putstr_fd(data->home, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		exit (126);
 	}
@@ -41,14 +39,15 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 static void	do_exec(t_info *data, char **splitted_cmd)
 {
 	char	*path;
+	char	*aux;
 
-	splitted_cmd[0] = ft_strtrim(splitted_cmd[0], "\"");
-	filter_cmd(data, &splitted_cmd[0]);
-	path = find_cmd_route(data->list_exp, splitted_cmd[0]);
+	aux = ft_strtrim(splitted_cmd[0], "\"");
+	filter_cmd(data, &aux);
+	path = find_cmd_route(data->list_exp, aux);
 	if (!path)
-		put_error(data, splitted_cmd[0], ": No such file or directory\n", 127); 
+		put_error(data, aux, ": No such file or directory\n", 127);
 	execve(path, splitted_cmd, data->env);
-	put_error(data, splitted_cmd[0], ": command not found\n", 127);
+	put_error(data, aux, ": command not found\n", 127);
 	exit (127);
 }
 

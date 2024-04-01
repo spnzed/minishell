@@ -6,11 +6,17 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 11:26:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:20:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	free_and_return(t_info *data)
+{
+	put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
+	return (2);
+}
 
 int	redir_syntax(char *line, t_info *data)
 {
@@ -24,20 +30,11 @@ int	redir_syntax(char *line, t_info *data)
 	while (line[++i])
 	{
 		if (line[i] == '>' && line[i + 1] == '<')
-		{
-			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<')
-		{
-			put_error_prev(data, 0, "syntax error near unexpected token `<'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
-		{
-			put_error_prev(data, 0, "syntax error near unexpected token `>'\n", 2);
-			return (2);
-		}
+			return (free_and_return(data));
 		if (line[i] == '\'' || line[i] == '\"')
 			get_quotes_type(line[i], &simple, &complex);
 		if (get_redir_syntax_values (data, line[i], &simple, &complex))
@@ -49,8 +46,10 @@ int	redir_syntax(char *line, t_info *data)
 }
 
 /*
-La función strpbrk() es una función estándar en C que se utiliza para buscar 
-la primera ocurrencia de cualquiera de los caracteres en una cadena dada y devuelve 
+La función strpbrk() es una función estándar en C que se utiliza
+ para buscar 
+la primera ocurrencia de cualquiera de los caracteres en una cadena
+ dada y devuelve 
 un puntero a esa posición en la cadena.
 */
 char	*export_id(char *var)
@@ -74,4 +73,3 @@ char	*export_id(char *var)
 		res = ft_substr(var, 0, found - var);
 	return (res);
 }
-

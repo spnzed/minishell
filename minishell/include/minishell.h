@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/25 16:02:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:23:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@
 
 //				THE PROJECT
 int				manage_cmd(t_info *data);
+void			free_info(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				LEXER		📝
 int				lexer(t_info *data, char **env);
-//				non_interactive
-void			not_interactive_lexer(char *input, t_info *data);
-t_token_type	def_type(char charset);
 //				interactive
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
@@ -62,8 +60,8 @@ t_environment	*value_export(t_environment *signals_env, char *value);
 t_environment	*var_export(t_environment *signals_env, char *var);
 int				var_found_env(t_environment *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
-t_list			*get_var_list(t_list *env, char *var);
-char			*get_var_init(t_list *env, char *var);
+t_environment	*get_var_list(t_environment *env, char *var);
+char			*get_var_init(t_environment *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(t_info *data, char *line);
@@ -86,11 +84,15 @@ char			*clean_redir(char *str);
 int				num_quotes(char *str);
 char			*clean_quotes(char *str);
 int				ctrl_d(t_info *data);
-char			*display_term_message(void);
+char			*display_term_message(t_info *data);
 void			do_builtin(t_info *data, int builtin, char **split_cmd);
 //char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
+int				ft_isstrprint(char *str);
+void			filter_one_cmd(t_info *data, char **splitted_cmd);
+bool			comprove_redirs(t_info *data);
+void			last_error(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				comprove_heredoc(t_info *data);
 int				comprove_stdin(t_info *data);
@@ -100,6 +102,9 @@ void			get_redirections(char *cmd, t_info *data);
 void			get_value_heredoc(t_info *data, char *cmd);
 void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd, t_type_redir code);
+void			redir_add_list(char *filename, t_list **head);
+int				get_next_redir(char *str, int i);
+char			*get_next_filename(char *cmd);
 void			remove_heredoc(void);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
@@ -119,6 +124,22 @@ int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
 int				permission_dir(t_info *data, char *file, char **split_cmd);
+// 				new export utils
+int				ft_is_bigger_maxll(char *str);
+void			ft_normin(char **split_cmd);
+int				ft_environmentsize(t_environment *env);
+t_environment	*order_exp(t_environment *exp);
+void			sub_var(t_list *list, char *signal, char *content);
+int				search_on_lists(t_info *data, t_environment *list, char *str);
+void			add_array(int strsize, t_environment *temp, char *array);
+char			**ft_env_to_array(t_environment *head);
+void			export_error_not_valid_id(char *arg, t_info *data);
+char			*first_num(char *var);
+int				export_valid(char *cmd);
+int				ft_envsize(t_environment *lst);
+int				cmdsize(char **command);
+void			part_one(char **line, t_echo *e);
+void			loop_one(char **line, t_echo *e, t_info *data);
 
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
@@ -136,9 +157,10 @@ void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
-char			**split_pipe(t_info *data, char *cmd, char c);
+char			**split_pipe(t_info *data, char *cmd);
 t_list			*ft_copy_list(const t_list *src);
-void			ft_free_list(t_list *head);
+void			free_list(t_list *list);
+void			free_environment(t_environment *env);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
 char			*ft_after_set(char *str, char set);
@@ -152,6 +174,7 @@ t_environment	*ft_copy_environment(const t_environment *src);
 void			set_var(t_list *head, char *id, char *value);
 void			add_variable_list(t_list *head, char *value);
 void			free_environment(t_environment *env);
+void			free_array(char **array);
 ////////////////////////////////////////////////////////////////////////////////
 t_environment	*start_sig(t_list *env);
 t_list			*order_env(t_list *env);

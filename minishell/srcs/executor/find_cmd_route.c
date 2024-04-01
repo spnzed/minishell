@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd_route.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 13:29:33 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:59:57 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	if (!line)
 		return (NULL);
 	route = handle_route(line, cmd);
+	free(line);
 	while (route[++i] && access(route[i], F_OK) == -1)
 		;
 	if (!route[i])

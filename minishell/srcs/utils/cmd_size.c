@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   cmd_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 12:38:14 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 17:40:35 by aaespino         ###   ########.fr       */
+/*   Created: 2024/03/28 17:33:02 by pquintan          #+#    #+#             */
+/*   Updated: 2024/03/29 20:12:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	cmdsize(char **command)
 {
-	size_t	start;
-	size_t	len;
+	int	size;
+	int	count;
 
-	start = 0;
-	len = ft_strlen(s1);
-	if (!s1 || !set)
-		return (NULL);
-	while (s1[start] && ft_strchr (set, s1[start]))
-		start++;
-	while (len && ft_strrchr (set, s1[len]))
-		len--;
-	return (ft_substr (s1, start, (len - start) + 1));
+	size = 0;
+	if (ft_strlen(command[0]) > 0)
+		size++;
+	else
+		return (size);
+	count = ft_arrlen(command);
+	while (size < count)
+	{
+		if (command[size][0] == '-')
+			size++;
+		else
+			break ;
+	}
+	return (size);
 }

@@ -6,7 +6,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -23,8 +23,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -55,24 +55,29 @@ MAIN			=	manage_cmd.c
 
 BUILTINS		=	cd.c \
 					cd_utils.c \
+					cd_utils2.c \
 					echo.c \
+					echo_utils.c \
 					env.c \
 					exit.c \
+					exit_utils.c \
 					export.c \
+					export_utils.c \
+					export_utils2.c \
 					is_builtin.c \
 					pwd.c \
 					unset.c
 
-LEXER			=	def_type.c \
-					init_data.c \
+LEXER			=	init_data.c \
 					init_env.c \
+					init_env_utils.c \
 					init_fd.c \
 					init_settings.c \
 					lexer_utils.c \
-					not_interactive_lexer.c \
 					search_var.c \
 					syntax_error.c \
-					utils_var.c
+					utils_var.c \
+					utils_var2.c
 
 PARSER 			=	parse_var.c \
 					put_variable.c \
@@ -86,12 +91,14 @@ EXECUTOR		=	add_cmd.c \
 					display_term_message.c \
 					exec_cmds.c \
 					exec_one_cmd.c \
+					exec_one_utils.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
 					find_cmd_route.c \
 					get_redirections.c \
 					get_values.c \
+					get_values_utils.c \
 					handle_heredoc.c \
 					handle_redirect.c \
 					parent_process.c \
@@ -103,7 +110,7 @@ UTILS		 	=	check_complex_cmd.c \
 					copy_environment.c \
 					copy_list.c \
 					count_words.c \
-					free_environment.c \
+					free.c \
 					get_quote_final.c \
 					get_quote_types.c \
 					get_redir_end.c \
@@ -117,7 +124,8 @@ UTILS		 	=	check_complex_cmd.c \
 					split_cmds.c \
 					split_pipe.c \
 					utils_env.c \
-					var_set.c
+					var_set.c \
+					cmd_size.c
 
 SRCS			+=	$(addprefix $(SRCS_DIR), $(MINISHELL))
 SRCS			+= 	$(addprefix $(SRCS_DIR), $(addprefix $(MAIN_DIR), $(MAIN)))
@@ -141,7 +149,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
-	
+
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
 
 all:		libft_link $(NAME) 
@@ -169,7 +177,7 @@ run:		all
 			@echo ""
 			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
 			@echo ""
-			@./minishell
+			@valgrind --leak-check=full ./minishell
 
 leak:		all
 			@echo ""
