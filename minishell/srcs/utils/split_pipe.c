@@ -6,29 +6,29 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:45:05 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 20:10:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:34:54 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	find_start(char *str, int i, char c, int *simple, int *complex)
+static int	find_start(char *str, int i, int *simple, int *complex)
 {
-	while ((*simple > 0 || *complex > 0) && str[i] != c)
+	while ((*simple > 0 || *complex > 0) && str[i] != '|')
 	{
 		get_quotes_type(str[i], simple, complex);
 		i++;
 	}
-	while (str[i] == c)
+	while (str[i] == '|')
 		i++;
 	return (i);
 }
 
-static int	find_next_pipe(char *str, int i, char c, int *simple, int *complex)
+static int	find_next_pipe(char *str, int i, int *simple, int *complex)
 {
 	while (str[i])
 	{
-		if (str[i] == c && *simple == 0 && *complex == 0)
+		if (str[i] == '|' && *simple == 0 && *complex == 0)
 			return (i);
 		get_quotes_type(str[i], simple, complex);
 		i++;
@@ -36,34 +36,41 @@ static int	find_next_pipe(char *str, int i, char c, int *simple, int *complex)
 	return (i);
 }
 
-char	**split_pipe(t_info *data, char *cmd, char c)
+static char	*get_split_pipe(char *cmd, int i, int *end)
 {
-	int		i;
-	int		j;
 	int		start;
-	int		end;
-	int		cmd_nbr;
-	char	**split;
+	char	*str;
 	int		simple;
 	int		complex;
 
-	i = 0;
-	j = 0;
 	start = 0;
-	end = 0;
 	simple = 0;
 	complex = 0;
-	cmd_nbr = cmd_count(data, cmd);
-	split = malloc(sizeof(char *) * (cmd_nbr + 1));
+	get_quotes_type(cmd[i], &simple, &complex);
+	start = find_start(cmd, i, &simple, &complex);
+	*end = find_next_pipe(cmd, start, &simple, &complex);
+	str = ft_substr(cmd, start, *end - start);
+	return (str);
+}
+
+char	**split_pipe(t_info *data, char *cmd)
+{
+	int		i;
+	int		j;
+	int		end;
+	char	**split;
+
+	i = 0;
+	j = 0;
+	end = 0;
+	split = malloc(sizeof(char *) * (cmd_count(data, cmd) + 1));
 	if (!split || !cmd)
 		return (NULL);
 	while (cmd[i])
 	{
-		if (cmd[i] == c || i == 0)
+		if (cmd[i] == '|' || i == 0)
 		{
-			start = find_start(cmd, i, '|', &simple, &complex);
-			end = find_next_pipe(cmd, start, '|', &simple, &complex);
-			split[j] = ft_substr(cmd, start, end - start);
+			split[j] = get_split_pipe(cmd, i, &end);
 			j++;
 			i = end - 1;
 		}

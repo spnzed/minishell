@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 17:05:01 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:23:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ void			free_info(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				LEXER		📝
 int				lexer(t_info *data, char **env);
-//				non_interactive
-void			not_interactive_lexer(char *input, t_info *data);
-t_token_type	def_type(char charset);
 //				interactive
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
@@ -160,7 +157,7 @@ void			signal_handler_heredoc(int sig);
 void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
-char			**split_pipe(t_info *data, char *cmd, char c);
+char			**split_pipe(t_info *data, char *cmd);
 t_list			*ft_copy_list(const t_list *src);
 void			free_list(t_list *list);
 void			free_environment(t_environment *env);

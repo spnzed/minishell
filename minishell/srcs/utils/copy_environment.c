@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:58:56 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/22 11:53:08 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:21:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ t_environment	*ft_copy_environment(const t_environment *src)
 
 	head = malloc(sizeof(t_environment));
 	current_dest = head;
-	if (!src)
-		return (NULL);
-	if (!head)
+	if (!src || !head)
 		return (NULL);
 	while (src)
 	{
@@ -45,10 +43,7 @@ t_environment	*ft_copy_environment(const t_environment *src)
 		{
 			current_dest->next = malloc(sizeof(t_environment));
 			if (!current_dest->next)
-			{
-				ft_free_environment(head);
-				return (NULL);
-			}
+				return (ft_free_environment(head), NULL);
 			current_dest = current_dest->next;
 		}
 		else

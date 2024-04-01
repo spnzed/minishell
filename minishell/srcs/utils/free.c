@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:49:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:49:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:23:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,24 @@ void	free_list(t_list *list)
 	}
 }
 
+static void	part_two(t_info *info)
+{
+	free_array(info->env);
+	free_array(info->one_cmd);
+	free_array(info->mul_cmds);
+	free_array(info->split_line);
+	free_array(info->tab_var_env);
+	free_array(info->cmd_split);
+	free_list(info->list_env);
+	free_list(info->list_input);
+	free_list(info->list_path);
+	free_list(info->list_in_files);
+	free_list(info->list_out_files);
+	free_list(info->list_heredocs);
+	free_environment(info->signals_env);
+	free_environment(info->list_exp);
+}
+
 void	free_info(t_info *info)
 {
 	if (info->cmd_line)
@@ -110,18 +128,5 @@ void	free_info(t_info *info)
 		free(info->string_heredoc);
 	if (info->string_append)
 		free(info->string_append);
-	free_array(info->env);
-	free_array(info->one_cmd);
-	free_array(info->mul_cmds);
-	free_array(info->split_line);
-	free_array(info->tab_var_env);
-	free_array(info->cmd_split);
-	free_list(info->list_env);
-	free_list(info->list_input);
-	free_list(info->list_path);
-	free_list(info->list_in_files);
-	free_list(info->list_out_files);
-	free_list(info->list_heredocs);
-	free_environment(info->signals_env);
-	free_environment(info->list_exp);
+	part_two(info);
 }

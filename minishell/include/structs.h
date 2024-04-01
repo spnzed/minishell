@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
 /*   Updated: 2024/04/01 16:15:53 by pquintan         ###   ########.fr       */
@@ -12,38 +12,6 @@
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-//	ENUMS
-
-typedef enum e_token_type
-{
-	and,					//	'&&'
-	or,						//	'||'
-	semicolon,				// 	';'
-	simple_redir_left,		//	'<'
-	simple_redir_right,		//	'>'
-	double_redir_left,		//	'<<'
-	double_redir_right,		//	'>>'
-	pipeline,				//	'|'
-	option_command,			//	'-'
-	single_quote,			//	'''
-	double_quote,			//	'"'
-	backslash,				//	'\'
-	variable,				//	'$'
-	space,					//	'\f', '\n', '\r', '\t', '\v', ' '
-	literal,				//	
-}					t_token_type;
-
-typedef enum e_cmd_type
-{
-	ECHO_,
-	CD_,
-	PWD_,
-	EXPORT_,
-	UNSET_,
-	ENV_,
-	EXIT_,
-}					t_cmd_type;
 
 typedef enum e_type_redir
 {
@@ -123,19 +91,6 @@ typedef struct s_info
 	struct termios	n_settings;
 	struct termios	o_settings;
 }					t_info;
-
-typedef struct s_token
-{
-	void			*value;
-	t_token_type	type;
-}					t_token;
-//	Command Tree
-typedef struct s_tree
-{
-	void			*content;
-	struct s_tree	*left;
-	struct s_tree	*right;
-}					t_tree;
 
 typedef struct s_echo
 {
