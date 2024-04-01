@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 14:41:48 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:55:41 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ t_environment	*start_sig(t_list *env)
 		new_env = ft_envnew(((char *)env->content));
 		i = -1;
 		if (!new_env)
-		{
-			ft_envclear(&begin, free);
-			return (NULL);
-		}
+			return (ft_envclear(&begin, free), NULL);
 		while (new_env->full_line[++i])
 			if (new_env->full_line[i] == '=')
 				break ;
