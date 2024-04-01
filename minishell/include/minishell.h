@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 13:53:34 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:20:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ void			do_builtin(t_info *data, int builtin, char **split_cmd);
 //char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
+int				ft_isstrprint(char *str);
+void			filter_one_cmd(t_info *data, char **splitted_cmd);
+bool			comprove_redirs(t_info *data);
+void			last_error(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				comprove_heredoc(t_info *data);
 int				comprove_stdin(t_info *data);

@@ -91,6 +91,7 @@ EXECUTOR		=	add_cmd.c \
 					display_term_message.c \
 					exec_cmds.c \
 					exec_one_cmd.c \
+					exec_one_utils.c \
 					exec_process.c \
 					files_in.c \
 					files_out.c \
