@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 11:59:00 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:15:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_info
 	int				std_in;
 	int				std_out;
 	int				**index_quotes;
+	int				count;
+	int				start;
 
 	void			*ptr;
 
