@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 15:20:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:05:01 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ void			get_redirections(char *cmd, t_info *data);
 void			get_value_heredoc(t_info *data, char *cmd);
 void			get_value_infile(t_info *data, char *cmd);
 void			get_value_outfile(t_info *data, char *cmd, t_type_redir code);
+void			redir_add_list(char *filename, t_list **head);
+int				get_next_redir(char *str, int i);
+char			*get_next_filename(char *cmd);
 void			remove_heredoc(void);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);

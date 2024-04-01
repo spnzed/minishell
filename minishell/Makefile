@@ -98,6 +98,7 @@ EXECUTOR		=	add_cmd.c \
 					find_cmd_route.c \
 					get_redirections.c \
 					get_values.c \
+					get_values_utils.c \
 					handle_heredoc.c \
 					handle_redirect.c \
 					parent_process.c \

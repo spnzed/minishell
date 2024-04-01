@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:56:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:22:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ TLDR
 	fd = open(filename, O_RDONLY);
 
 */
-static void	handle_file(t_info *data, char *file, int open_code,
-	int std_mode, int num)
+static void	handle_file(t_info *data, char *file, int open_code, int num)
 {
 	int	fd;
 
@@ -72,7 +71,7 @@ static void	handle_file(t_info *data, char *file, int open_code,
 		perror (file);
 		exit(1);
 	}
-	if (dup2(fd, std_mode) == -1 && !data->is_append)
+	if (dup2(fd, STDIN_FILENO) == -1 && !data->is_append)
 	{
 		perror("dup2");
 		close (fd);
@@ -85,18 +84,18 @@ static void	build_files(t_info *data)
 	if (ft_strlen(data->string_infile) > 0)
 	{
 		if (!data->is_heredoc)
-			handle_file(data, data->string_infile, O_RDONLY, STDIN_FILENO, 0);
+			handle_file(data, data->string_infile, O_RDONLY, 0);
 		else
-			handle_file(data, HEREDOC, O_RDONLY, STDIN_FILENO, 0);
+			handle_file(data, HEREDOC, O_RDONLY, 0);
 	}
 	if (ft_strlen(data->string_outfile) > 0)
 	{
 		if (data->is_append)
 			handle_file(data, data->string_outfile,
-				O_WRONLY | O_CREAT | O_APPEND, STDOUT_FILENO, 0644);
+				O_WRONLY | O_CREAT | O_APPEND, 0644);
 		else
 			handle_file(data, data->string_outfile,
-				O_WRONLY | O_CREAT | O_TRUNC, STDOUT_FILENO, 0644);
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
 }
 
