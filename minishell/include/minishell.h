@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 16:23:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:05:57 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char			*get_next_filename(char *cmd);
 void			remove_heredoc(void);
 int				handle_redirect(t_info *data);
 int				parent_process(t_info *data);
-void			prepare_to_exec(t_info *data);
+int				prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
 //				builtins

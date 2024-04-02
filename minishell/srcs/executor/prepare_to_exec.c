@@ -6,19 +6,21 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 19:55:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:06:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	prepare_to_exec(t_info *data)
+int	prepare_to_exec(t_info *data)
 {
 	static int	x;
 
 	if (x)
 		free_array(data->split_line);
 	data->split_line = split_cmds(data);
+	if (data->split_line == NULL)
+		return (1);
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;
@@ -32,6 +34,7 @@ void	prepare_to_exec(t_info *data)
 	data->is_append = false;
 	data->is_heredoc = false;
 	x++;
+	return (0);
 }
 
 static void	init_var(t_info *data)

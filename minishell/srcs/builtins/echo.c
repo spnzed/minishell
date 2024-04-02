@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 13:54:12 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:33:04 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_echo(t_info	*data, char **line)
 	t_echo	e;
 	int		res;
 
+	e.n_option = NULL;
 	res = ft_n_option(data, line, &e);
 	if (res == 1)
 		return (printf("\n"), 0);
