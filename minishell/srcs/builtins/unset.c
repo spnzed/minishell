@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/26 16:07:42 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:03:11 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,19 @@ static void	unset_error_not_valid_id(char *arg, t_info *data)
 	data->exit_id = 1;
 }
 
-static int	unset_valid(t_info *data)
+static int	unset_valid(char *split_cmd)
 {
 	char	*non_alnum;
 	char	*alnum;
 	char	*found;
 	char	*var;
 
-	var = ft_after_set(data->cmd_line, ' ');
-	var = ft_before_set(var, '=');
+	var = ft_strdup(split_cmd);
 	non_alnum = ft_strdup(" !#$%%&\\()*+,-./:;<>@[]^`{|}~");
 	alnum = ft_strdup("1234567890");
 	found = ft_strpbrk(var, non_alnum);
 	found = ft_strjoin(found, ft_strpbrk(var, alnum));
+	free(var);
 	if (ft_strlen(found) > 0)
 		return (0);
 	return (1);
@@ -90,14 +90,21 @@ static int	unset_valid(t_info *data)
 
 int	ft_unset(t_info *data, char **split_cmd)
 {
-	if (!unset_valid(data))
+	int	x;
+
+	x = 1;
+	while (split_cmd[x])
 	{
-		unset_error_not_valid_id(split_cmd[1], data);
-		return (1);
+		if (!unset_valid(split_cmd[x]))
+		{
+			unset_error_not_valid_id(split_cmd[x], data);
+			return (1);
+		}
+		delete_node_env(&data->list_env, split_cmd[x]);
+		delete_node_exp(&data->list_exp, split_cmd[x]);
+		delete_node_exp(&data->signals_env, split_cmd[x]);
+	x++;
 	}
-	delete_node_env(&data->list_env, split_cmd[1]);
-	delete_node_exp(&data->list_exp, split_cmd[1]);
-	delete_node_exp(&data->signals_env, split_cmd[1]);
 	return (0);
 }
 
