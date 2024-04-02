@@ -87,8 +87,8 @@ static void	executor(t_info *data)
 		}
 		else if (data->cmd_nbr > 1)
 		{
-			prepare_to_exec(data);
-			exec_cmds(data);
+			if (!prepare_to_exec(data))
+				exec_cmds(data);
 		}
 	}
 }

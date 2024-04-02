@@ -177,13 +177,7 @@ run:		all
 			@echo ""
 			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
 			@echo ""
-			@valgrind --leak-check=full ./minishell
-
-leak:		all
-			@echo ""
-			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
-			@echo ""
-			@leaks -atExit -- ./minishell
+			@./minishell
 
 libft_link:	
 			@make -sC $(LIBFT_DIR)

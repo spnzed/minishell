@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_values_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 17:13:47 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:24:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
