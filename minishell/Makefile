@@ -23,8 +23,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 OBJ_DIR			=	obj/
@@ -155,7 +155,7 @@ $(OBJ_DIR)%.o : %.c Makefile
 all:		libft_link $(NAME) 
 
 $(NAME):	$(LIBFT) $(OBJS) 
-			@$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@sleep 0.2
 			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
 			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"

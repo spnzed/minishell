@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/29 19:29:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:19:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	ft_print_quotes_arg(char *split_cmd)
 
 static void	ft_print_num_arg(char **split_cmd)
 {
+	write(2, "exit\n", 6);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd("exit: ", 2);
 	ft_putstr_fd(split_cmd[1], 2);
