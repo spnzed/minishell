@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/02 15:21:45 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:48:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_env_to_array(t_environment *head)
 	temp = head;
 	while (i < lstsize && temp)
 	{
-		strsize = ft_strlen(temp->signal) + ft_strlen(temp->content) + 2;
+		strsize = ft_strlen(temp->full_line) + 1;
 		if (ft_strlen(temp->content) > 0)
 			add_array(strsize, temp, array[i]);
 		temp = temp->next;

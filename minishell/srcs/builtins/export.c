@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/02 15:11:24 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:47:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,16 @@ static void	export_equal(t_info *data, t_list *new, char *cmd)
 			data->list_env = new;
 		else
 			ft_lstadd_back(&data->list_env, new);
-		ft_free_environment(data->list_exp);
 		data->list_exp = start_sig(order_env(data->list_env));
 		data->env = ft_env_to_array(data->list_exp);
 	}
 }
 
-static void	export_else(t_info *data, t_environment *tmp, char *cmd)
+static void	export_else(t_info *data, char *cmd)
 {
+	t_environment	*tmp;
+
+	tmp = NULL;
 	if (ft_strchr(cmd, '"'))
 		cmd = ft_remove_quotes_str(cmd);
 	tmp = ft_envnew(cmd);
@@ -73,10 +75,8 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 {
 	t_environment	*temp;
 	t_list			*new;
-	t_environment	*tmp;
 
 	new = NULL;
-	tmp = NULL;
 	temp = data->list_exp;
 	if (((x + 1) == 1) && (ft_arrlen(split_cmd) == 1))
 	{
@@ -90,12 +90,13 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 			temp = temp->next;
 		}
 	}
-	else if (ft_strchr(split_cmd[1], '='))
-		while (split_cmd[i])
+	while (split_cmd[i])
+	{
+		if (ft_strchr(split_cmd[i], '='))
 			export_equal(data, new, split_cmd[i++]);
-	else
-		while (split_cmd[i])
-			export_else(data, tmp, split_cmd[i++]);
+		else
+			export_else(data, split_cmd[i++]);
+	}
 }
 
 int	ft_export(t_info *data, char **split_cmd)

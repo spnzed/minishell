@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/02 15:03:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:48:07 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	ft_unset(t_info *data, char **split_cmd)
 		delete_node_env(&data->list_env, split_cmd[x]);
 		delete_node_exp(&data->list_exp, split_cmd[x]);
 		delete_node_exp(&data->signals_env, split_cmd[x]);
-	x++;
+		x++;
 	}
 	return (0);
 }
