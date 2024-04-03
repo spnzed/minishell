@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:42:02 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 15:51:21 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:20:38 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@ static int	count_quotes(char *str)
 {
 	int		simple;
 	int		complex;
+	int		x;
 
 	simple = 0;
 	complex = 0;
-	int x = 0;
+	x = 0;
 	while (str[x])
 	{
 		quotessum(str[x], &simple, &complex);
-		x++;	
+		x++;
 	}
 	if ((simple + complex) % 2 == 0)
 		return (1);
@@ -82,19 +83,19 @@ static void	gqt(char c, int *simple, int *complex)
 		*complex = 0;
 }
 
-
 int	count_words(char *str)
 {
 	int		i;
 	int		count;
 	int		simple;
 	int		complex;
+	bool	close;
 
 	i = -1;
 	count = 0;
 	simple = 0;
 	complex = 0;
-	bool close = count_quotes(str);
+	close = count_quotes(str);
 	while (str[++i])
 	{
 		if (close == true)
