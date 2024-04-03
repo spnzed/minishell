@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_values.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/02 16:24:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:15:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	get_value_heredoc(t_info *data, char *cmd)
 		data->string_infile = aux->content;
 		data->is_heredoc = true;
 		data->is_infile = false;
-		free(filename);
 	}
 }
 
