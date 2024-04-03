@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_words.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:42:02 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/22 11:46:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:08:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	move_to_end(char *str, int i, int simple, int complex)
 {
-	while ((ft_isprint(str[i]) && str[i] != ' ') && (!simple && !complex)
+	while ((ft_isprint(str[i]) && str[i] != ' ') && (!simple || !complex)
 		&& str[i + 1])
 	{
 		i++;
@@ -53,7 +53,7 @@ int	count_words(char *str)
 	while (str[++i])
 	{
 		get_quotes_type(str[i], &simple, &complex);
-		if (ft_isprint(str[i]) && str[i] != ' ' && !simple && !complex)
+		if (ft_isprint(str[i]) && str[i] != ' ' && (!simple || !complex))
 		{
 			count++;
 			i = move_to_end(str, i, simple, complex);

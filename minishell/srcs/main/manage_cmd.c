@@ -27,8 +27,11 @@
 	✅3. Busca variables de entorno, y las parsea
 
 */
+
 static int	little_cases(t_info *data, char *line)
 {
+	while (*line)
+		line++;
 	if (ft_strcmp(line, "\" \"") == 0)
 	{
 		ft_putstr_fd(
