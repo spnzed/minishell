@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/02 16:05:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:45:30 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,11 @@ int				permission_dir(t_info *data, char *file, char **split_cmd);
 int				ft_is_bigger_maxll(char *str);
 void			ft_normin(char **split_cmd);
 int				ft_environmentsize(t_environment *env);
+t_environment	*loop_exp(int index, int len, t_environment *exp_order);
 t_environment	*order_exp(t_environment *exp);
 void			sub_var(t_list *list, char *signal, char *content);
 int				search_on_lists(t_info *data, t_environment *list, char *str);
+int				search_list_else(t_environment *list, char *signal);
 void			add_array(int strsize, t_environment *temp, char *array);
 char			**ft_env_to_array(t_environment *head);
 void			export_error_not_valid_id(char *arg, t_info *data);
@@ -159,8 +161,6 @@ void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(t_info *data, char *cmd);
 t_list			*ft_copy_list(const t_list *src);
-void			free_list(t_list *list);
-void			free_environment(t_environment *env);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
 char			*ft_after_set(char *str, char set);
@@ -173,6 +173,7 @@ void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
 void			set_var(t_list *head, char *id, char *value);
 void			add_variable_list(t_list *head, char *value);
+void			free_list(t_list *list);
 void			free_environment(t_environment *env);
 void			free_array(char **array);
 ////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 17:49:58 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:44:45 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_environmentsize(t_environment *env)
 	return (size);
 }
 
-static t_environment	*loop_exp(int index, int len, t_environment *exp_order)
+t_environment	*loop_exp(int index, int len, t_environment *exp_order)
 {
 	t_environment	*temp;
 	t_environment	*tempvar;
@@ -48,18 +48,6 @@ static t_environment	*loop_exp(int index, int len, t_environment *exp_order)
 		index++;
 	}
 	return (exp_order);
-}
-
-t_environment	*order_exp(t_environment *exp)
-{
-	int				len_list;
-	int				index;
-	t_environment	*exp_order;
-
-	exp_order = ft_copy_environment(exp);
-	len_list = ft_environmentsize(exp_order);
-	index = 0;
-	return (loop_exp(index, len_list, exp_order));
 }
 
 void	sub_var(t_list *list, char *signal, char *content)
@@ -104,5 +92,16 @@ int	search_on_lists(t_info *data, t_environment *list, char *str)
 	}
 	free (signal);
 	free (content);
+	return (1);
+}
+
+int	search_list_else(t_environment *list, char *signal)
+{
+	while (list)
+	{
+		if (ft_strcmp(signal, list->signal) == 0)
+			return (0);
+		list = list->next;
+	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/03 11:26:16 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:46:08 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	export_else(t_info *data, char *cmd)
 	tmp = NULL;
 	if (ft_strchr(cmd, '"'))
 		cmd = ft_remove_quotes_str(cmd);
+	if (search_list_else(data->list_exp, cmd) == 0)
+		return ;
 	tmp = ft_envnew(cmd);
 	tmp->signal = cmd;
 	tmp->content = NULL;
