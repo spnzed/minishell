@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 14:07:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:23:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ int	var_found_env(t_environment *signals_env, char *var)
 {
 	t_environment	*head;
 
-	head = signals_env;
+	head = ft_copy_environment(signals_env);
 	while (head)
 	{
 		if (ft_strcmp(head->signal, var) == 0)
 			return (1);
 		head = head->next;
 	}
+	free_environment(head);
 	return (0);
 }
 

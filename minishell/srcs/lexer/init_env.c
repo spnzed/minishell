@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 14:25:56 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:20:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,19 @@ static t_list	*start_env(char **env)
 	return (begin);
 }
 
-static char	*root_pwd(t_environment *signals_env)
+static char	*root_pwd(t_environment *list_exp)
 {
 	char			*root;
 	t_environment	*temp;
 
-	temp = signals_env;
+	temp = ft_copy_environment(list_exp);
 	while (temp->next)
 	{
 		if (ft_strcmp(temp->signal, "HOME") == 0)
 			root = ft_strdup(temp->content);
 		temp = temp->next;
 	}
+	free_environment(temp);
 	return (root);
 }
 
@@ -67,9 +68,9 @@ char	**malloc_env_array(char **env)
 int	init_env(t_info *data, char **env)
 {
 	data->list_env = start_env(env);
-	data->signals_env = start_sig(data->list_env);
+	data->signals_env = start_sig(data->list_env); // de momento se deja
 	data->list_exp = start_sig(order_env(data->list_env));
-	data->root_path = root_pwd(data->signals_env);
+	data->root_path = root_pwd(data->list_exp);
 	data->env = malloc_env_array(env);
 	data->home = get_var_init(data->list_exp, "HOME");
 	if (!data->list_env)
