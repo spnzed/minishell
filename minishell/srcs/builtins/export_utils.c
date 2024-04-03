@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/03 11:44:45 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:29:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ int	search_on_lists(t_info *data, t_environment *list, char *str)
 			list->content = ft_strdup(content);
 			list->full_line = ft_strjoin(signal, "=");
 			list->full_line = ft_strjoin(list->full_line, content);
-			sub_var(data->list_env, signal, content);
+			if (!var_found_list(data->list_env, signal))
+				sub_var(data->list_env, signal, content);
+			else
+				return (1);
 			free (signal);
 			free (content);
 			return (0);
