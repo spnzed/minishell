@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 11:45:30 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:48:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char			*get_var_init(t_environment *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 int				cmd_count(t_info *data, char *line);
-int				**count_quotes(t_info *data);
 char			*remove_quotes(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
