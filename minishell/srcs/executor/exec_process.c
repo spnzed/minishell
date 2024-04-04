@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 15:26:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:28:36 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ void	exec_process(t_info *data, char	*cmd)
 	else if (!cmd)
 		exit (0);
 	else
+	{
+		if (handle_redirect(data))
+			exit (1);
 		do_exec(data, split_cmd);
+	}
 }
