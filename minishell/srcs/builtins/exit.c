@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/02 17:19:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:01:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,5 @@ int	ft_exit(t_info *data, char **split_cmd)
 		data->exit_id = 0;
 		return (0);
 	}
-	data->exit_id = 0;
-	exit (0);
-	return (0);
+	exit (data->exit_id);
 }

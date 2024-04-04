@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 15:09:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:15:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static int	move_integrer(char *str, int i, int *simple, int *complex)
 		get_quotes_type(str[i], simple, complex);
 		i++;
 	}
-	while (str[i] == ' ' && str[i + 1] != '\0')
-		i++;
 	return (i);
 }
 
