@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 13:03:22 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:31:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	prepare_to_exec_one(t_info *data)
 	static int	x;
 
 	if (x)
-		free_array(data->one_cmd); // new idea
+		free_array(data->one_cmd);
 	init_var(data);
 	get_redirections(data->cmd_line, data);
 	if (data->list_in_files || data->list_out_files
@@ -67,6 +67,6 @@ void	prepare_to_exec_one(t_info *data)
 	else
 		data->cmd_clean = ft_strdup(data->cmd_line);
 	data->one_cmd = split_quotes(data->cmd_clean);
-	free(data->cmd_clean); // new
+	free(data->cmd_clean);
 	x++;
 }
