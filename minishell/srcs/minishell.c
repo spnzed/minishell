@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 20:13:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:43:56 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	launch_mode(t_info *data)
 int	main(int argc, char **argv, char **env)
 {
 	t_info	data;
-
-	if (argc != 1 && !argv)
-		return (1);
+	
+	if (argc != 1 || !argv)
+		return (printf ("NOT VALID ARGUMENTS FOR MINISHELL\n"), 1);
 	lexer(&data, env);
 	launch_mode (&data);
 	return (data.exit_id);

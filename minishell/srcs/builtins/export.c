@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/03 12:15:46 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:37:20 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,18 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 	}
 	while (split_cmd[i])
 	{
-		if (ft_strchr(split_cmd[i], '='))
-			export_equal(data, new, split_cmd[i++]);
+		if (!export_valid(ft_remove_quotes_str(split_cmd[i])))
+		{
+			export_error_not_valid_id(split_cmd[i], data);
+			i++;
+		}
 		else
-			export_else(data, split_cmd[i++]);
+		{	
+			if (ft_strchr(split_cmd[i], '='))
+				export_equal(data, new, split_cmd[i++]);
+			else
+				export_else(data, split_cmd[i++]);
+		}
 	}
 }
 
@@ -109,15 +117,6 @@ int	ft_export(t_info *data, char **split_cmd)
 
 	x = cmdsize(split_cmd) - 1;
 	i = 1;
-	while (split_cmd[i])
-	{
-		if (!export_valid(ft_remove_quotes_str(split_cmd[i])))
-		{
-			export_error_not_valid_id(ft_after_set(data->cmd_line, ' '), data);
-			return (1);
-		}
-		i++;
-	}
 	export_function(1, x, data, split_cmd);
 	return (0);
 }
