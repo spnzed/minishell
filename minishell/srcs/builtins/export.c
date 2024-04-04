@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/04 16:12:45 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:25:17 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,38 +107,3 @@ int	ft_export(t_info *data, char **split_cmd)
 	export_function(1, x, data, split_cmd);
 	return (0);
 }
-
-/*
-pquintan@cbr12s4 ~ % export      ADIOS =
-zsh: bad assignment
-*/
-
-// cuando pones export HOLA sin un igual detras se guarda en export y no en env
-/*
-no se puede poner un numero al principio del nombre de la variable ejemplo:
-bash-3.2$ export 3GOL="no"
-bash: export: `3GOL=no': not a valid identifier
-bash: export: `.gol3=si': not a valid identifier // ni punto
-// deduzco que solo letras 
-*/
-
-/*
-42-Minishell ~ % export ADIOS="vamoooooooooos"
-actualizado
-antes: ADIOS=vamoooooooADIOS
-despues: ADIOS=vamoooooooADIOS
-*/
-
-/*
-bash-3.2$ export '  B=valdue '
-bash: export: `  B=valdue ': not a valid identifier
-bash-3.2$ export '  B=value '
-bash: export: `  B=value ': not a valid identifier
-bash-3.2$ export '  B=value'
-bash: export: `  B=value': not a valid identifier
-bash-3.2$ export 'B=value'
-bash-3.2$ export ' B=value'
-bash: export: ` B=value': not a valid identifier
-bash-3.2$ export  C=value
-bash-3.2$ export  C=value
-*/ //normaliza solo lo que hay sin comillas, al final si le gustan los espacios

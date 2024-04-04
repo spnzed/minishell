@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/02 16:48:07 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:25:09 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,3 @@ int	ft_unset(t_info *data, char **split_cmd)
 	}
 	return (0);
 }
-
-// solo puede dar un error que es de sintaxis
-// sera una funcion que servira tanto para el export como para el unset
-// EJEMPLOS:
-// bash-3.2$ unset 1fsg
-// bash: unset: `1fsg': not a valid identifier
-// bash-3.2$ export 764fskalldgg
-// bash: export: `764fskalldgg': not a valid identifier

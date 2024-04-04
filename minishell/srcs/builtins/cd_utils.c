@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:30 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 16:31:40 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:25:37 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,3 @@ int	permission_dir(t_info *data, char *file, char **split_cmd)
 			return (0);
 	return (0);
 }
-/*
-	este caso igual que si pones muchas mas comillas cd "" ""
-	se puede solucionar en el if este
-			if (ft_strlen(ft_strtrim(ft_strtrim(file, "\'"), "\"")) == 0)
-			return(0);
-	pero habria que hacer una funcion para que mientras solo haya comillas 
-	pues se lo salte
-*/
