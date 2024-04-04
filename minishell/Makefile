@@ -64,6 +64,7 @@ BUILTINS		=	cd.c \
 					export.c \
 					export_utils.c \
 					export_utils2.c \
+					export_utils3.c \
 					is_builtin.c \
 					pwd.c \
 					unset.c
