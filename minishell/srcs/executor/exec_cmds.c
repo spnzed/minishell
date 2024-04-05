@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:27:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:28:38 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:23:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static char	*checker(int is_quotes, char *redirs_cleaned)
 	char	*quotes_cleaned;
 	char	**split;
 	char	*filename;
+
 
 	filename = NULL;
 	if (!is_quotes)
@@ -49,7 +50,7 @@ char	*get_heredoc_key(char *cmd)
 	i = 0;
 	while (cmd[i] == '<' || cmd[i] == '>' || ft_isspace(cmd[i]))
 		i++;
-	end = get_next_redir_heredoc(&cmd[i], i);
+	end = get_next_redir(&cmd[i], i);
 	redirs_cleaned = ft_substr(cmd, i, end - 0);
 	is_quotes = num_quotes(redirs_cleaned);
 	return (checker(is_quotes, redirs_cleaned));
@@ -57,27 +58,29 @@ char	*get_heredoc_key(char *cmd)
 
 static void	open_heredocs(t_info *data)
 {
+	int		i;
+	int		j;
+	int		fd;
 	int		simple;
 	int		complex;
 	char	*key_name;
-	char	*HEREDOC_name;
 
 	i = 0;
 	j = 0;
 	simple = 0;
 	complex = 0;
 	key_name = NULL;
-	HEREDOC_key = NULL;
+	data->HEREDOC_keys = malloc(sizeof(char *) * data->cmd_nbr);
 	while (data->split_line[i])
 	{
-		j = ft_strlen(data->split_line[i])
+		j = ft_strlen(data->split_line[i]) - 1;
 		while (data->split_line[i][j])
 		{
 			get_quotes_type(data->split_line[i][j], &simple, &complex);
 			if (data->split_line[i][j] == '<' && data->split_line[i][j - 1] == '<'
 				&& !complex && !simple)
 			{
-				key_name = get_heredoc_key(&data->split_line[i][--j]);
+				key_name = get_heredoc_key(&data->split_line[i][j]);
 				break ;
 			}
 			j--;
@@ -87,7 +90,7 @@ static void	open_heredocs(t_info *data)
 			data->HEREDOC_keys[i] = ft_strjoin(HEREDOC, key_name);
 			fd = open(data->HEREDOC_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 			if (fd == -1)
-				return (perror ("open"), 1);
+				perror ("open");
 		}
 		i++;
 	}
@@ -121,7 +124,8 @@ int	exec_cmds(t_info *data)
 
 	i = -1;
 	signal(SIGINT, SIG_IGN);
-	open_heredocs(data);
+	if (data->cmd_nbr > 1)
+		open_heredocs(data);
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);

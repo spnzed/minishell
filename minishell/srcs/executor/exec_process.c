@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/04 13:28:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:28:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 		ft_unset(data, split_cmd);
 }
 
-void	exec_process(t_info *data, char	*cmd, nbr)
+void	exec_process(t_info *data, char	*cmd, int nbr)
 {
 	int		builtin;
 	char	**split_cmd;

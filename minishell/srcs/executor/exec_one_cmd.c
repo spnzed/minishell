@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 15:21:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:34:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	exec_one(t_info *data)
 	signal(SIGQUIT, signal_handler);
 	if (!ft_isstrprint(data->one_cmd[0]) && !comprove_redirs(data))
 		exit (0);
-	if (handle_redirect(data, NULL, false))
+	if (handle_redirect(data, 0, false))
 		exit (1);
 	filter_one_cmd(data, &data->one_cmd[0]);
 	path = find_cmd_route(data->list_exp, data->one_cmd[0]);
@@ -40,7 +40,7 @@ static int	one_bultin(t_info *data)
 	builtin = is_builtin(data->one_cmd, data);
 	if (builtin)
 	{
-		if (handle_redirect(data))
+		if (handle_redirect(data, 0, false))
 			return (1);
 		do_builtin (data, builtin, data->one_cmd);
 		return (1);
