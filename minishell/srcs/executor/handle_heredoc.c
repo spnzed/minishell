@@ -6,12 +6,27 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 21:22:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:46:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	remove_heredoc_mul(char *name)
+{
+	struct stat	info;
+
+	if (access(name, F_OK) != -1)
+	{
+		if (stat(name, &info) == 0)
+		{
+			if (S_ISREG(info.st_mode))
+				unlink(name);
+		}
+		else
+			perror("stat");
+	}
+}
 /*
 	struct stat es una estructura definida en la biblioteca estándar de C 
 	(<sys/stat.h>) que contiene información sobre un archivo, como su tipo, 
@@ -84,6 +99,25 @@ En el caso de 0644:
 
 */
 
+static int	condition_mul(char *line, t_list **head, int *fd, char *name)
+{
+	if (ft_strcmp(line, (*head)->content) == 0)
+	{
+		if ((*head)->next)
+		{
+			close (*fd);
+			remove_heredoc_mul(name);
+			*fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
+			if (*fd == -1)
+				return (1);
+		}
+		*head = (*head)->next;
+	}
+	else
+		putstr_newl_fd(line, *fd);
+	return (0);
+}
+
 static int	condition(char *line, t_list **head, int *fd)
 {
 	if (ft_strcmp(line, (*head)->content) == 0)
@@ -121,7 +155,7 @@ int	comprove_heredoc_mul(t_info *data, char *cmd, int nbr)
 		line = readline("> ");
 		if (!line)
 			break ;
-		if (condition (line, &head, &fd) == 1)
+		if (condition_mul (line, &head, &fd, data->HEREDOC_keys[nbr]) == 1)
 			return (perror ("open"), 1);
 		free (line);
 	}
