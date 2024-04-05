@@ -6,12 +6,16 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 16:15:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:47:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+////////////////////////////////////////////////////////////////////////////////
+//	TYPEDEFS
+////////////////////////////////////////////////////////////////////////////////
 
 typedef enum e_type_redir
 {
@@ -21,7 +25,9 @@ typedef enum e_type_redir
 	APPEND_OUTFILE,
 }					t_type_redir;
 
+////////////////////////////////////////////////////////////////////////////////
 //	STRUCTS
+////////////////////////////////////////////////////////////////////////////////
 
 //	Token
 typedef struct s_environment
@@ -35,19 +41,24 @@ typedef struct s_environment
 //	Data
 typedef struct s_info
 {
+	void			*ptr;
+
 	int				cmd_nbr;
 	int				exit_id;
 	int				last_fd;
-	int				fd[2];
 	int				is_builtin;
 	int				ret;
 	int				std_in;
 	int				std_out;
-	int				**index_quotes;
 	int				count;
 	int				start;
+	int				fd[2];
+	int				**index_quotes;
 
-	void			*ptr;
+	bool			is_infile;
+	bool			is_outfile;
+	bool			is_heredoc;
+	bool			is_append;
 
 	char			*cmd_line;
 	char			*cmd_clean;
@@ -62,18 +73,6 @@ typedef struct s_info
 	char			**cmd_split;
 	char			**tab_var_env;
 
-	t_list			*list_env;
-	t_list			*list_input;
-	t_list			*list_path;
-
-	t_list			*list_in_files;
-	t_list			*list_out_files;
-	// t_list			*list_out_append;
-	t_list			*list_heredocs;
-
-	t_environment	*signals_env;
-	t_environment	*list_exp;
-
 	char			*string_infile;
 	char			*string_outfile;
 	char			*string_overwrite;
@@ -81,12 +80,18 @@ typedef struct s_info
 	char			*string_append;
 	char			*from_file;
 
-	bool			is_infile;
-	bool			is_outfile;
-	bool			is_heredoc;
-	bool			is_append;
-
 	pid_t			pid;
+
+	t_list			*list_env;
+	t_list			*list_input;
+	t_list			*list_path;
+
+	t_list			*list_in_files;
+	t_list			*list_out_files;
+	t_list			*list_heredocs;
+
+	t_environment	*signals_env;
+	t_environment	*list_exp;
 
 	struct termios	n_settings;
 	struct termios	o_settings;
