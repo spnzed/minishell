@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:26:03 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/26 14:26:51 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:15:54 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	child_process(t_info *data, int nbr)
 	}
 	close(data->fd[1]);
 	close(data->fd[0]);
-	exec_process(data, data->split_line[nbr], nbr);
+	exec_process(data, data->split_line[nbr]);
 }
 
 int	call_childs(t_info *data, int i)

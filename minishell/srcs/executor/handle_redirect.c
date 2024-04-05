@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 19:29:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:11:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,14 @@ static void	handle_file(char *file, int open_code, int std_mode, int num)
 	}
 }
 
-static void	build_files(t_info *data, int nbr, bool is_mul)
+static void	build_files(t_info *data)
 {
 	if (ft_strlen(data->string_infile) > 0)
 	{
 		if (!data->is_heredoc)
 			handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
 		else
-		{
-			if (is_mul)
-				handle_file(data->HEREDOC_keys[nbr], O_RDONLY, STDIN_FILENO, 0);
-			else
-				handle_file(HEREDOC, O_RDONLY, STDIN_FILENO, 0);
-		}
+			handle_file(HEREDOC, O_RDONLY, STDIN_FILENO, 0);
 	}
 	if (ft_strlen(data->string_outfile) > 0)
 	{
@@ -104,23 +99,16 @@ static void	build_files(t_info *data, int nbr, bool is_mul)
 	}
 }
 
-int	handle_redirect(t_info *data, int nbr, bool is_mul)
+int	handle_redirect(t_info *data)
 {
-	if (is_mul)
-	{
-		if (comprove_heredoc_mul(data, nbr))
-			return (1);
-	}
-	else
-	{
+	if (data->cmd_nbr > 1)
 		if (comprove_heredoc(data))
 			return (1);
-	}
 	if (comprove_stdout(data))
 		return (1);
 	if (comprove_stdin(data))
 		return (1);
-	build_files(data, nbr, is_mul);
+	build_files(data);
 	remove_heredoc();
 	if (data->list_in_files)
 		free_list(data->list_in_files);

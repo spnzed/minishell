@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:27:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 19:23:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:13:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,26 @@ static void	wait_childs(t_info *data)
 	return ;
 }
 
+static void	handle_heredoc(char *file, int open_code, int std_mode)
+{
+	int	fd;
+
+	fd = open(file, open_code);
+	if (fd == -1)
+	{
+		dprintf (2, "minishell: ");
+		dprintf (2, "line 1: ");
+		perror (file);
+		exit(1);
+	}
+	if (dup2(fd, std_mode) == -1)
+	{
+		perror("dup2");
+		close (fd);
+		exit(1);
+	}
+}
+
 int	exec_cmds(t_info *data)
 {
 	int	i;
@@ -125,7 +145,14 @@ int	exec_cmds(t_info *data)
 	i = -1;
 	signal(SIGINT, SIG_IGN);
 	if (data->cmd_nbr > 1)
+	{
 		open_heredocs(data);
+		while (++i < data->cmd_nbr)
+		{
+			comprove_heredoc_mul(data, i);
+			handle_heredoc(data->HEREDOC_keys[i], O_RDONLY, STDIN_FILENO);
+		}
+	}
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);
