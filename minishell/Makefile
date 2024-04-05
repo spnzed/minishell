@@ -6,7 +6,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address #-g
+CFLAGS		=	-Wall -Wextra -Werror
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -27,7 +27,7 @@ RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
 LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
-OBJ_DIR			=	obj/
+#OBJ_DIR			=	obj/
 
 MAIN_DIR		=	main/
 UTILS_DIR		=	utils/
@@ -151,35 +151,35 @@ $(OBJ_DIR)%.o : %.c Makefile
 	@$(MD) $(dir $@)
 	@make -sC $(LIBFT_DIR)
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[minishell Compiling]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
-
 	@$(CC) -MT $@ -MMD -MP -c $(CFLAGS) -I$(RFLAGS) -Iinclude/ $(INCLUDE) $< -o $@
 
 all:		libft_link $(NAME) 
 
-$(NAME):	$(LIBFT) $(OBJS) 
+$(NAME):	$(LIBFT) $(OBJS)
+#			@printf "\n"
 			@$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
-			@sleep 0.2
 			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
 			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"
 
 clean:
 			@make clean -sC $(LIBFT_DIR)
 			@$(RM) -r $(OBJ_DIR)
-			@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
+			@echo "$(ERROR_COLOR)dependencies and objects removed from minishell$(NO_COLOR)"
 
 fclean:		
 			@make fclean -sC $(LIBFT_DIR)
 			@$(RM) -r $(OBJ_DIR)
+			@echo "$(ERROR_COLOR)dependencies and objects removed from minishell$(NO_COLOR)"
 			@$(RM) $(NAME)
 			@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
 re:			fclean all
 
 run:		all
-			@echo ""
-			@echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
-			@echo ""
-			@./minishell
+			echo ""
+			echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
+			echo ""
+			./minishell
 
 libft_link:	
 			@make -sC $(LIBFT_DIR)

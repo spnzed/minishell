@@ -1,5 +1,12 @@
 NAME		=	libft.a
 
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra
+OBJ_DIR		=	build/
+DEPFLAGS	=	-MT $@ -MMD -MP -MF $(OBJ_DIR)/$*.d
+
+MD			=	mkdir -p
+
 SRC			=	ft_isalnum.c \
 				ft_isalpha.c \
 				ft_isascii.c \
@@ -61,10 +68,12 @@ SRC			=	ft_isalnum.c \
 				ft_isnumeric.c \
 				ft_strcmp_len.c \
 
-OBJECTS		= $(SRC:%.c=%.o)
+OBJECTS		= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+DEPS		= $(addsuffix .d, $(basename $(OBJS)))
 
-CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra
+$(OBJ_DIR)%.o : %.c Makefile
+	@$(MD) $(dir $@)
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
@@ -73,15 +82,24 @@ $(NAME) : $(OBJECTS)
 all: $(NAME)
 
 clean:
-	@rm -f $(OBJECTS)
-	@echo "Removing objects..."
+	@rm -f -r $(OBJ_DIR)
+	@echo "$(BLUE_COLOR)clean libft done!$(NO_COLOR)"
 
-fclean: clean
+fclean:
+	@rm -f -r $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "Removing executables..."
+	@echo "$(BLUE_COLOR)fclean libft done!$(NO_COLOR)"
 
-re: fclean all
-	@echo "Restarting ..."
+message:
+	@echo "$(WARN_COLOR)Restart in process...$(NO_COLOR)"
 
-NO_COLOR	=	\x1b[0m
-OK_COLOR	=	\x1b[32;01m
+re: fclean message all
+
+-include $(DEPS)
+
+.PHONY: all clean fclean re
+
+NO_COLOR		=	\x1b[0m
+OK_COLOR		=	\x1b[32;01m
+WARN_COLOR		=	\x1b[33;01m
+BLUE_COLOR		=	\x1b[34;01m
