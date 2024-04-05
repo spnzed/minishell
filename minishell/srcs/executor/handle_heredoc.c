@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:38:51 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 19:26:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:22:02 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static int	condition(char *line, t_list **head, int *fd)
 	return (0);
 }
 
-int	comprove_heredoc_mul(t_info *data, int nbr)
+int	comprove_heredoc_mul(t_info *data, char *cmd, int nbr)
 {
 	int		fd;
 	char	*line;
@@ -114,6 +114,7 @@ int	comprove_heredoc_mul(t_info *data, int nbr)
 	fd = open(data->HEREDOC_keys[nbr], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"), 1);
+	get_redirections(cmd, data);
 	head = data->list_heredocs;
 	while (head)
 	{

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 20:15:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:22:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool			comprove_redirs(t_info *data);
 void			last_error(t_info *data);
 void			exec_process(t_info *data, char	*cmd);
 int				comprove_heredoc(t_info *data);
-int				comprove_heredoc_mul(t_info *data, int nbr);
+int				comprove_heredoc_mul(t_info *data, char *cmd, int nbr);
 int				comprove_stdin(t_info *data);
 int				comprove_stdout(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);

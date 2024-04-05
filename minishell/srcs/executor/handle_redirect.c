@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 20:11:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:15:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	build_files(t_info *data)
 
 int	handle_redirect(t_info *data)
 {
-	if (data->cmd_nbr > 1)
+	if (data->cmd_nbr == 1)
 		if (comprove_heredoc(data))
 			return (1);
 	if (comprove_stdout(data))

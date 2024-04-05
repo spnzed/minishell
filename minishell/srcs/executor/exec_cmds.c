@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:27:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 20:13:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:21:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,10 +149,11 @@ int	exec_cmds(t_info *data)
 		open_heredocs(data);
 		while (++i < data->cmd_nbr)
 		{
-			comprove_heredoc_mul(data, i);
+			comprove_heredoc_mul(data, data->split_line[i], i);
 			handle_heredoc(data->HEREDOC_keys[i], O_RDONLY, STDIN_FILENO);
 		}
 	}
+	i = -1;
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);
