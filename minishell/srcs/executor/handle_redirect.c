@@ -99,10 +99,14 @@ static void	build_files(t_info *data)
 	}
 }
 
-int	handle_redirect(t_info *data)
+int	handle_redirect(t_info *data, int nbr, bool is_mul)
 {
-	if (comprove_heredoc(data))
-		return (1);
+	if (is_mul)
+		if (comprove_heredoc_mul(data, nbr))
+			return (1);
+	else
+		if (comprove_heredoc(data))
+			return (1);
 	if (comprove_stdout(data))
 		return (1);
 	if (comprove_stdin(data))

@@ -22,7 +22,7 @@ static void	child_process(t_info *data, int nbr)
 	}
 	close(data->fd[1]);
 	close(data->fd[0]);
-	exec_process(data, data->split_line[nbr]);
+	exec_process(data, data->split_line[nbr], nbr);
 }
 
 int	call_childs(t_info *data, int i)

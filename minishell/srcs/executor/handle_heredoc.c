@@ -103,6 +103,31 @@ static int	condition(char *line, t_list **head, int *fd)
 	return (0);
 }
 
+int	comprove_heredoc_mul(t_info *data, int nbr)
+{
+	int		fd;
+	char	*line;
+	t_list	*head;
+
+	signal(SIGINT, signal_handler_heredoc);
+	signal(SIGQUIT, signal_handler_heredoc);
+	fd = open(data->HEREDOC_keys[nbr], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		return (perror ("open"), 1);
+	head = data->list_heredocs;
+	while (head)
+	{
+		line = readline("> ");
+		if (!line)
+			break ;
+		if (condition (line, &head, &fd) == 1)
+			return (perror ("open"), 1);
+		free (line);
+	}
+	close(fd);
+	return (0);
+}
+
 int	comprove_heredoc(t_info *data)
 {
 	int		fd;

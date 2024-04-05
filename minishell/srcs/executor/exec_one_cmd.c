@@ -20,7 +20,7 @@ static void	exec_one(t_info *data)
 	signal(SIGQUIT, signal_handler);
 	if (!ft_isstrprint(data->one_cmd[0]) && !comprove_redirs(data))
 		exit (0);
-	if (handle_redirect(data))
+	if (handle_redirect(data, NULL, false))
 		exit (1);
 	filter_one_cmd(data, &data->one_cmd[0]);
 	path = find_cmd_route(data->list_exp, data->one_cmd[0]);

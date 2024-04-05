@@ -12,30 +12,87 @@
 
 #include "minishell.h"
 
-/*
-1. waitpid(-1, &status, 0): 
-	Espera a que un proceso hijo termine. 
-		-1 indica que waitpid debe esperar a cualquier hijo.
-		&status es un puntero a un entero donde waitpid almacenará el estado 
-			de salida del proceso hijo. 
-		0 indica que waitpid debe esperar de manera bloqueante hasta que un
-		 hijo termine.
-	
-	Entonces en pid se almacena el ID del proceso hijo
+static char	*checker(int is_quotes, char *redirs_cleaned)
+{
+	char	*quotes_cleaned;
+	char	**split;
+	char	*filename;
 
-2. WIFSIGNALED(status):
-	Devuelve verdadero si el proceso hijo terminó debido a una señal.
+	filename = NULL;
+	if (!is_quotes)
+	{
+		split = split_quotes(redirs_cleaned);
+		if (!split)
+		{
+			free(redirs_cleaned);
+			return (NULL);
+		}
+		filename = ft_strdup(split[0]);
+		ft_arrfree(split, ft_arrlen(split));
+	}
+	else
+	{
+		quotes_cleaned = clean_quotes(redirs_cleaned);
+		filename = ft_strdup(quotes_cleaned);
+	}
+	free(redirs_cleaned);
+	return (filename);
+}
 
-3. pid == data->pid:
-	Significa que el proceso hijo que ha terminado es el proceso hijo 
-	específico que se creó en la iteración actual del bucle exec_cmds. 
-	
-	En ese caso, se comprueba si el proceso hijo terminó de manera 
-	normal (WIFEXITED(status)).
-	
-	Si es así, se actualiza el estado del proceso padre (data->exit_id) 
-	con el estado de salida del proceso hijo (WEXITSTATUS(status)).
-*/
+char	*get_heredoc_key(char *cmd)
+{
+	int		i;
+	int		end;
+	int		is_quotes;
+	char	*redirs_cleaned;
+
+	i = 0;
+	while (cmd[i] == '<' || cmd[i] == '>' || ft_isspace(cmd[i]))
+		i++;
+	end = get_next_redir_heredoc(&cmd[i], i);
+	redirs_cleaned = ft_substr(cmd, i, end - 0);
+	is_quotes = num_quotes(redirs_cleaned);
+	return (checker(is_quotes, redirs_cleaned));
+}
+
+static void	open_heredocs(t_info *data)
+{
+	int		simple;
+	int		complex;
+	char	*key_name;
+	char	*HEREDOC_name;
+
+	i = 0;
+	j = 0;
+	simple = 0;
+	complex = 0;
+	key_name = NULL;
+	HEREDOC_key = NULL;
+	while (data->split_line[i])
+	{
+		j = ft_strlen(data->split_line[i])
+		while (data->split_line[i][j])
+		{
+			get_quotes_type(data->split_line[i][j], &simple, &complex);
+			if (data->split_line[i][j] == '<' && data->split_line[i][j - 1] == '<'
+				&& !complex && !simple)
+			{
+				key_name = get_heredoc_key(&data->split_line[i][--j]);
+				break ;
+			}
+			j--;
+		}
+		if (key_name != NULL)
+		{
+			data->HEREDOC_keys[i] = ft_strjoin(HEREDOC, key_name);
+			fd = open(data->HEREDOC_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
+			if (fd == -1)
+				return (perror ("open"), 1);
+		}
+		i++;
+	}
+}
+
 static void	wait_childs(t_info *data)
 {
 	int	nbr;
@@ -58,17 +115,13 @@ static void	wait_childs(t_info *data)
 	return ;
 }
 
-/*
-	SIGINT:		CTRL+C
-	SIG_IGN:	Ignorar
-	PID:		Process ID
-*/
 int	exec_cmds(t_info *data)
 {
 	int	i;
 
 	i = -1;
 	signal(SIGINT, SIG_IGN);
+	open_heredocs(data);
 	while (++i < data->cmd_nbr)
 	{
 		pipe(data->fd);
