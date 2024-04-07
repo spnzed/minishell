@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 21:40:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:34:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 		ft_unset(data, split_cmd);
 }
 
-void	exec_process(t_info *data, char	*cmd)
+void	exec_process(t_info *data, char	*cmd, int i)
 {
 	int		builtin;
 	char	**split_cmd;
@@ -82,7 +82,7 @@ void	exec_process(t_info *data, char	*cmd)
 	builtin = is_builtin(split_cmd, data);
 	if (builtin)
 	{
-		if (handle_redirect(data))
+		if (handle_redirect_mul(data, i))
 			exit (1);
 		do_builtin(data, builtin, split_cmd);
 		exit (0);
@@ -91,7 +91,7 @@ void	exec_process(t_info *data, char	*cmd)
 		exit (0);
 	else
 	{
-		if (handle_redirect(data))
+		if (handle_redirect_mul(data, i))
 			exit (1);
 		do_exec(data, split_cmd);
 	}

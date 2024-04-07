@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 21:22:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:29:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int				ft_isstrprint(char *str);
 void			filter_one_cmd(t_info *data, char **splitted_cmd);
 bool			comprove_redirs(t_info *data);
 void			last_error(t_info *data);
-void			exec_process(t_info *data, char	*cmd);
+void			exec_process(t_info *data, char	*cmd, int i);
 int				comprove_heredoc(t_info *data);
 int				comprove_heredoc_mul(t_info *data, char *cmd, int nbr);
 int				comprove_stdin(t_info *data);
@@ -107,6 +107,7 @@ int				get_next_redir(char *str, int i);
 char			*get_next_filename(char *cmd);
 void			remove_heredoc(void);
 int				handle_redirect(t_info *data);
+int				handle_redirect_mul(t_info *data, int i);
 int				parent_process(t_info *data);
 int				prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);

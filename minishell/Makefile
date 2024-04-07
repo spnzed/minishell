@@ -102,6 +102,7 @@ EXECUTOR		=	add_cmd.c \
 					get_values_utils.c \
 					handle_heredoc.c \
 					handle_redirect.c \
+					handle_redirect_mul.c \
 					parent_process.c \
 					prepare_to_exec.c \
 					split_quotes.c
