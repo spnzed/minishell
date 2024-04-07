@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/05 18:30:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:00:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_info
 	char			**split_line;
 	char			**cmd_split;
 	char			**tab_var_env;
-	char			**HEREDOC_keys;
+	char			**heredoc_keys;
 
 	char			*string_infile;
 	char			*string_outfile;

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 16:32:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:00:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	build_files(t_info *data, int i)
 		if (!data->is_heredoc)
 			handle_file(data->string_infile, O_RDONLY, STDIN_FILENO, 0);
 		else
-			handle_file(data->HEREDOC_keys[i], O_RDONLY, STDIN_FILENO, 0);
+			handle_file(data->heredoc_keys[i], O_RDONLY, STDIN_FILENO, 0);
 	}
 	if (ft_strlen(data->string_outfile) > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:30:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 19:11:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:01:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	write_heredoc(t_info *data, int fd, int nbr)
 		line = readline("> ");
 		if (!line)
 			break ;
-		if (condition_mul (line, &head, &fd, data->HEREDOC_keys[nbr]) == 1)
+		if (condition_mul (line, &head, &fd, data->heredoc_keys[nbr]) == 1)
 			perror ("open");
 		free (line);
 	}

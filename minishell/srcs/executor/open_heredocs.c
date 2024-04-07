@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:29:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 22:34:15 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:03:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*checker(int is_quotes, char *redirs_cleaned)
 	char	*quotes_cleaned;
 	char	**split;
 	char	*filename;
-
 
 	filename = NULL;
 	if (!is_quotes)
@@ -70,14 +69,15 @@ void	open_heredocs(t_info *data)
 	simple = 0;
 	complex = 0;
 	key_name = NULL;
-	data->HEREDOC_keys = malloc(sizeof(char *) * data->cmd_nbr);
+	data->heredoc_keys = malloc(sizeof(char *) * data->cmd_nbr);
 	while (data->split_line[i])
 	{
 		j = ft_strlen(data->split_line[i]) - 1;
 		while (data->split_line[i][j])
 		{
 			get_quotes_type(data->split_line[i][j], &simple, &complex);
-			if (data->split_line[i][j] == '<' && data->split_line[i][j - 1] == '<'
+			if (data->split_line[i][j] == '<'
+				&& data->split_line[i][j - 1] == '<'
 				&& !complex && !simple)
 			{
 				key_name = get_heredoc_key(&data->split_line[i][j]);
@@ -87,9 +87,9 @@ void	open_heredocs(t_info *data)
 		}
 		if (key_name != NULL)
 		{
-			data->HEREDOC_keys[i] = ft_strjoin(HEREDOC, key_name);
+			data->heredoc_keys[i] = ft_strjoin(HEREDOC, key_name);
 			free(key_name);
-			fd = open(data->HEREDOC_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
+			fd = open(data->heredoc_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 			if (fd == -1)
 				perror ("open");
 		}

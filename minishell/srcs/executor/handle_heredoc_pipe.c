@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 22:46:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:03:48 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,10 @@ static int	comprove_heredoc_mul(t_info *data, char *cmd, int nbr)
 
 	signal(SIGINT, signal_handler_heredoc);
 	signal(SIGQUIT, signal_handler_heredoc);
-	fd = open(data->HEREDOC_keys[nbr], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	fd = open(data->heredoc_keys[nbr], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (perror ("open"), 1);
 	get_redirs_heredoc(cmd, -1, data);
-	// t_list	*head;
-	// head = data->list_heredocs;
-	// while (head)
-	// {
-	// 	//dprintf(2 , "HEREDOC LIST: [%s]\n", head->content);
-	// 	head = head->next;
-	// }
 	return (fd);
 }
 
@@ -76,11 +69,10 @@ void	handle_heredoc_pipe(t_info *data)
 	i = -1;
 	fd = 0;
 	open_heredocs(data);
-	if (data->HEREDOC_keys != NULL)
+	if (data->heredoc_keys != NULL)
 	{
 		while (++i < data->cmd_nbr)
 		{
-			//data->list_heredocs = NULL;
 			if (data->list_heredocs)
 				ft_lstclear(&data->list_heredocs, free);
 			fd = comprove_heredoc_mul(data, data->split_line[i], i);
