@@ -6,7 +6,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -183,7 +183,7 @@ run:		all
 			echo ""
 			echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
 			echo ""
-			./minishell
+			valgrind --leak-check=full ./minishell
 
 libft_link:	
 			@make -sC $(LIBFT_DIR)

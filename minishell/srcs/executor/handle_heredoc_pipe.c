@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 19:14:14 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:46:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static int	comprove_heredoc_mul(t_info *data, char *cmd, int nbr)
 	if (fd == -1)
 		return (perror ("open"), 1);
 	get_redirs_heredoc(cmd, -1, data);
-	t_list	*head;
-	head = data->list_heredocs;
-	while (head)
-	{
-		//dprintf(2 , "HEREDOC LIST: [%s]\n", head->content);
-		head = head->next;
-	}
+	// t_list	*head;
+	// head = data->list_heredocs;
+	// while (head)
+	// {
+	// 	//dprintf(2 , "HEREDOC LIST: [%s]\n", head->content);
+	// 	head = head->next;
+	// }
 	return (fd);
 }
 
@@ -80,7 +80,9 @@ void	handle_heredoc_pipe(t_info *data)
 	{
 		while (++i < data->cmd_nbr)
 		{
-			data->list_heredocs = NULL;
+			//data->list_heredocs = NULL;
+			if (data->list_heredocs)
+				ft_lstclear(&data->list_heredocs, free);
 			fd = comprove_heredoc_mul(data, data->split_line[i], i);
 			write_heredoc(data, fd, i);
 			close(fd);

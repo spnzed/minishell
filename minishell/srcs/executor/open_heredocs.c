@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:29:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 17:37:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:34:15 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	open_heredocs(t_info *data)
 		if (key_name != NULL)
 		{
 			data->HEREDOC_keys[i] = ft_strjoin(HEREDOC, key_name);
+			free(key_name);
 			fd = open(data->HEREDOC_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 			if (fd == -1)
 				perror ("open");
