@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:27:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 17:28:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:09:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	exec_cmds(t_info *data)
 
 	i = -1;
 	signal(SIGINT, SIG_IGN);
-	if (data->cmd_nbr > 1)
+	if (data->cmd_nbr > 1 && ft_strrchr(data->cmd_line, '<'))
 		handle_heredoc_pipe(data);
 	while (++i < data->cmd_nbr)
 	{

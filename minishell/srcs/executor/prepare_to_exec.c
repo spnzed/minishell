@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/05 19:22:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 21:33:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	prepare_to_exec(t_info *data)
 		free_array(data->split_line);
 	data->split_line = split_cmds(data);
 	if (data->split_line == NULL)
-		return (1);
+		return (0);
 	data->from_file = 0;
 	data->list_in_files = NULL;
 	data->list_out_files = NULL;
@@ -34,7 +34,7 @@ int	prepare_to_exec(t_info *data)
 	data->is_append = false;
 	data->is_heredoc = false;
 	x++;
-	return (0);
+	return (1);
 }
 
 static void	init_var(t_info *data)
