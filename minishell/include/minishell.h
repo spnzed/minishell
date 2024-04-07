@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 01:19:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 01:24:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,5 @@ void			part_one(char **line, t_echo *e);
 void			loop_one(char **line, t_echo *e, t_info *data);
 void			list_exp_add(char *cmd, t_info *data);
 void			export_and_grep(t_environment *temp, char **split_cmd, int x);
-
 
 #endif
