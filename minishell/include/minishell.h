@@ -6,14 +6,17 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 19:11:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 01:19:32 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-//	colors
+////////////////////////////////////////////////////////////////////////////////
+//				DEFINES
+////////////////////////////////////////////////////////////////////////////////
+//	Colors
 # define RESET   "\033[0m"
 # define RED     "\033[1;31m"
 # define GREEN   "\033[1;32m"
@@ -22,10 +25,8 @@
 # define MAGENTA "\033[1;35m"
 # define CYAN    "\033[1;36m"
 # define WHITE   "\033[1;37m"
-
-//	heredoc 🤭
+//	Heredoc 🤭
 # define HEREDOC ".heredoc_"
-
 //	libs
 # include <stdio.h>
 # include <readline/readline.h>
@@ -45,13 +46,17 @@
 # include "libft.h"
 # include "structs.h"
 
-//				THE PROJECT
+////////////////////////////////////////////////////////////////////////////////
+//				THE PROJECT	🥩
+////////////////////////////////////////////////////////////////////////////////
 int				manage_cmd(t_info *data);
 void			free_info(t_info *data);
 ////////////////////////////////////////////////////////////////////////////////
 //				LEXER		📝
+////////////////////////////////////////////////////////////////////////////////
 int				lexer(t_info *data, char **env);
-//				interactive
+t_environment	*start_sig(t_list *env);
+t_list			*order_env(t_list *env);
 int				init_env(t_info *data, char **env);
 int				init_settings(t_info *data);
 int				init_fd(t_info *data);
@@ -64,10 +69,12 @@ t_environment	*get_var_list(t_environment *env, char *var);
 char			*get_var_init(t_environment *env, char *var);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
+////////////////////////////////////////////////////////////////////////////////
 int				cmd_count(t_info *data, char *line);
 char			*remove_quotes(char *str);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXPANDER	🌱
+////////////////////////////////////////////////////////////////////////////////
 char			*search_var(char *line);
 int				comprove_var(char *line);
 int				var_found(t_environment *list_env, char *var);
@@ -77,6 +84,7 @@ int				redir_syntax(char *line, t_info *data);
 char			*put_variable(char *line, char *var, char *replace);
 ////////////////////////////////////////////////////////////////////////////////
 //				EXECUTOR	🚀
+////////////////////////////////////////////////////////////////////////////////
 char			**add_cmd(char **route, char *cmd);
 int				call_childs(t_info *data, int i);
 char			*clean_redir(char *str);
@@ -85,7 +93,6 @@ char			*clean_quotes(char *str);
 int				ctrl_d(t_info *data);
 char			*display_term_message(t_info *data);
 void			do_builtin(t_info *data, int builtin, char **split_cmd);
-//char			*display_term_message(t_info *data);
 int				exec_cmds(t_info *data);
 int				exec_one_cmd(t_info *data);
 int				ft_isstrprint(char *str);
@@ -115,7 +122,9 @@ void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
 void			open_heredocs(t_info *data);
 void			write_heredoc(t_info *data, int fd, int nbr);
-//				builtins
+////////////////////////////////////////////////////////////////////////////////
+//				BUILTINS	⚙️
+////////////////////////////////////////////////////////////////////////////////
 int				is_builtin(char **cmd, t_info *data);
 int				ft_env(t_list *list_env);
 int				ft_pwd(t_info *data);
@@ -128,29 +137,13 @@ int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);
 int				permission_dir(t_info *data, char *file, char **split_cmd);
-// 				new export utils
-int				ft_is_bigger_maxll(char *str);
-void			ft_normin(char **split_cmd);
-int				ft_environmentsize(t_environment *env);
-t_environment	*loop_exp(int index, int len, t_environment *exp_order);
-t_environment	*order_exp(t_environment *exp);
-void			sub_var(t_list *list, char *signal, char *content);
-int				search_on_lists(t_info *data, t_environment *list, char *str);
-int				search_list_else(t_environment *list, char *signal);
-void			add_array(int strsize, t_environment *temp, char *array);
-char			**ft_env_to_array(t_environment *head);
-void			export_error_not_valid_id(char *arg, t_info *data);
-char			*first_num(char *var);
-int				export_valid(char *cmd);
-int				ft_envsize(t_environment *lst);
-int				cmdsize(char **command);
-void			part_one(char **line, t_echo *e);
-void			loop_one(char **line, t_echo *e, t_info *data);
-void			list_exp_add(char *cmd, t_info *data);
-void			export_and_grep(t_environment *temp, char **split_cmd, int x);
-
 ////////////////////////////////////////////////////////////////////////////////
 //				UTILS		🔧
+////////////////////////////////////////////////////////////////////////////////
+t_list			*ft_copy_list(const t_list *src);
+char			*ft_remove_quotes_str(char *str);
+char			*ft_before_set(char *str, char set);
+char			*ft_after_set(char *str, char set);
 int				check_complex_cmd(char *strbase, char *strcomp, int len);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
@@ -166,24 +159,38 @@ void			catch_signal(t_info *data, int status, int set_status);
 void			signal_handler(int sig);
 char			**split_cmds(t_info *data);
 char			**split_pipe(t_info *data, char *cmd);
-t_list			*ft_copy_list(const t_list *src);
-char			*ft_remove_quotes_str(char *str);
-char			*ft_before_set(char *str, char set);
-char			*ft_after_set(char *str, char set);
-//				new env_utils
+//				New env_utils
 t_environment	*ft_envnew(void *content);
 void			ft_envclear(t_environment **env, void (*del)(void*));
-void			ft_envadd_back(t_environment **env, t_environment *new);
-int				count_words(char *str);
 void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
-void			set_var(t_list *head, char *id, char *value);
-void			add_variable_list(t_list *head, char *value);
+void			ft_envadd_back(t_environment **env, t_environment *new);
 void			free_list(t_list *list);
 void			free_environment(t_environment *env);
 void			free_array(char **array);
-////////////////////////////////////////////////////////////////////////////////
-t_environment	*start_sig(t_list *env);
-t_list			*order_env(t_list *env);
+int				count_words(char *str);
+void			set_var(t_list *head, char *id, char *value);
+void			add_variable_list(t_list *head, char *value);
+// 				New export_utils
+int				ft_is_bigger_maxll(char *str);
+void			ft_normin(char **split_cmd);
+int				ft_environmentsize(t_environment *env);
+int				ft_envsize(t_environment *lst);
+char			**ft_env_to_array(t_environment *head);
+t_environment	*loop_exp(int index, int len, t_environment *exp_order);
+t_environment	*order_exp(t_environment *exp);
+void			sub_var(t_list *list, char *signal, char *content);
+int				search_on_lists(t_info *data, t_environment *list, char *str);
+int				search_list_else(t_environment *list, char *signal);
+void			add_array(int strsize, t_environment *temp, char *array);
+void			export_error_not_valid_id(char *arg, t_info *data);
+char			*first_num(char *var);
+int				export_valid(char *cmd);
+int				cmdsize(char **command);
+void			part_one(char **line, t_echo *e);
+void			loop_one(char **line, t_echo *e, t_info *data);
+void			list_exp_add(char *cmd, t_info *data);
+void			export_and_grep(t_environment *temp, char **split_cmd, int x);
+
 
 #endif

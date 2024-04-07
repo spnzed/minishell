@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/07 23:00:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 01:17:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 //	TYPEDEFS
 ////////////////////////////////////////////////////////////////////////////////
 
+//	Redir Enum
 typedef enum e_type_redir
 {
 	SIMPLE_INFILE,
@@ -29,7 +30,7 @@ typedef enum e_type_redir
 //	STRUCTS
 ////////////////////////////////////////////////////////////////////////////////
 
-//	Token
+//	Environment Struct
 typedef struct s_environment
 {
 	char					*full_line;
@@ -38,7 +39,7 @@ typedef struct s_environment
 	struct s_environment	*next;
 }					t_environment;
 
-//	Data
+//	Main Struct
 typedef struct s_info
 {
 	void			*ptr;
@@ -98,6 +99,7 @@ typedef struct s_info
 	struct termios	o_settings;
 }					t_info;
 
+//	Echo Struct
 typedef struct s_echo
 {
 	int		i;
@@ -108,6 +110,7 @@ typedef struct s_echo
 	bool	n_option;
 }			t_echo;
 
+//	Var Struct
 typedef struct s_var
 {
 	int			len_var;
