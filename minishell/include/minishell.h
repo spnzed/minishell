@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 16:29:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:11:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void			filter_one_cmd(t_info *data, char **splitted_cmd);
 bool			comprove_redirs(t_info *data);
 void			last_error(t_info *data);
 void			exec_process(t_info *data, char	*cmd, int i);
+void			putstr_newl_fd(char *str, int fd);
 int				comprove_heredoc(t_info *data);
-int				comprove_heredoc_mul(t_info *data, char *cmd, int nbr);
 int				comprove_stdin(t_info *data);
 int				comprove_stdout(t_info *data);
 char			*find_cmd_route(t_environment *lst_env, char *cmd);
@@ -106,12 +106,15 @@ void			redir_add_list(char *filename, t_list **head);
 int				get_next_redir(char *str, int i);
 char			*get_next_filename(char *cmd);
 void			remove_heredoc(void);
+void			handle_heredoc_pipe(t_info *data);
 int				handle_redirect(t_info *data);
 int				handle_redirect_mul(t_info *data, int i);
 int				parent_process(t_info *data);
 int				prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);
 char			**split_quotes(char *cmd);
+void			open_heredocs(t_info *data);
+void			write_heredoc(t_info *data, int fd, int nbr);
 //				builtins
 int				is_builtin(char **cmd, t_info *data);
 int				ft_env(t_list *list_env);
