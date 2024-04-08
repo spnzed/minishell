@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:49:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 15:22:20 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:27:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	free_environment(t_environment *env)
 	}
 }
 
-void	free_list(t_list *list)
+void	free_redir_list(t_redir_list *list)
 {
-	t_list	*temp;
+	t_redir_list	*temp;
 
 	while (list != NULL)
 	{
@@ -73,25 +73,6 @@ void	free_list(t_list *list)
 		list = temp;
 	}
 }
-
-//
-void	free_redir_list(t_redir_list *list)
-{
-	t_redir_list	*temp;
-
-	while (list != NULL)
-	{
-		temp = list->next; 
-		if (list->content != NULL)
-		{
-			free(list->content);
-			list->content = NULL;
-		}
-		free(list);
-		list = temp;
-	}
-}
-//
 
 static void	part_two(t_info *info)
 {

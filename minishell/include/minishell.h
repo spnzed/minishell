@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 17:21:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:30:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int				handle_redirect_mul(t_info *data, int i);
 int				parent_process(t_info *data);
 int				prepare_to_exec(t_info *data);
 void			prepare_to_exec_one(t_info *data);
+void			redir_add_list_out(char *filename, t_redir_list **head,
+					t_type_redir type);
 char			**split_quotes(char *cmd);
 void			open_heredocs(t_info *data);
 void			write_heredoc(t_info *data, int fd, int nbr);

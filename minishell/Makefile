@@ -106,6 +106,7 @@ EXECUTOR		=	add_cmd.c \
 					open_heredocs.c \
 					parent_process.c \
 					prepare_to_exec.c \
+					redir_list_utils.c \
 					split_quotes.c \
 					write_heredoc.c 
 
@@ -114,6 +115,7 @@ UTILS		 	=	check_complex_cmd.c \
 					copy_environment.c \
 					copy_list.c \
 					count_words.c \
+					free_list.c \
 					free.c \
 					get_quote_final.c \
 					get_quote_types.c \
