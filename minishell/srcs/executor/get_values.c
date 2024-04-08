@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_values.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 16:15:15 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:28:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	get_value_outfile(t_info *data, char *cmd, t_type_redir code)
 	filename = get_next_filename(cmd);
 	if (filename)
 	{
-		redir_add_list(filename, &data->list_out_files);
+		redir_add_list_out(filename, &data->list_out_files, code);
 		data->string_outfile = filename;
 		if (code == APPEND_OUTFILE)
 		{

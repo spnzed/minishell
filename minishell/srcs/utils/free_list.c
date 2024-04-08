@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files_out.c                                        :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 17:31:00 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/08 17:26:11 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/08 17:27:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	comprove_stdout(t_info *data)
+void	free_list(t_list *list)
 {
-	int				fd;
-	t_redir_list	*head;
+	t_list	*temp;
 
-	head = data->list_out_files;
-	while (head)
+	while (list != NULL)
 	{
-		if (data->list_out_files->type == APPEND_OUTFILE)
-			fd = open(head->content, O_WRONLY | O_CREAT, 0644);
-		else
-			fd = open(head->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd == -1)
+		temp = list->next;
+		if (list->content != NULL)
 		{
-			ft_putstr_fd("minishell: ", 2);
-			perror (head->content);
-			exit (1);
+			free(list->content);
+			list->content = NULL;
 		}
-		close(fd);
-		head = head->next;
+		free(list);
+		list = temp;
 	}
-	return (0);
 }

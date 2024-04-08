@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect_mul.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 12:28:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:20:12 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	handle_file(char *file, int open_code, int std_mode, int num)
 		fd = open(file, open_code);
 	if (fd == -1)
 	{
-		dprintf (2, "minishell: ");
-		dprintf (2, "line 1: ");
+		ft_putstr_fd ("minishell: ", 2);
+		ft_putstr_fd ("line 1: ", 2);
 		perror (file);
 		exit(1);
 	}
@@ -69,6 +69,6 @@ int	handle_redirect_mul(t_info *data, int i)
 	if (data->list_in_files)
 		free_list(data->list_in_files);
 	if (data->list_out_files)
-		free_list(data->list_out_files);
+		free_redir_list(data->list_out_files);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/05 20:11:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:05:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	exec_one(t_info *data)
 	execve(path, data->one_cmd, data->env);
 	if (!comprove_redirs(data))
 		last_error(data);
-	exit (127);
+	exit(0);
 }
 
 static int	one_bultin(t_info *data)

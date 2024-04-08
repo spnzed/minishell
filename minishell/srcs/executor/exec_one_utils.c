@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:15:29 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 15:22:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:21:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	print_last_error(t_info *data, int i)
 	}
 	if ((data->one_cmd[0][i] == '\'' || data->one_cmd[0][i] == '\"'))
 		i++;
-	dprintf(2, "%s: command not found\n", &data->one_cmd[0][i]);
+	ft_putstr_fd (&data->one_cmd[0][i], 2);
+	ft_putstr_fd (": command not found\n", 2);
 	data->exit_id = 127;
 	exit (127);
 }
