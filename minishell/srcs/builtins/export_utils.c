@@ -6,24 +6,11 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 17:29:06 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:00:55 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_environmentsize(t_environment *env)
-{
-	int	size;
-
-	size = 0;
-	while (env)
-	{
-		env = env->next;
-		size++;
-	}
-	return (size);
-}
 
 t_environment	*loop_exp(int index, int len, t_environment *exp_order)
 {
@@ -50,7 +37,7 @@ t_environment	*loop_exp(int index, int len, t_environment *exp_order)
 	return (exp_order);
 }
 
-void	sub_var(t_list *list, char *signal, char *content)
+int	sub_var(t_list *list, char *signal, char *content)
 {
 	int		len;
 	char	*new_content;
@@ -64,9 +51,29 @@ void	sub_var(t_list *list, char *signal, char *content)
 			new_content = ft_strjoin(signal, "=");
 			new_content = ft_strjoin(new_content, content);
 			list->content = ft_memcpy(list->content, new_content, len);
+			len = 0;
 		}
 		list = list->next;
 	}
+	if (len == 0)
+		return (1);
+	return (0);
+}
+
+static void	init_var(t_info *data, char *cmd)
+{
+	t_list	*new;
+
+	new = ft_lstnew(cmd);
+	if (!new)
+	{
+		ft_lstclear(&data->list_env, free);
+		return ;
+	}
+	if (!data->list_env)
+		data->list_env = new;
+	else
+		ft_lstadd_back(&data->list_env, new);
 }
 
 int	search_on_lists(t_info *data, t_environment *list, char *str)
@@ -85,8 +92,8 @@ int	search_on_lists(t_info *data, t_environment *list, char *str)
 			list->content = ft_strdup(content);
 			list->full_line = ft_strjoin(signal, "=");
 			list->full_line = ft_strjoin(list->full_line, content);
-			if (!var_found_list(data->list_env, signal))
-				sub_var(data->list_env, signal, content);
+			if (!sub_var(data->list_env, signal, content))
+				init_var(data, str);
 			free (signal);
 			free (content);
 			return (0);
