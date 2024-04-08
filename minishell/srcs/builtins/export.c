@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 16:58:30 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:45:53 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 	new = NULL;
 	temp = data->list_exp;
 	export_and_grep(temp, split_cmd, x);
+	data->exit_id = 0;
 	while (split_cmd[i])
 	{
 		if (!export_valid(ft_remove_quotes_str(split_cmd[i])))
@@ -109,6 +110,5 @@ int	export_builtin(t_info *data, char **split_cmd)
 	x = cmdsize(split_cmd) - 1;
 	i = 1;
 	export_function(1, x, data, split_cmd);
-	data->exit_id = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 16:27:31 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:56:58 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ static void	init_var(t_info *data)
 
 void	prepare_to_exec_one(t_info *data)
 {
-	int	x = 0;
+	int	x;
 
+	x = 0;
 	if (x > 0)
 		free_array(data->one_cmd);
 	init_var(data);
