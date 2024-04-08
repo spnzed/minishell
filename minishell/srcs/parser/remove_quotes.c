@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:40:44 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/28 17:53:51 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:29:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,3 @@ char	*remove_quotes(char *str)
 		return (NULL);
 	return (loop_ret(simple, complex, str));
 }
-
-// static char **clean_splitted_quotes(char **spl)
-// {
-// 	int		i;
-// 	int		size;
-// 	char	**ret_spl;
-
-// 	i = -1;
-// 	size = ft_arrlen(spl);
-// 	ret_spl = malloc(sizeof(char *) * size + 1);
-// 	while (spl[++i])
-// 		ret_spl[i] = ft_strdup(remove_quotes(spl[i]));
-// 	ret_spl[i] = NULL;
-// 	free(spl);
-// 	return (ret_spl);
-// }

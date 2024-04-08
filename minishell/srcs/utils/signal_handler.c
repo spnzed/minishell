@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 20:09:13 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 20:09:15 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:30:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,62 +23,6 @@ void	signal_handler_heredoc(int sig)
 	}
 }
 
-/*
-Las señales en sistemas Unix y similares son identificadas por números 
-enteros. 
-A continuación, te proporciono las 31 señales más comunes, junto con 
-su traducción 
-en inglés y su valor numérico:
-
-1. SIGHUP		(Hangup)
-2. SIGINT		(Interrupt)
-3. SIGQUIT		(Quit)
-4. SIGILL		(Illegal instruction)
-5. SIGTRAP		(Trace trap)
-6. SIGABRT		(Abort)
-7. SIGBUS		(Bus error)
-8. SIGFPE		(Floating-point exception)
-9. SIGKILL		(Kill)
-10. SIGUSR1		(User-defined signal 1)
-11. SIGSEGV		(Segmentation fault)
-12. SIGUSR2		(User-defined signal 2)
-13. SIGPIPE		(Broken pipe)
-14. SIGALRM		(Alarm clock)
-15. SIGTERM		(Termination)
-16. SIGSTKFLT	(Stack fault)
-17. SIGCHLD		(Child status has changed)
-18. SIGCONT		(Continue)
-19. SIGSTOP		(Stop)
-20. SIGTSTP		(Terminal stop signal)
-21. SIGTTIN		(Background read from control terminal)
-22. SIGTTOU		(Background write to control terminal)
-23. SIGURG		(Urgent condition on socket)
-24. SIGXCPU		(CPU time limit exceeded)
-25. SIGXFSZ		(File size limit exceeded)
-26. SIGVTALRM	(Virtual alarm clock)
-27. SIGPROF		(Profiling timer expired)
-28. SIGWINCH	(Window size change)
-29. SIGIO		(I/O now possible)
-30. SIGPWR		(Power failure restart)
-31. SIGSYS		(Bad system call)
-
-Cuando sumas 128 al valor numérico de una señal, obtienes el número 
-que se usa en el 
-estado devuelto por `waitpid` cuando un proceso hijo termina debido 
-a esa señal. 
-Por ejemplo, si sumas 128 a 2 (que es el valor de SIGINT), obtienes 
-130, que es el 
-número que se usará en el estado devuelto por `waitpid` cuando un 
-proceso hijo termine 
-debido a SIGINT.
-
-De esta forma
-
-	Señal + valor numerico de señal
-
-	2 + 128 = 130 	-> 	SIGINT	->	CTRL+C
-	3 + 128 = 131 	-> 	SIGQUIT	->	CTRL+\
-*/
 void	catch_signal(t_info *data, int status, int set_status)
 {
 	if (status == 130)
@@ -89,10 +33,6 @@ void	catch_signal(t_info *data, int status, int set_status)
 		data->exit_id = status;
 }
 
-/*
-	SIGINT: CTRL+C
-	SIGQUIT: CTRL+\
-*/
 void	signal_handler(int sig)
 {
 	if (sig == SIGINT)

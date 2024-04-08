@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd_route.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:09:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/27 13:59:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:27:36 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,6 @@ static char	**handle_route(char *line, char *cmd)
 	return (route);
 }
 
-/*
-	while (route[++i] && access(route[i], F_OK) == -1)
-
-		access comprueba si un archivo existe
-
-		F_OK se pasa como segundo argumento para indicar
-		que estamos verificando solo la existencia del archivo.
-
-			Queremos comprobar que no existe, usando == -1
-		
-		Es decir quuiere dejar la iteracion hasta que encuentre
-		un archivo que existe
-*/
-
 char	*find_cmd_route(t_environment *lst_env, char *cmd)
 {
 	int		i;
@@ -80,5 +66,3 @@ char	*find_cmd_route(t_environment *lst_env, char *cmd)
 	ft_arrfree(route, ft_arrlen(route));
 	return (ret);
 }
-
-//printf("[%s]\n", route[i]);

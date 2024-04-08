@@ -12,22 +12,6 @@
 
 #include "minishell.h"
 
-/*	manage_cmd
-
-	Proceso:
-		parser: 	cuenta la cantidad de comandos teniendo en cuenta las |
-					revisa los errores sintacticos
-		expander: 	reemplaza las variables que se identifican con $
-					"$USER" se convierte entonces en "pquintan"
-		executor:	
-
-	TODO:
-	✅1. Cuenta cantidad de comandos	
-	✅2. Comprueba la syntax		
-	✅3. Busca variables de entorno, y las parsea
-
-*/
-
 static int	little_cases(t_info *data, char *line)
 {
 	if (line[0] == ' ')
@@ -51,25 +35,6 @@ static int	little_cases(t_info *data, char *line)
 	}
 	return (0);
 }
-
-// static void	one_command(t_info *data)  // PARA QUITAR FUNCIONES
-// {
-// 	if (little_cases(data, data->cmd_line))
-// 		return ;
-// 	prepare_to_exec_one(data);
-// 	exec_one_cmd(data);
-// }
-
-// static void	multiple_commands(t_info *data)  // PARA QUITAR FUNCIONES
-// {
-// 	prepare_to_exec(data);
-// 	exec_cmds(data);
-// }
-
-// static void	parser(t_info *data) // PARA QUITAR FUNCIONES
-// {
-// 	syntax_error(data);
-// }
 
 static void	expander(t_info *data)
 {
