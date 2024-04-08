@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/28 17:10:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	normalize_cmd(char **cmd)
 			|| cmd[0][ft_strlen(cmd[0]) - 1] == '\"'))
 		{
 			aux = little_normalizer(cmd[0]);
-			if (ft_strcmp(aux, "echo") == 0)
+			if (ft_strncmp(aux, "echo", 4) == 0)
 			{
 				if (check_complex_cmd(aux, "echo", 4) == 0
 					|| check_complex_cmd(aux, "echo -n", 7) == 0)

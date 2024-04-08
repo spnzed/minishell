@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 13:22:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:22:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void			ft_free_environment(t_environment *head);
 t_environment	*ft_copy_environment(const t_environment *src);
 void			ft_envadd_back(t_environment **env, t_environment *new);
 void			free_list(t_list *list);
+void			free_redir_list(t_redir_list *list);
 void			free_environment(t_environment *env);
 void			free_array(char **array);
 int				count_words(char *str);

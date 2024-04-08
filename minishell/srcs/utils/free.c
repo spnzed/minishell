@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:49:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 12:29:47 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:22:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,25 @@ void	free_list(t_list *list)
 	}
 }
 
+//
+void	free_redir_list(t_redir_list *list)
+{
+	t_redir_list	*temp;
+
+	while (list != NULL)
+	{
+		temp = list->next; 
+		if (list->content != NULL)
+		{
+			free(list->content);
+			list->content = NULL;
+		}
+		free(list);
+		list = temp;
+	}
+}
+//
+
 static void	part_two(t_info *info)
 {
 	free_array(info->env);
@@ -86,7 +105,7 @@ static void	part_two(t_info *info)
 	free_list(info->list_input);
 	free_list(info->list_path);
 	free_list(info->list_in_files);
-	free_list(info->list_out_files);
+	free_redir_list(info->list_out_files);
 	free_list(info->list_heredocs);
 	free_environment(info->signals_env);
 	free_environment(info->list_exp);

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 19:31:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:24:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 int	comprove_stdout(t_info *data)
 {
 	int		fd;
-	t_list	*head;
+	t_redir_list	*head;
 
 	head = data->list_out_files;
 	while (head)
 	{
-		fd = open(head->content, O_WRONLY | O_CREAT, 0644);
+		if (data->list_out_files->type == APPEND_OUTFILE)
+			fd = open(head->content, O_WRONLY | O_CREAT, 0644);
+		else
+			fd = open(head->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd == -1)
 		{
 			dprintf(2, "minishell: ");

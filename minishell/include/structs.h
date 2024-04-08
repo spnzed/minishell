@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:35:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 01:23:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:13:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ typedef struct s_environment
 	char					*content;
 	struct s_environment	*next;
 }							t_environment;
+
+// experiment albert
+typedef struct s_redir_list
+{
+	void				*content;
+	struct s_redir_list	*next;
+	t_type_redir		type;
+}				t_redir_list;
+//
 
 //	Main Struct
 typedef struct s_info
@@ -89,7 +98,7 @@ typedef struct s_info
 	t_list					*list_path;
 
 	t_list					*list_in_files;
-	t_list					*list_out_files;
+	t_redir_list			*list_out_files;
 	t_list					*list_heredocs;
 
 	t_environment			*signals_env;
