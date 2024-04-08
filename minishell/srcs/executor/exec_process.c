@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 19:49:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:20:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	exec_process(t_info *data, char	*cmd, int i)
 	int		builtin;
 	char	**split_cmd;
 
-	// if (i > 0)
-	// 	clean_redir_lists(data);
 	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
 	builtin = is_builtin(split_cmd, data);

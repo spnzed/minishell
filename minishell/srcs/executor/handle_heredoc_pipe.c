@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 21:08:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:20:58 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	handle_heredoc_pipe(t_info *data)
 		{
 			if (data->list_heredocs)
 				ft_lstclear(&data->list_heredocs, free);
-			if (!ft_strnstr(data->split_line[i], "<<", ft_strlen(data->split_line[i])))
+			if (!ft_strnstr(data->split_line[i], "<<",
+					ft_strlen(data->split_line[i])))
 				data->heredoc_keys[i] = ft_strdup ("JOSEPH");
 			else
 			{
