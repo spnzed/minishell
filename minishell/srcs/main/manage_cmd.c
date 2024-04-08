@@ -12,6 +12,35 @@
 
 #include "minishell.h"
 
+static int	print_space_error(t_info *data, char *line)
+{
+	int	i;
+	int	start;
+
+	i = 0;
+	if (line[i] == '\"' | line[i] == '\''
+		&& (line[ft_strlen(line) - 1] == '\"'
+			|| line[ft_strlen(line) - 1] == '\''))
+		i++;
+	start = i;
+	while (i < ft_strlen(line) - 1 || i == 0)
+	{
+		if (!ft_isspace((line[i])))
+			return (0);
+		i++;
+	}
+	i = start;
+	ft_putstr_fd("minishell: line 1: ", 2);
+	while (i < ft_strlen(line) - 1)
+	{
+		ft_putstr_fd(" ", 2);
+		i++;
+	}
+	ft_putstr_fd(": command not found\n", 2);
+	data->exit_id = 127;
+	return (1);
+}
+
 static int	little_cases(t_info *data, char *line)
 {
 	if (line[0] == ' ')
@@ -19,13 +48,8 @@ static int	little_cases(t_info *data, char *line)
 		while (*line == ' ')
 			line++;
 	}
-	if (ft_strcmp(line, "\" \"") == 0)
-	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);
-		data->exit_id = 127;
+	if (print_space_error(data, line))
 		return (1);
-	}
 	if (ft_strcmp(line, "\"\"") == 0)
 	{
 		ft_putstr_fd(
