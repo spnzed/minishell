@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 15:22:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:19:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	handle_file(char *file, int open_code, int std_mode, int num)
 		fd = open(file, open_code);
 	if (fd == -1)
 	{
-		dprintf (2, "minishell: ");
-		dprintf (2, "line 1: ");
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd("line 1: ", 2);
 		perror (file);
 		exit(1);
 	}

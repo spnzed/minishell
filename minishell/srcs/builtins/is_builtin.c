@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 16:58:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:22:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	normalize_cmd(char **cmd)
 			aux = little_normalizer(cmd[0]);
 			if (ft_strncmp(aux, "echo", 4) == 0)
 			{
-				if (check_complex_cmd(aux, "echo", 4) == 0
-					|| check_complex_cmd(aux, "echo -n", 7) == 0)
+				if (check_complex_cmd(aux, "echo") == 0
+					|| check_complex_cmd(aux, "echo -n") == 0)
 				{
 					free(aux);
 					return (3);
@@ -78,16 +78,16 @@ static int	what_builtin(char *aux, t_info *data)
 		return (1);
 	else if (ft_strcmp(aux, "pwd") == 0)
 		return (2);
-	else if (check_complex_cmd(aux, "echo", 4) == 0
-		|| check_complex_cmd(aux, "echo -n", 7) == 0)
+	else if (check_complex_cmd(aux, "echo") == 0
+		|| check_complex_cmd(aux, "echo -n") == 0)
 		return (3);
 	else if (ft_strcmp(aux, "exit") == 0)
 		return (4);
-	else if (check_complex_cmd(aux, "cd", 2) == 0)
+	else if (check_complex_cmd(aux, "cd") == 0)
 		return (5);
-	else if (check_complex_cmd(aux, "export", 6) == 0)
+	else if (check_complex_cmd(aux, "export") == 0)
 		return (6);
-	else if (check_complex_cmd(aux, "unset", 5) == 0)
+	else if (check_complex_cmd(aux, "unset") == 0)
 		return (7);
 	else if (ft_strlen(aux) > 0)
 	{

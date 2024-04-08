@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:39:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 15:24:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:19:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	comprove_stdout(t_info *data)
 			fd = open(head->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd == -1)
 		{
-			dprintf(2, "minishell: ");
+			ft_putstr_fd("minishell: ", 2);
 			perror (head->content);
 			exit (1);
 		}

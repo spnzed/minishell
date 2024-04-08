@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 15:22:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:21:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ t_list			*ft_copy_list(const t_list *src);
 char			*ft_remove_quotes_str(char *str);
 char			*ft_before_set(char *str, char set);
 char			*ft_after_set(char *str, char set);
-int				check_complex_cmd(char *strbase, char *strcomp, int len);
+int				check_complex_cmd(char *strbase, char *strcomp);
 int				get_quote_final(char *line, int i, int *simple, int *complex);
 void			get_quotes_type(char c, int *simple, int *complex);
 int				get_redir_end(char *str, t_info *data);
