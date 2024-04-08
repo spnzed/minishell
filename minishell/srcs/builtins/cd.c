@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 11:14:29 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:01:34 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int	cd_builtin(t_info *data, char **split_cmd)
 	}
 	if (content != NULL)
 		free(content);
+	data->exit_id = 0;
 	return (1);
 }

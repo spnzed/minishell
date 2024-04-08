@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 11:12:44 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:59:02 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 
 	len = ft_strlen(data->cmd_line);
 	if (builtin == 1)
-		env_builtin(data->list_env);
+		env_builtin(data, data->list_env);
 	else if (builtin == 2)
 		pwd_builtin(data);
 	else if (builtin == 3)

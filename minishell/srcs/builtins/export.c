@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 11:15:50 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:30 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ static void	export_equal(t_info *data, t_list *new, char *cmd)
 	if (ft_strchr(cmd, '"'))
 		cmd = ft_remove_quotes_str(cmd);
 	if (search_on_lists(data, data->list_exp, cmd) == 0)
+	{
+		data->signals_env = start_sig(data->list_env);
+		data->env = ft_env_to_array(data->list_exp);
 		return ;
+	}
 	else
 	{
 		list_exp_add(cmd, data);
@@ -105,5 +109,6 @@ int	export_builtin(t_info *data, char **split_cmd)
 	x = cmdsize(split_cmd) - 1;
 	i = 1;
 	export_function(1, x, data, split_cmd);
+	data->exit_id = 0;
 	return (0);
 }

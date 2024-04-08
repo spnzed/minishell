@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_to_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 21:33:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:27:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	init_var(t_info *data)
 
 void	prepare_to_exec_one(t_info *data)
 {
-	static int	x;
+	int	x = 0;
 
-	if (x)
+	if (x > 0)
 		free_array(data->one_cmd);
 	init_var(data);
 	get_redirections(data->cmd_line, data);
