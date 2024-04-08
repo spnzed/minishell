@@ -3,29 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:08:10 by aaespino          #+#    #+#             */
-/*   Updated: 2024/01/31 15:59:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:28:42 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-	Obtiene el descriptor de archivo actual para la entrada estándar
-	Obtiene el descriptor de archivo actual para la salida estándar
-	Retorna 0 si todas las operaciones se realizan con éxito
-
-	MACROS
-
-		STDIN_FILENO: Descriptor de archivo para la entrada estándar.
-		STDIN_FILENO: Descriptor de archivo para la salida estándar.
-
-	dup: Duplica un descriptor de archivo existente.
-    perror: Imprime un mensaje de error describiendo el último error encontrado.
-
-*/
 int	init_fd(t_info *data)
 {
 	data->std_in = dup(STDIN_FILENO);

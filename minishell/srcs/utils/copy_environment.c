@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:58:56 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 15:21:05 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:29:33 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,3 @@ t_environment	*ft_copy_environment(const t_environment *src)
 	}
 	return (head);
 }
-
-/*
-typedef struct		s_environment
-{
-	char					*full_line;
-	char					*signal;
-	char					*content;
-	struct s_environment	*next;
-}					t_environment;
-*/

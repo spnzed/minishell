@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   display_term_message.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/03/29 19:27:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:27:18 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// char	*display_term_message(void)
-// {
-// 	char	*line;
-//
-// 	line = readline("42-Minishell ~ % ");
-// 	if (line == NULL)
-// 		return (free(line), NULL);
-// 	if (ft_strlen(line) > 0)
-// 		add_history(line);
-// 	return (line);
-// }
-// por eesto no funcionaba el free
 char	*display_term_message(t_info *data)
 {
 	char	*line;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 19:40:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:14:29 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	change_home(t_info *data, char **split_cmd)
 		put_error(data, data->cmd_line, "HOME not set", 0);
 }
 
-int	ft_cd(t_info *data, char **split_cmd)
+int	cd_builtin(t_info *data, char **split_cmd)
 {
 	char	*content;
 

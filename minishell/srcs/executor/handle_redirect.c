@@ -3,59 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 00:25:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:28:19 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-
-STDIN: es el flujo de entrada estándar usado para ingresar datos en un
- programa, 
-típicamente asociado al teclado.
-
-STDOUT: es el flujo de salida estándar utilizado para mostrar resultados 
-y mensajes 
-de salida de un programa, comúnmente asociado a la pantalla o terminal.
-
-////////////////////////////////////////////////////////////////////////////
-
-(O_WRONLY): Abre el archivo en modo escritura.
-(O_RDONLY): Abre el archivo en modo lectura.
-(O_CREAT): Crea el archivo si no existe.
-
-finalmente
-
-(O_TRUNC): Trunca el archivo a longitud cero si existe
-(O_APPEND): Añade los datos al final del archivo.
-
-///////////////////////////////////////////////////////////////////////////
-
-stdout_to_out_file: redirigir stdout a un archivo, sobrescribiendo su contenido
-
-stdout_to_name_append: redirigir stdout a un archivo, añadiendo al final
- de su contenido
-
-stdin_from_file: redirigir stdin desde un archivo
-
-/////////////////////////////////////////////////////////////////////////////
-
-TLDR
-
-	El primero sobreescribe al el archivo desde el principio de este
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
-	El segundo añade contenido al archivo al final
-	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
-
-	El tercero recibe los inputs desde un archivo, y no desde nuestro teclado
-	fd = open(filename, O_RDONLY);
-
-*/
 static void	handle_file(char *file, int open_code, int std_mode, int num)
 {
 	int	fd;

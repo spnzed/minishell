@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:56:08 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/04 15:01:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:38 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	ft_print_num_arg(char **split_cmd)
 	exit (255);
 }
 
-int	ft_exit(t_info *data, char **split_cmd)
+int	exit_builtin(t_info *data, char **split_cmd)
 {
 	if (split_cmd[1] && ft_is_bigger_maxll(split_cmd[1]) == 1)
 		ft_print_num_arg(split_cmd);

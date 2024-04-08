@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 23:03:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:27:52 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static void	handle_heredoc(char *file, int open_code, int std_mode)
-// {
-// 	int	fd;
-
-// 	fd = open(file, open_code);
-// 	if (fd == -1)
-// 	{
-// 		dprintf (2, "minishell: ");
-// 		dprintf (2, "line 1: ");
-// 		perror (file);
-// 		exit(1);
-// 	}
-// 	if (dup2(fd, std_mode) == -1)
-// 	{
-// 		perror("dup2");
-// 		close (fd);
-// 		exit(1);
-// 	}
-// }
 
 static void	get_redirs_heredoc(char *cmd, int i, t_info *data)
 {

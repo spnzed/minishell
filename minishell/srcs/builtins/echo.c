@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/01 20:33:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:25 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	ft_n_option(t_info *data, char **line, t_echo *e)
 	return (2);
 }
 
-int	ft_echo(t_info	*data, char **line)
+int	echo_builtin(t_info	*data, char **line)
 {
 	t_echo	e;
 	int		res;

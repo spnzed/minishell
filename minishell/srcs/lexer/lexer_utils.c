@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/01 14:20:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:28:49 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,6 @@ int	redir_syntax(char *line, t_info *data)
 	return (0);
 }
 
-/*
-La función strpbrk() es una función estándar en C que se utiliza
- para buscar 
-la primera ocurrencia de cualquiera de los caracteres en una cadena
- dada y devuelve 
-un puntero a esa posición en la cadena.
-*/
 char	*export_id(char *var)
 {
 	int		i;

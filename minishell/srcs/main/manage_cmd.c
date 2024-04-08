@@ -12,21 +12,34 @@
 
 #include "minishell.h"
 
-/*	manage_cmd
+static int	print_space_error(t_info *data, char *line)
+{
+	int	i;
+	int	start;
 
-	Proceso:
-		parser: 	cuenta la cantidad de comandos teniendo en cuenta las |
-					revisa los errores sintacticos
-		expander: 	reemplaza las variables que se identifican con $
-					"$USER" se convierte entonces en "pquintan"
-		executor:	
-
-	TODO:
-	✅1. Cuenta cantidad de comandos	
-	✅2. Comprueba la syntax		
-	✅3. Busca variables de entorno, y las parsea
-
-*/
+	i = 0;
+	if (line[i] == '\"' | line[i] == '\''
+		&& (line[ft_strlen(line) - 1] == '\"'
+			|| line[ft_strlen(line) - 1] == '\''))
+		i++;
+	start = i;
+	while (i < ft_strlen(line) - 1 || i == 0)
+	{
+		if (!ft_isspace((line[i])))
+			return (0);
+		i++;
+	}
+	i = start;
+	ft_putstr_fd("minishell: line 1: ", 2);
+	while (i < ft_strlen(line) - 1)
+	{
+		ft_putstr_fd(" ", 2);
+		i++;
+	}
+	ft_putstr_fd(": command not found\n", 2);
+	data->exit_id = 127;
+	return (1);
+}
 
 static int	little_cases(t_info *data, char *line)
 {
@@ -35,13 +48,8 @@ static int	little_cases(t_info *data, char *line)
 		while (*line == ' ')
 			line++;
 	}
-	if (ft_strcmp(line, "\" \"") == 0)
-	{
-		ft_putstr_fd(
-			"minishell: line 1: : command not found\n", 2);
-		data->exit_id = 127;
+	if (print_space_error(data, line))
 		return (1);
-	}
 	if (ft_strcmp(line, "\"\"") == 0)
 	{
 		ft_putstr_fd(
@@ -51,25 +59,6 @@ static int	little_cases(t_info *data, char *line)
 	}
 	return (0);
 }
-
-// static void	one_command(t_info *data)  // PARA QUITAR FUNCIONES
-// {
-// 	if (little_cases(data, data->cmd_line))
-// 		return ;
-// 	prepare_to_exec_one(data);
-// 	exec_one_cmd(data);
-// }
-
-// static void	multiple_commands(t_info *data)  // PARA QUITAR FUNCIONES
-// {
-// 	prepare_to_exec(data);
-// 	exec_cmds(data);
-// }
-
-// static void	parser(t_info *data) // PARA QUITAR FUNCIONES
-// {
-// 	syntax_error(data);
-// }
 
 static void	expander(t_info *data)
 {

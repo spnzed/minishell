@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/04 19:25:09 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:16:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static int	unset_valid(char *split_cmd)
 	return (1);
 }
 
-int	ft_unset(t_info *data, char **split_cmd)
+int	unset_builtin(t_info *data, char **split_cmd)
 {
 	int	x;
 
