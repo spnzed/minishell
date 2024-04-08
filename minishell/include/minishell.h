@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 17:30:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:59:24 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void			write_heredoc(t_info *data, int fd, int nbr);
 //				BUILTINS	⚙️
 ////////////////////////////////////////////////////////////////////////////////
 int				is_builtin(char **cmd, t_info *data);
-int				env_builtin(t_list *list_env);
+int				env_builtin(t_info *data, t_list *list_env);
 int				pwd_builtin(t_info *data);
 int				cd_builtin(t_info *data, char **split_cmd);
 int				exit_builtin(t_info *data, char **split_cmd);

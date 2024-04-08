@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 11:15:25 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:43:10 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	echo_builtin(t_info	*data, char **line)
 	int		res;
 
 	e.n_option = NULL;
+	data->exit_id = 0;
 	res = ft_n_option(data, line, &e);
 	if (res == 1)
 		return (printf("\n"), 0);
@@ -76,6 +77,5 @@ int	echo_builtin(t_info	*data, char **line)
 	}
 	if (e.n_option == false)
 		printf("\n");
-	data->exit_id = 0;
 	return (0);
 }

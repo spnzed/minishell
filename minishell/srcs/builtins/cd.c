@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 11:14:29 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:06:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static	void	ft_chdir(t_info	*data, char *directory, char **split_cmd)
 			perror("chdir");
 			return ;
 		}
+		data->exit_id = 0;
 	}
 }
 
