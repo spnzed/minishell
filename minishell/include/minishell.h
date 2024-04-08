@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 01:24:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,13 @@ void			write_heredoc(t_info *data, int fd, int nbr);
 //				BUILTINS	⚙️
 ////////////////////////////////////////////////////////////////////////////////
 int				is_builtin(char **cmd, t_info *data);
-int				ft_env(t_list *list_env);
-int				ft_pwd(t_info *data);
-int				ft_cd(t_info *data, char **split_cmd);
-int				ft_exit(t_info *data, char **split_cmd);
-int				ft_echo(t_info	*data, char **line);
-int				ft_export(t_info *data, char **split_cmd);
-int				ft_unset(t_info *data, char **split_cmd);
+int				env_builtin(t_list *list_env);
+int				pwd_builtin(t_info *data);
+int				cd_builtin(t_info *data, char **split_cmd);
+int				exit_builtin(t_info *data, char **split_cmd);
+int				echo_builtin(t_info	*data, char **line);
+int				export_builtin(t_info *data, char **split_cmd);
+int				unset_builtin(t_info *data, char **split_cmd);
 int				cd_error_msg(t_info *data, char *arg, char *str);
 void			set_directory(t_list *list_env, char *var);
 int				cd_error_file_too_long(t_info *data, char *file);

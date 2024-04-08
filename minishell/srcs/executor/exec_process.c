@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/07 16:34:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:12:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,19 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 
 	len = ft_strlen(data->cmd_line);
 	if (builtin == 1)
-		ft_env(data->list_env);
+		env_builtin(data->list_env);
 	else if (builtin == 2)
-		ft_pwd(data);
+		pwd_builtin(data);
 	else if (builtin == 3)
-		ft_echo(data, split_cmd);
+		echo_builtin(data, split_cmd);
 	else if (builtin == 4)
-		ft_exit(data, split_cmd);
+		exit_builtin(data, split_cmd);
 	else if (builtin == 5)
-		ft_cd(data, split_cmd);
+		cd_builtin(data, split_cmd);
 	else if (builtin == 6)
-		ft_export(data, split_cmd);
+		export_builtin(data, split_cmd);
 	else if (builtin == 7)
-		ft_unset(data, split_cmd);
+		unset_builtin(data, split_cmd);
 }
 
 void	exec_process(t_info *data, char	*cmd, int i)

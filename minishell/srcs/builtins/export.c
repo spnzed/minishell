@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/04 19:25:17 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 	}
 }
 
-int	ft_export(t_info *data, char **split_cmd)
+int	export_builtin(t_info *data, char **split_cmd)
 {
 	int				x;
 	int				i;

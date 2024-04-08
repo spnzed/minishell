@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/03/21 15:46:46 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_env(t_list *list_env)
+int	env_builtin(t_list *list_env)
 {
 	t_list	*temp;
 
