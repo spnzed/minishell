@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 16:59:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:49:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,22 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 		unset_builtin(data, split_cmd);
 }
 
+// static void	clean_redir_lists(t_info *data)
+// {
+// 	if (data->string_infile)
+// 	{
+// 		data->string_infile = NULL;
+// 		free(data->string_infile);
+// 	}
+// }
+
 void	exec_process(t_info *data, char	*cmd, int i)
 {
 	int		builtin;
 	char	**split_cmd;
 
+	// if (i > 0)
+	// 	clean_redir_lists(data);
 	get_redirections(cmd, data);
 	split_cmd = handle_cmd(cmd);
 	builtin = is_builtin(split_cmd, data);

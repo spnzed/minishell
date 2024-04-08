@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:29:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 13:14:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:08:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ static void	handle_key_name(t_info *data, char *key_name, int i)
 
 	fd = 0;
 	data->heredoc_keys[i] = ft_strjoin(HEREDOC, key_name);
-	free(key_name);
-	fd = open(data->heredoc_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	//free(key_name);
+	if (data->heredoc_keys[i] != NULL)
+		fd = open(data->heredoc_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		perror ("open");
 }
@@ -97,7 +98,7 @@ void	open_heredocs(t_info *data)
 	while (data->split_line[i])
 	{
 		j = ft_strlen(data->split_line[i]) - 1;
-		while (data->split_line[i][j])
+		while (j > 0)
 		{
 			if (heredoc_found(data, i, j))
 			{
@@ -106,7 +107,7 @@ void	open_heredocs(t_info *data)
 			}
 			j--;
 		}
-		if (key_name != NULL)
+		if (key_name)
 			handle_key_name(data, key_name, i);
 		i++;
 	}
