@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:09:31 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/09 14:24:36 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:19:50 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**clean_quotes_array(char **array)
 	char	**res;
 
 	x = 0;
-	res = malloc(sizeof(char *) * ft_arrlen(array) + 1);
+	res = malloc(sizeof(char *) * (ft_arrlen(array) + 1));
 	if (!res)
 		return (NULL);
 	while (array[x])
