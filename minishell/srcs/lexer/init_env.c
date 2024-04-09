@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:04:36 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 11:32:59 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:10:31 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	**malloc_env_array(char **env)
 
 	i = -1;
 	array = malloc(sizeof(char *) * (ft_arrlen(env) + 1));
+	if (!array)
+		return (NULL);
 	while (env[++i])
 		array[i] = ft_strdup(env[i]);
 	array[i] = NULL;

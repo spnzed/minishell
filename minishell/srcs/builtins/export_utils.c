@@ -6,13 +6,13 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 19:00:55 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:36:05 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_environment	*loop_exp(int index, int len, t_environment *exp_order)
+void	loop_exp(int index, int len, t_environment *exp_order)
 {
 	t_environment	*temp;
 	t_environment	*tempvar;
@@ -34,7 +34,6 @@ t_environment	*loop_exp(int index, int len, t_environment *exp_order)
 		}
 		index++;
 	}
-	return (exp_order);
 }
 
 int	sub_var(t_list *list, char *signal, char *content)

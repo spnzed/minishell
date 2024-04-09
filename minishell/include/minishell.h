@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/09 14:09:54 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:00:15 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,12 +180,12 @@ void			ft_normin(char **split_cmd);
 int				ft_environmentsize(t_environment *env);
 int				ft_envsize(t_environment *lst);
 char			**ft_env_to_array(t_environment *head);
-t_environment	*loop_exp(int index, int len, t_environment *exp_order);
-t_environment	*order_exp(t_environment *exp);
+void			loop_exp(int index, int len, t_environment *exp_order);
+void			order_exp(t_environment *exp);
 int				sub_var(t_list *list, char *signal, char *content);
 int				search_on_lists(t_info *data, t_environment *list, char *str);
 int				search_list_else(t_environment *list, char *signal);
-void			add_array(int strsize, t_environment *temp, char *array);
+char			*add_array(int strsize, t_environment *temp);
 void			export_error_not_valid_id(char *arg, t_info *data);
 char			*first_num(char *var);
 int				export_valid(char *cmd);

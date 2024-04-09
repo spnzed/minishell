@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 17:45:53 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:09:09 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	export_equal(t_info *data, t_list *new, char *cmd)
 			data->list_env = new;
 		else
 			ft_lstadd_back(&data->list_env, new);
-		data->list_exp = order_exp(data->list_exp);
+		order_exp(data->list_exp);
+		free_environment(data->signals_env);
 		data->signals_env = start_sig(data->list_env);
 		data->env = ft_env_to_array(data->list_exp);
 	}
@@ -75,7 +76,7 @@ static void	export_else(t_info *data, char *cmd)
 		data->list_exp = tmp;
 	else
 		ft_envadd_back(&data->list_exp, tmp);
-	data->list_exp = order_exp(data->list_exp);
+	order_exp(data->list_exp);
 	data->env = ft_env_to_array(data->list_exp);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_utils3.c.c                                  :+:      :+:    :+:   */
+/*   export_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/04 16:11:11 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:40:57 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	list_exp_add(char *cmd, t_info *data)
 	tmp = ft_envnew(cmd);
 	tmp->signal = ft_before_set(cmd, '=');
 	tmp->content = ft_after_set(cmd, '=');
-	tmp->full_line = ft_strdup(cmd);
 	if (!tmp)
 	{
 		ft_envclear(&data->list_exp, free);
