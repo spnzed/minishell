@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
 /*   Updated: 2024/04/08 19:23:23 by pquintan         ###   ########.fr       */
@@ -26,7 +26,7 @@
 # define CYAN    "\033[1;36m"
 # define WHITE   "\033[1;37m"
 //	Heredoc 🤭
-# define HEREDOC "/tmp/.heredoc_"
+# define HEREDOC "/tmp/heredoc_"
 //	libs
 # include <stdio.h>
 # include <readline/readline.h>

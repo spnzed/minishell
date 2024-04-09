@@ -1,3 +1,5 @@
+algo
+algo
 ################################################################################
 #                                     CONFIG                                   #
 ################################################################################´
@@ -6,7 +8,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror #-g -fsanitize=address 
+CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -23,8 +25,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 
@@ -117,7 +119,6 @@ UTILS		 	=	check_complex_cmd.c \
 					count_words.c \
 					free_list.c \
 					free.c \
-					env_size.c \
 					get_quote_final.c \
 					get_quote_types.c \
 					get_redir_end.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 12:27:52 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:20:58 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,15 @@ void	handle_heredoc_pipe(t_info *data)
 		{
 			if (data->list_heredocs)
 				ft_lstclear(&data->list_heredocs, free);
-			fd = comprove_heredoc_mul(data, data->split_line[i], i);
-			write_heredoc(data, fd, i);
-			close(fd);
+			if (!ft_strnstr(data->split_line[i], "<<",
+					ft_strlen(data->split_line[i])))
+				data->heredoc_keys[i] = ft_strdup ("JOSEPH");
+			else
+			{
+				fd = comprove_heredoc_mul(data, data->split_line[i], i);
+				write_heredoc(data, fd, i);
+				close(fd);
+			}
 		}
 	}
 	else
