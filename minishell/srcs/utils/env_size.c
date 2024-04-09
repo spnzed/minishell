@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 13:55:26 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 18:56:42 by pquintan         ###   ########.fr       */
+/*   Created: 2024/04/08 19:01:17 by pquintan          #+#    #+#             */
+/*   Updated: 2024/04/08 19:01:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	env_builtin(t_info *data, t_list *list_env)
+int	ft_environmentsize(t_environment *env)
 {
-	t_list	*temp;
+	int	size;
 
-	temp = list_env;
-	while (temp)
+	size = 0;
+	while (env)
 	{
-		if (ft_strchr(temp->content, '='))
-			printf("%s\n", temp->content);
-		temp = temp->next;
+		env = env->next;
+		size++;
 	}
-	data->exit_id = 0;
-	return (0);
+	return (size);
 }
