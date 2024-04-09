@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 21:20:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:50:06 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static char	**handle_cmd(char *cmd)
 	return (splitted_cmd);
 }
 
-static void	filter_cmd(t_info *data, char **splitted_cmd)
+static void	filter_cmd(t_info *data, char *cmd)
 {
-	if (ft_strcmp(splitted_cmd[0], " ") == 0)
+	if (ft_strcmp(cmd, " ") == 0)
 		put_error(data, " line 1: ", ": command not found\n", 127);
-	if (ft_strcmp(splitted_cmd[0], "~") == 0)
+	if (ft_strcmp(cmd, "~") == 0)
 	{
 		ft_putstr_fd("minishell: line 1: ", 2);
 		ft_putstr_fd(data->home, 2);
@@ -36,13 +36,17 @@ static void	filter_cmd(t_info *data, char **splitted_cmd)
 	}
 }
 
-static void	do_exec(t_info *data, char **splitted_cmd)
+static void	do_exec(t_info *data, char **splitted_cmd, int i)
 {
 	char	*path;
 	char	*aux;
 
-	aux = ft_strtrim(splitted_cmd[0], "\"");
-	filter_cmd(data, &aux);
+	aux = remove_quotes(splitted_cmd[0]);
+	if (ft_strlen(aux) == 0
+		&& ft_strcmp(data->heredoc_keys[i], "PLACEHOLDER") != 0)
+		exit (0);
+	if (aux)
+		filter_cmd(data, aux);
 	path = find_cmd_route(data->list_exp, aux);
 	if (!path)
 		put_error(data, aux, ": No such file or directory\n", 127);
@@ -72,15 +76,6 @@ void	do_builtin(t_info *data, int builtin, char **split_cmd)
 		unset_builtin(data, split_cmd);
 }
 
-// static void	clean_redir_lists(t_info *data)
-// {
-// 	if (data->string_infile)
-// 	{
-// 		data->string_infile = NULL;
-// 		free(data->string_infile);
-// 	}
-// }
-
 void	exec_process(t_info *data, char	*cmd, int i)
 {
 	int		builtin;
@@ -102,6 +97,6 @@ void	exec_process(t_info *data, char	*cmd, int i)
 	{
 		if (handle_redirect_mul(data, i))
 			exit (1);
-		do_exec(data, split_cmd);
+		do_exec(data, split_cmd, i);
 	}
 }
