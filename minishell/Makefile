@@ -111,6 +111,7 @@ EXECUTOR		=	add_cmd.c \
 					write_heredoc.c 
 
 UTILS		 	=	check_complex_cmd.c \
+					clean_quotes_array.c \
 					cmd_count.c \
 					copy_environment.c \
 					copy_list.c \

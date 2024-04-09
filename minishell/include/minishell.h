@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 19:23:23 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:09:54 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,6 @@ void			part_one(char **line, t_echo *e);
 void			loop_one(char **line, t_echo *e, t_info *data);
 void			list_exp_add(char *cmd, t_info *data);
 void			export_and_grep(t_environment *temp, char **split_cmd, int x);
+char			**clean_quotes_array(char **array);
 
 #endif

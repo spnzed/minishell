@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_one_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:10:12 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/08 16:05:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:24:44 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	exec_one(t_info *data)
 {
 	char	*path;
+	char	**cleaned;
 
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
@@ -23,11 +24,12 @@ static void	exec_one(t_info *data)
 	if (handle_redirect(data))
 		exit (1);
 	filter_one_cmd(data, &data->one_cmd[0]);
-	path = find_cmd_route(data->list_exp, data->one_cmd[0]);
+	cleaned = clean_quotes_array(data->one_cmd);
+	path = find_cmd_route(data->list_exp, cleaned[0]);
 	if (!path && !comprove_redirs(data))
 		put_error(data, data->one_cmd[0],
 			": No such file or directory\n", 127);
-	execve(path, data->one_cmd, data->env);
+	execve(path, cleaned, data->env);
 	if (!comprove_redirs(data))
 		last_error(data);
 	exit(0);
