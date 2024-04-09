@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:56:17 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 12:28:49 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:56:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	redir_syntax(char *line, t_info *data)
 	complex = 0;
 	while (line[++i])
 	{
-		if (line[i] == '>' && line[i + 1] == '<')
+		get_quotes_type(line[i], &simple, &complex);
+		if (line[i] == '>' && line[i + 1] == '<' && !complex && !simple)
 			return (free_and_return(data));
-		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<')
+		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<' 
+			&& !complex && !simple)
 			return (free_and_return(data));
-		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>')
+		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>' 
+			&& !complex && !simple)
 			return (free_and_return(data));
-		if (line[i] == '\'' || line[i] == '\"')
-			get_quotes_type(line[i], &simple, &complex);
 		if (get_redir_syntax_values (data, line[i], &simple, &complex))
 			return (2);
 	}
