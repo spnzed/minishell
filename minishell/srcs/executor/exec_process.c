@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:31:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/09 17:50:06 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:56:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ void	exec_process(t_info *data, char	*cmd, int i)
 		if (handle_redirect_mul(data, i))
 			exit (1);
 		do_exec(data, split_cmd, i);
+		if (data->heredoc_keys)
+			free_array(data->heredoc_keys);
 	}
 }

@@ -32,10 +32,10 @@ int	redir_syntax(char *line, t_info *data)
 		get_quotes_type(line[i], &simple, &complex);
 		if (line[i] == '>' && line[i + 1] == '<' && !complex && !simple)
 			return (free_and_return(data));
-		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<' 
+		if (line[i] == '<' && line[i + 1] == '<' && line[i + 2] == '<'
 			&& !complex && !simple)
 			return (free_and_return(data));
-		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>' 
+		if (line[i] == '>' && line[i + 1] == '>' && line[i + 2] == '>'
 			&& !complex && !simple)
 			return (free_and_return(data));
 		if (get_redir_syntax_values (data, line[i], &simple, &complex))

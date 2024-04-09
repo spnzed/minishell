@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:38:43 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 21:21:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:42:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ int	handle_redirect_mul(t_info *data, int i)
 		free_list(data->list_in_files);
 	if (data->list_out_files)
 		free_redir_list(data->list_out_files);
+	if (data->list_heredocs)
+		free_list(data->list_heredocs);
 	return (0);
 }
