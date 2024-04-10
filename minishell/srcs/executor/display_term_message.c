@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_term_message.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 12:27:18 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 10:49:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

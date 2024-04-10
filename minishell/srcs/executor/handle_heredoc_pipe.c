@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/09 20:54:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,6 @@ static int	comprove_heredoc_mul(t_info *data, char *cmd, int nbr)
 	return (fd);
 }
 
-static void	save_placeholder(t_info *data, int i)
-{
-	// free(data->heredoc_keys[i]);
-	data->heredoc_keys[i] = ft_strdup ("PLACEHOLDER");
-}
-
 void	handle_heredoc_pipe(t_info *data)
 {
 	int		i;
@@ -63,7 +57,7 @@ void	handle_heredoc_pipe(t_info *data)
 				ft_lstclear(&data->list_heredocs, free);
 			if (!ft_strnstr(data->split_line[i], "<<",
 					ft_strlen(data->split_line[i])))
-				save_placeholder(data, i);
+				data->heredoc_keys[i] = ft_strdup ("PLACEHOLDER");
 			else
 			{
 				fd = comprove_heredoc_mul(data, data->split_line[i], i);

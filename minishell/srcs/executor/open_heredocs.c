@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:29:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/09 20:55:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*get_heredoc_key(char *cmd)
 	is_quotes = num_quotes(redirs_cleaned);
 	if (redirs_cleaned)
 		return (checker(is_quotes, redirs_cleaned));
-	else 
+	else
 		return (NULL);
 }
 
