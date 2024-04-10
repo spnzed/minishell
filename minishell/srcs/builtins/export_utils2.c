@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/10 11:17:30 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:10:12 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*add_array(int strsize, t_environment *temp)
 
 	array = malloc(sizeof(char) * (strsize + 1));
 	if (!array)
-		return(NULL);
+		return (NULL);
 	ft_strlcpy(array, temp->signal, strsize + 1);
 	ft_strlcat(array, "=", strsize + 1);
 	ft_strlcat(array, temp->content, strsize + 1);
@@ -34,8 +34,6 @@ void	ft_env_to_array(t_environment *head, t_info *data)
 
 	i = 0;
 	lstsize = ft_envsize(head);
-	// dprintf(2, "HERE!!\n\n");
-	free_array(data->env);
 	data->env = malloc(sizeof(char *) * (lstsize + 1));
 	if (!data->env)
 		return ;

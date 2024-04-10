@@ -6,7 +6,7 @@
 /*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/10 10:39:46 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:07:21 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int				var_found_env(t_environment *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
 t_environment	*get_var_list(t_environment *env, char *var);
 char			*get_var_init(t_environment *env, char *var);
+char			**malloc_env_array(char **env);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 ////////////////////////////////////////////////////////////////////////////////
