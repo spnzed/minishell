@@ -14,6 +14,8 @@
 
 int	ctrl_d(t_info *data)
 {
+	free(data->home);
+	free(data->cmd_line);
 	if (isatty(STDIN_FILENO))
 		write(2, "exit\n", 6);
 	free_array(data->env);
