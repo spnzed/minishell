@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:29:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 21:21:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,19 @@ static char	*get_heredoc_key(char *cmd)
 	end = get_next_redir(&cmd[i], i);
 	redirs_cleaned = ft_substr(cmd, i, end - 0);
 	is_quotes = num_quotes(redirs_cleaned);
-	return (checker(is_quotes, redirs_cleaned));
+	if (redirs_cleaned)
+		return (checker(is_quotes, redirs_cleaned));
+	else
+		return (NULL);
 }
 
-//free(key_name); en la 64
 static void	handle_key_name(t_info *data, char *key_name, int i)
 {
 	int	fd;
 
 	fd = 0;
 	data->heredoc_keys[i] = ft_strjoin(HEREDOC, key_name);
+	free(key_name);
 	if (data->heredoc_keys[i] != NULL)
 		fd = open(data->heredoc_keys[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
@@ -97,6 +100,7 @@ void	open_heredocs(t_info *data)
 	data->heredoc_keys = malloc(sizeof(char *) * data->cmd_nbr);
 	while (data->split_line[i])
 	{
+		key_name = NULL;
 		j = ft_strlen(data->split_line[i]) - 1;
 		while (j > 0)
 		{
@@ -107,7 +111,7 @@ void	open_heredocs(t_info *data)
 			}
 			j--;
 		}
-		if (key_name)
+		if (key_name != NULL)
 			handle_key_name(data, key_name, i);
 		i++;
 	}

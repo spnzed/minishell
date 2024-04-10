@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/03 11:23:20 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:31:24 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ int	var_found_list(t_list *env, char *var)
 		temp = ft_before_set(head->content, '=');
 		if (ft_strcmp(temp, var) == 0)
 		{
-			if (temp)
-				free(temp);
+			free(temp);
 			return (0);
 		}
+		if (temp)
+			free(temp);
 		head = head->next;
 	}
-	if (temp)
-		free(temp);
 	return (1);
 }
 

@@ -15,11 +15,13 @@
 static char	*alloc_final_line(char *replacer, char *before_val, char *after_val)
 {
 	char	*final_line;
+	char	*final_line2;
 
 	if (ft_strlen(replacer))
 	{
-		final_line = ft_strjoin(before_val, replacer);
-		final_line = ft_strjoin(final_line, after_val);
+		final_line2 = ft_strjoin(before_val, replacer);
+		final_line = ft_strjoin(final_line2, after_val);
+		free(final_line2);
 	}
 	else
 	{

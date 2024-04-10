@@ -16,6 +16,8 @@ int	prepare_to_exec(t_info *data)
 {
 	static int	x;
 
+	if (!x)
+		x = 0;
 	if (x)
 		free_array(data->split_line);
 	data->split_line = split_cmds(data);
@@ -55,9 +57,10 @@ static void	init_var(t_info *data)
 
 void	prepare_to_exec_one(t_info *data)
 {
-	int	x;
+	static int	x;
 
-	x = 0;
+	if (!x)
+		x = 0;
 	if (x > 0)
 		free_array(data->one_cmd);
 	init_var(data);

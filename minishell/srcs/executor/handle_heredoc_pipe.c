@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:21:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:13 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
