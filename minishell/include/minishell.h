@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:57:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/10 13:49:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:21:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int				ft_is_bigger_maxll(char *str);
 void			ft_normin(char **split_cmd);
 int				ft_environmentsize(t_environment *env);
 int				ft_envsize(t_environment *lst);
-void			ft_env_to_array(t_environment *head, t_info *data);
+char			**ft_env_to_array(t_environment *head);
 void			loop_exp(int index, int len, t_environment *exp_order);
 void			order_exp(t_environment *exp);
 int				sub_var(t_list *list, char *signal, char *content);

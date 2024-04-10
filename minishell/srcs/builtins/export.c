@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/10 11:50:57 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:27:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,29 @@ static void	export_equal(t_info *data, t_list *new, char *cmd)
 
 static void	export_else(t_info *data, char *cmd)
 {
+	char			*aux;
 	t_environment	*tmp;
 
 	tmp = NULL;
-	if (ft_strchr(cmd, '"'))
-		cmd = ft_remove_quotes_str(cmd);
-	if (search_list_else(data->list_exp, cmd) == 0)
+	aux = ft_strdup (cmd);
+	if (ft_strchr(aux, '"'))
+		aux = ft_remove_quotes_str(aux);
+	if (search_list_else(data->list_exp, aux) == 0)
 		return ;
-	tmp = ft_envnew(cmd);
-	tmp->signal = cmd;
+	tmp = ft_envnew(aux);
+	tmp->signal = aux;
 	tmp->content = NULL;
 	if (!tmp)
 	{
 		ft_envclear(&data->list_exp, free);
+		free(aux);
 		return ;
 	}
 	if (!data->list_exp)
 		data->list_exp = tmp;
 	else
 		ft_envadd_back(&data->list_exp, tmp);
+	free(aux);
 	order_exp(data->list_exp);
 }
 
@@ -99,7 +103,7 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 		}
 	}
 	free_array(data->env);
-	ft_env_to_array(data->list_exp, data);
+	data->env = ft_env_to_array(data->list_exp);
 }
 
 int	export_builtin(t_info *data, char **split_cmd)
