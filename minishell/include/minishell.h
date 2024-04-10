@@ -67,6 +67,7 @@ int				var_found_env(t_environment *signals_env, char *var);
 int				var_found_list(t_list *env, char *var);
 t_environment	*get_var_list(t_environment *env, char *var);
 char			*get_var_init(t_environment *env, char *var);
+char			**malloc_env_array(char **env);
 ////////////////////////////////////////////////////////////////////////////////
 //				PARSER		📖
 ////////////////////////////////////////////////////////////////////////////////
@@ -179,13 +180,13 @@ int				ft_is_bigger_maxll(char *str);
 void			ft_normin(char **split_cmd);
 int				ft_environmentsize(t_environment *env);
 int				ft_envsize(t_environment *lst);
-char			**ft_env_to_array(t_environment *head);
-t_environment	*loop_exp(int index, int len, t_environment *exp_order);
-t_environment	*order_exp(t_environment *exp);
+void			ft_env_to_array(t_environment *head, t_info *data);
+void			loop_exp(int index, int len, t_environment *exp_order);
+void			order_exp(t_environment *exp);
 int				sub_var(t_list *list, char *signal, char *content);
 int				search_on_lists(t_info *data, t_environment *list, char *str);
 int				search_list_else(t_environment *list, char *signal);
-void			add_array(int strsize, t_environment *temp, char *array);
+char			*add_array(int strsize, t_environment *temp);
 void			export_error_not_valid_id(char *arg, t_info *data);
 char			*first_num(char *var);
 int				export_valid(char *cmd);
