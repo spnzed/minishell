@@ -6,7 +6,7 @@ NAME		=	minishell
 
 CC			=	gcc
 RLFLAGS     =   -lreadline
-CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
+CFLAGS		=	-Wall -Wextra -Werror
 CLEAN_CAR	=	\033[2K\r
 
 AR			=	ar rcs
@@ -23,8 +23,8 @@ RFLAGS = /Users/aaespino/.brew/opt/readline/include
 LDFLAGS = /Users/aaespino/.brew/opt/readline/lib
 
 #pquintan flags
-#RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
-#LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
+RFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/include
+LDFLAGS = /sgoinfre/Perso/pquintan/homebrew/opt/readline/lib
 
 SRCS_DIR		=	srcs/
 
@@ -163,8 +163,8 @@ $(OBJ_DIR)%.o : %.c Makefile
 all:		libft_link $(NAME) 
 
 $(NAME):	$(LIBFT) $(OBJS)
-#			@printf "\n"
-			@$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+			@printf "\n"
+			$(CC) $(CFLAGS) $(RLFLAGS) -L $(LDFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 			@echo "$(CLEAN_CAR)$(OK_COLOR)Minishell Compiled!$(NO_COLOR)"
 			@echo "Use $(BLUE_COLOR)./minishell$(NO_COLOR) to launch the program"
 
@@ -186,7 +186,7 @@ run:		all
 			echo ""
 			echo "$(OK_COLOR)Launching Minishell...$(NO_COLOR)"
 			echo ""
-			valgrind --leak-check=full ./minishell
+			./minishell
 
 libft_link:	
 			@make -sC $(LIBFT_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/10 14:26:45 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/10 14:36:24 by pquintan          #+#    #+#             */
+/*   Updated: 2024/04/10 14:46:59 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,28 @@ char	*add_array(int strsize, t_environment *temp)
 	return (array);
 }
 
-char	**ft_env_to_array(t_environment *head)
+void	ft_env_to_array(t_environment *head, t_info *data)
 {
 	int				i;
 	int				strsize;
 	int				lstsize;
-	char			**array;
 	t_environment	*temp;
 
 	i = 0;
 	lstsize = ft_envsize(head);
-	array = malloc(sizeof(char *) * (lstsize + 1));
-	if (!array)
-		return (NULL);
+	data->env = malloc(sizeof(char *) * (lstsize + 1));
+	if (!data->env)
+		return ;
 	temp = head;
 	while (i < lstsize && temp)
 	{
 		strsize = ft_strlen(temp->full_line) + 1;
 		if (ft_strlen(temp->content) > 0)
-			array[i] = add_array(strsize, temp);
+			data->env[i] = add_array(strsize, temp);
 		temp = temp->next;
 		i++;
 	}
-	array[i] = NULL;
-	return (array);
+	data->env[i] = NULL;
 }
 
 void	export_error_not_valid_id(char *arg, t_info *data)

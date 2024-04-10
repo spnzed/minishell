@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:44:53 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/10 14:27:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:46:00 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static void	export_else(t_info *data, char *cmd)
 		data->list_exp = tmp;
 	else
 		ft_envadd_back(&data->list_exp, tmp);
-	free(aux);
 	order_exp(data->list_exp);
 }
 
@@ -103,7 +102,7 @@ static void	export_function(int i, int x, t_info *data, char **split_cmd)
 		}
 	}
 	free_array(data->env);
-	data->env = ft_env_to_array(data->list_exp);
+	ft_env_to_array(data->list_exp, data);
 }
 
 int	export_builtin(t_info *data, char **split_cmd)
