@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:02:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/10 10:49:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:52:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ char	*display_term_message(t_info *data)
 	line = readline("42-Minishell ~ % ");
 	if (!line)
 	{
+		free_environment(data->signals_env);
+		if (data->list_exp)
+			free_environment(data->list_exp);
 		if (isatty(STDIN_FILENO))
 			write(2, "exit\n", 6);
 		exit (data->exit_id);

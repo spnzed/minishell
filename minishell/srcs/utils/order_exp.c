@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   order_exp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:43:48 by pquintan          #+#    #+#             */
-/*   Updated: 2024/04/03 11:44:02 by pquintan         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:42:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_environment	*order_exp(t_environment *exp)
+void	order_exp(t_environment *exp)
 {
 	int				len_list;
 	int				index;
-	t_environment	*exp_order;
 
-	exp_order = ft_copy_environment(exp);
-	len_list = ft_environmentsize(exp_order);
+	len_list = ft_environmentsize(exp);
 	index = 0;
-	return (loop_exp(index, len_list, exp_order));
+	loop_exp(index, len_list, exp);
 }
