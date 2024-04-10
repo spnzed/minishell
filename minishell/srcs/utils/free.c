@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pquintan <pquintan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:49:04 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/08 17:27:50 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:26:27 by pquintan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	free_array(char **array)
 	int		i;
 	char	*str;
 
-	if (array == NULL)
-		return ;
 	i = 0;
+	if (!array || array[i])
+		return ;
 	while (array[i])
 	{
 		str = array[i];

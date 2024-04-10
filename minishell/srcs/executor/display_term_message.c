@@ -19,8 +19,11 @@ char	*display_term_message(t_info *data)
 	line = readline("42-Minishell ~ % ");
 	if (!line)
 	{
+		free_environment(data->signals_env);
+		free_environment(data->list_exp);
 		if (isatty(STDIN_FILENO))
 			write(2, "exit\n", 6);
+		free_array(data->env);
 		exit (data->exit_id);
 	}
 	if (ft_strlen(line) > 0)
